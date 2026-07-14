@@ -71,7 +71,6 @@
       background: linear-gradient(135deg, #D4A574 0%, #B8865A 100%);
     }
 
-    /* ═══ WARNA WARNI BERLAMPU ═══ */
     @keyframes rainbowGlow {
       0%   { color: #FFD700; text-shadow: 0 0 10px rgba(255,215,0,0.6), 0 0 30px rgba(255,215,0,0.3), 0 0 60px rgba(255,215,0,0.15); }
       16%  { color: #FF69B4; text-shadow: 0 0 10px rgba(255,105,180,0.6), 0 0 30px rgba(255,105,180,0.3), 0 0 60px rgba(255,105,180,0.15); }
@@ -133,15 +132,17 @@
     .perfume-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 20px;
+      border-radius: 16px;
       overflow: hidden;
       transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
       position: relative;
       box-shadow: 0 2px 16px rgba(0,0,0,0.3);
       backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
     }
     .perfume-card:hover {
-      transform: translateY(-8px);
+      transform: translateY(-6px);
       border-color: var(--border-accent);
       box-shadow: 0 16px 48px rgba(212,165,116,0.12), 0 0 0 1px rgba(212,165,116,0.08);
     }
@@ -166,9 +167,9 @@
       background: linear-gradient(135deg, #D4A574, #B8865A);
       color: #13100C;
       font-weight: 800;
-      font-size: 16px;
+      font-size: 14px;
       letter-spacing: 4px;
-      padding: 10px 28px;
+      padding: 8px 24px;
       border-radius: 12px;
       transform: rotate(-8deg);
       box-shadow: 0 8px 30px rgba(212,165,116,0.2);
@@ -244,17 +245,17 @@
 
     .marquee-track {
       display: flex;
-      animation: marquee 30s linear infinite;
+      animation: marquee 35s linear infinite;
       width: max-content;
     }
 
     .stock-dot {
-      width: 7px; height: 7px;
+      width: 6px; height: 6px;
       border-radius: 50%;
       display: inline-block;
     }
-    .stock-yes { background: #22C55E; box-shadow: 0 0 8px rgba(34,197,94,0.4); }
-    .stock-low { background: #F59E0B; box-shadow: 0 0 8px rgba(245,158,11,0.4); }
+    .stock-yes { background: #22C55E; box-shadow: 0 0 6px rgba(34,197,94,0.4); }
+    .stock-low { background: #F59E0B; box-shadow: 0 0 6px rgba(245,158,11,0.4); }
 
     .toast-box {
       background: rgba(28,24,20,0.97);
@@ -271,11 +272,11 @@
 
     .tg-float {
       position: fixed;
-      bottom: 24px;
-      right: 24px;
+      bottom: 20px;
+      right: 20px;
       z-index: 45;
-      width: 56px;
-      height: 56px;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
       background: linear-gradient(135deg, #2AABEE, #229ED9);
       display: flex;
@@ -317,18 +318,15 @@
       backdrop-filter: blur(16px);
     }
 
-    .price-card-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-    .price-card-value {
-      font-size: 13px;
+    .pay-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 14px;
+      border-radius: 10px;
       font-weight: 800;
-      color: var(--text-sec);
-      line-height: 1.3;
+      font-size: 13px;
+      white-space: nowrap;
     }
   </style>
 </head>
@@ -337,19 +335,17 @@
   <!-- ╔══════════════════════════════════════╗ -->
   <!-- ║            NAVBAR                    ║ -->
   <!-- ╚══════════════════════════════════════╝ -->
-  <nav class="fixed top-0 left-0 right-0 z-40 h-16 flex items-center justify-between px-5 md:px-8"
-       style="background: rgba(19,16,12,0.85); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border);">
-    <div id="logoArea" class="flex items-center gap-3 cursor-pointer select-none">
-      <div class="w-9 h-9 rounded-xl accent-gradient-bg flex items-center justify-center shadow-lg" style="box-shadow: 0 4px 15px rgba(212,165,116,0.2);">
-        <span class="font-black text-xs" style="color: #13100C;">VJ</span>
+  <nav class="fixed top-0 left-0 right-0 z-40 h-14 md:h-16 flex items-center justify-between px-4 md:px-8"
+       style="background: rgba(19,16,12,0.88); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border);">
+    <div id="logoArea" class="flex items-center gap-2.5 cursor-pointer select-none">
+      <div class="w-8 h-8 md:w-9 md:h-9 rounded-xl accent-gradient-bg flex items-center justify-center shadow-lg" style="box-shadow: 0 4px 15px rgba(212,165,116,0.2);">
+        <span class="font-black text-[10px] md:text-xs" style="color: #13100C;">VJ</span>
       </div>
-      <div>
-        <span class="font-black text-base tracking-tight rainbow-glow" style="font-size: 15px;">VJ PARFUME</span>
-      </div>
+      <span class="font-black text-sm md:text-base tracking-tight rainbow-glow">VJ PARFUME</span>
     </div>
-    <a href="#koleksi" class="text-sm flex items-center gap-1.5 transition-colors font-bold" style="color: var(--accent-dark);" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--accent-dark)'">
+    <a href="#koleksi" class="text-xs md:text-sm flex items-center gap-1.5 transition-colors font-extrabold" style="color: var(--accent-dark);" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--accent-dark)'">
       Lihat Koleksi
-      <i data-lucide="chevron-down" class="w-4 h-4"></i>
+      <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
     </a>
   </nav>
 
@@ -357,62 +353,57 @@
   <!-- ╔══════════════════════════════════════╗ -->
   <!-- ║             HERO                     ║ -->
   <!-- ╚══════════════════════════════════════╝ -->
-  <section class="min-h-screen flex flex-col items-center justify-center text-center px-6 relative overflow-hidden hero-pattern">
+  <section class="min-h-screen flex flex-col items-center justify-center text-center px-5 md:px-6 relative overflow-hidden hero-pattern">
 
-    <!-- Top Badge -->
-    <div class="anim-fade-up mb-8">
-      <div class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full" style="border: 1px solid var(--border-accent); background: rgba(212,165,116,0.04);">
-        <span class="text-[11px] font-extrabold accent-text tracking-widest uppercase">✦ Premium Fragrance ✦</span>
+    <div class="anim-fade-up mb-6 md:mb-8">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full" style="border: 1px solid var(--border-accent); background: rgba(212,165,116,0.04);">
+        <span class="text-[10px] md:text-[11px] font-extrabold accent-text tracking-widest uppercase">✦ Premium Fragrance ✦</span>
       </div>
     </div>
 
-    <!-- Heading — Selamat Datang warna warni berlampu -->
-    <h1 class="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[0.9] mb-3 anim-fade-up d1">
+    <h1 class="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[0.95] mb-2 md:mb-3 anim-fade-up d1 px-2">
       <span class="rainbow-glow-soft" style="display:inline-block;">Selamat Datang di</span>
     </h1>
-    <h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[0.85] mb-7 anim-fade-up d2">
+    <h1 class="text-4xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[0.85] mb-5 md:mb-7 anim-fade-up d2 px-2">
       <span class="rainbow-glow" style="display:inline-block;">VJ PARFUME</span>
     </h1>
 
-    <!-- Subtext -->
-    <p class="text-lg md:text-xl max-w-lg leading-relaxed mb-3 anim-fade-up d3 font-bold" style="color: #E8C9A8;">
+    <p class="text-base md:text-xl max-w-lg leading-relaxed mb-2 anim-fade-up d3 font-extrabold px-4" style="color: #E8C9A8;">
       Mau wangi tapi tetap hemat?
     </p>
-    <p class="text-sm md:text-base max-w-md leading-relaxed mb-12 anim-fade-up d4 font-bold" style="color: var(--text-sec);">
+    <p class="text-xs md:text-base max-w-md leading-relaxed mb-8 md:mb-12 anim-fade-up d4 font-bold px-4" style="color: var(--text-sec);">
       Pilih parfum favoritmu di bawah ini, tentukan yang kamu inginkan, dan langsung pesan sekarang. Gampang banget!
     </p>
 
-    <!-- CTA -->
-    <a href="#koleksi" class="btn-primary px-10 py-4 rounded-2xl font-extrabold text-sm anim-fade-up d5 inline-flex items-center gap-2.5 tracking-wide">
+    <a href="#koleksi" class="btn-primary px-8 md:px-10 py-3.5 md:py-4 rounded-2xl font-extrabold text-xs md:text-sm anim-fade-up d5 inline-flex items-center gap-2.5 tracking-wide">
       Lihat Koleksi Parfum
       <i data-lucide="arrow-down" class="w-4 h-4"></i>
     </a>
 
-    <!-- Float Indicator -->
-    <div class="absolute bottom-10 anim-float">
+    <div class="absolute bottom-8 md:bottom-10 anim-float">
       <i data-lucide="chevrons-down" class="w-5 h-5" style="color: var(--text-muted);"></i>
     </div>
   </section>
 
 
   <!-- ╔══════════════════════════════════════╗ -->
-  <!-- ║       INFO PEMBAYARAN BARU           ║ -->
+  <!-- ║       INFO PEMBAYARAN                ║ -->
   <!-- ╚══════════════════════════════════════╝ -->
-  <section class="py-10 px-4 md:px-8 section-glass" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
-    <div class="max-w-xl mx-auto text-center">
-      <p class="text-base md:text-lg font-extrabold mb-2" style="color: #FFD7A8;">
+  <section class="py-8 md:py-10 px-4 md:px-8 section-glass" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="max-w-xl mx-auto text-center px-2">
+      <p class="text-sm md:text-lg font-extrabold mb-1.5" style="color: #FFD7A8;">
         🌸 Ingin tampil wangi, elegan, dan tahan lama tanpa harus mahal?
       </p>
-      <p class="text-base md:text-lg font-extrabold mb-6" style="color: #FFB6D9;">
-        Silakan order di <span class="rainbow-glow" style="font-size: 1.1em;">VJ PARFUME</span>! 💖
+      <p class="text-sm md:text-lg font-extrabold mb-5 md:mb-6" style="color: #FFB6D9;">
+        Silakan order di <span class="rainbow-glow" style="font-size:1.05em;">VJ PARFUME</span>! 💖
       </p>
-      <div class="inline-flex items-center gap-3 px-6 py-3.5 rounded-2xl" style="background: var(--card); border: 1px solid var(--border-accent);">
-        <span class="font-extrabold text-sm" style="color: var(--text-sec);">💳 Menerima Pembayaran:</span>
-        <span class="font-extrabold text-sm" style="color: var(--accent-dark);">💵 Cash</span>
-        <span class="font-extrabold text-sm" style="color: var(--text-muted);">•</span>
-        <span class="font-extrabold text-sm" style="color: #7DD3FC;">📱 ABA</span>
-        <span class="font-extrabold text-sm" style="color: var(--text-muted);">•</span>
-        <span class="font-extrabold text-sm" style="color: #C4B5FD;">🪽 Wings</span>
+      <div class="flex flex-col items-center gap-2">
+        <span class="font-extrabold text-xs md:text-sm" style="color: var(--text-sec);">💳 Menerima Pembayaran:</span>
+        <div class="flex flex-wrap items-center justify-center gap-2">
+          <span class="pay-chip" style="background: rgba(212,165,116,0.1); color: var(--accent-dark);">💵 Cash</span>
+          <span class="pay-chip" style="background: rgba(125,211,252,0.08); color: #7DD3FC;">📱 ABA</span>
+          <span class="pay-chip" style="background: rgba(196,181,253,0.08); color: #C4B5FD;">🪽 Wings</span>
+        </div>
       </div>
     </div>
   </section>
@@ -421,32 +412,38 @@
   <!-- ╔══════════════════════════════════════╗ -->
   <!-- ║          MARQUEE STRIP               ║ -->
   <!-- ╚══════════════════════════════════════╝ -->
-  <div class="overflow-hidden py-5" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border); background: rgba(212,165,116,0.02);">
+  <div class="overflow-hidden py-4" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border); background: rgba(212,165,116,0.02);">
     <div class="marquee-track">
-      <span class="text-xs font-extrabold tracking-[0.3em] uppercase accent-text whitespace-nowrap px-8">VJ Parfume</span>
-      <span class="text-xs whitespace-nowrap px-4" style="color: var(--accent-light);">✦</span>
-      <span class="text-xs font-extrabold tracking-[0.3em] uppercase whitespace-nowrap px-8" style="color: var(--text-sec);">Wangi Berkualitas</span>
-      <span class="text-xs whitespace-nowrap px-4" style="color: var(--accent-light);">✦</span>
-      <span class="text-xs font-extrabold tracking-[0.3em] uppercase accent-text whitespace-nowrap px-8">Harga Bersahabat</span>
-      <span class="text-xs whitespace-nowrap px-4" style="color: var(--accent-light);">✦</span>
-      <span class="text-xs font-extrabold tracking-[0.3em] uppercase whitespace-nowrap px-8" style="color: var(--text-sec);">Premium Fragrance</span>
-      <span class="text-xs whitespace-nowrap px-4" style="color: var(--accent-light);">✦</span>
-      <span class="text-xs font-extrabold tracking-[0.3em] uppercase accent-text whitespace-nowrap px-8">VJ Parfume</span>
-      <span class="text-xs whitespace-nowrap px-4" style="color: var(--accent-light);">✦</span>
-      <span class="text-xs font-extrabold tracking-[0.3em] uppercase whitespace-nowrap px-8" style="color: var(--text-sec);">Wangi Berkualitas</span>
-      <span class="text-xs whitespace-nowrap px-4" style="color: var(--accent-light);">✦</span>
-      <span class="text-xs font-extrabold tracking-[0.3em] uppercase accent-text whitespace-nowrap px-8">Harga Bersahabat</span>
-      <span class="text-xs whitespace-nowrap px-4" style="color: var(--accent-light);">✦</span>
-      <span class="text-xs font-extrabold tracking-[0.3em] uppercase whitespace-nowrap px-8" style="color: var(--text-sec);">Premium Fragrance</span>
-      <span class="text-xs whitespace-nowrap px-4" style="color: var(--accent-light);">✦</span>
-      <span class="text-xs font-extrabold tracking-[0.3em] uppercase accent-text whitespace-nowrap px-8">VJ Parfume</span>
-      <span class="text-xs whitespace-nowrap px-4" style="color: var(--accent-light);">✦</span>
-      <span class="text-xs font-extrabold tracking-[0.3em] uppercase whitespace-nowrap px-8" style="color: var(--text-sec);">Wangi Berkualitas</span>
-      <span class="text-xs whitespace-nowrap px-4" style="color: var(--accent-light);">✦</span>
-      <span class="text-xs font-extrabold tracking-[0.3em] uppercase accent-text whitespace-nowrap px-8">Harga Bersahabat</span>
-      <span class="text-xs whitespace-nowrap px-4" style="color: var(--accent-light);">✦</span>
-      <span class="text-xs font-extrabold tracking-[0.3em] uppercase whitespace-nowrap px-8" style="color: var(--text-sec);">Premium Fragrance</span>
-      <span class="text-xs whitespace-nowrap px-4" style="color: var(--accent-light);">✦</span>
+      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #FFD700;">🌸 VJ Parfume</span>
+      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">✨</span>
+      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #FFB6D9;">💐 Wangi Berkualitas</span>
+      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">🎀</span>
+      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #7DD3FC;">💎 Harga Bersahabat</span>
+      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">✨</span>
+      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #C4B5FD;">🌷 Premium Fragrance</span>
+      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">💕</span>
+      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #7FFF00;">💵 Cash · 📱 ABA · 🪽 Wings</span>
+      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">🌹</span>
+      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #FFD700;">🌸 VJ Parfume</span>
+      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">✨</span>
+      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #FFB6D9;">💐 Wangi Berkualitas</span>
+      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">🎀</span>
+      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #7DD3FC;">💎 Harga Bersahabat</span>
+      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">✨</span>
+      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #C4B5FD;">🌷 Premium Fragrance</span>
+      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">💕</span>
+      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #7FFF00;">💵 Cash · 📱 ABA · 🪽 Wings</span>
+      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">🌹</span>
+      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #FFD700;">🌸 VJ Parfume</span>
+      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">✨</span>
+      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #FFB6D9;">💐 Wangi Berkualitas</span>
+      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">🎀</span>
+      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #7DD3FC;">💎 Harga Bersahabat</span>
+      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">✨</span>
+      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #C4B5FD;">🌷 Premium Fragrance</span>
+      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">💕</span>
+      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #7FFF00;">💵 Cash · 📱 ABA · 🪽 Wings</span>
+      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">🌹</span>
     </div>
   </div>
 
@@ -454,19 +451,19 @@
   <!-- ╔══════════════════════════════════════╗ -->
   <!-- ║        TELEGRAM BANNER               ║ -->
   <!-- ╚══════════════════════════════════════╝ -->
-  <section class="py-10 px-4 md:px-8 section-glass">
-    <div class="max-w-xl mx-auto rounded-3xl p-6 md:p-8" style="background: var(--card); border: 1px solid var(--border); box-shadow: 0 4px 24px rgba(0,0,0,0.3);">
-      <div class="flex flex-col items-center text-center gap-5">
-        <div class="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #2AABEE, #229ED9); box-shadow: 0 6px 20px rgba(42,171,238,0.2);">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+  <section class="py-8 md:py-10 px-4 md:px-8 section-glass">
+    <div class="max-w-xl mx-auto rounded-2xl md:rounded-3xl p-5 md:p-8" style="background: var(--card); border: 1px solid var(--border); box-shadow: 0 4px 24px rgba(0,0,0,0.3);">
+      <div class="flex flex-col items-center text-center gap-4 md:gap-5">
+        <div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #2AABEE, #229ED9); box-shadow: 0 6px 20px rgba(42,171,238,0.2);">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
         </div>
         <div>
-          <h3 class="font-serif text-xl md:text-2xl font-extrabold mb-2" style="color: var(--text);">Gabung Channel Telegram Kami</h3>
-          <p class="text-sm mb-5 font-bold" style="color: var(--text-sec);">Dapatkan info parfum terbaru & promo spesial langsung di channel kami</p>
+          <h3 class="font-serif text-lg md:text-2xl font-extrabold mb-1.5" style="color: var(--text);">Gabung Channel Telegram Kami</h3>
+          <p class="text-xs md:text-sm mb-4 md:mb-5 font-bold" style="color: var(--text-sec);">Dapatkan info parfum terbaru & promo spesial langsung di channel kami</p>
           <a href="https://telegram.me/vjparfume_premium" target="_blank"
-             class="inline-flex items-center justify-center gap-2.5 px-7 py-3 rounded-xl text-sm font-extrabold text-white transition-all hover:opacity-90"
+             class="inline-flex items-center justify-center gap-2 px-6 py-2.5 md:px-7 md:py-3 rounded-xl text-xs md:text-sm font-extrabold text-white transition-all hover:opacity-90"
              style="background: linear-gradient(135deg, #2AABEE, #229ED9); box-shadow: 0 4px 14px rgba(42,171,238,0.2);">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
             Gabung Channel Sekarang
           </a>
         </div>
@@ -478,37 +475,32 @@
   <!-- ╔══════════════════════════════════════╗ -->
   <!-- ║           CATALOG SECTION            ║ -->
   <!-- ╚══════════════════════════════════════╝ -->
-  <section id="koleksi" class="max-w-7xl mx-auto px-4 md:px-8 pt-24 pb-32">
+  <section id="koleksi" class="max-w-7xl mx-auto px-3 md:px-8 pt-16 md:pt-24 pb-24 md:pb-32">
 
-    <!-- Section Header -->
-    <div class="text-center mb-14">
-      <p class="text-[11px] font-extrabold tracking-[0.35em] uppercase accent-text mb-4">— Our Collection —</p>
-      <h2 class="text-3xl md:text-5xl font-serif font-extrabold tracking-tight mb-4" style="color: var(--text);">Koleksi <span class="accent-gradient-text">Parfum</span> Kami</h2>
-      <p class="text-sm md:text-base max-w-md mx-auto font-bold" style="color: var(--text-sec);">Pilih yang kamu suka, langsung pesan tanpa ribet</p>
-      <div class="gold-divider max-w-[120px] mx-auto mt-6"></div>
+    <div class="text-center mb-10 md:mb-14">
+      <p class="text-[10px] md:text-[11px] font-extrabold tracking-[0.35em] uppercase accent-text mb-3 md:mb-4">— Our Collection —</p>
+      <h2 class="text-2xl md:text-5xl font-serif font-extrabold tracking-tight mb-3 md:mb-4" style="color: var(--text);">Koleksi <span class="accent-gradient-text">Parfum</span> Kami</h2>
+      <p class="text-xs md:text-base max-w-md mx-auto font-bold" style="color: var(--text-sec);">Pilih yang kamu suka, langsung pesan tanpa ribet</p>
+      <div class="gold-divider max-w-[100px] md:max-w-[120px] mx-auto mt-4 md:mt-6"></div>
     </div>
 
-    <!-- Search Bar -->
-    <div class="max-w-md mx-auto mb-12">
+    <div class="max-w-md mx-auto mb-8 md:mb-12 px-1">
       <div class="relative">
-        <i data-lucide="search" class="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2" style="color: var(--text-muted);"></i>
+        <i data-lucide="search" class="w-4 h-4 absolute left-3.5 md:left-4 top-1/2 -translate-y-1/2" style="color: var(--text-muted);"></i>
         <input type="text" id="searchInput" placeholder="Cari parfum..."
-               class="input-field w-full h-12 pl-12 pr-5 rounded-2xl text-sm font-bold">
+               class="input-field w-full h-11 md:h-12 pl-10 md:pl-12 pr-4 md:pr-5 rounded-xl md:rounded-2xl text-xs md:text-sm font-bold">
       </div>
     </div>
 
-    <!-- Product Grid -->
-    <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-5">
-      <!-- JS renders here -->
+    <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2.5 md:gap-5">
     </div>
 
-    <!-- Empty State -->
-    <div id="emptyState" class="hidden text-center py-24">
-      <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5" style="background: var(--bg-alt);">
-        <i data-lucide="search-x" class="w-7 h-7" style="color: var(--text-muted);"></i>
+    <div id="emptyState" class="hidden text-center py-20 md:py-24">
+      <div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-5" style="background: var(--bg-alt);">
+        <i data-lucide="search-x" class="w-6 h-6 md:w-7 md:h-7" style="color: var(--text-muted);"></i>
       </div>
-      <p class="font-extrabold mb-1" style="color: var(--text-sec);">Parfum tidak ditemukan</p>
-      <p class="text-sm font-bold" style="color: var(--text-muted);">Coba kata kunci lain</p>
+      <p class="font-extrabold mb-1 text-sm md:text-base" style="color: var(--text-sec);">Parfum tidak ditemukan</p>
+      <p class="text-xs md:text-sm font-bold" style="color: var(--text-muted);">Coba kata kunci lain</p>
     </div>
   </section>
 
@@ -516,21 +508,21 @@
   <!-- ╔══════════════════════════════════════╗ -->
   <!-- ║             FOOTER                   ║ -->
   <!-- ╚══════════════════════════════════════╝ -->
-  <footer class="py-12 px-6 text-center section-glass" style="border-top: 1px solid var(--border);">
-    <div class="flex items-center justify-center gap-2.5 mb-4">
+  <footer class="py-10 md:py-12 px-5 md:px-6 text-center section-glass" style="border-top: 1px solid var(--border);">
+    <div class="flex items-center justify-center gap-2.5 mb-3 md:mb-4">
       <div class="w-7 h-7 rounded-lg accent-gradient-bg flex items-center justify-center">
         <span class="font-black text-[10px]" style="color: #13100C;">VJ</span>
       </div>
-      <span class="font-extrabold text-sm rainbow-glow" style="font-size: 14px;">VJ PARFUME</span>
+      <span class="font-black text-sm rainbow-glow" style="font-size: 13px;">VJ PARFUME</span>
     </div>
-    <p class="text-sm mb-3 font-bold" style="color: var(--text-sec);">Wangi Berkualitas, Harga Bersahabat</p>
-    <div class="flex items-center justify-center gap-4 mb-4">
-      <a href="https://telegram.me/vjparfume_premium" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-bold transition-colors" style="color: var(--accent-dark);" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--accent-dark)'">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+    <p class="text-xs md:text-sm mb-3 font-bold" style="color: var(--text-sec);">Wangi Berkualitas, Harga Bersahabat</p>
+    <div class="flex items-center justify-center gap-4 mb-3 md:mb-4">
+      <a href="https://telegram.me/vjparfume_premium" target="_blank" class="inline-flex items-center gap-1.5 text-[11px] md:text-xs font-bold transition-colors" style="color: var(--accent-dark);" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--accent-dark)'">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
         Channel Telegram
       </a>
     </div>
-    <p class="text-xs font-bold" style="color: var(--text-muted);">© 2025 VJ Parfume. All rights reserved.</p>
+    <p class="text-[10px] md:text-xs font-bold" style="color: var(--text-muted);">© 2025 VJ Parfume. All rights reserved.</p>
   </footer>
 
 
@@ -538,87 +530,81 @@
   <!-- ║      FLOATING TELEGRAM BUTTON        ║ -->
   <!-- ╚══════════════════════════════════════╝ -->
   <a href="https://telegram.me/vjparfume_premium" target="_blank" class="tg-float" title="Gabung Channel Telegram">
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
   </a>
 
 
   <!-- ╔══════════════════════════════════════╗ -->
   <!-- ║          ORDER MODAL                 ║ -->
   <!-- ╚══════════════════════════════════════╝ -->
-  <div id="orderModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop">
+  <div id="orderModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 md:p-4 modal-backdrop">
     <div class="modal-box w-full max-w-md max-h-[92vh] overflow-y-auto anim-slide-up">
 
-      <!-- Header -->
-      <div class="flex items-center justify-between p-6 pb-4">
+      <div class="flex items-center justify-between p-5 md:p-6 pb-3 md:pb-4">
         <div>
           <p class="text-[10px] font-extrabold tracking-[0.25em] uppercase accent-text mb-1">Pesan Sekarang</p>
-          <h3 class="font-extrabold text-lg" style="color: var(--text);" id="modalNama">Nama Parfum</h3>
+          <h3 class="font-extrabold text-base md:text-lg" style="color: var(--text);" id="modalNama">Nama Parfum</h3>
         </div>
-        <button onclick="closeModal()" class="w-10 h-10 rounded-xl flex items-center justify-center transition-colors" style="background: var(--bg-alt);">
+        <button onclick="closeModal()" class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center transition-colors" style="background: var(--bg-alt);">
           <i data-lucide="x" class="w-4 h-4" style="color: var(--text-sec);"></i>
         </button>
       </div>
 
-      <div class="gold-divider mx-6"></div>
+      <div class="gold-divider mx-5 md:mx-6"></div>
 
-      <!-- Product Preview -->
-      <div class="p-6 pb-4 flex items-center gap-4">
-        <img id="modalImg" src="" alt="" class="w-20 h-20 rounded-2xl object-cover" style="border: 1px solid var(--border);">
+      <div class="p-5 md:p-6 pb-3 md:pb-4 flex items-center gap-3 md:gap-4">
+        <img id="modalImg" src="" alt="" class="w-16 h-16 md:w-20 md:h-20 rounded-xl md:rounded-2xl object-cover" style="border: 1px solid var(--border);">
         <div>
-          <p class="font-extrabold text-sm" style="color: var(--text);" id="modalNama2"></p>
-          <p class="font-extrabold text-lg mt-1 accent-text" id="modalHarga"></p>
+          <p class="font-extrabold text-xs md:text-sm" style="color: var(--text);" id="modalNama2"></p>
+          <p class="font-extrabold text-base md:text-lg mt-1 accent-text" id="modalHarga"></p>
         </div>
       </div>
 
-      <!-- Form -->
-      <form id="orderForm" class="px-6 pb-6 space-y-4" onsubmit="return submitOrder(event)">
+      <form id="orderForm" class="px-5 md:px-6 pb-5 md:pb-6 space-y-3.5 md:space-y-4" onsubmit="return submitOrder(event)">
 
         <div>
-          <label class="block text-xs font-extrabold mb-2" style="color: var(--text-sec);">Nama Lengkap <span style="color: #EF4444;">*</span></label>
+          <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Nama Lengkap <span style="color: #EF4444;">*</span></label>
           <input type="text" id="inputNama" required placeholder="Tulis nama kamu di sini"
-                 class="input-field w-full h-12 px-4 rounded-xl text-sm font-bold">
+                 class="input-field w-full h-11 md:h-12 px-3.5 md:px-4 rounded-xl text-xs md:text-sm font-bold">
         </div>
 
         <div>
-          <label class="block text-xs font-extrabold mb-2" style="color: var(--text-sec);">Catatan</label>
+          <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Catatan</label>
           <textarea id="inputCatatan" rows="2" placeholder="Tulis catatan tambahan (opsional)..."
-                    class="input-field w-full px-4 py-3 rounded-xl text-sm font-bold resize-none"></textarea>
+                    class="input-field w-full px-3.5 md:px-4 py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-bold resize-none"></textarea>
         </div>
 
         <div>
-          <label class="block text-xs font-extrabold mb-2" style="color: var(--text-sec);">Jumlah Pesanan</label>
-          <div class="flex items-center gap-4">
+          <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Jumlah Pesanan</label>
+          <div class="flex items-center gap-3 md:gap-4">
             <button type="button" class="qty-btn" onclick="changeQty(-1)">−</button>
-            <span id="qtyDisplay" class="text-2xl font-black w-10 text-center" style="color: var(--text);">1</span>
+            <span id="qtyDisplay" class="text-xl md:text-2xl font-black w-8 md:w-10 text-center" style="color: var(--text);">1</span>
             <button type="button" class="qty-btn" onclick="changeQty(1)">+</button>
-            <span id="stockInfo" class="text-xs font-bold ml-auto" style="color: var(--text-muted);"></span>
+            <span id="stockInfo" class="text-[11px] md:text-xs font-bold ml-auto" style="color: var(--text-muted);"></span>
           </div>
         </div>
 
-        <!-- Total -->
-        <div class="rounded-2xl p-5 text-center" style="background: var(--accent-pale); border: 1px solid var(--border-accent);">
-          <p class="text-xs font-extrabold mb-2 tracking-wide" style="color: var(--text-sec);">TOTAL HARGA</p>
-          <div id="totalHarga" class="font-black accent-text text-3xl">Rp 0</div>
+        <div class="rounded-xl md:rounded-2xl p-4 md:p-5 text-center" style="background: var(--accent-pale); border: 1px solid var(--border-accent);">
+          <p class="text-[10px] md:text-xs font-extrabold mb-1.5 md:mb-2 tracking-wide" style="color: var(--text-sec);">TOTAL HARGA</p>
+          <div id="totalHarga" class="font-black accent-text text-2xl md:text-3xl">Rp 0</div>
         </div>
 
-        <!-- Submit -->
         <button type="submit" id="submitBtn"
-                class="w-full btn-primary rounded-2xl font-extrabold text-sm flex items-center justify-center gap-2.5 tracking-wide py-4">
+                class="w-full btn-primary rounded-xl md:rounded-2xl font-extrabold text-xs md:text-sm flex items-center justify-center gap-2.5 tracking-wide py-3.5 md:py-4">
           <i data-lucide="shopping-bag" class="w-4 h-4"></i>
           Konfirmasi Pesanan
         </button>
 
-        <!-- Telegram Alternative -->
         <a id="modalTgLink" href="#" target="_blank"
-           class="w-full rounded-2xl font-extrabold text-sm flex items-center justify-center gap-2.5 tracking-wide py-3.5 transition-all"
+           class="w-full rounded-xl md:rounded-2xl font-extrabold text-xs md:text-sm flex items-center justify-center gap-2.5 tracking-wide py-3 md:py-3.5 transition-all"
            style="background: rgba(42,171,238,0.08); border: 1px solid rgba(42,171,238,0.2); color: #2AABEE;"
            onmouseover="this.style.background='linear-gradient(135deg,#2AABEE,#229ED9)';this.style.color='#fff';this.style.borderColor='#2AABEE'"
            onmouseout="this.style.background='rgba(42,171,238,0.08)';this.style.color='#2AABEE';this.style.borderColor='rgba(42,171,238,0.2)'">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
           Atau Pesan via Channel Telegram
         </a>
 
-        <p class="text-center text-[11px] mt-1 font-bold" style="color: var(--text-muted);">Pesanan akan dikirim ke admin VJ Parfume</p>
+        <p class="text-center text-[10px] md:text-[11px] mt-1 font-bold" style="color: var(--text-muted);">Pesanan akan dikirim ke admin VJ Parfume</p>
       </form>
     </div>
   </div>
@@ -627,65 +613,58 @@
   <!-- ╔══════════════════════════════════════╗ -->
   <!-- ║          ADMIN MODAL                 ║ -->
   <!-- ╚══════════════════════════════════════╝ -->
-  <div id="adminModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop">
+  <div id="adminModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 md:p-4 modal-backdrop">
     <div class="modal-box w-full max-w-2xl max-h-[92vh] overflow-hidden flex flex-col anim-slide-up">
 
-      <!-- Admin Login -->
-      <div id="adminLogin" class="p-8 text-center">
-        <div class="w-16 h-16 rounded-2xl mx-auto mb-5 flex items-center justify-center" style="background: var(--accent-pale);">
-          <i data-lucide="lock" class="w-7 h-7 accent-text"></i>
+      <div id="adminLogin" class="p-6 md:p-8 text-center">
+        <div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl mx-auto mb-4 md:mb-5 flex items-center justify-center" style="background: var(--accent-pale);">
+          <i data-lucide="lock" class="w-6 h-6 md:w-7 md:h-7 accent-text"></i>
         </div>
-        <h3 class="font-extrabold text-xl mb-2" style="color: var(--text);">Admin Panel</h3>
-        <p class="text-sm mb-6 font-bold" style="color: var(--text-muted);">Masukkan password untuk mengelola parfum</p>
+        <h3 class="font-extrabold text-lg md:text-xl mb-2" style="color: var(--text);">Admin Panel</h3>
+        <p class="text-xs md:text-sm mb-5 md:mb-6 font-bold" style="color: var(--text-muted);">Masukkan password untuk mengelola parfum</p>
         <input type="password" id="adminPassInput" placeholder="Password..."
-               class="input-field w-full h-12 px-4 rounded-xl text-sm font-bold mb-4 text-center"
+               class="input-field w-full h-11 md:h-12 px-4 rounded-xl text-xs md:text-sm font-bold mb-3 md:mb-4 text-center"
                onkeydown="if(event.key==='Enter')attemptAdminLogin()">
-        <button onclick="attemptAdminLogin()" class="w-full btn-primary rounded-xl font-extrabold text-sm py-3.5">
+        <button onclick="attemptAdminLogin()" class="w-full btn-primary rounded-xl font-extrabold text-xs md:text-sm py-3 md:py-3.5">
           Masuk
         </button>
-        <button onclick="closeAdminModal()" class="w-full mt-3 py-3 text-sm font-bold rounded-xl transition-colors" style="color: var(--text-muted);" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-muted)'">
+        <button onclick="closeAdminModal()" class="w-full mt-2.5 md:mt-3 py-2.5 md:py-3 text-xs md:text-sm font-bold rounded-xl transition-colors" style="color: var(--text-muted);" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-muted)'">
           Batal
         </button>
-        <p id="adminError" class="text-xs mt-3 font-extrabold hidden" style="color: #EF4444;">Password salah! Coba lagi.</p>
+        <p id="adminError" class="text-[11px] md:text-xs mt-2.5 md:mt-3 font-extrabold hidden" style="color: #EF4444;">Password salah! Coba lagi.</p>
       </div>
 
-      <!-- Admin Panel -->
       <div id="adminPanel" class="hidden flex flex-col" style="max-height: 92vh;">
 
-        <!-- Admin Header -->
-        <div class="flex items-center justify-between p-5 pb-4 flex-shrink-0">
+        <div class="flex items-center justify-between p-4 md:p-5 pb-3 md:pb-4 flex-shrink-0">
           <div>
             <p class="text-[10px] font-extrabold tracking-[0.25em] uppercase accent-text mb-0.5">Admin Mode</p>
-            <h3 class="font-extrabold text-lg" style="color: var(--text);">Kelola Parfum</h3>
+            <h3 class="font-extrabold text-base md:text-lg" style="color: var(--text);">Kelola Parfum</h3>
           </div>
-          <button onclick="closeAdminModal()" class="w-10 h-10 rounded-xl flex items-center justify-center transition-colors" style="background: var(--bg-alt);">
+          <button onclick="closeAdminModal()" class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center transition-colors" style="background: var(--bg-alt);">
             <i data-lucide="x" class="w-4 h-4" style="color: var(--text-sec);"></i>
           </button>
         </div>
 
-        <div class="gold-divider mx-5"></div>
+        <div class="gold-divider mx-4 md:mx-5"></div>
 
-        <!-- Admin Instructions -->
-        <div class="px-5 py-3 flex-shrink-0">
-          <p class="text-xs leading-relaxed font-bold" style="color: var(--text-muted);">
+        <div class="px-4 md:px-5 py-2.5 md:py-3 flex-shrink-0">
+          <p class="text-[11px] md:text-xs leading-relaxed font-bold" style="color: var(--text-muted);">
             💡 Edit data parfum di bawah, lalu klik <strong style="color: var(--accent);">Simpan Semua</strong>. Harga isi dalam <strong>Rupiah</strong> — Dollar & Riel otomatis. Stok <strong>0</strong> = SOLD OUT.
           </p>
         </div>
 
-        <!-- Admin Content -->
-        <div id="adminContent" class="flex-1 overflow-y-auto px-5 pb-4 space-y-3">
-          <!-- JS renders here -->
+        <div id="adminContent" class="flex-1 overflow-y-auto px-4 md:px-5 pb-3 md:pb-4 space-y-2.5 md:space-y-3">
         </div>
 
-        <!-- Admin Footer -->
-        <div class="p-5 pt-3 flex flex-col sm:flex-row gap-2 flex-shrink-0" style="border-top: 1px solid var(--border);">
-          <button onclick="addNewParfum()" class="flex-1 py-3 rounded-xl text-sm font-extrabold flex items-center justify-center gap-2 transition-all" style="background: var(--bg-alt); color: var(--text-sec); border: 1px solid var(--border);" onmouseover="this.style.borderColor='var(--border-accent)'" onmouseout="this.style.borderColor='var(--border)'">
+        <div class="p-4 md:p-5 pt-2.5 md:pt-3 flex flex-col sm:flex-row gap-2 flex-shrink-0" style="border-top: 1px solid var(--border);">
+          <button onclick="addNewParfum()" class="flex-1 py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-extrabold flex items-center justify-center gap-2 transition-all" style="background: var(--bg-alt); color: var(--text-sec); border: 1px solid var(--border);" onmouseover="this.style.borderColor='var(--border-accent)'" onmouseout="this.style.borderColor='var(--border)'">
             <i data-lucide="plus" class="w-4 h-4"></i> Tambah Parfum
           </button>
-          <button onclick="saveAdminData()" class="flex-1 btn-primary py-3 rounded-xl text-sm font-extrabold flex items-center justify-center gap-2">
+          <button onclick="saveAdminData()" class="flex-1 btn-primary py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-extrabold flex items-center justify-center gap-2">
             <i data-lucide="save" class="w-4 h-4"></i> Simpan Semua
           </button>
-          <button onclick="resetToDefault()" class="py-3 px-4 rounded-xl text-sm font-extrabold flex items-center justify-center gap-2 transition-all" style="background: rgba(239,68,68,0.06); color: #EF4444; border: 1px solid rgba(239,68,68,0.15);" onmouseover="this.style.background='rgba(239,68,68,0.1)'" onmouseout="this.style.background='rgba(239,68,68,0.06)'">
+          <button onclick="resetToDefault()" class="py-2.5 md:py-3 px-3 md:px-4 rounded-xl text-xs md:text-sm font-extrabold flex items-center justify-center gap-2 transition-all" style="background: rgba(239,68,68,0.06); color: #EF4444; border: 1px solid rgba(239,68,68,0.15);" onmouseover="this.style.background='rgba(239,68,68,0.1)'" onmouseout="this.style.background='rgba(239,68,68,0.06)'">
             <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset
           </button>
         </div>
@@ -697,14 +676,14 @@
   <!-- ╔══════════════════════════════════════╗ -->
   <!-- ║         SUCCESS TOAST                ║ -->
   <!-- ╚══════════════════════════════════════╝ -->
-  <div id="successToast" class="hidden fixed top-20 right-4 left-4 md:left-auto md:right-6 z-[60] toast-box p-5 anim-slide-up">
-    <div class="flex items-start gap-4">
-      <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(34,197,94,0.08);">
+  <div id="successToast" class="hidden fixed top-16 md:top-20 right-3 md:right-6 left-3 md:left-auto z-[60] toast-box p-4 md:p-5 anim-slide-up">
+    <div class="flex items-start gap-3 md:gap-4">
+      <div class="w-10 h-10 md:w-11 md:h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(34,197,94,0.08);">
         <i data-lucide="check-circle" class="w-5 h-5" style="color: #22C55E;"></i>
       </div>
       <div>
-        <p class="font-extrabold text-sm" style="color: #22C55E;">Pesanan Berhasil Dikirim! 🎉</p>
-        <p class="text-xs mt-1 font-bold" style="color: var(--text-muted);">Admin akan segera memproses pesananmu</p>
+        <p class="font-extrabold text-xs md:text-sm" style="color: #22C55E;">Pesanan Berhasil Dikirim! 🎉</p>
+        <p class="text-[10px] md:text-xs mt-0.5 md:mt-1 font-bold" style="color: var(--text-muted);">Admin akan segera memproses pesananmu</p>
       </div>
     </div>
   </div>
@@ -714,6 +693,23 @@
   <!-- ║            SCRIPTS                   ║ -->
   <!-- ╚══════════════════════════════════════╝ -->
   <script>
+    // ═══════════════════════════════════════════════════════
+    //  🔒 KUNCI F12 / DEVTOOLS / RIGHT CLICK
+    // ═══════════════════════════════════════════════════════
+    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'F12' ||
+          (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) ||
+          (e.ctrlKey && (e.key === 'u' || e.key === 'U')) ||
+          (e.ctrlKey && (e.key === 's' || e.key === 'S')) ||
+          (e.metaKey && (e.key === 'u' || e.key === 'U')) ||
+          (e.metaKey && (e.key === 's' || e.key === 'S')) ||
+          (e.key === 'F12')) {
+        e.preventDefault();
+        return false;
+      }
+    });
+
     // ═══════════════════════════════════════════════════════
     //  🔧 PASTE URL GOOGLE SHEETS KAMU DI BAWAH INI
     // ═══════════════════════════════════════════════════════
@@ -946,67 +942,53 @@
 
         let stockHtml = "";
         if (isSoldOut) {
-          stockHtml = `<span class="text-[11px] font-extrabold tracking-wide" style="color: #EF4444;">SOLD OUT</span>`;
+          stockHtml = `<span class="text-[10px] md:text-[11px] font-extrabold tracking-wide" style="color: #EF4444;">SOLD OUT</span>`;
         } else if (isLow) {
-          stockHtml = `<span class="stock-dot stock-low"></span><span class="text-[11px] font-extrabold" style="color: #F59E0B;">Sisa ${p.stok}</span>`;
+          stockHtml = `<span class="stock-dot stock-low"></span><span class="text-[10px] md:text-[11px] font-extrabold" style="color: #F59E0B;">Sisa ${p.stok}</span>`;
         } else {
-          stockHtml = `<span class="stock-dot stock-yes"></span><span class="text-[11px] font-extrabold" style="color: #22C55E;">Tersedia</span>`;
+          stockHtml = `<span class="stock-dot stock-yes"></span><span class="text-[10px] md:text-[11px] font-extrabold" style="color: #22C55E;">Tersedia</span>`;
         }
 
         const usd = toUSD(p.harga);
         const khr = toKHR(p.harga);
 
         return `
-          <div class="perfume-card" style="animation: fadeUp 0.6s ease-out ${i * 0.06}s forwards; opacity: 0;">
+          <div class="perfume-card" style="animation: fadeUp 0.6s ease-out ${i * 0.05}s forwards; opacity: 0;">
             ${isSoldOut ? `
               <div class="sold-out-overlay">
                 <div class="sold-out-badge">SOLD OUT</div>
               </div>
             ` : ""}
 
-            <div class="relative aspect-[4/5] overflow-hidden" style="background: var(--bg-alt);">
+            <div class="relative aspect-[4/5] overflow-hidden flex-shrink-0" style="background: var(--bg-alt);">
               <img src="${p.gambar}" alt="${p.nama}"
                    class="card-img w-full h-full object-cover"
                    loading="lazy"
                    onerror="this.src='https://placehold.co/400x500/1C1814/D4A574?text=${encodeURIComponent(p.nama)}'">
             </div>
 
-            <div class="p-4">
-              <h3 class="font-extrabold text-sm mb-3 tracking-tight leading-tight" style="color: var(--text);">${p.nama}</h3>
+            <div class="p-2.5 md:p-3.5 flex flex-col flex-1">
+              <h3 class="font-extrabold text-[11px] md:text-sm mb-1.5 md:mb-2 tracking-tight leading-tight" style="color: var(--text);">${p.nama}</h3>
 
-              <!-- Harga Utama -->
-              <div class="mb-2">
-                <p class="font-black text-base accent-text">${fmtUSD(usd)}</p>
+              <p class="font-black text-sm md:text-base accent-text mb-0.5 md:mb-1">${fmtUSD(usd)}</p>
+              <p class="text-[10px] md:text-[11px] font-bold mb-1.5 md:mb-2 leading-snug" style="color: var(--text-muted);">${Math.round(khr).toLocaleString()} riel</p>
+              <p class="text-[10px] md:text-[11px] font-bold mb-2 md:mb-3" style="color: var(--text-muted);">${fmtIDR(p.harga)}</p>
+
+              <div class="flex items-center gap-1.5 mb-2 md:mb-3">${stockHtml}</div>
+
+              <div class="mt-auto">
+                <button onclick='openModal(${JSON.stringify(p).replace(/'/g, "&#39;")})'
+                        ${isSoldOut ? "disabled" : ""}
+                        class="w-full h-9 md:h-10 rounded-lg md:rounded-xl text-[10px] md:text-xs font-extrabold tracking-wide flex items-center justify-center gap-1.5
+                               ${isSoldOut
+                                 ? "cursor-not-allowed"
+                                 : "btn-order"}"
+                        ${isSoldOut ? "style='background: var(--bg-alt); color: var(--text-muted); border: 1px solid var(--border);'" : ""}>
+                  ${isSoldOut
+                    ? "SOLD OUT"
+                    : '<i data-lucide="shopping-bag" class="w-3 h-3"></i> Pesan Sekarang'}
+                </button>
               </div>
-
-              <!-- Harga Lainnya Rapi -->
-              <div class="rounded-xl p-2.5 mb-3 space-y-1" style="background: rgba(212,165,116,0.04); border: 1px solid rgba(212,165,116,0.08);">
-                <div class="flex justify-between items-center">
-                  <span class="price-card-label">Riel</span>
-                  <span class="price-card-value">${khr.toLocaleString()} riel</span>
-                </div>
-                <div class="flex justify-between items-center">
-                  <span class="price-card-label">Rupiah</span>
-                  <span class="price-card-value">${fmtIDR(p.harga)}</span>
-                </div>
-              </div>
-
-              <!-- Stok -->
-              <div class="flex items-center justify-between mb-3">
-                <div class="flex items-center gap-1.5">${stockHtml}</div>
-              </div>
-
-              <button onclick='openModal(${JSON.stringify(p).replace(/'/g, "&#39;")})'
-                      ${isSoldOut ? "disabled" : ""}
-                      class="w-full h-10 rounded-xl text-xs font-extrabold tracking-wide flex items-center justify-center gap-1.5
-                             ${isSoldOut
-                               ? "cursor-not-allowed"
-                               : "btn-order"}"
-                      ${isSoldOut ? "style='background: var(--bg-alt); color: var(--text-muted); border: 1px solid var(--border);'" : ""}>
-                ${isSoldOut
-                  ? "SOLD OUT"
-                  : '<i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i> Pesan Sekarang'}
-              </button>
             </div>
           </div>
         `;
@@ -1036,7 +1018,7 @@
 
       const usd = toUSD(parfum.harga);
       const khr = toKHR(parfum.harga);
-      document.getElementById("modalHarga").innerHTML = `${fmtUSD(usd)} <span class="text-xs font-extrabold" style="color: var(--text-muted);">/ botol</span><br><span class="text-sm font-extrabold" style="color: var(--text-sec);">${Math.round(khr).toLocaleString()} riel · ${fmtIDR(parfum.harga)}</span>`;
+      document.getElementById("modalHarga").innerHTML = `${fmtUSD(usd)} <span class="text-[10px] md:text-xs font-extrabold" style="color: var(--text-muted);">/ botol</span><br><span class="text-xs md:text-sm font-extrabold" style="color: var(--text-sec);">${Math.round(khr).toLocaleString()} riel · ${fmtIDR(parfum.harga)}</span>`;
 
       document.getElementById("qtyDisplay").textContent = "1";
       document.getElementById("stockInfo").textContent = `Maks: ${parfum.stok}`;
@@ -1084,8 +1066,8 @@
       const totalUSD = toUSD(totalIDR);
       const totalKHR = toKHR(totalIDR);
       document.getElementById("totalHarga").innerHTML = `
-        <span class="text-2xl">${fmtUSD(totalUSD)}</span>
-        <span class="block text-sm mt-1 font-extrabold" style="color: var(--text-muted);">${Math.round(totalKHR).toLocaleString()} riel · ${fmtIDR(totalIDR)}</span>
+        <span class="text-xl md:text-2xl">${fmtUSD(totalUSD)}</span>
+        <span class="block text-xs md:text-sm mt-1 font-extrabold" style="color: var(--text-muted);">${Math.round(totalKHR).toLocaleString()} riel · ${fmtIDR(totalIDR)}</span>
       `;
     }
 
@@ -1164,6 +1146,15 @@
 
     // ═══════════════════════════════════════
     //  ADMIN PANEL — Akses: Klik Logo VJ 5x
+    //  ATAU buka URL ?admin
+    //  Password: vjadmin2025
+    //
+    //  Di dashboard kamu bisa:
+    //  ✅ Tambah parfum baru
+    //  ✅ Ganti nama, gambar, harga, stok
+    //  ✅ Hapus parfum
+    //  ✅ Stok 0 = otomatis SOLD OUT
+    //  ✅ Simpan ke localStorage (langsung berubah di toko)
     // ═══════════════════════════════════════
     document.getElementById("logoArea").addEventListener("click", function() {
       logoClickCount++;
@@ -1212,30 +1203,30 @@
     function renderAdminPanel() {
       const container = document.getElementById("adminContent");
       container.innerHTML = parfumData.map((p, i) => `
-        <div class="rounded-2xl p-4" style="background: var(--bg-alt); border: 1px solid var(--border);">
-          <div class="flex items-center gap-3 mb-3">
-            <img src="${p.gambar}" class="w-12 h-12 rounded-xl object-cover" style="border: 1px solid var(--border);"
+        <div class="rounded-xl md:rounded-2xl p-3 md:p-4" style="background: var(--bg-alt); border: 1px solid var(--border);">
+          <div class="flex items-center gap-2.5 md:gap-3 mb-2.5 md:mb-3">
+            <img src="${p.gambar}" class="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl object-cover flex-shrink-0" style="border: 1px solid var(--border);"
                  onerror="this.src='https://placehold.co/100x100/1C1814/D4A574?text=${encodeURIComponent(p.nama)}'">
             <div class="flex-1 min-w-0">
               <span class="text-[10px] font-extrabold accent-text">#${i + 1}</span>
-              <input type="text" value="${p.nama}" data-idx="${i}" data-field="nama" class="admin-input mt-0.5 font-extrabold" style="color: var(--text);">
+              <input type="text" value="${p.nama}" data-idx="${i}" data-field="nama" class="admin-input mt-0.5 font-extrabold text-xs md:text-sm" style="color: var(--text);">
             </div>
-            <button onclick="deleteParfum(${i})" class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors" style="color: var(--text-muted);" onmouseover="this.style.color='#EF4444';this.style.background='rgba(239,68,68,0.08)'" onmouseout="this.style.color='var(--text-muted)';this.style.background='transparent'">
-              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            <button onclick="deleteParfum(${i})" class="w-7 h-7 md:w-8 md:h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors" style="color: var(--text-muted);" onmouseover="this.style.color='#EF4444';this.style.background='rgba(239,68,68,0.08)'" onmouseout="this.style.color='var(--text-muted)';this.style.background='transparent'">
+              <i data-lucide="trash-2" class="w-3 h-3 md:w-3.5 md:h-3.5"></i>
             </button>
           </div>
-          <div class="grid grid-cols-3 gap-2">
+          <div class="grid grid-cols-3 gap-1.5 md:gap-2">
             <div>
-              <label class="text-[10px] font-extrabold block mb-1" style="color: var(--text-muted);">Gambar URL</label>
-              <input type="text" value="${p.gambar}" data-idx="${i}" data-field="gambar" class="admin-input text-[11px] font-bold">
+              <label class="text-[9px] md:text-[10px] font-extrabold block mb-0.5 md:mb-1" style="color: var(--text-muted);">Gambar URL</label>
+              <input type="text" value="${p.gambar}" data-idx="${i}" data-field="gambar" class="admin-input text-[10px] md:text-[11px] font-bold">
             </div>
             <div>
-              <label class="text-[10px] font-extrabold block mb-1" style="color: var(--text-muted);">Harga (IDR)</label>
-              <input type="number" value="${p.harga}" data-idx="${i}" data-field="harga" class="admin-input text-[11px] font-bold">
+              <label class="text-[9px] md:text-[10px] font-extrabold block mb-0.5 md:mb-1" style="color: var(--text-muted);">Harga (IDR)</label>
+              <input type="number" value="${p.harga}" data-idx="${i}" data-field="harga" class="admin-input text-[10px] md:text-[11px] font-bold">
             </div>
             <div>
-              <label class="text-[10px] font-extrabold block mb-1" style="color: var(--text-muted);">Stok (0=SOLD OUT)</label>
-              <input type="number" value="${p.stok}" data-idx="${i}" data-field="stok" class="admin-input text-[11px] font-bold">
+              <label class="text-[9px] md:text-[10px] font-extrabold block mb-0.5 md:mb-1" style="color: var(--text-muted);">Stok (0=SOLD OUT)</label>
+              <input type="number" value="${p.stok}" data-idx="${i}" data-field="stok" class="admin-input text-[10px] md:text-[11px] font-bold">
             </div>
           </div>
         </div>
