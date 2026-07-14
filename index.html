@@ -17,43 +17,54 @@
     }
   </script>
   <style>
+    :root {
+      --bg: #FDF8F3;
+      --bg-alt: #F7EDE2;
+      --card: #FFFFFF;
+      --text: #2D1F10;
+      --text-sec: #7A6652;
+      --text-muted: #A89484;
+      --accent: #C4956A;
+      --accent-dark: #A87A52;
+      --accent-light: #E8D5C0;
+      --accent-pale: #F5EDE5;
+      --border: rgba(45,31,16,0.08);
+      --border-accent: rgba(196,149,106,0.3);
+    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Inter', sans-serif;
-      background: #050505;
-      color: #ffffff;
+      background: var(--bg);
+      color: var(--text);
       overflow-x: hidden;
     }
     ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: #0a0a0a; }
-    ::-webkit-scrollbar-thumb { background: #D4A574; border-radius: 10px; }
+    ::-webkit-scrollbar-track { background: var(--bg-alt); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
 
-    /* ── Gold Palette ── */
-    .gold-text { color: #D4A574; }
-    .gold-bg { background-color: #D4A574; }
-    .gold-border { border-color: #D4A574; }
-    .gold-glow { box-shadow: 0 0 40px rgba(212,165,116,0.2), 0 0 80px rgba(212,165,116,0.06); }
-    .gold-glow-sm { box-shadow: 0 0 25px rgba(212,165,116,0.15); }
-    .gold-gradient-text {
-      background: linear-gradient(135deg, #F0DCC0 0%, #D4A574 40%, #B8895A 100%);
+    .accent-text { color: var(--accent); }
+    .accent-bg { background-color: var(--accent); }
+    .accent-border { border-color: var(--accent); }
+
+    .accent-gradient-text {
+      background: linear-gradient(135deg, #D4A574 0%, #C4956A 40%, #A87A52 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-    .gold-gradient-bg {
-      background: linear-gradient(135deg, #D4A574 0%, #B8895A 100%);
+    .accent-gradient-bg {
+      background: linear-gradient(135deg, #C4956A 0%, #A87A52 100%);
     }
-    .gold-gradient-bg-hover {
-      background: linear-gradient(135deg, #E8CBA7 0%, #D4A574 100%);
+    .accent-gradient-bg-hover {
+      background: linear-gradient(135deg, #D4A574 0%, #C4956A 100%);
     }
 
-    /* ── Shimmer ── */
     @keyframes shimmer {
       0% { background-position: -300% center; }
       100% { background-position: 300% center; }
     }
     .shimmer-text {
-      background: linear-gradient(90deg, #D4A574, #F0DCC0, #FFFFFF, #F0DCC0, #D4A574);
+      background: linear-gradient(90deg, #C4956A, #E8D5C0, #F5EDE5, #E8D5C0, #C4956A);
       background-size: 200% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -61,7 +72,6 @@
       animation: shimmer 4s linear infinite;
     }
 
-    /* ── Animations ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(40px); }
       to { opacity: 1; transform: translateY(0); }
@@ -78,10 +88,6 @@
       from { opacity: 0; transform: translateY(20px) scale(0.98); }
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
-    @keyframes pulse-gold {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(212,165,116,0.4); }
-      50% { box-shadow: 0 0 0 10px rgba(212,165,116,0); }
-    }
     @keyframes marquee {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
@@ -97,32 +103,31 @@
     .d4 { animation-delay: 0.4s; }
     .d5 { animation-delay: 0.5s; }
 
-    /* ── Cards ── */
     .perfume-card {
-      background: linear-gradient(165deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
-      border: 1px solid rgba(255,255,255,0.06);
+      background: var(--card);
+      border: 1px solid var(--border);
       border-radius: 20px;
       overflow: hidden;
       transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
       position: relative;
+      box-shadow: 0 2px 16px rgba(45,31,16,0.05);
     }
     .perfume-card:hover {
-      transform: translateY(-10px);
-      border-color: rgba(212,165,116,0.35);
-      box-shadow: 0 25px 70px rgba(212,165,116,0.12), 0 0 0 1px rgba(212,165,116,0.1);
+      transform: translateY(-8px);
+      border-color: var(--border-accent);
+      box-shadow: 0 16px 48px rgba(196,149,106,0.15), 0 0 0 1px rgba(196,149,106,0.1);
     }
     .perfume-card:hover .card-img {
-      transform: scale(1.08);
+      transform: scale(1.06);
     }
     .card-img {
       transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
     }
 
-    /* ── Sold Out Overlay ── */
     .sold-out-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.65);
+      background: rgba(253,248,243,0.7);
       backdrop-filter: blur(4px);
       display: flex;
       align-items: center;
@@ -130,86 +135,83 @@
       z-index: 10;
     }
     .sold-out-badge {
-      background: linear-gradient(135deg, #D4A574, #B8895A);
-      color: #000;
+      background: linear-gradient(135deg, #C4956A, #A87A52);
+      color: #fff;
       font-weight: 800;
-      font-size: 18px;
+      font-size: 16px;
       letter-spacing: 4px;
-      padding: 12px 32px;
+      padding: 10px 28px;
       border-radius: 12px;
       transform: rotate(-8deg);
-      box-shadow: 0 8px 30px rgba(212,165,116,0.3);
+      box-shadow: 0 8px 30px rgba(196,149,106,0.3);
     }
 
-    /* ── Buttons ── */
     .btn-order {
-      background: rgba(212,165,116,0.1);
-      border: 1px solid rgba(212,165,116,0.25);
-      color: #D4A574;
+      background: rgba(196,149,106,0.08);
+      border: 1px solid rgba(196,149,106,0.25);
+      color: var(--accent-dark);
       transition: all 0.3s ease;
     }
     .btn-order:hover {
-      background: linear-gradient(135deg, #D4A574, #B8895A);
-      color: #000;
-      border-color: #D4A574;
-      box-shadow: 0 8px 30px rgba(212,165,116,0.25);
+      background: linear-gradient(135deg, #C4956A, #A87A52);
+      color: #fff;
+      border-color: #C4956A;
+      box-shadow: 0 6px 24px rgba(196,149,106,0.25);
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #D4A574, #B8895A);
-      color: #000;
+      background: linear-gradient(135deg, #C4956A, #A87A52);
+      color: #fff;
       transition: all 0.3s ease;
     }
     .btn-primary:hover {
-      background: linear-gradient(135deg, #E8CBA7, #D4A574);
-      box-shadow: 0 10px 35px rgba(212,165,116,0.3);
+      background: linear-gradient(135deg, #D4A574, #C4956A);
+      box-shadow: 0 10px 35px rgba(196,149,106,0.3);
       transform: translateY(-2px);
     }
 
-    /* ── Inputs ── */
     .input-field {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      color: #ffffff;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
       transition: all 0.25s ease;
     }
-    .input-field::placeholder { color: rgba(255,255,255,0.3); }
+    .input-field::placeholder { color: var(--text-muted); }
     .input-field:focus {
-      border-color: #D4A574;
-      box-shadow: 0 0 0 3px rgba(212,165,116,0.12);
-      background: rgba(255,255,255,0.07);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(196,149,106,0.12);
+      background: var(--card);
+      outline: none;
     }
 
-    /* ── Modal ── */
     .modal-backdrop {
       backdrop-filter: blur(16px);
-      background: rgba(0,0,0,0.75);
+      background: rgba(45,31,16,0.4);
     }
     .modal-box {
-      background: linear-gradient(180deg, #141414 0%, #0e0e0e 100%);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: var(--card);
+      border: 1px solid var(--border);
       border-radius: 24px;
+      box-shadow: 0 32px 80px rgba(45,31,16,0.15);
     }
 
-    /* ── Qty ── */
     .qty-btn {
       width: 40px; height: 40px;
       display: flex; align-items: center; justify-content: center;
-      border: 1px solid rgba(212,165,116,0.3);
+      border: 1px solid var(--border-accent);
       border-radius: 12px;
-      background: rgba(212,165,116,0.08);
-      color: #D4A574;
+      background: rgba(196,149,106,0.06);
+      color: var(--accent-dark);
       cursor: pointer;
       transition: all 0.2s;
       font-size: 20px;
       user-select: none;
     }
     .qty-btn:hover {
-      background: rgba(212,165,116,0.2);
-      border-color: #D4A574;
+      background: rgba(196,149,106,0.15);
+      border-color: var(--accent);
     }
 
-    /* ── Hero Glow Orbs ── */
     .glow-orb {
       position: absolute;
       border-radius: 50%;
@@ -217,34 +219,73 @@
       pointer-events: none;
     }
 
-    /* ── Marquee ── */
     .marquee-track {
       display: flex;
       animation: marquee 30s linear infinite;
       width: max-content;
     }
 
-    /* ── Stock Dot ── */
     .stock-dot {
       width: 7px; height: 7px;
       border-radius: 50%;
       display: inline-block;
     }
-    .stock-yes { background: #4ADE80; box-shadow: 0 0 8px rgba(74,222,128,0.5); }
-    .stock-low { background: #FBBF24; box-shadow: 0 0 8px rgba(251,191,36,0.5); }
+    .stock-yes { background: #22C55E; box-shadow: 0 0 8px rgba(34,197,94,0.4); }
+    .stock-low { background: #F59E0B; box-shadow: 0 0 8px rgba(245,158,11,0.4); }
 
-    /* ── Toast ── */
     .toast-box {
-      background: linear-gradient(135deg, #141414, #0e0e0e);
-      border: 1px solid rgba(74,222,128,0.2);
+      background: var(--card);
+      border: 1px solid rgba(34,197,94,0.2);
       border-radius: 16px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(74,222,128,0.08);
+      box-shadow: 0 20px 50px rgba(45,31,16,0.12), 0 0 20px rgba(34,197,94,0.06);
     }
 
-    /* ── Divider ── */
     .gold-divider {
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(212,165,116,0.3), transparent);
+      background: linear-gradient(90deg, transparent, var(--border-accent), transparent);
+    }
+
+    .tg-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 45;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2AABEE, #229ED9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 24px rgba(42,171,238,0.35);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .tg-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 32px rgba(42,171,238,0.45);
+    }
+
+    .admin-input {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-size: 13px;
+      width: 100%;
+      transition: all 0.2s;
+      outline: none;
+      font-family: 'Inter', sans-serif;
+    }
+    .admin-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(196,149,106,0.1);
+    }
+
+    .hero-pattern {
+      background-image: radial-gradient(rgba(196,149,106,0.06) 1px, transparent 1px);
+      background-size: 24px 24px;
     }
   </style>
 </head>
@@ -254,16 +295,16 @@
   <!-- ║            NAVBAR                    ║ -->
   <!-- ╚══════════════════════════════════════╝ -->
   <nav class="fixed top-0 left-0 right-0 z-40 h-16 flex items-center justify-between px-5 md:px-8"
-       style="background: rgba(5,5,5,0.85); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(255,255,255,0.04);">
-    <div class="flex items-center gap-3">
-      <div class="w-9 h-9 rounded-xl gold-gradient-bg flex items-center justify-center shadow-lg" style="box-shadow: 0 4px 15px rgba(212,165,116,0.3);">
-        <span class="text-black font-extrabold text-xs">VJ</span>
+       style="background: rgba(253,248,243,0.88); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border);">
+    <div id="logoArea" class="flex items-center gap-3 cursor-pointer select-none">
+      <div class="w-9 h-9 rounded-xl accent-gradient-bg flex items-center justify-center shadow-lg" style="box-shadow: 0 4px 15px rgba(196,149,106,0.3);">
+        <span class="text-white font-extrabold text-xs">VJ</span>
       </div>
       <div>
-        <span class="font-bold text-base tracking-tight text-white">VJ <span class="gold-text">PARFUME</span></span>
+        <span class="font-bold text-base tracking-tight" style="color: var(--text);">VJ <span class="accent-text">PARFUME</span></span>
       </div>
     </div>
-    <a href="#koleksi" class="text-sm text-neutral-300 hover:text-white transition-colors flex items-center gap-1.5">
+    <a href="#koleksi" class="text-sm flex items-center gap-1.5 transition-colors" style="color: var(--text-sec);" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-sec)'">
       Lihat Koleksi
       <i data-lucide="chevron-down" class="w-4 h-4"></i>
     </a>
@@ -273,30 +314,30 @@
   <!-- ╔══════════════════════════════════════╗ -->
   <!-- ║             HERO                     ║ -->
   <!-- ╚══════════════════════════════════════╝ -->
-  <section class="min-h-screen flex flex-col items-center justify-center text-center px-6 relative overflow-hidden">
+  <section class="min-h-screen flex flex-col items-center justify-center text-center px-6 relative overflow-hidden hero-pattern">
 
     <!-- Glow Orbs -->
-    <div class="glow-orb" style="width:500px;height:500px;background:radial-gradient(circle,rgba(212,165,116,0.1) 0%,transparent 70%);top:10%;left:-10%;"></div>
-    <div class="glow-orb" style="width:400px;height:400px;background:radial-gradient(circle,rgba(212,165,116,0.08) 0%,transparent 70%);bottom:10%;right:-5%;"></div>
-    <div class="glow-orb" style="width:300px;height:300px;background:radial-gradient(circle,rgba(184,137,90,0.06) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+    <div class="glow-orb" style="width:500px;height:500px;background:radial-gradient(circle,rgba(196,149,106,0.12) 0%,transparent 70%);top:10%;left:-10%;"></div>
+    <div class="glow-orb" style="width:400px;height:400px;background:radial-gradient(circle,rgba(196,149,106,0.09) 0%,transparent 70%);bottom:10%;right:-5%;"></div>
+    <div class="glow-orb" style="width:300px;height:300px;background:radial-gradient(circle,rgba(168,122,82,0.07) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
 
     <!-- Top Badge -->
     <div class="anim-fade-up mb-8">
-      <div class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full" style="border: 1px solid rgba(212,165,116,0.2); background: rgba(212,165,116,0.06);">
-        <span class="text-[11px] font-semibold gold-text tracking-widest uppercase">✦ Premium Fragrance ✦</span>
+      <div class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full" style="border: 1px solid var(--border-accent); background: rgba(196,149,106,0.06);">
+        <span class="text-[11px] font-semibold accent-text tracking-widest uppercase">✦ Premium Fragrance ✦</span>
       </div>
     </div>
 
     <!-- Heading -->
-    <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[0.85] mb-7 anim-fade-up d1">
+    <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[0.85] mb-7 anim-fade-up d1" style="color: var(--text);">
       Selamat Datang<br>di <span class="shimmer-text">VJ PARFUME</span>
     </h1>
 
     <!-- Subtext -->
-    <p class="text-neutral-200 text-lg md:text-xl max-w-lg leading-relaxed mb-3 anim-fade-up d2 font-light">
+    <p class="text-lg md:text-xl max-w-lg leading-relaxed mb-3 anim-fade-up d2 font-light" style="color: var(--text-sec);">
       Mau wangi tapi tetap hemat? 🌸
     </p>
-    <p class="text-neutral-300 text-sm md:text-base max-w-md leading-relaxed mb-12 anim-fade-up d3">
+    <p class="text-sm md:text-base max-w-md leading-relaxed mb-12 anim-fade-up d3" style="color: var(--text-muted);">
       Pilih parfum favoritmu di bawah ini, tentukan yang kamu inginkan, dan langsung pesan sekarang. Gampang banget! 💕
     </p>
 
@@ -308,7 +349,7 @@
 
     <!-- Float Indicator -->
     <div class="absolute bottom-10 anim-float">
-      <i data-lucide="chevrons-down" class="w-5 h-5" style="color: rgba(212,165,116,0.4);"></i>
+      <i data-lucide="chevrons-down" class="w-5 h-5" style="color: var(--accent-light);"></i>
     </div>
   </section>
 
@@ -316,34 +357,67 @@
   <!-- ╔══════════════════════════════════════╗ -->
   <!-- ║          MARQUEE STRIP               ║ -->
   <!-- ╚══════════════════════════════════════╝ -->
-  <div class="overflow-hidden py-5" style="border-top:1px solid rgba(255,255,255,0.04); border-bottom:1px solid rgba(255,255,255,0.04); background: rgba(212,165,116,0.02);">
+  <div class="overflow-hidden py-5" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border); background: rgba(196,149,106,0.02);">
     <div class="marquee-track">
-      <span class="text-xs font-semibold tracking-[0.3em] uppercase gold-text whitespace-nowrap px-8">VJ Parfume</span>
-      <span class="text-xs text-neutral-600 whitespace-nowrap px-4">✦</span>
-      <span class="text-xs font-semibold tracking-[0.3em] uppercase text-neutral-400 whitespace-nowrap px-8">Wangi Berkualitas</span>
-      <span class="text-xs text-neutral-600 whitespace-nowrap px-4">✦</span>
-      <span class="text-xs font-semibold tracking-[0.3em] uppercase gold-text whitespace-nowrap px-8">Harga Bersahabat</span>
-      <span class="text-xs text-neutral-600 whitespace-nowrap px-4">✦</span>
-      <span class="text-xs font-semibold tracking-[0.3em] uppercase text-neutral-400 whitespace-nowrap px-8">Premium Fragrance</span>
-      <span class="text-xs text-neutral-600 whitespace-nowrap px-4">✦</span>
-      <span class="text-xs font-semibold tracking-[0.3em] uppercase gold-text whitespace-nowrap px-8">VJ Parfume</span>
-      <span class="text-xs text-neutral-600 whitespace-nowrap px-4">✦</span>
-      <span class="text-xs font-semibold tracking-[0.3em] uppercase text-neutral-400 whitespace-nowrap px-8">Wangi Berkualitas</span>
-      <span class="text-xs text-neutral-600 whitespace-nowrap px-4">✦</span>
-      <span class="text-xs font-semibold tracking-[0.3em] uppercase gold-text whitespace-nowrap px-8">Harga Bersahabat</span>
-      <span class="text-xs text-neutral-600 whitespace-nowrap px-4">✦</span>
-      <span class="text-xs font-semibold tracking-[0.3em] uppercase text-neutral-400 whitespace-nowrap px-8">Premium Fragrance</span>
-      <span class="text-xs text-neutral-600 whitespace-nowrap px-4">✦</span>
-      <span class="text-xs font-semibold tracking-[0.3em] uppercase gold-text whitespace-nowrap px-8">VJ Parfume</span>
-      <span class="text-xs text-neutral-600 whitespace-nowrap px-4">✦</span>
-      <span class="text-xs font-semibold tracking-[0.3em] uppercase text-neutral-400 whitespace-nowrap px-8">Wangi Berkualitas</span>
-      <span class="text-xs text-neutral-600 whitespace-nowrap px-4">✦</span>
-      <span class="text-xs font-semibold tracking-[0.3em] uppercase gold-text whitespace-nowrap px-8">Harga Bersahabat</span>
-      <span class="text-xs text-neutral-600 whitespace-nowrap px-4">✦</span>
-      <span class="text-xs font-semibold tracking-[0.3em] uppercase text-neutral-400 whitespace-nowrap px-8">Premium Fragrance</span>
-      <span class="text-xs text-neutral-600 whitespace-nowrap px-4">✦</span>
+      <span class="text-xs font-semibold tracking-[0.3em] uppercase accent-text whitespace-nowrap px-8">VJ Parfume</span>
+      <span class="text-xs whitespace-nowrap px-4" style="color: var(--accent-light);">✦</span>
+      <span class="text-xs font-semibold tracking-[0.3em] uppercase whitespace-nowrap px-8" style="color: var(--text-sec);">Wangi Berkualitas</span>
+      <span class="text-xs whitespace-nowrap px-4" style="color: var(--accent-light);">✦</span>
+      <span class="text-xs font-semibold tracking-[0.3em] uppercase accent-text whitespace-nowrap px-8">Harga Bersahabat</span>
+      <span class="text-xs whitespace-nowrap px-4" style="color: var(--accent-light);">✦</span>
+      <span class="text-xs font-semibold tracking-[0.3em] uppercase whitespace-nowrap px-8" style="color: var(--text-sec);">Premium Fragrance</span>
+      <span class="text-xs whitespace-nowrap px-4" style="color: var(--accent-light);">✦</span>
+      <span class="text-xs font-semibold tracking-[0.3em] uppercase accent-text whitespace-nowrap px-8">VJ Parfume</span>
+      <span class="text-xs whitespace-nowrap px-4" style="color: var(--accent-light);">✦</span>
+      <span class="text-xs font-semibold tracking-[0.3em] uppercase whitespace-nowrap px-8" style="color: var(--text-sec);">Wangi Berkualitas</span>
+      <span class="text-xs whitespace-nowrap px-4" style="color: var(--accent-light);">✦</span>
+      <span class="text-xs font-semibold tracking-[0.3em] uppercase accent-text whitespace-nowrap px-8">Harga Bersahabat</span>
+      <span class="text-xs whitespace-nowrap px-4" style="color: var(--accent-light);">✦</span>
+      <span class="text-xs font-semibold tracking-[0.3em] uppercase whitespace-nowrap px-8" style="color: var(--text-sec);">Premium Fragrance</span>
+      <span class="text-xs whitespace-nowrap px-4" style="color: var(--accent-light);">✦</span>
+      <span class="text-xs font-semibold tracking-[0.3em] uppercase accent-text whitespace-nowrap px-8">VJ Parfume</span>
+      <span class="text-xs whitespace-nowrap px-4" style="color: var(--accent-light);">✦</span>
+      <span class="text-xs font-semibold tracking-[0.3em] uppercase whitespace-nowrap px-8" style="color: var(--text-sec);">Wangi Berkualitas</span>
+      <span class="text-xs whitespace-nowrap px-4" style="color: var(--accent-light);">✦</span>
+      <span class="text-xs font-semibold tracking-[0.3em] uppercase accent-text whitespace-nowrap px-8">Harga Bersahabat</span>
+      <span class="text-xs whitespace-nowrap px-4" style="color: var(--accent-light);">✦</span>
+      <span class="text-xs font-semibold tracking-[0.3em] uppercase whitespace-nowrap px-8" style="color: var(--text-sec);">Premium Fragrance</span>
+      <span class="text-xs whitespace-nowrap px-4" style="color: var(--accent-light);">✦</span>
     </div>
   </div>
+
+
+  <!-- ╔══════════════════════════════════════╗ -->
+  <!-- ║        TELEGRAM BANNER               ║ -->
+  <!-- ╚══════════════════════════════════════╝ -->
+  <section class="py-10 px-4 md:px-8" style="background: var(--bg-alt);">
+    <div class="max-w-2xl mx-auto rounded-3xl p-6 md:p-8" style="background: var(--card); border: 1px solid var(--border); box-shadow: 0 4px 24px rgba(45,31,16,0.06);">
+      <div class="flex flex-col md:flex-row items-center gap-6">
+        <!-- Telegram Icon -->
+        <div class="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #2AABEE, #229ED9); box-shadow: 0 6px 20px rgba(42,171,238,0.25);">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        </div>
+        <!-- Text & Buttons -->
+        <div class="text-center md:text-left flex-1">
+          <h3 class="font-bold text-base md:text-lg mb-1" style="color: var(--text);">Jangan Sampai Ketinggalan! ✨</h3>
+          <p class="text-sm mb-4" style="color: var(--text-muted);">Gabung channel Telegram kami buat info parfum terbaru & promo spesial</p>
+          <div class="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+            <a href="https://telegram.me/vjparfume_premium" target="_blank"
+               class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90"
+               style="background: linear-gradient(135deg, #2AABEE, #229ED9); box-shadow: 0 4px 14px rgba(42,171,238,0.25);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+              Gabung Channel
+            </a>
+            <a href="https://telegram.me/cynthyg" target="_blank"
+               class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all btn-order">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+              Order via @cynthyg
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 
   <!-- ╔══════════════════════════════════════╗ -->
@@ -353,16 +427,16 @@
 
     <!-- Section Header -->
     <div class="text-center mb-14">
-      <p class="text-[11px] font-semibold tracking-[0.35em] uppercase gold-text mb-4">— Our Collection —</p>
-      <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-white">Koleksi <span class="gold-gradient-text">Parfum</span> Kami</h2>
-      <p class="text-neutral-300 text-sm md:text-base max-w-md mx-auto">Pilih yang kamu suka, langsung pesan tanpa ribet</p>
+      <p class="text-[11px] font-semibold tracking-[0.35em] uppercase accent-text mb-4">— Our Collection —</p>
+      <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4" style="color: var(--text);">Koleksi <span class="accent-gradient-text">Parfum</span> Kami</h2>
+      <p class="text-sm md:text-base max-w-md mx-auto" style="color: var(--text-sec);">Pilih yang kamu suka, langsung pesan tanpa ribet</p>
       <div class="gold-divider max-w-[120px] mx-auto mt-6"></div>
     </div>
 
     <!-- Search Bar -->
     <div class="max-w-md mx-auto mb-12">
       <div class="relative">
-        <i data-lucide="search" class="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-neutral-400"></i>
+        <i data-lucide="search" class="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2" style="color: var(--text-muted);"></i>
         <input type="text" id="searchInput" placeholder="Cari parfum..."
                class="input-field w-full h-12 pl-12 pr-5 rounded-2xl text-sm font-medium">
       </div>
@@ -375,11 +449,11 @@
 
     <!-- Empty State -->
     <div id="emptyState" class="hidden text-center py-24">
-      <div class="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mx-auto mb-5">
-        <i data-lucide="search-x" class="w-7 h-7 text-neutral-500"></i>
+      <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5" style="background: var(--bg-alt);">
+        <i data-lucide="search-x" class="w-7 h-7" style="color: var(--text-muted);"></i>
       </div>
-      <p class="text-neutral-300 font-medium mb-1">Parfum tidak ditemukan</p>
-      <p class="text-neutral-500 text-sm">Coba kata kunci lain</p>
+      <p class="font-medium mb-1" style="color: var(--text-sec);">Parfum tidak ditemukan</p>
+      <p class="text-sm" style="color: var(--text-muted);">Coba kata kunci lain</p>
     </div>
   </section>
 
@@ -387,16 +461,35 @@
   <!-- ╔══════════════════════════════════════╗ -->
   <!-- ║             FOOTER                   ║ -->
   <!-- ╚══════════════════════════════════════╝ -->
-  <footer class="py-12 px-6 text-center" style="border-top: 1px solid rgba(255,255,255,0.04); background: rgba(212,165,116,0.01);">
+  <footer class="py-12 px-6 text-center" style="border-top: 1px solid var(--border); background: var(--bg-alt);">
     <div class="flex items-center justify-center gap-2.5 mb-4">
-      <div class="w-7 h-7 rounded-lg gold-gradient-bg flex items-center justify-center">
-        <span class="text-black font-extrabold text-[10px]">VJ</span>
+      <div class="w-7 h-7 rounded-lg accent-gradient-bg flex items-center justify-center">
+        <span class="text-white font-extrabold text-[10px]">VJ</span>
       </div>
-      <span class="font-bold text-sm text-white">VJ PARFUME</span>
+      <span class="font-bold text-sm" style="color: var(--text);">VJ PARFUME</span>
     </div>
-    <p class="text-neutral-400 text-sm mb-2">Wangi Berkualitas, Harga Bersahabat 💕</p>
-    <p class="text-neutral-600 text-xs">© 2025 VJ Parfume. All rights reserved.</p>
+    <p class="text-sm mb-3" style="color: var(--text-sec);">Wangi Berkualitas, Harga Bersahabat 💕</p>
+    <div class="flex items-center justify-center gap-4 mb-4">
+      <a href="https://telegram.me/vjparfume_premium" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-medium transition-colors" style="color: var(--accent-dark);" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--accent-dark)'">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        Channel Telegram
+      </a>
+      <span style="color: var(--border-accent);">·</span>
+      <a href="https://telegram.me/cynthyg" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-medium transition-colors" style="color: var(--accent-dark);" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--accent-dark)'">
+        <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+        Order: @cynthyg
+      </a>
+    </div>
+    <p class="text-xs" style="color: var(--text-muted);">© 2025 VJ Parfume. All rights reserved.</p>
   </footer>
+
+
+  <!-- ╔══════════════════════════════════════╗ -->
+  <!-- ║      FLOATING TELEGRAM BUTTON        ║ -->
+  <!-- ╚══════════════════════════════════════╝ -->
+  <a href="https://telegram.me/cynthyg" target="_blank" class="tg-float" title="Order via Telegram">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+  </a>
 
 
   <!-- ╔══════════════════════════════════════╗ -->
@@ -408,11 +501,11 @@
       <!-- Header -->
       <div class="flex items-center justify-between p-6 pb-4">
         <div>
-          <p class="text-[10px] font-semibold tracking-[0.25em] uppercase gold-text mb-1">Pesan Sekarang</p>
-          <h3 class="font-bold text-lg text-white" id="modalNama">Nama Parfum</h3>
+          <p class="text-[10px] font-semibold tracking-[0.25em] uppercase accent-text mb-1">Pesan Sekarang</p>
+          <h3 class="font-bold text-lg" style="color: var(--text);" id="modalNama">Nama Parfum</h3>
         </div>
-        <button onclick="closeModal()" class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
-          <i data-lucide="x" class="w-4 h-4 text-neutral-300"></i>
+        <button onclick="closeModal()" class="w-10 h-10 rounded-xl flex items-center justify-center transition-colors" style="background: var(--bg-alt);">
+          <i data-lucide="x" class="w-4 h-4" style="color: var(--text-sec);"></i>
         </button>
       </div>
 
@@ -420,11 +513,10 @@
 
       <!-- Product Preview -->
       <div class="p-6 pb-4 flex items-center gap-4">
-        <img id="modalImg" src="" alt="" class="w-20 h-20 rounded-2xl object-cover" style="border: 1px solid rgba(255,255,255,0.08);">
+        <img id="modalImg" src="" alt="" class="w-20 h-20 rounded-2xl object-cover" style="border: 1px solid var(--border);">
         <div>
-          <p class="text-white font-semibold text-sm" id="modalNama2"></p>
-          <p class="gold-text font-bold text-lg mt-1" id="modalHarga"></p>
-          <p class="text-neutral-400 text-xs mt-0.5" id="modalStok"></p>
+          <p class="font-semibold text-sm" style="color: var(--text);" id="modalNama2"></p>
+          <p class="font-bold text-lg mt-1 accent-text" id="modalHarga"></p>
         </div>
       </div>
 
@@ -432,42 +524,122 @@
       <form id="orderForm" class="px-6 pb-6 space-y-4" onsubmit="return submitOrder(event)">
 
         <div>
-          <label class="block text-xs font-semibold text-neutral-200 mb-2">Nama Lengkap <span class="text-red-400">*</span></label>
+          <label class="block text-xs font-semibold mb-2" style="color: var(--text-sec);">Nama Lengkap <span style="color: #EF4444;">*</span></label>
           <input type="text" id="inputNama" required placeholder="Tulis nama kamu di sini"
                  class="input-field w-full h-12 px-4 rounded-xl text-sm font-medium">
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-neutral-200 mb-2">Catatan</label>
+          <label class="block text-xs font-semibold mb-2" style="color: var(--text-sec);">Catatan</label>
           <textarea id="inputCatatan" rows="2" placeholder="Tulis catatan tambahan (opsional)..."
                     class="input-field w-full px-4 py-3 rounded-xl text-sm font-medium resize-none"></textarea>
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-neutral-200 mb-2">Jumlah Pesanan</label>
+          <label class="block text-xs font-semibold mb-2" style="color: var(--text-sec);">Jumlah Pesanan</label>
           <div class="flex items-center gap-4">
             <button type="button" class="qty-btn" onclick="changeQty(-1)">−</button>
-            <span id="qtyDisplay" class="text-2xl font-bold text-white w-10 text-center">1</span>
+            <span id="qtyDisplay" class="text-2xl font-bold w-10 text-center" style="color: var(--text);">1</span>
             <button type="button" class="qty-btn" onclick="changeQty(1)">+</button>
-            <span id="stockInfo" class="text-xs text-neutral-400 ml-auto"></span>
+            <span id="stockInfo" class="text-xs ml-auto" style="color: var(--text-muted);"></span>
           </div>
         </div>
 
         <!-- Total -->
-        <div class="rounded-2xl p-5 text-center" style="background: rgba(212,165,116,0.06); border: 1px solid rgba(212,165,116,0.15);">
-          <p class="text-xs font-semibold text-neutral-300 mb-2 tracking-wide">TOTAL HARGA</p>
-          <p id="totalHarga" class="text-3xl font-extrabold gold-text">Rp 0</p>
+        <div class="rounded-2xl p-5 text-center" style="background: var(--accent-pale); border: 1px solid var(--border-accent);">
+          <p class="text-xs font-semibold mb-2 tracking-wide" style="color: var(--text-sec);">TOTAL HARGA</p>
+          <div id="totalHarga" class="font-extrabold accent-text text-3xl">Rp 0</div>
         </div>
 
         <!-- Submit -->
         <button type="submit" id="submitBtn"
-                class="w-full h-13 btn-primary rounded-2xl font-bold text-sm flex items-center justify-center gap-2.5 tracking-wide py-4">
+                class="w-full btn-primary rounded-2xl font-bold text-sm flex items-center justify-center gap-2.5 tracking-wide py-4">
           <i data-lucide="shopping-bag" class="w-4 h-4"></i>
           Konfirmasi Pesanan
         </button>
 
-        <p class="text-center text-[11px] text-neutral-500 mt-1">Pesanan akan dikirim ke admin VJ Parfume</p>
+        <!-- Telegram Alternative -->
+        <a id="modalTgLink" href="#" target="_blank"
+           class="w-full rounded-2xl font-bold text-sm flex items-center justify-center gap-2.5 tracking-wide py-3.5 transition-all"
+           style="background: rgba(42,171,238,0.08); border: 1px solid rgba(42,171,238,0.2); color: #229ED9;"
+           onmouseover="this.style.background='linear-gradient(135deg,#2AABEE,#229ED9)';this.style.color='#fff';this.style.borderColor='#2AABEE'"
+           onmouseout="this.style.background='rgba(42,171,238,0.08)';this.style.color='#229ED9';this.style.borderColor='rgba(42,171,238,0.2)'">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          Atau Pesan via Telegram @cynthyg
+        </a>
+
+        <p class="text-center text-[11px] mt-1" style="color: var(--text-muted);">Pesanan akan dikirim ke admin VJ Parfume</p>
       </form>
+    </div>
+  </div>
+
+
+  <!-- ╔══════════════════════════════════════╗ -->
+  <!-- ║          ADMIN MODAL                 ║ -->
+  <!-- ╚══════════════════════════════════════╝ -->
+  <div id="adminModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop">
+    <div class="modal-box w-full max-w-2xl max-h-[92vh] overflow-hidden flex flex-col anim-slide-up">
+
+      <!-- Admin Login -->
+      <div id="adminLogin" class="p-8 text-center">
+        <div class="w-16 h-16 rounded-2xl mx-auto mb-5 flex items-center justify-center" style="background: var(--accent-pale);">
+          <i data-lucide="lock" class="w-7 h-7 accent-text"></i>
+        </div>
+        <h3 class="font-bold text-xl mb-2" style="color: var(--text);">Admin Panel</h3>
+        <p class="text-sm mb-6" style="color: var(--text-muted);">Masukkan password untuk mengelola parfum</p>
+        <input type="password" id="adminPassInput" placeholder="Password..."
+               class="input-field w-full h-12 px-4 rounded-xl text-sm font-medium mb-4 text-center"
+               onkeydown="if(event.key==='Enter')attemptAdminLogin()">
+        <button onclick="attemptAdminLogin()" class="w-full btn-primary rounded-xl font-bold text-sm py-3.5">
+          Masuk
+        </button>
+        <button onclick="closeAdminModal()" class="w-full mt-3 py-3 text-sm font-medium rounded-xl transition-colors" style="color: var(--text-muted);" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-muted)'">
+          Batal
+        </button>
+        <p id="adminError" class="text-xs mt-3 font-medium hidden" style="color: #EF4444;">Password salah! Coba lagi.</p>
+      </div>
+
+      <!-- Admin Panel -->
+      <div id="adminPanel" class="hidden flex flex-col" style="max-height: 92vh;">
+
+        <!-- Admin Header -->
+        <div class="flex items-center justify-between p-5 pb-4 flex-shrink-0">
+          <div>
+            <p class="text-[10px] font-semibold tracking-[0.25em] uppercase accent-text mb-0.5">Admin Mode</p>
+            <h3 class="font-bold text-lg" style="color: var(--text);">Kelola Parfum</h3>
+          </div>
+          <button onclick="closeAdminModal()" class="w-10 h-10 rounded-xl flex items-center justify-center transition-colors" style="background: var(--bg-alt);">
+            <i data-lucide="x" class="w-4 h-4" style="color: var(--text-sec);"></i>
+          </button>
+        </div>
+
+        <div class="gold-divider mx-5"></div>
+
+        <!-- Admin Instructions -->
+        <div class="px-5 py-3 flex-shrink-0">
+          <p class="text-xs leading-relaxed" style="color: var(--text-muted);">
+            💡 Edit data parfum di bawah, lalu klik <strong style="color: var(--accent);">Simpan Semua</strong>. Harga isi dalam <strong>Rupiah</strong> — Dollar & Riel otomatis. Stok <strong>0</strong> = SOLD OUT.
+          </p>
+        </div>
+
+        <!-- Admin Content -->
+        <div id="adminContent" class="flex-1 overflow-y-auto px-5 pb-4 space-y-3">
+          <!-- JS renders here -->
+        </div>
+
+        <!-- Admin Footer -->
+        <div class="p-5 pt-3 flex flex-col sm:flex-row gap-2 flex-shrink-0" style="border-top: 1px solid var(--border);">
+          <button onclick="addNewParfum()" class="flex-1 py-3 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 transition-all" style="background: var(--bg-alt); color: var(--text-sec); border: 1px solid var(--border);" onmouseover="this.style.borderColor='var(--border-accent)'" onmouseout="this.style.borderColor='var(--border)'">
+            <i data-lucide="plus" class="w-4 h-4"></i> Tambah Parfum
+          </button>
+          <button onclick="saveAdminData()" class="flex-1 btn-primary py-3 rounded-xl text-sm font-bold flex items-center justify-center gap-2">
+            <i data-lucide="save" class="w-4 h-4"></i> Simpan Semua
+          </button>
+          <button onclick="resetToDefault()" class="py-3 px-4 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 transition-all" style="background: rgba(239,68,68,0.06); color: #EF4444; border: 1px solid rgba(239,68,68,0.15);" onmouseover="this.style.background='rgba(239,68,68,0.1)'" onmouseout="this.style.background='rgba(239,68,68,0.06)'">
+            <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -477,12 +649,12 @@
   <!-- ╚══════════════════════════════════════╝ -->
   <div id="successToast" class="hidden fixed top-20 right-4 left-4 md:left-auto md:right-6 z-[60] toast-box p-5 anim-slide-up">
     <div class="flex items-start gap-4">
-      <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(74,222,128,0.1);">
-        <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+      <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(34,197,94,0.08);">
+        <i data-lucide="check-circle" class="w-5 h-5" style="color: #22C55E;"></i>
       </div>
       <div>
-        <p class="font-bold text-sm text-green-400">Pesanan Berhasil Dikirim! 🎉</p>
-        <p class="text-xs text-neutral-400 mt-1">Admin akan segera memproses pesananmu</p>
+        <p class="font-bold text-sm" style="color: #22C55E;">Pesanan Berhasil Dikirim! 🎉</p>
+        <p class="text-xs mt-1" style="color: var(--text-muted);">Admin akan segera memproses pesananmu</p>
       </div>
     </div>
   </div>
@@ -498,164 +670,197 @@
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxAD2_1eEHv4iSFFFfqI1Wl35escLyzph03SXXHr1-FU5gTxJgQMpyQ3rX5gGF6OsYiOg/exec";
 
     // ═══════════════════════════════════════════════════════
-    //  🌸 DATA PARFUM — EDIT SESUAI KEBUTUHAN MU
+    //  🔐 ADMIN PASSWORD — GANTI SESUAI KEINGINAN MU
+    // ═══════════════════════════════════════════════════════
+    const ADMIN_PASSWORD = "vjadmin2025";
+
+    // ═══════════════════════════════════════════════════════
+    //  💱 KURS MATA UANG
+    // ═══════════════════════════════════════════════════════
+    const KURS_USD_TO_IDR = 16000;  // 1 USD = 16,000 IDR
+    const KURS_USD_TO_KHR = 4100;   // 1 USD = 4,100 KHR
+
+    function toUSD(idr) { return idr / KURS_USD_TO_IDR; }
+    function toKHR(idr) { return idr / KURS_USD_TO_IDR * KURS_USD_TO_KHR; }
+    function fmtUSD(usd) { return '$' + usd.toFixed(2); }
+    function fmtKHR(khr) { return '៛' + Math.round(khr).toLocaleString(); }
+    function fmtIDR(idr) { return 'Rp ' + idr.toLocaleString('id-ID'); }
+
+    // ═══════════════════════════════════════════════════════
+    //  🌸 DATA PARFUM DEFAULT — JANGAN DIHAPUS!
+    //  Data ini dipakai sebagai fallback & reset
     //
     //  CARA GANTI GAMBAR:
     //  1. Upload foto parfum ke imgbb.com (gratis)
     //  2. Copy link gambar nya
     //  3. Ganti URL di bagian "gambar"
     //
-    //  CARA UPDATE STOK:
-    //  Ubah angka "stok" — kalau habis isi 0, otomatis SOLD OUT
-    //
-    //  CARA TAMBAH PARFUM BARU:
-    //  Copy paste 1 blok, ganti id, nama, gambar, stok
+    //  UNTUK UPDATE STOK/NAMA/HARGA:
+    //  Bukak Admin Panel (klik logo VJ 5x kali) → edit → simpan
+    //  Atau langsung edit di bawah ini lalu reset di admin
     // ═══════════════════════════════════════════════════════
-    const parfumData = [
+    const defaultParfumData = [
       {
         id: 1,
         nama: "SCANDALOUS",
-        gambar: "https://placehold.co/400x500/111111/D4A574?text=SCANDALOUS",
+        gambar: "https://placehold.co/400x500/F7EDE2/C4956A?text=SCANDALOUS",
         harga: 200000,
         stok: 10
       },
       {
         id: 2,
         nama: "BLACK OPIUM",
-        gambar: "https://placehold.co/400x500/111111/D4A574?text=BLACK+OPIUM",
+        gambar: "https://placehold.co/400x500/F7EDE2/C4956A?text=BLACK+OPIUM",
         harga: 200000,
         stok: 10
       },
       {
         id: 3,
         nama: "AVRIL LAVIGNE",
-        gambar: "https://placehold.co/400x500/111111/D4A574?text=AVRIL+LAVIGNE",
+        gambar: "https://placehold.co/400x500/F7EDE2/C4956A?text=AVRIL+LAVIGNE",
         harga: 200000,
         stok: 10
       },
       {
         id: 4,
         nama: "SOFT",
-        gambar: "https://placehold.co/400x500/111111/D4A574?text=SOFT",
+        gambar: "https://placehold.co/400x500/F7EDE2/C4956A?text=SOFT",
         harga: 200000,
         stok: 10
       },
       {
         id: 5,
         nama: "PINK CHIFFON",
-        gambar: "https://placehold.co/400x500/111111/D4A574?text=PINK+CHIFFON",
+        gambar: "https://placehold.co/400x500/F7EDE2/C4956A?text=PINK+CHIFFON",
         harga: 200000,
         stok: 10
       },
-      // ↓ ISI NAMA PARFUM 6 SAMPAI 20 DI BAWAH INI ↓
-      // Ganti "Produk 6" dst dengan nama parfum kamu yang benar
-      // Ganti URL gambar dengan foto parfum kamu
       {
         id: 6,
         nama: "Produk 6",
-        gambar: "https://placehold.co/400x500/111111/D4A574?text=Produk+6",
+        gambar: "https://placehold.co/400x500/F7EDE2/C4956A?text=Produk+6",
         harga: 200000,
         stok: 10
       },
       {
         id: 7,
         nama: "Produk 7",
-        gambar: "https://placehold.co/400x500/111111/D4A574?text=Produk+7",
+        gambar: "https://placehold.co/400x500/F7EDE2/C4956A?text=Produk+7",
         harga: 200000,
         stok: 10
       },
       {
         id: 8,
         nama: "Produk 8",
-        gambar: "https://placehold.co/400x500/111111/D4A574?text=Produk+8",
+        gambar: "https://placehold.co/400x500/F7EDE2/C4956A?text=Produk+8",
         harga: 200000,
         stok: 10
       },
       {
         id: 9,
         nama: "Produk 9",
-        gambar: "https://placehold.co/400x500/111111/D4A574?text=Produk+9",
+        gambar: "https://placehold.co/400x500/F7EDE2/C4956A?text=Produk+9",
         harga: 200000,
         stok: 10
       },
       {
         id: 10,
         nama: "Produk 10",
-        gambar: "https://placehold.co/400x500/111111/D4A574?text=Produk+10",
+        gambar: "https://placehold.co/400x500/F7EDE2/C4956A?text=Produk+10",
         harga: 200000,
         stok: 10
       },
       {
         id: 11,
         nama: "Produk 11",
-        gambar: "https://placehold.co/400x500/111111/D4A574?text=Produk+11",
+        gambar: "https://placehold.co/400x500/F7EDE2/C4956A?text=Produk+11",
         harga: 200000,
         stok: 10
       },
       {
         id: 12,
         nama: "Produk 12",
-        gambar: "https://placehold.co/400x500/111111/D4A574?text=Produk+12",
+        gambar: "https://placehold.co/400x500/F7EDE2/C4956A?text=Produk+12",
         harga: 200000,
         stok: 10
       },
       {
         id: 13,
         nama: "Produk 13",
-        gambar: "https://placehold.co/400x500/111111/D4A574?text=Produk+13",
+        gambar: "https://placehold.co/400x500/F7EDE2/C4956A?text=Produk+13",
         harga: 200000,
         stok: 10
       },
       {
         id: 14,
         nama: "Produk 14",
-        gambar: "https://placehold.co/400x500/111111/D4A574?text=Produk+14",
+        gambar: "https://placehold.co/400x500/F7EDE2/C4956A?text=Produk+14",
         harga: 200000,
         stok: 10
       },
       {
         id: 15,
         nama: "Produk 15",
-        gambar: "https://placehold.co/400x500/111111/D4A574?text=Produk+15",
+        gambar: "https://placehold.co/400x500/F7EDE2/C4956A?text=Produk+15",
         harga: 200000,
         stok: 10
       },
       {
         id: 16,
         nama: "Produk 16",
-        gambar: "https://placehold.co/400x500/111111/D4A574?text=Produk+16",
+        gambar: "https://placehold.co/400x500/F7EDE2/C4956A?text=Produk+16",
         harga: 200000,
         stok: 10
       },
       {
         id: 17,
         nama: "Produk 17",
-        gambar: "https://placehold.co/400x500/111111/D4A574?text=Produk+17",
+        gambar: "https://placehold.co/400x500/F7EDE2/C4956A?text=Produk+17",
         harga: 200000,
         stok: 10
       },
       {
         id: 18,
         nama: "Produk 18",
-        gambar: "https://placehold.co/400x500/111111/D4A574?text=Produk+18",
+        gambar: "https://placehold.co/400x500/F7EDE2/C4956A?text=Produk+18",
         harga: 200000,
         stok: 10
       },
       {
         id: 19,
         nama: "Produk 19",
-        gambar: "https://placehold.co/400x500/111111/D4A574?text=Produk+19",
+        gambar: "https://placehold.co/400x500/F7EDE2/C4956A?text=Produk+19",
         harga: 200000,
         stok: 10
       },
       {
         id: 20,
         nama: "Produk 20",
-        gambar: "https://placehold.co/400x500/111111/D4A574?text=Produk+20",
+        gambar: "https://placehold.co/400x500/F7EDE2/C4956A?text=Produk+20",
         harga: 200000,
         stok: 10
       }
     ];
+
+    // ═══════════════════════════════════════
+    //  LOAD DATA DARI LOCALSTORAGE ATAU DEFAULT
+    // ═══════════════════════════════════════
+    function loadParfumData() {
+      const saved = localStorage.getItem('vj_parfum_data');
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        } catch(e) { /* ignore */ }
+      }
+      return JSON.parse(JSON.stringify(defaultParfumData));
+    }
+
+    function saveParfumToStorage(data) {
+      localStorage.setItem('vj_parfum_data', JSON.stringify(data));
+    }
+
+    let parfumData = loadParfumData();
 
     // ═══════════════════════════════════════
     //  STATE
@@ -663,6 +868,8 @@
     let currentSearch = "";
     let selectedParfum = null;
     let currentQty = 1;
+    let logoClickCount = 0;
+    let logoClickTimer = null;
 
     // ═══════════════════════════════════════
     //  RENDER PRODUCTS
@@ -689,12 +896,15 @@
 
         let stockHtml = "";
         if (isSoldOut) {
-          stockHtml = `<span class="text-red-400 text-[11px] font-bold tracking-wide">SOLD OUT</span>`;
+          stockHtml = `<span class="text-[11px] font-bold tracking-wide" style="color: #EF4444;">SOLD OUT</span>`;
         } else if (isLow) {
-          stockHtml = `<span class="stock-dot stock-low"></span><span class="text-yellow-400 text-[11px] font-medium">Sisa ${p.stok}</span>`;
+          stockHtml = `<span class="stock-dot stock-low"></span><span class="text-[11px] font-medium" style="color: #F59E0B;">Sisa ${p.stok}</span>`;
         } else {
-          stockHtml = `<span class="stock-dot stock-yes"></span><span class="text-green-400 text-[11px] font-medium">Tersedia</span>`;
+          stockHtml = `<span class="stock-dot stock-yes"></span><span class="text-[11px] font-medium" style="color: #22C55E;">Tersedia</span>`;
         }
+
+        const usd = toUSD(p.harga);
+        const khr = toKHR(p.harga);
 
         return `
           <div class="perfume-card" style="animation: fadeUp 0.6s ease-out ${i * 0.06}s forwards; opacity: 0;">
@@ -704,27 +914,29 @@
               </div>
             ` : ""}
 
-            <div class="relative aspect-[4/5] overflow-hidden">
+            <div class="relative aspect-[4/5] overflow-hidden" style="background: var(--bg-alt);">
               <img src="${p.gambar}" alt="${p.nama}"
                    class="card-img w-full h-full object-cover"
                    loading="lazy"
-                   onerror="this.src='https://placehold.co/400x500/111111/D4A574?text=${encodeURIComponent(p.nama)}'">
+                   onerror="this.src='https://placehold.co/400x500/F7EDE2/C4956A?text=${encodeURIComponent(p.nama)}'">
             </div>
 
             <div class="p-4">
-              <h3 class="font-bold text-sm text-white mb-2 tracking-tight leading-tight">${p.nama}</h3>
+              <h3 class="font-bold text-sm mb-2 tracking-tight leading-tight" style="color: var(--text);">${p.nama}</h3>
 
-              <div class="flex items-center justify-between mb-3">
-                <p class="gold-text font-bold text-sm">Rp ${p.harga.toLocaleString("id-ID")}</p>
+              <div class="flex items-center justify-between mb-1">
+                <p class="accent-text font-bold text-sm">${fmtUSD(usd)}</p>
                 <div class="flex items-center gap-1.5">${stockHtml}</div>
               </div>
+              <p class="text-[10px] mb-3" style="color: var(--text-muted);">${fmtKHR(khr)} · ${fmtIDR(p.harga)}</p>
 
               <button onclick='openModal(${JSON.stringify(p).replace(/'/g, "&#39;")})'
                       ${isSoldOut ? "disabled" : ""}
                       class="w-full h-10 rounded-xl text-xs font-bold tracking-wide flex items-center justify-center gap-1.5
                              ${isSoldOut
-                               ? "bg-white/[0.03] text-neutral-600 cursor-not-allowed border border-white/[0.04]"
-                               : "btn-order"}">
+                               ? "cursor-not-allowed"
+                               : "btn-order"}"
+                      ${isSoldOut ? "style='background: var(--bg-alt); color: var(--text-muted); border: 1px solid var(--border);'" : ""}>
                 ${isSoldOut
                   ? "SOLD OUT"
                   : '<i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i> Pesan Sekarang'}
@@ -755,14 +967,22 @@
       document.getElementById("modalImg").src = parfum.gambar;
       document.getElementById("modalNama").textContent = parfum.nama;
       document.getElementById("modalNama2").textContent = parfum.nama;
-      document.getElementById("modalHarga").textContent = `Rp ${parfum.harga.toLocaleString("id-ID")} / botol`;
-      document.getElementById("modalStok").textContent = `Stok tersedia: ${parfum.stok}`;
+
+      const usd = toUSD(parfum.harga);
+      const khr = toKHR(parfum.harga);
+      document.getElementById("modalHarga").innerHTML = `${fmtUSD(usd)} <span class="text-xs font-normal" style="color: var(--text-muted);">/ botol</span><br><span class="text-sm font-medium">${fmtKHR(khr)} · ${fmtIDR(parfum.harga)}</span>`;
+
+      // Stok tersedia DIHAPUS sesuai permintaan
 
       document.getElementById("qtyDisplay").textContent = "1";
       document.getElementById("stockInfo").textContent = `Maks: ${parfum.stok}`;
-      document.getElementById("totalHarga").textContent = `Rp ${parfum.harga.toLocaleString("id-ID")}`;
+      updateTotal();
+
       document.getElementById("inputNama").value = "";
       document.getElementById("inputCatatan").value = "";
+
+      // Set telegram link dengan pesan otomatis
+      document.getElementById("modalTgLink").href = `https://telegram.me/cynthyg?text=${encodeURIComponent('Halo, saya mau pesan ' + parfum.nama + ' (' + fmtIDR(parfum.harga) + ')')}`;
 
       document.getElementById("orderModal").classList.remove("hidden");
       document.body.style.overflow = "hidden";
@@ -779,7 +999,10 @@
       if (e.target === document.getElementById("orderModal")) closeModal();
     });
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeModal();
+      if (e.key === "Escape") {
+        closeModal();
+        closeAdminModal();
+      }
     });
 
     // ═══════════════════════════════════════
@@ -794,8 +1017,13 @@
 
     function updateTotal() {
       if (!selectedParfum) return;
-      const total = selectedParfum.harga * currentQty;
-      document.getElementById("totalHarga").textContent = `Rp ${total.toLocaleString("id-ID")}`;
+      const totalIDR = selectedParfum.harga * currentQty;
+      const totalUSD = toUSD(totalIDR);
+      const totalKHR = toKHR(totalIDR);
+      document.getElementById("totalHarga").innerHTML = `
+        <span class="text-2xl">${fmtUSD(totalUSD)}</span>
+        <span class="block text-sm mt-1" style="color: var(--text-muted);">${fmtKHR(totalKHR)} · ${fmtIDR(totalIDR)}</span>
+      `;
     }
 
     // ═══════════════════════════════════════
@@ -812,14 +1040,14 @@
         return false;
       }
 
-      const total = selectedParfum.harga * currentQty;
+      const totalIDR = selectedParfum.harga * currentQty;
 
       const orderData = {
         nama: nama,
         catatan: catatan || "-",
         parfum: selectedParfum.nama,
         jumlah: currentQty,
-        total: "Rp " + total.toLocaleString("id-ID")
+        total: fmtIDR(totalIDR) + " / " + fmtUSD(toUSD(totalIDR)) + " / " + fmtKHR(toKHR(totalIDR))
       };
 
       const btn = document.getElementById("submitBtn");
@@ -870,6 +1098,173 @@
         if (t) t.scrollIntoView({ behavior: "smooth", block: "start" });
       });
     });
+
+    // ═══════════════════════════════════════
+    //  ADMIN PANEL — Akses: Klik Logo VJ 5x
+    // ═══════════════════════════════════════
+    document.getElementById("logoArea").addEventListener("click", function() {
+      logoClickCount++;
+      clearTimeout(logoClickTimer);
+      logoClickTimer = setTimeout(() => { logoClickCount = 0; }, 800);
+
+      if (logoClickCount >= 5) {
+        logoClickCount = 0;
+        openAdminModal();
+      }
+    });
+
+    // Juga bisa akses via URL ?admin
+    if (window.location.search.includes('admin')) {
+      setTimeout(() => openAdminModal(), 500);
+    }
+
+    function openAdminModal() {
+      document.getElementById("adminModal").classList.remove("hidden");
+      document.getElementById("adminLogin").classList.remove("hidden");
+      document.getElementById("adminPanel").classList.add("hidden");
+      document.getElementById("adminPassInput").value = "";
+      document.getElementById("adminError").classList.add("hidden");
+      document.body.style.overflow = "hidden";
+      lucide.createIcons();
+      setTimeout(() => document.getElementById("adminPassInput").focus(), 100);
+    }
+
+    function closeAdminModal() {
+      document.getElementById("adminModal").classList.add("hidden");
+      document.body.style.overflow = "";
+    }
+
+    function attemptAdminLogin() {
+      const pass = document.getElementById("adminPassInput").value;
+      if (pass === ADMIN_PASSWORD) {
+        document.getElementById("adminLogin").classList.add("hidden");
+        document.getElementById("adminPanel").classList.remove("hidden");
+        renderAdminPanel();
+      } else {
+        document.getElementById("adminError").classList.remove("hidden");
+        document.getElementById("adminPassInput").value = "";
+        document.getElementById("adminPassInput").focus();
+      }
+    }
+
+    function renderAdminPanel() {
+      const container = document.getElementById("adminContent");
+      container.innerHTML = parfumData.map((p, idx) => `
+        <div class="rounded-2xl p-4" style="background: var(--bg); border: 1px solid var(--border);">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold accent-text">Parfum #${p.id}</span>
+            <button onclick="deleteParfum(${idx})" id="delBtn${idx}"
+                    class="text-xs font-semibold px-3 py-1.5 rounded-lg transition-all"
+                    style="background: rgba(239,68,68,0.06); color: #EF4444; border: 1px solid rgba(239,68,68,0.12);"
+                    onmouseover="this.style.background='rgba(239,68,68,0.12)'"
+                    onmouseout="this.style.background='rgba(239,68,68,0.06)'"
+                    onclick="confirmDelete(${idx})">
+              Hapus
+            </button>
+          </div>
+          <div class="space-y-2.5">
+            <div>
+              <label class="text-[10px] font-semibold uppercase tracking-wider mb-1 block" style="color: var(--text-muted);">Nama</label>
+              <input type="text" class="admin-input" id="adm_nama_${idx}" value="${p.nama}">
+            </div>
+            <div>
+              <label class="text-[10px] font-semibold uppercase tracking-wider mb-1 block" style="color: var(--text-muted);">URL Gambar</label>
+              <input type="text" class="admin-input" id="adm_gambar_${idx}" value="${p.gambar}">
+            </div>
+            <div class="flex gap-2.5">
+              <div class="flex-1">
+                <label class="text-[10px] font-semibold uppercase tracking-wider mb-1 block" style="color: var(--text-muted);">Harga (Rp)</label>
+                <input type="number" class="admin-input" id="adm_harga_${idx}" value="${p.harga}" min="0">
+              </div>
+              <div class="w-24">
+                <label class="text-[10px] font-semibold uppercase tracking-wider mb-1 block" style="color: var(--text-muted);">Stok</label>
+                <input type="number" class="admin-input" id="adm_stok_${idx}" value="${p.stok}" min="0">
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join("");
+      lucide.createIcons();
+    }
+
+    function confirmDelete(idx) {
+      const btn = document.getElementById('delBtn' + idx);
+      if (btn.dataset.confirming === 'true') {
+        parfumData.splice(idx, 1);
+        renderAdminPanel();
+        return;
+      }
+      btn.dataset.confirming = 'true';
+      btn.textContent = 'Yakin?';
+      btn.style.background = 'rgba(239,68,68,0.15)';
+      setTimeout(() => {
+        if (btn) {
+          btn.dataset.confirming = 'false';
+          btn.textContent = 'Hapus';
+          btn.style.background = 'rgba(239,68,68,0.06)';
+        }
+      }, 3000);
+    }
+
+    function addNewParfum() {
+      const maxId = parfumData.reduce((max, p) => Math.max(max, p.id), 0);
+      parfumData.push({
+        id: maxId + 1,
+        nama: "Parfum Baru",
+        gambar: "https://placehold.co/400x500/F7EDE2/C4956A?text=Baru",
+        harga: 200000,
+        stok: 10
+      });
+      renderAdminPanel();
+      // Scroll ke bawah
+      const container = document.getElementById("adminContent");
+      setTimeout(() => container.scrollTop = container.scrollHeight, 100);
+    }
+
+    function saveAdminData() {
+      parfumData.forEach((p, idx) => {
+        const namaEl = document.getElementById('adm_nama_' + idx);
+        const gambarEl = document.getElementById('adm_gambar_' + idx);
+        const hargaEl = document.getElementById('adm_harga_' + idx);
+        const stokEl = document.getElementById('adm_stok_' + idx);
+
+        if (namaEl) p.nama = namaEl.value.trim() || p.nama;
+        if (gambarEl) p.gambar = gambarEl.value.trim() || p.gambar;
+        if (hargaEl) p.harga = parseInt(hargaEl.value) || 0;
+        if (stokEl) p.stok = parseInt(stokEl.value) || 0;
+      });
+
+      saveParfumToStorage(parfumData);
+      renderProducts();
+
+      // Tampilkan notifikasi sukses
+      const toast = document.getElementById("successToast");
+      toast.querySelector('p.font-bold').textContent = 'Data Berhasil Disimpan! ✅';
+      toast.querySelector('p.text-xs').textContent = 'Perubahan sudah diterapkan';
+      toast.classList.remove("hidden");
+      setTimeout(() => {
+        toast.classList.add("hidden");
+        toast.querySelector('p.font-bold').textContent = 'Pesanan Berhasil Dikirim! 🎉';
+        toast.querySelector('p.text-xs').textContent = 'Admin akan segera memproses pesananmu';
+      }, 2500);
+    }
+
+    function resetToDefault() {
+      parfumData = JSON.parse(JSON.stringify(defaultParfumData));
+      saveParfumToStorage(parfumData);
+      renderAdminPanel();
+      renderProducts();
+
+      const toast = document.getElementById("successToast");
+      toast.querySelector('p.font-bold').textContent = 'Data Direset ke Default 🔄';
+      toast.querySelector('p.text-xs').textContent = 'Semua parfum kembali ke data awal';
+      toast.classList.remove("hidden");
+      setTimeout(() => {
+        toast.classList.add("hidden");
+        toast.querySelector('p.font-bold').textContent = 'Pesanan Berhasil Dikirim! 🎉';
+        toast.querySelector('p.text-xs').textContent = 'Admin akan segera memproses pesananmu';
+      }, 2500);
+    }
 
     // ═══════════════════════════════════════
     //  INIT
