@@ -559,7 +559,7 @@
       </div>
       <div class="gold-divider mx-5 md:mx-6"></div>
       <div class="p-5 md:p-6 pb-3 md:pb-4 flex items-center gap-3 md:gap-4">
-        <img id="modalImg" src="" alt="" class="w-16 h-16 md:w-20 md:h-20 rounded-xl md:rounded-2xl object-cover" style="border: 1px solid var(--border);">
+        <img id="modalImg" src="" alt="" class="w-16 h-16 md:w-20 md:h-20 rounded-xl md:rounded-2xl object-contain" style="border: 1px solid var(--border);">
         <div>
           <p class="font-extrabold text-xs md:text-sm" style="color: var(--text);" id="modalNama2"></p>
           <p class="font-extrabold text-xs mt-0.5" style="color: var(--accent);" id="modalUkuran"></p>
@@ -695,29 +695,44 @@
     function fmtIDR(idr) { return 'Rp ' + idr.toLocaleString('id-ID'); }
 
     // ═══════════════════════════════════════════════════════
+    //  🖼️ PLACEHOLDER GAMBAR — SVG INLINE (TIDAK AKAN KEBLOK)
+    // ═══════════════════════════════════════════════════════
+    function placeholderImg(text) {
+      return "data:image/svg+xml," + encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500">' +
+        '<rect width="400" height="500" fill="#1C1814"/>' +
+        '<rect x="20" y="20" width="360" height="460" rx="8" fill="none" stroke="#4A3D32" stroke-width="1.5" stroke-dasharray="6,4"/>' +
+        '<text x="200" y="230" text-anchor="middle" fill="#D4A574" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="bold">' + text + '</text>' +
+        '<text x="200" y="260" text-anchor="middle" fill="#8A7B6B" font-family="Arial,Helvetica,sans-serif" font-size="11">Upload gambar via Admin</text>' +
+        '<text x="200" y="290" text-anchor="middle" fill="#4A3D32" font-family="Arial,Helvetica,sans-serif" font-size="10">🧴 35ml</text>' +
+        '</svg>'
+      );
+    }
+
+    // ═══════════════════════════════════════════════════════
     //  🌸 DATA PARFUM DEFAULT — JANGAN DIHAPUS!
     // ═══════════════════════════════════════════════════════
     const defaultParfumData = [
-      { id: 1, nama: "SCANDALOUS", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=SCANDALOUS", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 2, nama: "BLACK OPIUM", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=BLACK+OPIUM", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 3, nama: "AVRIL LAVIGNE", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=AVRIL+LAVIGNE", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 4, nama: "SOFT", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=SOFT", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 5, nama: "PINK CHIFFON", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=PINK+CHIFFON", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 6, nama: "Produk 6", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+6", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 7, nama: "Produk 7", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+7", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 8, nama: "Produk 8", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+8", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 9, nama: "Produk 9", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+9", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 10, nama: "Produk 10", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+10", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 11, nama: "Produk 11", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+11", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 12, nama: "Produk 12", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+12", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 13, nama: "Produk 13", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+13", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 14, nama: "Produk 14", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+14", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 15, nama: "Produk 15", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+15", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 16, nama: "Produk 16", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+16", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 17, nama: "Produk 17", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+17", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 18, nama: "Produk 18", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+18", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 19, nama: "Produk 19", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+19", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 20, nama: "Produk 20", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+20", harga: 200000, stok: 10, ukuran: "35ml" }
+      { id: 1, nama: "SCANDALOUS", gambar: placeholderImg("SCANDALOUS"), harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 2, nama: "BLACK OPIUM", gambar: placeholderImg("BLACK OPIUM"), harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 3, nama: "AVRIL LAVIGNE", gambar: placeholderImg("AVRIL LAVIGNE"), harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 4, nama: "SOFT", gambar: placeholderImg("SOFT"), harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 5, nama: "PINK CHIFFON", gambar: placeholderImg("PINK CHIFFON"), harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 6, nama: "Produk 6", gambar: placeholderImg("Produk 6"), harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 7, nama: "Produk 7", gambar: placeholderImg("Produk 7"), harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 8, nama: "Produk 8", gambar: placeholderImg("Produk 8"), harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 9, nama: "Produk 9", gambar: placeholderImg("Produk 9"), harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 10, nama: "Produk 10", gambar: placeholderImg("Produk 10"), harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 11, nama: "Produk 11", gambar: placeholderImg("Produk 11"), harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 12, nama: "Produk 12", gambar: placeholderImg("Produk 12"), harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 13, nama: "Produk 13", gambar: placeholderImg("Produk 13"), harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 14, nama: "Produk 14", gambar: placeholderImg("Produk 14"), harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 15, nama: "Produk 15", gambar: placeholderImg("Produk 15"), harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 16, nama: "Produk 16", gambar: placeholderImg("Produk 16"), harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 17, nama: "Produk 17", gambar: placeholderImg("Produk 17"), harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 18, nama: "Produk 18", gambar: placeholderImg("Produk 18"), harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 19, nama: "Produk 19", gambar: placeholderImg("Produk 19"), harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 20, nama: "Produk 20", gambar: placeholderImg("Produk 20"), harga: 200000, stok: 10, ukuran: "35ml" }
     ];
 
     // ═══════════════════════════════════════
@@ -729,7 +744,7 @@
         try {
           const parsed = JSON.parse(saved);
           if (Array.isArray(parsed) && parsed.length > 0) {
-            parsed.forEach(p => { if (!p.ukuran) p.ukuran = "35ml"; });
+            parsed.forEach(function(p) { if (!p.ukuran) p.ukuran = "35ml"; });
             return parsed;
           }
         } catch(e) {}
@@ -760,9 +775,9 @@
       const grid = document.getElementById("productGrid");
       const empty = document.getElementById("emptyState");
 
-      let filtered = parfumData.filter(p =>
-        p.nama.toLowerCase().includes(currentSearch.toLowerCase())
-      );
+      let filtered = parfumData.filter(function(p) {
+        return p.nama.toLowerCase().includes(currentSearch.toLowerCase());
+      });
 
       if (filtered.length === 0) {
         grid.innerHTML = "";
@@ -772,7 +787,7 @@
       }
       empty.classList.add("hidden");
 
-      grid.innerHTML = filtered.map((p, i) => {
+      grid.innerHTML = filtered.map(function(p, i) {
         const isSoldOut = p.stok === 0;
         const isLow = p.stok > 0 && p.stok <= 3;
 
@@ -788,11 +803,12 @@
         const usd = toUSD(p.harga);
         const khr = toKHR(p.harga);
         const uk = p.ukuran || "35ml";
+        const fallbackSrc = placeholderImg(p.nama);
 
         return '<div class="perfume-card" style="animation: fadeUp 0.6s ease-out ' + (i * 0.05) + 's forwards; opacity: 0;">' +
           (isSoldOut ? '<div class="sold-out-overlay"><div class="sold-out-badge">SOLD OUT</div></div>' : '') +
           '<div class="relative aspect-[4/5] overflow-hidden flex-shrink-0" style="background: var(--bg-alt);">' +
-            '<img src="' + p.gambar + '" alt="' + p.nama + '" class="card-img w-full h-full object-cover" loading="lazy" onerror="this.src=\'https://placehold.co/400x500/1C1814/D4A574?text=' + encodeURIComponent(p.nama) + '\'">' +
+            '<img src="' + p.gambar + '" alt="' + p.nama + '" class="card-img w-full h-full object-contain" style="object-position: center top;" loading="lazy" onerror="this.src=\'' + fallbackSrc.replace(/'/g, "\\'") + '\'">' +
           '</div>' +
           '<div class="p-2.5 md:p-3.5 flex flex-col flex-1">' +
             '<h3 class="font-extrabold text-[11px] md:text-sm mb-1 tracking-tight leading-tight" style="color: var(--text);">' + p.nama + '</h3>' +
@@ -824,7 +840,7 @@
     // ═══════════════════════════════════════
     //  SEARCH
     // ═══════════════════════════════════════
-    document.getElementById("searchInput").addEventListener("input", (e) => {
+    document.getElementById("searchInput").addEventListener("input", function(e) {
       currentSearch = e.target.value;
       renderProducts();
     });
@@ -845,18 +861,20 @@
 
       var usd = toUSD(parfum.harga);
       var khr = toKHR(parfum.harga);
-      document.getElementById("modalHarga").innerHTML = fmtUSD(usd) + ' <span class="text-[10px] md:text-xs font-extrabold" style="color: var(--text-muted);">per botol</span><br><span class="text-xs md:text-sm font-extrabold" style="color: #E8C9A8;">' + Math.round(khr).toLocaleString() + ' riel · ' + fmtIDR(parfum.harga) + '</span>';
+      document.getElementById("modalHarga").innerHTML = fmtUSD(usd) + ' <span class="text-[10px] md:text-xs font-extrabold" style="color: var(--text-muted);">/botol</span><br><span class="text-[11px] md:text-xs" style="color: #E8C9A8;">💰 ' + fmtKHR(khr) + '</span> · <span style="color: #D4B896;">💵 ' + fmtIDR(parfum.harga) + '</span>';
+
+      document.getElementById("stockInfo").innerHTML = parfum.stok <= 3
+        ? '<span style="color: #F59E0B;">Sisa ' + parfum.stok + '</span>'
+        : '<span style="color: #22C55E;">Stok: ' + parfum.stok + '</span>';
 
       document.getElementById("qtyDisplay").textContent = "1";
-      document.getElementById("stockInfo").textContent = "Maks: " + parfum.stok;
       updateTotal();
 
-      document.getElementById("inputNama").value = "";
-      document.getElementById("inputCatatan").value = "";
-
-      document.getElementById("modalTgLink").href = "https://telegram.me/vjparfume_premium?text=" + encodeURIComponent("Halo, saya mau pesan " + parfum.nama + " " + uk + " (" + fmtIDR(parfum.harga) + ")");
+      document.getElementById("modalTgLink").href = "https://telegram.me/vjparfume_premium?text=" + encodeURIComponent("🛒 Pesanan Baru!\n\n📌 Parfum: " + parfum.nama + " (" + uk + ")\n💰 Harga: " + fmtIDR(parfum.harga) + "\n📦 Jumlah: 1\n💵 Total: " + fmtIDR(parfum.harga));
 
       document.getElementById("orderModal").classList.remove("hidden");
+      document.getElementById("inputNama").value = "";
+      document.getElementById("inputCatatan").value = "";
       document.body.style.overflow = "hidden";
       lucide.createIcons();
     }
@@ -867,125 +885,82 @@
       selectedParfum = null;
     }
 
-    document.getElementById("orderModal").addEventListener("click", (e) => {
-      if (e.target === document.getElementById("orderModal")) closeModal();
-    });
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") { closeModal(); closeAdminModal(); }
-    });
-
-    // ═══════════════════════════════════════
-    //  QTY & TOTAL
-    // ═══════════════════════════════════════
     function changeQty(delta) {
       if (!selectedParfum) return;
-      currentQty = Math.max(1, Math.min(selectedParfum.stok, currentQty + delta));
+      currentQty = Math.max(1, Math.min(currentQty + delta, selectedParfum.stok));
       document.getElementById("qtyDisplay").textContent = currentQty;
       updateTotal();
     }
 
     function updateTotal() {
       if (!selectedParfum) return;
-      var totalIDR = selectedParfum.harga * currentQty;
-      var totalUSD = toUSD(totalIDR);
-      var totalKHR = toKHR(totalIDR);
-      document.getElementById("totalHarga").innerHTML =
-        '<span class="text-xl md:text-2xl">' + fmtUSD(totalUSD) + '</span>' +
-        '<span class="block text-xs md:text-sm mt-1 font-extrabold" style="color: #E8C9A8;">' + Math.round(totalKHR).toLocaleString() + ' riel · ' + fmtIDR(totalIDR) + '</span>';
+      var total = selectedParfum.harga * currentQty;
+      document.getElementById("totalHarga").textContent = fmtIDR(total);
+
+      var uk = selectedParfum.ukuran || "35ml";
+      document.getElementById("modalTgLink").href = "https://telegram.me/vjparfume_premium?text=" + encodeURIComponent("🛒 Pesanan Baru!\n\n📌 Parfum: " + selectedParfum.nama + " (" + uk + ")\n💰 Harga: " + fmtIDR(selectedParfum.harga) + "\n📦 Jumlah: " + currentQty + "\n💵 Total: " + fmtIDR(total));
     }
 
-    // ═══════════════════════════════════════
-    //  SUBMIT ORDER
-    // ═══════════════════════════════════════
     function submitOrder(e) {
       e.preventDefault();
+      if (!selectedParfum) return false;
 
       var nama = document.getElementById("inputNama").value.trim();
       var catatan = document.getElementById("inputCatatan").value.trim();
-
-      if (!nama) { alert("Mohon isi nama kamu"); return false; }
-
-      var totalIDR = selectedParfum.harga * currentQty;
+      var total = selectedParfum.harga * currentQty;
       var uk = selectedParfum.ukuran || "35ml";
 
-      var orderData = {
-        nama: nama,
-        catatan: catatan || "-",
-        parfum: selectedParfum.nama,
-        ukuran: uk,
-        jumlah: currentQty,
-        total: fmtIDR(totalIDR) + " / " + fmtUSD(toUSD(totalIDR)) + " / " + Math.round(toKHR(totalIDR)).toLocaleString() + " riel"
-      };
-
-      var btn = document.getElementById("submitBtn");
-      btn.disabled = true;
-      btn.innerHTML = '<svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg> Mengirim pesanan...';
+      var pesan = "🛒 PESANAN BARU - VJ PARFUME\n\n" +
+        "👤 Nama: " + nama + "\n" +
+        "📌 Parfum: " + selectedParfum.nama + " (" + uk + ")\n" +
+        "📦 Jumlah: " + currentQty + " botol\n" +
+        "💰 Harga/botol: " + fmtIDR(selectedParfum.harga) + "\n" +
+        "💵 Total: " + fmtIDR(total) + "\n" +
+        (catatan ? "📝 Catatan: " + catatan + "\n" : "") +
+        "\n⏰ " + new Date().toLocaleString('id-ID');
 
       fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(orderData)
-      })
-      .then(() => { closeModal(); showToast(); renderProducts(); })
-      .catch(() => { closeModal(); showToast(); renderProducts(); })
-      .finally(() => {
-        btn.disabled = false;
-        btn.innerHTML = '<i data-lucide="shopping-bag" class="w-4 h-4"></i> Konfirmasi Pesanan';
-        lucide.createIcons();
-      });
+        body: JSON.stringify({
+          nama: nama,
+          parfum: selectedParfum.nama,
+          ukuran: uk,
+          jumlah: currentQty,
+          harga: selectedParfum.harga,
+          total: total,
+          catatan: catatan,
+          waktu: new Date().toLocaleString('id-ID')
+        })
+      }).catch(function() {});
+
+      closeModal();
+
+      var toast = document.getElementById("successToast");
+      toast.classList.remove("hidden");
+      setTimeout(function() { toast.classList.add("hidden"); }, 4000);
 
       return false;
     }
 
     // ═══════════════════════════════════════
-    //  TOAST
-    // ═══════════════════════════════════════
-    function showToast() {
-      var toast = document.getElementById("successToast");
-      toast.classList.remove("hidden");
-      setTimeout(() => { toast.classList.add("hidden"); }, 4500);
-    }
-
-    // ═══════════════════════════════════════
-    //  SMOOTH SCROLL
-    // ═══════════════════════════════════════
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener("click", function(e) {
-        e.preventDefault();
-        var t = document.querySelector(this.getAttribute("href"));
-        if (t) t.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
-    });
-
-    // ═══════════════════════════════════════
-    //  ADMIN PANEL — Akses: Klik Logo VJ 5x
+    //  🔐 ADMIN PANEL
     // ═══════════════════════════════════════
     document.getElementById("logoArea").addEventListener("click", function() {
       logoClickCount++;
       clearTimeout(logoClickTimer);
-      logoClickTimer = setTimeout(() => { logoClickCount = 0; }, 800);
-      if (logoClickCount >= 5) { logoClickCount = 0; openAdminModal(); }
+      logoClickTimer = setTimeout(function() { logoClickCount = 0; }, 2000);
+      if (logoClickCount >= 5) {
+        logoClickCount = 0;
+        document.getElementById("adminModal").classList.remove("hidden");
+        document.getElementById("adminLogin").classList.remove("hidden");
+        document.getElementById("adminPanel").classList.add("hidden");
+        document.getElementById("adminPassInput").value = "";
+        document.getElementById("adminError").classList.add("hidden");
+        document.body.style.overflow = "hidden";
+      }
     });
-
-    if (window.location.search.includes('admin')) {
-      setTimeout(() => openAdminModal(), 500);
-    }
-
-    function openAdminModal() {
-      document.getElementById("adminModal").classList.remove("hidden");
-      document.getElementById("adminLogin").classList.remove("hidden");
-      document.getElementById("adminPanel").classList.add("hidden");
-      document.getElementById("adminPassInput").value = "";
-      document.getElementById("adminError").classList.add("hidden");
-      document.body.style.overflow = "hidden";
-      lucide.createIcons();
-    }
-
-    function closeAdminModal() {
-      document.getElementById("adminModal").classList.add("hidden");
-      document.body.style.overflow = "";
-    }
 
     function attemptAdminLogin() {
       var pass = document.getElementById("adminPassInput").value;
@@ -998,129 +973,108 @@
       }
     }
 
-    // ═══════════════════════════════════════
-    //  📸 UPLOAD GAMBAR DARI FILE
-    // ═══════════════════════════════════════
-    function handleImageUpload(input, idx) {
+    function closeAdminModal() {
+      document.getElementById("adminModal").classList.add("hidden");
+      document.body.style.overflow = "";
+    }
+
+    function renderAdminPanel() {
+      var container = document.getElementById("adminContent");
+      container.innerHTML = parfumData.map(function(p, idx) {
+        var fbSrc = placeholderImg(p.nama);
+        return '<div class="rounded-xl p-3 md:p-4" style="background: var(--bg-alt); border: 1px solid var(--border);">' +
+          '<div class="flex items-start gap-3">' +
+            '<div class="w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden flex-shrink-0" style="background: var(--card);">' +
+              '<img src="' + p.gambar + '" class="w-full h-full object-contain" style="object-position: center top;" onerror="this.src=\'' + fbSrc.replace(/'/g, "\\'") + '\'">' +
+            '</div>' +
+            '<div class="flex-1 space-y-2">' +
+              '<div class="flex items-center gap-2">' +
+                '<span class="text-[10px] font-extrabold" style="color: var(--text-muted);">#' + (idx + 1) + '</span>' +
+                '<button onclick="deleteParfum(' + idx + ')" class="text-[10px] font-extrabold px-2 py-0.5 rounded-md transition-colors" style="background: rgba(239,68,68,0.1); color: #EF4444;" onmouseover="this.style.background=\'rgba(239,68,68,0.2)\'" onmouseout="this.style.background=\'rgba(239,68,68,0.1)\'">🗑 Hapus</button>' +
+              '</div>' +
+              '<input type="text" class="admin-input" value="' + p.nama.replace(/"/g, '&quot;') + '" onchange="updateAdminField(' + idx + ',\'nama\',this.value)" placeholder="Nama parfum">' +
+              '<div class="flex gap-2">' +
+                '<input type="number" class="admin-input" value="' + p.harga + '" onchange="updateAdminField(' + idx + ',\'harga\',Number(this.value))" placeholder="Harga IDR" style="flex:1;">' +
+                '<input type="number" class="admin-input" value="' + p.stok + '" onchange="updateAdminField(' + idx + ',\'stok\',Number(this.value))" placeholder="Stok" style="width:70px;">' +
+              '</div>' +
+              '<input type="text" class="admin-input" value="' + (p.ukuran || '35ml') + '" onchange="updateAdminField(' + idx + ',\'ukuran\',this.value)" placeholder="Ukuran" style="width:100px;">' +
+              '<div class="file-upload-btn">' +
+                '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>' +
+                '<span>📁 Pilih Gambar</span>' +
+                '<input type="file" accept="image/*" onchange="handleAdminImage(' + idx + ', this)">' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      }).join("");
+      lucide.createIcons();
+    }
+
+    function updateAdminField(idx, field, value) {
+      parfumData[idx][field] = value;
+    }
+
+    function handleAdminImage(idx, input) {
       var file = input.files[0];
       if (!file) return;
-
+      if (file.size > 500000) {
+        alert('⚠️ File terlalu besar! Maksimal 500KB. Kompres dulu gambarnya.');
+        input.value = '';
+        return;
+      }
       var reader = new FileReader();
       reader.onload = function(e) {
-        var img = new Image();
-        img.onload = function() {
-          var canvas = document.createElement('canvas');
-          var maxW = 400, maxH = 500;
-          var w = img.width, h = img.height;
-          if (w > maxW) { h = Math.round(h * maxW / w); w = maxW; }
-          if (h > maxH) { w = Math.round(w * maxH / h); h = maxH; }
-          canvas.width = w;
-          canvas.height = h;
-          var ctx = canvas.getContext('2d');
-          ctx.drawImage(img, 0, 0, w, h);
-          parfumData[idx].gambar = canvas.toDataURL('image/jpeg', 0.7);
-
-          var preview = document.getElementById('ap-' + idx);
-          if (preview) preview.src = parfumData[idx].gambar;
-
-          var label = document.getElementById('fl-' + idx);
-          if (label) label.textContent = '✅ ' + file.name;
-        };
-        img.src = e.target.result;
+        parfumData[idx].gambar = e.target.result;
+        renderAdminPanel();
       };
       reader.readAsDataURL(file);
     }
 
-    // ═══════════════════════════════════════
-    //  ADMIN RENDER
-    // ═══════════════════════════════════════
-    function renderAdminPanel() {
-      var container = document.getElementById("adminContent");
-      var html = '';
-      for (var i = 0; i < parfumData.length; i++) {
-        var p = parfumData[i];
-        var uk = p.ukuran || "35ml";
-        html += '<div class="rounded-xl md:rounded-2xl p-3 md:p-4" style="background: var(--bg-alt); border: 1px solid var(--border);">' +
-          '<div class="flex items-start gap-2.5 md:gap-3 mb-2.5 md:mb-3">' +
-            '<img id="ap-' + i + '" src="' + p.gambar + '" class="w-14 h-14 md:w-16 md:h-16 rounded-lg md:rounded-xl object-cover flex-shrink-0" style="border: 1px solid var(--border);" onerror="this.src=\'https://placehold.co/100x100/1C1814/D4A574?text=' + encodeURIComponent(p.nama) + '\'">' +
-            '<div class="flex-1 min-w-0">' +
-              '<span class="text-[10px] font-extrabold accent-text">#' + (i + 1) + '</span>' +
-              '<input type="text" value="' + p.nama + '" data-idx="' + i + '" data-field="nama" class="admin-input mt-0.5 font-extrabold text-xs md:text-sm" style="color: var(--text);">' +
-            '</div>' +
-            '<button onclick="deleteParfum(' + i + ')" class="w-7 h-7 md:w-8 md:h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors" style="color: var(--text-muted);" onmouseover="this.style.color=\'#EF4444\';this.style.background=\'rgba(239,68,68,0.08)\'" onmouseout="this.style.color=\'var(--text-muted)\';this.style.background=\'transparent\'"><i data-lucide="trash-2" class="w-3 h-3 md:w-3.5 md:h-3.5"></i></button>' +
-          '</div>' +
-
-          '<div class="file-upload-btn mb-2.5 md:mb-3">' +
-            '<input type="file" accept="image/*" onchange="handleImageUpload(this, ' + i + ')">' +
-            '<span>📁</span>' +
-            '<span id="fl-' + i + '">Pilih Gambar dari File</span>' +
-          '</div>' +
-
-          '<div class="grid grid-cols-3 gap-1.5 md:gap-2">' +
-            '<div>' +
-              '<label class="text-[9px] md:text-[10px] font-extrabold block mb-0.5 md:mb-1" style="color: var(--text-muted);">Harga (IDR)</label>' +
-              '<input type="number" value="' + p.harga + '" data-idx="' + i + '" data-field="harga" class="admin-input text-[10px] md:text-[11px] font-bold">' +
-            '</div>' +
-            '<div>' +
-              '<label class="text-[9px] md:text-[10px] font-extrabold block mb-0.5 md:mb-1" style="color: var(--text-muted);">Stok</label>' +
-              '<input type="number" value="' + p.stok + '" data-idx="' + i + '" data-field="stok" class="admin-input text-[10px] md:text-[11px] font-bold">' +
-            '</div>' +
-            '<div>' +
-              '<label class="text-[9px] md:text-[10px] font-extrabold block mb-0.5 md:mb-1" style="color: var(--text-muted);">Ukuran</label>' +
-              '<input type="text" value="' + uk + '" data-idx="' + i + '" data-field="ukuran" class="admin-input text-[10px] md:text-[11px] font-bold">' +
-            '</div>' +
-          '</div>' +
-        '</div>';
-      }
-      container.innerHTML = html;
-      lucide.createIcons();
-    }
-
-    function addNewParfum() {
-      var newId = parfumData.length > 0 ? Math.max.apply(null, parfumData.map(function(p) { return p.id; })) + 1 : 1;
-      parfumData.push({ id: newId, nama: "Parfum Baru", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Baru", harga: 200000, stok: 10, ukuran: "35ml" });
-      renderAdminPanel();
-    }
-
     function deleteParfum(idx) {
-      if (confirm("Hapus \"" + parfumData[idx].nama + "\"?")) {
+      if (confirm('Hapus parfum "' + parfumData[idx].nama + '"?')) {
         parfumData.splice(idx, 1);
         renderAdminPanel();
       }
     }
 
-    function saveAdminData() {
-      var inputs = document.querySelectorAll("#adminContent .admin-input");
-      inputs.forEach(function(inp) {
-        var idx = parseInt(inp.dataset.idx);
-        var field = inp.dataset.field;
-        if (field === "harga" || field === "stok") {
-          parfumData[idx][field] = parseInt(inp.value) || 0;
-        } else {
-          parfumData[idx][field] = inp.value;
-        }
+    function addNewParfum() {
+      var newId = parfumData.length > 0 ? Math.max.apply(null, parfumData.map(function(p) { return p.id; })) + 1 : 1;
+      parfumData.push({
+        id: newId,
+        nama: "Parfum Baru",
+        gambar: placeholderImg("Parfum Baru"),
+        harga: 200000,
+        stok: 10,
+        ukuran: "35ml"
       });
+      renderAdminPanel();
+      var container = document.getElementById("adminContent");
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function saveAdminData() {
       saveParfumToStorage(parfumData);
       renderProducts();
-      alert("Data parfum berhasil disimpan! ✅");
+      alert('✅ Data berhasil disimpan!');
     }
 
     function resetToDefault() {
-      if (confirm("Reset semua data parfum ke default? Data yang sudah diedit akan hilang.")) {
+      if (confirm('⚠️ Reset semua data parfum ke default? Data yang sudah diubah akan hilang!')) {
         localStorage.removeItem('vj_parfum_data');
         parfumData = JSON.parse(JSON.stringify(defaultParfumData));
         renderAdminPanel();
         renderProducts();
-        alert("Data berhasil di-reset! ✅");
+        alert('✅ Data berhasil direset!');
       }
     }
 
     // ═══════════════════════════════════════
-    //  INIT
+    //  🚀 INIT
     // ═══════════════════════════════════════
-    renderProducts();
-    lucide.createIcons();
+    document.addEventListener("DOMContentLoaded", function() {
+      renderProducts();
+      lucide.createIcons();
+    });
   </script>
-
 </body>
 </html>
