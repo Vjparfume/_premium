@@ -37,7 +37,10 @@
       background-color: var(--bg);
       color: var(--text);
       overflow-x: hidden;
-      background-image: url('https://lh3.googleusercontent.com/d/1z2MYAcummRU0bv5Ery5cl3Xq3VyW0vkg');
+      background-image:
+        radial-gradient(ellipse 80% 60% at 20% 30%, rgba(212,165,116,0.04) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 80% at 80% 70%, rgba(180,130,90,0.03) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 50% 50%, rgba(28,24,20,1) 0%, rgba(19,16,12,1) 100%);
       background-size: cover;
       background-position: center top;
       background-attachment: fixed;
@@ -358,12 +361,8 @@
       opacity: 0;
       cursor: pointer;
     }
-    .file-upload-btn span {
-      pointer-events: none;
-    }
-    .file-upload-btn svg {
-      pointer-events: none;
-    }
+    .file-upload-btn span { pointer-events: none; }
+    .file-upload-btn svg { pointer-events: none; }
 
     .admin-url-input {
       background: rgba(19,16,12,0.8);
@@ -665,8 +664,13 @@
           <button onclick="closeAdminModal()" class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center transition-colors" style="background: var(--bg-alt);"><i data-lucide="x" class="w-4 h-4" style="color: var(--text-sec);"></i></button>
         </div>
         <div class="gold-divider mx-4 md:mx-5"></div>
-        <div class="px-4 md:px-5 py-2.5 md:py-3 flex-shrink-0">
-          <p class="text-[11px] md:text-xs leading-relaxed font-bold" style="color: var(--text-muted);">💡 <strong style="color: var(--accent);">URL Gambar</strong> = gambar muncul di SEMUA device. Upload foto ke <a href="https://imgbb.com" target="_blank" style="color:#7DD3FC;text-decoration:underline;">imgbb.com</a> (gratis), lalu copy "Direct link" dan paste di kolom URL. <strong style="color:#22C55E;">📁 Pilih Gambar</strong> hanya untuk preview lokal (tidak muncul di device lain).</p>
+        <div class="px-4 md:px-5 py-2.5 md:py-3 flex-shrink-0 rounded-b-xl mx-3 mt-1" style="background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.12);">
+          <p class="text-[11px] md:text-xs leading-relaxed font-extrabold" style="color: #22C55E;">📌 CARA BIAR GAMBAR MUNCUL DI SEMUA DEVICE:</p>
+          <p class="text-[11px] md:text-xs leading-relaxed font-bold mt-1" style="color: var(--text-sec);">1. Buka <a href="https://imgbb.com" target="_blank" style="color:#7DD3FC;text-decoration:underline;font-weight:800;">imgbb.com</a> → upload foto parfum</p>
+          <p class="text-[11px] md:text-xs leading-relaxed font-bold" style="color: var(--text-sec);">2. Copy link yang ada tulisan <strong style="color:#7DD3FC;">"Direct link"</strong> (bukan page link)</p>
+          <p class="text-[11px] md:text-xs leading-relaxed font-bold" style="color: var(--text-sec);">3. Paste di kolom <strong style="color:#7DD3FC;">🔗 URL Gambar</strong> di bawah setiap produk</p>
+          <p class="text-[11px] md:text-xs leading-relaxed font-bold" style="color: var(--text-sec);">4. Klik <strong style="color:#22C55E;">"⬇️ Download HTML"</strong> → share file hasil download ke mana pun</p>
+          <p class="text-[10px] md:text-[11px] leading-relaxed font-bold mt-1" style="color: #F59E0B;">⚠️ Kolom "📁 Pilih Gambar" HANYA preview di browser ini — tidak muncul di device lain!</p>
         </div>
         <div id="adminContent" class="flex-1 overflow-y-auto px-4 md:px-5 pb-3 md:pb-4 space-y-2.5 md:space-y-3"></div>
         <div class="p-4 md:p-5 pt-2.5 md:pt-3 flex flex-col gap-2 flex-shrink-0" style="border-top: 1px solid var(--border);">
@@ -675,7 +679,7 @@
             <button onclick="saveAdminData()" class="flex-1 btn-primary py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-extrabold flex items-center justify-center gap-2"><i data-lucide="save" class="w-4 h-4"></i> Simpan Semua</button>
             <button onclick="resetToDefault()" class="py-2.5 md:py-3 px-3 md:px-4 rounded-xl text-xs md:text-sm font-extrabold flex items-center justify-center gap-2 transition-all" style="background: rgba(239,68,68,0.06); color: #EF4444; border: 1px solid rgba(239,68,68,0.15);" onmouseover="this.style.background='rgba(239,68,68,0.1)'" onmouseout="this.style.background='rgba(239,68,68,0.06)'"><i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset</button>
           </div>
-          <button onclick="downloadHTML()" class="w-full btn-download-html py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-extrabold flex items-center justify-center gap-2"><i data-lucide="download" class="w-4 h-4"></i> ⬇️ Download HTML (untuk share ke email/HP lain)</button>
+          <button onclick="downloadHTML()" class="w-full btn-download-html py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-extrabold flex items-center justify-center gap-2"><i data-lucide="download" class="w-4 h-4"></i> ⬇️ Download HTML (share ke email/HP lain — gambar pasti muncul)</button>
         </div>
       </div>
     </div>
@@ -746,9 +750,9 @@
         '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500">' +
         '<rect width="400" height="500" fill="#1C1814"/>' +
         '<rect x="20" y="20" width="360" height="460" rx="8" fill="none" stroke="#4A3D32" stroke-width="1.5" stroke-dasharray="6,4"/>' +
-        '<text x="200" y="230" text-anchor="middle" fill="#D4A574" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="bold">' + text + '</text>' +
-        '<text x="200" y="260" text-anchor="middle" fill="#8A7B6B" font-family="Arial,Helvetica,sans-serif" font-size="11">Upload gambar via Admin</text>' +
-        '<text x="200" y="290" text-anchor="middle" fill="#4A3D32" font-family="Arial,Helvetica,sans-serif" font-size="10">🧴 35ml</text>' +
+        '<text x="200" y="220" text-anchor="middle" fill="#D4A574" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="bold">' + text + '</text>' +
+        '<text x="200" y="250" text-anchor="middle" fill="#8A7B6B" font-family="Arial,Helvetica,sans-serif" font-size="11">Belum ada gambar</text>' +
+        '<text x="200" y="280" text-anchor="middle" fill="#4A3D32" font-family="Arial,Helvetica,sans-serif" font-size="10">Upload via Admin Panel</text>' +
         '</svg>'
       );
     }
@@ -762,31 +766,16 @@
     }
 
     // ═══════════════════════════════════════════════════════
-    //  🌸 DATA PARFUM DEFAULT — JANGAN DIHAPUS!
-    //  gambarUrl = URL publik (muncul di semua device)
-    //  gambar = fallback SVG placeholder
+    //  🌸 DATA PARFUM DEFAULT — SEMUA GAMBAR DIKOSONGKAN
+    //  gambarUrl = paste link dari imgbb.com di sini
+    //  gambar = fallback placeholder SVG (selalu muncul)
     // ═══════════════════════════════════════════════════════
     const defaultParfumData = [
-      { id: 1, nama: "SCANDALOUS", gambar: placeholderImg("SCANDALOUS"), gambarUrl: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=500&fit=crop&auto=format&q=80", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 2, nama: "BLACK OPIUM", gambar: placeholderImg("BLACK OPIUM"), gambarUrl: "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=400&h=500&fit=crop&auto=format&q=80", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 3, nama: "AVRIL LAVIGNE", gambar: placeholderImg("AVRIL LAVIGNE"), gambarUrl: "https://images.unsplash.com/photo-1594035910387-fea081e65e42?w=400&h=500&fit=crop&auto=format&q=80", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 4, nama: "SOFT", gambar: placeholderImg("SOFT"), gambarUrl: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400&h=500&fit=crop&auto=format&q=80", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 5, nama: "PINK CHIFFON", gambar: placeholderImg("PINK CHIFFON"), gambarUrl: "https://images.unsplash.com/photo-1557170334-a9632e77c6e4?w=400&h=500&fit=crop&auto=format&q=80", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 6, nama: "Produk 6", gambar: placeholderImg("Produk 6"), gambarUrl: "https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=400&h=500&fit=crop&auto=format&q=80", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 7, nama: "Produk 7", gambar: placeholderImg("Produk 7"), gambarUrl: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400&h=500&fit=crop&auto=format&q=80", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 8, nama: "Produk 8", gambar: placeholderImg("Produk 8"), gambarUrl: "https://images.unsplash.com/photo-1563170351-be82bc888aa4?w=400&h=500&fit=crop&auto=format&q=80", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 9, nama: "Produk 9", gambar: placeholderImg("Produk 9"), gambarUrl: "https://images.unsplash.com/photo-1587017539504-67cfbddac569?w=400&h=500&fit=crop&auto=format&q=80", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 10, nama: "Produk 10", gambar: placeholderImg("Produk 10"), gambarUrl: "https://images.unsplash.com/photo-1619994403073-2cec844b8c63?w=400&h=500&fit=crop&auto=format&q=80", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 11, nama: "Produk 11", gambar: placeholderImg("Produk 11"), gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 12, nama: "Produk 12", gambar: placeholderImg("Produk 12"), gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 13, nama: "Produk 13", gambar: placeholderImg("Produk 13"), gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 14, nama: "Produk 14", gambar: placeholderImg("Produk 14"), gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 15, nama: "Produk 15", gambar: placeholderImg("Produk 15"), gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 16, nama: "Produk 16", gambar: placeholderImg("Produk 16"), gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 17, nama: "Produk 17", gambar: placeholderImg("Produk 17"), gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 18, nama: "Produk 18", gambar: placeholderImg("Produk 18"), gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 19, nama: "Produk 19", gambar: placeholderImg("Produk 19"), gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 20, nama: "Produk 20", gambar: placeholderImg("Produk 20"), gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" }
+      { id: 1, nama: "SCANDALOUS", gambar: placeholderImg("SCANDALOUS"), gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 2, nama: "BLACK OPIUM", gambar: placeholderImg("BLACK OPIUM"), gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 3, nama: "AVRIL LAVIGNE", gambar: placeholderImg("AVRIL LAVIGNE"), gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 4, nama: "SOFT", gambar: placeholderImg("SOFT"), gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 5, nama: "PINK CHIFFON", gambar: placeholderImg("PINK CHIFFON"), gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" }
     ];
 
     // ═══════════════════════════════════════
@@ -800,7 +789,7 @@
           if (Array.isArray(parsed) && parsed.length > 0) {
             parsed.forEach(function(p) {
               if (!p.ukuran) p.ukuran = "35ml";
-              if (!p.gambarUrl) p.gambarUrl = "";
+              if (p.gambarUrl === undefined || p.gambarUrl === null) p.gambarUrl = "";
             });
             return parsed;
           }
@@ -826,13 +815,23 @@
     let logoClickTimer = null;
 
     // ═══════════════════════════════════════
+    //  AMBIL GAMBAR YANG BENAR:
+    //  Prioritas: gambarUrl (publik) > gambar (lokal) > placeholder
+    // ═══════════════════════════════════════
+    function getImgSrc(p) {
+      if (p.gambarUrl && p.gambarUrl.trim() !== "") return p.gambarUrl;
+      if (p.gambar && p.gambar.indexOf("data:") === 0) return p.gambar;
+      return placeholderImg(p.nama);
+    }
+
+    // ═══════════════════════════════════════
     //  RENDER PRODUCTS
     // ═══════════════════════════════════════
     function renderProducts() {
-      const grid = document.getElementById("productGrid");
-      const empty = document.getElementById("emptyState");
+      var grid = document.getElementById("productGrid");
+      var empty = document.getElementById("emptyState");
 
-      let filtered = parfumData.filter(function(p) {
+      var filtered = parfumData.filter(function(p) {
         return p.nama.toLowerCase().includes(currentSearch.toLowerCase());
       });
 
@@ -845,10 +844,10 @@
       empty.classList.add("hidden");
 
       grid.innerHTML = filtered.map(function(p, i) {
-        const isSoldOut = p.stok === 0;
-        const isLow = p.stok > 0 && p.stok <= 3;
+        var isSoldOut = p.stok === 0;
+        var isLow = p.stok > 0 && p.stok <= 3;
 
-        let stockHtml = "";
+        var stockHtml = "";
         if (isSoldOut) {
           stockHtml = '<span class="text-[10px] md:text-[11px] font-extrabold tracking-wide" style="color: #EF4444;">SOLD OUT</span>';
         } else if (isLow) {
@@ -857,10 +856,10 @@
           stockHtml = '<span class="stock-dot stock-yes"></span><span class="text-[10px] md:text-[11px] font-extrabold" style="color: #22C55E;">Tersedia</span>';
         }
 
-        const usd = toUSD(p.harga);
-        const khr = toKHR(p.harga);
-        const uk = p.ukuran || "35ml";
-        const imgSrc = p.gambarUrl || p.gambar;
+        var usd = toUSD(p.harga);
+        var khr = toKHR(p.harga);
+        var uk = p.ukuran || "35ml";
+        var imgSrc = getImgSrc(p);
 
         return '<div class="perfume-card" style="animation: fadeUp 0.6s ease-out ' + (i * 0.05) + 's forwards; opacity: 0;">' +
           (isSoldOut ? '<div class="sold-out-overlay"><div class="sold-out-badge">SOLD OUT</div></div>' : '') +
@@ -914,9 +913,8 @@
       document.getElementById("modalUkuran").textContent = "🧴 " + (parfum.ukuran || "35ml");
       document.getElementById("modalHarga").textContent = fmtIDR(parfum.harga);
 
-      const modalImgEl = document.getElementById("modalImg");
-      const imgSrc = parfum.gambarUrl || parfum.gambar;
-      modalImgEl.src = imgSrc;
+      var modalImgEl = document.getElementById("modalImg");
+      modalImgEl.src = getImgSrc(parfum);
       modalImgEl.onerror = function() { handleImgError(this, parfum.nama); };
 
       document.getElementById("qtyDisplay").textContent = "1";
@@ -924,7 +922,7 @@
 
       updateTotal();
 
-      const tgLink = "https://t.me/vjparfume_premium?text=" + encodeURIComponent(
+      var tgLink = "https://t.me/vjparfume_premium?text=" + encodeURIComponent(
         " halo kak, saya mau pesan:\n\n" +
         "🧴 Parfum: " + parfum.nama + "\n" +
         "📦 Ukuran: " + (parfum.ukuran || "35ml") + "\n" +
@@ -961,10 +959,10 @@
 
     function updateTotal() {
       if (!selectedParfum) return;
-      const total = selectedParfum.harga * currentQty;
+      var total = selectedParfum.harga * currentQty;
       document.getElementById("totalHarga").textContent = fmtIDR(total);
 
-      const tgLink = "https://t.me/vjparfume_premium?text=" + encodeURIComponent(
+      var tgLink = "https://t.me/vjparfume_premium?text=" + encodeURIComponent(
         " halo kak, saya mau pesan:\n\n" +
         "🧴 Parfum: " + selectedParfum.nama + "\n" +
         "📦 Ukuran: " + (selectedParfum.ukuran || "35ml") + "\n" +
@@ -980,16 +978,16 @@
       e.preventDefault();
       if (!selectedParfum) return false;
 
-      const nama = document.getElementById("inputNama").value.trim();
-      const catatan = document.getElementById("inputCatatan").value.trim();
+      var nama = document.getElementById("inputNama").value.trim();
+      var catatan = document.getElementById("inputCatatan").value.trim();
 
       if (!nama) {
         alert("⚠️ Nama lengkap wajib diisi!");
         return false;
       }
 
-      const total = selectedParfum.harga * currentQty;
-      const data = {
+      var total = selectedParfum.harga * currentQty;
+      var data = {
         nama: nama,
         parfum: selectedParfum.nama,
         ukuran: selectedParfum.ukuran || "35ml",
@@ -1000,7 +998,7 @@
         waktu: new Date().toLocaleString('id-ID')
       };
 
-      const submitBtn = document.getElementById("submitBtn");
+      var submitBtn = document.getElementById("submitBtn");
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<svg class="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="32" stroke-dashoffset="32"/></svg> Mengirim...';
 
@@ -1014,7 +1012,7 @@
         closeModal();
         showToast();
         if (selectedParfum && selectedParfum.stok > 0) {
-          const idx = parfumData.findIndex(function(p) { return p.id === selectedParfum.id; });
+          var idx = parfumData.findIndex(function(p) { return p.id === selectedParfum.id; });
           if (idx !== -1) {
             parfumData[idx].stok = Math.max(0, parfumData[idx].stok - currentQty);
             saveParfumToStorage(parfumData);
@@ -1036,7 +1034,7 @@
     }
 
     function showToast() {
-      const toast = document.getElementById("successToast");
+      var toast = document.getElementById("successToast");
       toast.classList.remove("hidden");
       setTimeout(function() {
         toast.classList.add("hidden");
@@ -1076,7 +1074,7 @@
     });
 
     function attemptAdminLogin() {
-      const pass = document.getElementById("adminPassInput").value;
+      var pass = document.getElementById("adminPassInput").value;
       if (pass === ADMIN_PASSWORD) {
         document.getElementById("adminLogin").classList.add("hidden");
         document.getElementById("adminPanel").classList.remove("hidden");
@@ -1089,9 +1087,10 @@
     }
 
     function renderAdminPanel() {
-      const container = document.getElementById("adminContent");
+      var container = document.getElementById("adminContent");
       container.innerHTML = parfumData.map(function(p, idx) {
-        const imgSrc = p.gambarUrl || p.gambar;
+        var imgSrc = getImgSrc(p);
+        var urlVal = (p.gambarUrl || "").replace(/"/g, "&quot;");
         return '<div class="rounded-xl p-3 md:p-4" style="background: var(--bg-alt); border: 1px solid var(--border);">' +
           '<div class="flex gap-3">' +
             '<div class="flex-shrink-0 w-16 h-20 md:w-20 md:h-24">' +
@@ -1103,14 +1102,14 @@
                 '<input type="number" value="' + p.harga + '" onchange="updateAdminField(' + idx + ',\'harga\',parseInt(this.value)||0)" class="admin-input" placeholder="Harga IDR" style="flex:1;">' +
               '</div>' +
               '<div class="flex gap-2">' +
-                '<input type="text" value="' + (p.ukuran || "35ml") + '" onchange="updateAdminField(' + idx + ',\'ukuran\',this.value)" class="admin-input" placeholder="Ukuran" style="flex:1;">' +
+                '<input type="text" value="' + (p.ukuran || "35ml").replace(/"/g, "&quot;") + '" onchange="updateAdminField(' + idx + ',\'ukuran\',this.value)" class="admin-input" placeholder="Ukuran" style="flex:1;">' +
                 '<input type="number" value="' + p.stok + '" onchange="updateAdminField(' + idx + ',\'stok\',parseInt(this.value)||0)" class="admin-input" placeholder="Stok" style="flex:1; min-width:70px;">' +
                 '<button onclick="deleteParfum(' + idx + ')" class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all" style="background: rgba(239,68,68,0.06); color: #EF4444; border: 1px solid rgba(239,68,68,0.15);" onmouseover="this.style.background=\'rgba(239,68,68,0.15)\'" onmouseout="this.style.background=\'rgba(239,68,68,0.06)\'"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>' +
               '</div>' +
-              '<input type="text" value="' + (p.gambarUrl || "").replace(/"/g, "&quot;") + '" onchange="updateAdminField(' + idx + ',\'gambarUrl\',this.value)" class="admin-url-input" placeholder="🔗 Paste URL gambar dari imgbb.com di sini...">' +
+              '<input type="text" value="' + urlVal + '" onchange="updateAdminField(' + idx + ',\'gambarUrl\',this.value)" class="admin-url-input" placeholder="🔗 Paste Direct Link dari imgbb.com di sini...">' +
               '<div class="file-upload-btn">' +
                 '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>' +
-                '<span>📁 Pilih Gambar (preview lokal saja)</span>' +
+                '<span>📁 Pilih Gambar (hanya preview di browser ini)</span>' +
                 '<input type="file" accept="image/*" onchange="handleFileUpload(event,' + idx + ')">' +
               '</div>' +
             '</div>' +
@@ -1127,14 +1126,14 @@
     }
 
     function handleFileUpload(event, idx) {
-      const file = event.target.files[0];
+      var file = event.target.files[0];
       if (!file) return;
       if (file.size > 2 * 1024 * 1024) {
         alert("⚠️ File terlalu besar! Maksimal 2MB.");
         event.target.value = "";
         return;
       }
-      const reader = new FileReader();
+      var reader = new FileReader();
       reader.onload = function(e) {
         parfumData[idx].gambar = e.target.result;
         renderAdminPanel();
@@ -1154,7 +1153,7 @@
     }
 
     function addNewParfum() {
-      const newId = parfumData.length > 0 ? Math.max.apply(null, parfumData.map(function(p) { return p.id; })) + 1 : 1;
+      var newId = parfumData.length > 0 ? Math.max.apply(null, parfumData.map(function(p) { return p.id; })) + 1 : 1;
       parfumData.push({
         id: newId,
         nama: "Parfum Baru",
@@ -1165,15 +1164,14 @@
         ukuran: "35ml"
       });
       renderAdminPanel();
-      const container = document.getElementById("adminContent");
+      var container = document.getElementById("adminContent");
       container.scrollTop = container.scrollHeight;
     }
 
     function saveAdminData() {
       saveParfumToStorage(parfumData);
       renderProducts();
-      alert("✅ Data berhasil disimpan! Halaman akan di-refresh.");
-      location.reload();
+      alert("✅ Data berhasil disimpan!");
     }
 
     function resetToDefault() {
@@ -1187,21 +1185,29 @@
     }
 
     // ═══════════════════════════════════════════════════════
-    //  ⬇️ DOWNLOAD HTML — UNTUK SHARE KE EMAIL / HP LAIN
-    //  Ini yang bikin gambar URL tetap ada di file HTML
+    //  ⬇️ DOWNLOAD HTML — SHARE KE MANA PUN, GAMBAR TETAP MUNCUL
+    //  Cara kerja: URL gambar yang kamu paste di kolom "URL Gambar"
+    //  akan langsung tertanam di dalam file HTML ini.
+    //  Jadi file ini STANDALONE — buka di mana pun gambar muncul.
     // ═══════════════════════════════════════════════════════
     function downloadHTML() {
-      const dataStr = JSON.stringify(parfumData, null, 2);
-      let html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+      // Cek apakah ada gambarUrl yang terisi
+      var adaGambarUrl = parfumData.some(function(p) { return p.gambarUrl && p.gambarUrl.trim() !== ""; });
 
-      // Cari dan replace defaultParfumData di dalam HTML
-      const markerStart = 'const defaultParfumData = [';
-      const startIdx = html.indexOf(markerStart);
+      if (!adaGambarUrl) {
+        alert("⚠️ BELUM ADA GAMBAR YANG DIISI!\n\nKamu harus isi kolom '🔗 URL Gambar' dulu untuk setiap parfum.\n\nCaranya:\n1. Buka imgbb.com\n2. Upload foto parfum\n3. Copy 'Direct link'\n4. Paste di kolom URL Gambar\n5. Ulangi untuk semua parfum\n6. Lalu klik Download HTML lagi");
+        return;
+      }
+
+      var dataStr = JSON.stringify(parfumData, null, 2);
+      var html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+      var markerStart = 'const defaultParfumData = [';
+      var startIdx = html.indexOf(markerStart);
       if (startIdx !== -1) {
-        // Cari closing ]; setelah marker
-        let bracketCount = 0;
-        let endIdx = -1;
-        for (let i = startIdx + markerStart.length - 1; i < html.length; i++) {
+        var bracketCount = 0;
+        var endIdx = -1;
+        for (var i = startIdx + markerStart.length - 1; i < html.length; i++) {
           if (html[i] === '[') bracketCount++;
           if (html[i] === ']') bracketCount--;
           if (bracketCount === 0) {
@@ -1214,9 +1220,9 @@
         }
       }
 
-      const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
+      var blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
       a.href = url;
       a.download = 'vj-parfume.html';
       document.body.appendChild(a);
@@ -1224,7 +1230,7 @@
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
 
-      alert("✅ HTML berhasil didownload!\n\n📝 File ini sudah berisi semua data parfum (termasuk URL gambar). Share file ini ke email, HP, atau device lain — gambar akan MUNCUL karena URL-nya sudah tertanam di dalam file.");
+      alert("✅ HTML berhasil didownload!\n\nFile ini sudah berisi semua data parfum + URL gambar.\nShare file ini ke email, HP, atau device lain — gambar PASTI MUNCUL!");
     }
 
     // ═══════════════════════════════════════
