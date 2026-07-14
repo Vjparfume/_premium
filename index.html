@@ -328,6 +328,42 @@
       font-size: 13px;
       white-space: nowrap;
     }
+
+    .file-upload-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 2px dashed var(--border-accent);
+      background: rgba(212,165,116,0.06);
+      color: var(--accent-dark);
+      font-weight: 800;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+    .file-upload-btn:hover {
+      border-color: var(--accent);
+      background: rgba(212,165,116,0.12);
+    }
+    .file-upload-btn input[type="file"] {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .file-upload-btn span {
+      pointer-events: none;
+    }
+    .file-upload-btn svg {
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
@@ -354,32 +390,23 @@
   <!-- ║             HERO                     ║ -->
   <!-- ╚══════════════════════════════════════╝ -->
   <section class="min-h-screen flex flex-col items-center justify-center text-center px-5 md:px-6 relative overflow-hidden hero-pattern">
-
     <div class="anim-fade-up mb-6 md:mb-8">
       <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full" style="border: 1px solid var(--border-accent); background: rgba(212,165,116,0.04);">
         <span class="text-[10px] md:text-[11px] font-extrabold accent-text tracking-widest uppercase">✦ Premium Fragrance ✦</span>
       </div>
     </div>
-
     <h1 class="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[0.95] mb-2 md:mb-3 anim-fade-up d1 px-2">
       <span class="rainbow-glow-soft" style="display:inline-block;">Selamat Datang di</span>
     </h1>
     <h1 class="text-4xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[0.85] mb-5 md:mb-7 anim-fade-up d2 px-2">
       <span class="rainbow-glow" style="display:inline-block;">VJ PARFUME</span>
     </h1>
-
-    <p class="text-base md:text-xl max-w-lg leading-relaxed mb-2 anim-fade-up d3 font-extrabold px-4" style="color: #E8C9A8;">
-      Mau wangi tapi tetap hemat?
-    </p>
-    <p class="text-xs md:text-base max-w-md leading-relaxed mb-8 md:mb-12 anim-fade-up d4 font-bold px-4" style="color: var(--text-sec);">
-      Pilih parfum favoritmu di bawah ini, tentukan yang kamu inginkan, dan langsung pesan sekarang. Gampang banget!
-    </p>
-
+    <p class="text-base md:text-xl max-w-lg leading-relaxed mb-2 anim-fade-up d3 font-extrabold px-4" style="color: #E8C9A8;">Mau wangi tapi tetap hemat?</p>
+    <p class="text-xs md:text-base max-w-md leading-relaxed mb-8 md:mb-12 anim-fade-up d4 font-bold px-4" style="color: var(--text-sec);">Pilih parfum favoritmu di bawah ini, tentukan yang kamu inginkan, dan langsung pesan sekarang. Gampang banget!</p>
     <a href="#koleksi" class="btn-primary px-8 md:px-10 py-3.5 md:py-4 rounded-2xl font-extrabold text-xs md:text-sm anim-fade-up d5 inline-flex items-center gap-2.5 tracking-wide">
       Lihat Koleksi Parfum
       <i data-lucide="arrow-down" class="w-4 h-4"></i>
     </a>
-
     <div class="absolute bottom-8 md:bottom-10 anim-float">
       <i data-lucide="chevrons-down" class="w-5 h-5" style="color: var(--text-muted);"></i>
     </div>
@@ -391,12 +418,8 @@
   <!-- ╚══════════════════════════════════════╝ -->
   <section class="py-8 md:py-10 px-4 md:px-8 section-glass" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
     <div class="max-w-xl mx-auto text-center px-2">
-      <p class="text-sm md:text-lg font-extrabold mb-1.5" style="color: #FFD7A8;">
-        🌸 Ingin tampil wangi, elegan, dan tahan lama tanpa harus mahal?
-      </p>
-      <p class="text-sm md:text-lg font-extrabold mb-5 md:mb-6" style="color: #FFB6D9;">
-        Silakan order di <span class="rainbow-glow" style="font-size:1.05em;">VJ PARFUME</span>! 💖
-      </p>
+      <p class="text-sm md:text-lg font-extrabold mb-1.5" style="color: #FFD7A8;">🌸 Ingin tampil wangi, elegan, dan tahan lama tanpa harus mahal?</p>
+      <p class="text-sm md:text-lg font-extrabold mb-5 md:mb-6" style="color: #FFB6D9;">Silakan order di <span class="rainbow-glow" style="font-size:1.05em;">VJ PARFUME</span>! 💖</p>
       <div class="flex flex-col items-center gap-2">
         <span class="font-extrabold text-xs md:text-sm" style="color: var(--text-sec);">💳 Menerima Pembayaran:</span>
         <div class="flex flex-wrap items-center justify-center gap-2">
@@ -460,9 +483,7 @@
         <div>
           <h3 class="font-serif text-lg md:text-2xl font-extrabold mb-1.5" style="color: var(--text);">Gabung Channel Telegram Kami</h3>
           <p class="text-xs md:text-sm mb-4 md:mb-5 font-bold" style="color: var(--text-sec);">Dapatkan info parfum terbaru & promo spesial langsung di channel kami</p>
-          <a href="https://telegram.me/vjparfume_premium" target="_blank"
-             class="inline-flex items-center justify-center gap-2 px-6 py-2.5 md:px-7 md:py-3 rounded-xl text-xs md:text-sm font-extrabold text-white transition-all hover:opacity-90"
-             style="background: linear-gradient(135deg, #2AABEE, #229ED9); box-shadow: 0 4px 14px rgba(42,171,238,0.2);">
+          <a href="https://telegram.me/vjparfume_premium" target="_blank" class="inline-flex items-center justify-center gap-2 px-6 py-2.5 md:px-7 md:py-3 rounded-xl text-xs md:text-sm font-extrabold text-white transition-all hover:opacity-90" style="background: linear-gradient(135deg, #2AABEE, #229ED9); box-shadow: 0 4px 14px rgba(42,171,238,0.2);">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
             Gabung Channel Sekarang
           </a>
@@ -476,29 +497,21 @@
   <!-- ║           CATALOG SECTION            ║ -->
   <!-- ╚══════════════════════════════════════╝ -->
   <section id="koleksi" class="max-w-7xl mx-auto px-3 md:px-8 pt-16 md:pt-24 pb-24 md:pb-32">
-
     <div class="text-center mb-10 md:mb-14">
       <p class="text-[10px] md:text-[11px] font-extrabold tracking-[0.35em] uppercase accent-text mb-3 md:mb-4">— Our Collection —</p>
       <h2 class="text-2xl md:text-5xl font-serif font-extrabold tracking-tight mb-3 md:mb-4" style="color: var(--text);">Koleksi <span class="accent-gradient-text">Parfum</span> Kami</h2>
       <p class="text-xs md:text-base max-w-md mx-auto font-bold" style="color: var(--text-sec);">Pilih yang kamu suka, langsung pesan tanpa ribet</p>
       <div class="gold-divider max-w-[100px] md:max-w-[120px] mx-auto mt-4 md:mt-6"></div>
     </div>
-
     <div class="max-w-md mx-auto mb-8 md:mb-12 px-1">
       <div class="relative">
         <i data-lucide="search" class="w-4 h-4 absolute left-3.5 md:left-4 top-1/2 -translate-y-1/2" style="color: var(--text-muted);"></i>
-        <input type="text" id="searchInput" placeholder="Cari parfum..."
-               class="input-field w-full h-11 md:h-12 pl-10 md:pl-12 pr-4 md:pr-5 rounded-xl md:rounded-2xl text-xs md:text-sm font-bold">
+        <input type="text" id="searchInput" placeholder="Cari parfum..." class="input-field w-full h-11 md:h-12 pl-10 md:pl-12 pr-4 md:pr-5 rounded-xl md:rounded-2xl text-xs md:text-sm font-bold">
       </div>
     </div>
-
-    <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2.5 md:gap-5">
-    </div>
-
+    <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2.5 md:gap-5"></div>
     <div id="emptyState" class="hidden text-center py-20 md:py-24">
-      <div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-5" style="background: var(--bg-alt);">
-        <i data-lucide="search-x" class="w-6 h-6 md:w-7 md:h-7" style="color: var(--text-muted);"></i>
-      </div>
+      <div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-5" style="background: var(--bg-alt);"><i data-lucide="search-x" class="w-6 h-6 md:w-7 md:h-7" style="color: var(--text-muted);"></i></div>
       <p class="font-extrabold mb-1 text-sm md:text-base" style="color: var(--text-sec);">Parfum tidak ditemukan</p>
       <p class="text-xs md:text-sm font-bold" style="color: var(--text-muted);">Coba kata kunci lain</p>
     </div>
@@ -510,9 +523,7 @@
   <!-- ╚══════════════════════════════════════╝ -->
   <footer class="py-10 md:py-12 px-5 md:px-6 text-center section-glass" style="border-top: 1px solid var(--border);">
     <div class="flex items-center justify-center gap-2.5 mb-3 md:mb-4">
-      <div class="w-7 h-7 rounded-lg accent-gradient-bg flex items-center justify-center">
-        <span class="font-black text-[10px]" style="color: #13100C;">VJ</span>
-      </div>
+      <div class="w-7 h-7 rounded-lg accent-gradient-bg flex items-center justify-center"><span class="font-black text-[10px]" style="color: #13100C;">VJ</span></div>
       <span class="font-black text-sm rainbow-glow" style="font-size: 13px;">VJ PARFUME</span>
     </div>
     <p class="text-xs md:text-sm mb-3 font-bold" style="color: var(--text-sec);">Wangi Berkualitas, Harga Bersahabat</p>
@@ -539,41 +550,31 @@
   <!-- ╚══════════════════════════════════════╝ -->
   <div id="orderModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 md:p-4 modal-backdrop">
     <div class="modal-box w-full max-w-md max-h-[92vh] overflow-y-auto anim-slide-up">
-
       <div class="flex items-center justify-between p-5 md:p-6 pb-3 md:pb-4">
         <div>
           <p class="text-[10px] font-extrabold tracking-[0.25em] uppercase accent-text mb-1">Pesan Sekarang</p>
           <h3 class="font-extrabold text-base md:text-lg" style="color: var(--text);" id="modalNama">Nama Parfum</h3>
         </div>
-        <button onclick="closeModal()" class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center transition-colors" style="background: var(--bg-alt);">
-          <i data-lucide="x" class="w-4 h-4" style="color: var(--text-sec);"></i>
-        </button>
+        <button onclick="closeModal()" class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center transition-colors" style="background: var(--bg-alt);"><i data-lucide="x" class="w-4 h-4" style="color: var(--text-sec);"></i></button>
       </div>
-
       <div class="gold-divider mx-5 md:mx-6"></div>
-
       <div class="p-5 md:p-6 pb-3 md:pb-4 flex items-center gap-3 md:gap-4">
         <img id="modalImg" src="" alt="" class="w-16 h-16 md:w-20 md:h-20 rounded-xl md:rounded-2xl object-cover" style="border: 1px solid var(--border);">
         <div>
           <p class="font-extrabold text-xs md:text-sm" style="color: var(--text);" id="modalNama2"></p>
+          <p class="font-extrabold text-xs mt-0.5" style="color: var(--accent);" id="modalUkuran"></p>
           <p class="font-extrabold text-base md:text-lg mt-1 accent-text" id="modalHarga"></p>
         </div>
       </div>
-
       <form id="orderForm" class="px-5 md:px-6 pb-5 md:pb-6 space-y-3.5 md:space-y-4" onsubmit="return submitOrder(event)">
-
         <div>
           <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Nama Lengkap <span style="color: #EF4444;">*</span></label>
-          <input type="text" id="inputNama" required placeholder="Tulis nama kamu di sini"
-                 class="input-field w-full h-11 md:h-12 px-3.5 md:px-4 rounded-xl text-xs md:text-sm font-bold">
+          <input type="text" id="inputNama" required placeholder="Tulis nama kamu di sini" class="input-field w-full h-11 md:h-12 px-3.5 md:px-4 rounded-xl text-xs md:text-sm font-bold">
         </div>
-
         <div>
           <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Catatan</label>
-          <textarea id="inputCatatan" rows="2" placeholder="Tulis catatan tambahan (opsional)..."
-                    class="input-field w-full px-3.5 md:px-4 py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-bold resize-none"></textarea>
+          <textarea id="inputCatatan" rows="2" placeholder="Tulis catatan tambahan (opsional)..." class="input-field w-full px-3.5 md:px-4 py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-bold resize-none"></textarea>
         </div>
-
         <div>
           <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Jumlah Pesanan</label>
           <div class="flex items-center gap-3 md:gap-4">
@@ -583,27 +584,17 @@
             <span id="stockInfo" class="text-[11px] md:text-xs font-bold ml-auto" style="color: var(--text-muted);"></span>
           </div>
         </div>
-
         <div class="rounded-xl md:rounded-2xl p-4 md:p-5 text-center" style="background: var(--accent-pale); border: 1px solid var(--border-accent);">
           <p class="text-[10px] md:text-xs font-extrabold mb-1.5 md:mb-2 tracking-wide" style="color: var(--text-sec);">TOTAL HARGA</p>
           <div id="totalHarga" class="font-black accent-text text-2xl md:text-3xl">Rp 0</div>
         </div>
-
-        <button type="submit" id="submitBtn"
-                class="w-full btn-primary rounded-xl md:rounded-2xl font-extrabold text-xs md:text-sm flex items-center justify-center gap-2.5 tracking-wide py-3.5 md:py-4">
-          <i data-lucide="shopping-bag" class="w-4 h-4"></i>
-          Konfirmasi Pesanan
+        <button type="submit" id="submitBtn" class="w-full btn-primary rounded-xl md:rounded-2xl font-extrabold text-xs md:text-sm flex items-center justify-center gap-2.5 tracking-wide py-3.5 md:py-4">
+          <i data-lucide="shopping-bag" class="w-4 h-4"></i> Konfirmasi Pesanan
         </button>
-
-        <a id="modalTgLink" href="#" target="_blank"
-           class="w-full rounded-xl md:rounded-2xl font-extrabold text-xs md:text-sm flex items-center justify-center gap-2.5 tracking-wide py-3 md:py-3.5 transition-all"
-           style="background: rgba(42,171,238,0.08); border: 1px solid rgba(42,171,238,0.2); color: #2AABEE;"
-           onmouseover="this.style.background='linear-gradient(135deg,#2AABEE,#229ED9)';this.style.color='#fff';this.style.borderColor='#2AABEE'"
-           onmouseout="this.style.background='rgba(42,171,238,0.08)';this.style.color='#2AABEE';this.style.borderColor='rgba(42,171,238,0.2)'">
+        <a id="modalTgLink" href="#" target="_blank" class="w-full rounded-xl md:rounded-2xl font-extrabold text-xs md:text-sm flex items-center justify-center gap-2.5 tracking-wide py-3 md:py-3.5 transition-all" style="background: rgba(42,171,238,0.08); border: 1px solid rgba(42,171,238,0.2); color: #2AABEE;" onmouseover="this.style.background='linear-gradient(135deg,#2AABEE,#229ED9)';this.style.color='#fff';this.style.borderColor='#2AABEE'" onmouseout="this.style.background='rgba(42,171,238,0.08)';this.style.color='#2AABEE';this.style.borderColor='rgba(42,171,238,0.2)'">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
           Atau Pesan via Channel Telegram
         </a>
-
         <p class="text-center text-[10px] md:text-[11px] mt-1 font-bold" style="color: var(--text-muted);">Pesanan akan dikirim ke admin VJ Parfume</p>
       </form>
     </div>
@@ -615,58 +606,32 @@
   <!-- ╚══════════════════════════════════════╝ -->
   <div id="adminModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 md:p-4 modal-backdrop">
     <div class="modal-box w-full max-w-2xl max-h-[92vh] overflow-hidden flex flex-col anim-slide-up">
-
       <div id="adminLogin" class="p-6 md:p-8 text-center">
-        <div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl mx-auto mb-4 md:mb-5 flex items-center justify-center" style="background: var(--accent-pale);">
-          <i data-lucide="lock" class="w-6 h-6 md:w-7 md:h-7 accent-text"></i>
-        </div>
+        <div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl mx-auto mb-4 md:mb-5 flex items-center justify-center" style="background: var(--accent-pale);"><i data-lucide="lock" class="w-6 h-6 md:w-7 md:h-7 accent-text"></i></div>
         <h3 class="font-extrabold text-lg md:text-xl mb-2" style="color: var(--text);">Admin Panel</h3>
         <p class="text-xs md:text-sm mb-5 md:mb-6 font-bold" style="color: var(--text-muted);">Masukkan password untuk mengelola parfum</p>
-        <input type="password" id="adminPassInput" placeholder="Password..."
-               class="input-field w-full h-11 md:h-12 px-4 rounded-xl text-xs md:text-sm font-bold mb-3 md:mb-4 text-center"
-               onkeydown="if(event.key==='Enter')attemptAdminLogin()">
-        <button onclick="attemptAdminLogin()" class="w-full btn-primary rounded-xl font-extrabold text-xs md:text-sm py-3 md:py-3.5">
-          Masuk
-        </button>
-        <button onclick="closeAdminModal()" class="w-full mt-2.5 md:mt-3 py-2.5 md:py-3 text-xs md:text-sm font-bold rounded-xl transition-colors" style="color: var(--text-muted);" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-muted)'">
-          Batal
-        </button>
+        <input type="password" id="adminPassInput" placeholder="Password..." class="input-field w-full h-11 md:h-12 px-4 rounded-xl text-xs md:text-sm font-bold mb-3 md:mb-4 text-center" onkeydown="if(event.key==='Enter')attemptAdminLogin()">
+        <button onclick="attemptAdminLogin()" class="w-full btn-primary rounded-xl font-extrabold text-xs md:text-sm py-3 md:py-3.5">Masuk</button>
+        <button onclick="closeAdminModal()" class="w-full mt-2.5 md:mt-3 py-2.5 md:py-3 text-xs md:text-sm font-bold rounded-xl transition-colors" style="color: var(--text-muted);" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-muted)'">Batal</button>
         <p id="adminError" class="text-[11px] md:text-xs mt-2.5 md:mt-3 font-extrabold hidden" style="color: #EF4444;">Password salah! Coba lagi.</p>
       </div>
-
       <div id="adminPanel" class="hidden flex flex-col" style="max-height: 92vh;">
-
         <div class="flex items-center justify-between p-4 md:p-5 pb-3 md:pb-4 flex-shrink-0">
           <div>
             <p class="text-[10px] font-extrabold tracking-[0.25em] uppercase accent-text mb-0.5">Admin Mode</p>
             <h3 class="font-extrabold text-base md:text-lg" style="color: var(--text);">Kelola Parfum</h3>
           </div>
-          <button onclick="closeAdminModal()" class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center transition-colors" style="background: var(--bg-alt);">
-            <i data-lucide="x" class="w-4 h-4" style="color: var(--text-sec);"></i>
-          </button>
+          <button onclick="closeAdminModal()" class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center transition-colors" style="background: var(--bg-alt);"><i data-lucide="x" class="w-4 h-4" style="color: var(--text-sec);"></i></button>
         </div>
-
         <div class="gold-divider mx-4 md:mx-5"></div>
-
         <div class="px-4 md:px-5 py-2.5 md:py-3 flex-shrink-0">
-          <p class="text-[11px] md:text-xs leading-relaxed font-bold" style="color: var(--text-muted);">
-            💡 Edit data parfum di bawah, lalu klik <strong style="color: var(--accent);">Simpan Semua</strong>. Harga isi dalam <strong>Rupiah</strong> — Dollar & Riel otomatis. Stok <strong>0</strong> = SOLD OUT.
-          </p>
+          <p class="text-[11px] md:text-xs leading-relaxed font-bold" style="color: var(--text-muted);">💡 Klik tombol <strong style="color: var(--accent);">📁 Pilih Gambar</strong> untuk upload foto dari HP/komputer. Harga isi Rupiah — Dollar & Riel otomatis. Stok <strong>0</strong> = SOLD OUT.</p>
         </div>
-
-        <div id="adminContent" class="flex-1 overflow-y-auto px-4 md:px-5 pb-3 md:pb-4 space-y-2.5 md:space-y-3">
-        </div>
-
+        <div id="adminContent" class="flex-1 overflow-y-auto px-4 md:px-5 pb-3 md:pb-4 space-y-2.5 md:space-y-3"></div>
         <div class="p-4 md:p-5 pt-2.5 md:pt-3 flex flex-col sm:flex-row gap-2 flex-shrink-0" style="border-top: 1px solid var(--border);">
-          <button onclick="addNewParfum()" class="flex-1 py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-extrabold flex items-center justify-center gap-2 transition-all" style="background: var(--bg-alt); color: var(--text-sec); border: 1px solid var(--border);" onmouseover="this.style.borderColor='var(--border-accent)'" onmouseout="this.style.borderColor='var(--border)'">
-            <i data-lucide="plus" class="w-4 h-4"></i> Tambah Parfum
-          </button>
-          <button onclick="saveAdminData()" class="flex-1 btn-primary py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-extrabold flex items-center justify-center gap-2">
-            <i data-lucide="save" class="w-4 h-4"></i> Simpan Semua
-          </button>
-          <button onclick="resetToDefault()" class="py-2.5 md:py-3 px-3 md:px-4 rounded-xl text-xs md:text-sm font-extrabold flex items-center justify-center gap-2 transition-all" style="background: rgba(239,68,68,0.06); color: #EF4444; border: 1px solid rgba(239,68,68,0.15);" onmouseover="this.style.background='rgba(239,68,68,0.1)'" onmouseout="this.style.background='rgba(239,68,68,0.06)'">
-            <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset
-          </button>
+          <button onclick="addNewParfum()" class="flex-1 py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-extrabold flex items-center justify-center gap-2 transition-all" style="background: var(--bg-alt); color: var(--text-sec); border: 1px solid var(--border);" onmouseover="this.style.borderColor='var(--border-accent)'" onmouseout="this.style.borderColor='var(--border)'"><i data-lucide="plus" class="w-4 h-4"></i> Tambah Parfum</button>
+          <button onclick="saveAdminData()" class="flex-1 btn-primary py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-extrabold flex items-center justify-center gap-2"><i data-lucide="save" class="w-4 h-4"></i> Simpan Semua</button>
+          <button onclick="resetToDefault()" class="py-2.5 md:py-3 px-3 md:px-4 rounded-xl text-xs md:text-sm font-extrabold flex items-center justify-center gap-2 transition-all" style="background: rgba(239,68,68,0.06); color: #EF4444; border: 1px solid rgba(239,68,68,0.15);" onmouseover="this.style.background='rgba(239,68,68,0.1)'" onmouseout="this.style.background='rgba(239,68,68,0.06)'"><i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset</button>
         </div>
       </div>
     </div>
@@ -678,9 +643,7 @@
   <!-- ╚══════════════════════════════════════╝ -->
   <div id="successToast" class="hidden fixed top-16 md:top-20 right-3 md:right-6 left-3 md:left-auto z-[60] toast-box p-4 md:p-5 anim-slide-up">
     <div class="flex items-start gap-3 md:gap-4">
-      <div class="w-10 h-10 md:w-11 md:h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(34,197,94,0.08);">
-        <i data-lucide="check-circle" class="w-5 h-5" style="color: #22C55E;"></i>
-      </div>
+      <div class="w-10 h-10 md:w-11 md:h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(34,197,94,0.08);"><i data-lucide="check-circle" class="w-5 h-5" style="color: #22C55E;"></i></div>
       <div>
         <p class="font-extrabold text-xs md:text-sm" style="color: #22C55E;">Pesanan Berhasil Dikirim! 🎉</p>
         <p class="text-[10px] md:text-xs mt-0.5 md:mt-1 font-bold" style="color: var(--text-muted);">Admin akan segera memproses pesananmu</p>
@@ -703,8 +666,7 @@
           (e.ctrlKey && (e.key === 'u' || e.key === 'U')) ||
           (e.ctrlKey && (e.key === 's' || e.key === 'S')) ||
           (e.metaKey && (e.key === 'u' || e.key === 'U')) ||
-          (e.metaKey && (e.key === 's' || e.key === 'S')) ||
-          (e.key === 'F12')) {
+          (e.metaKey && (e.key === 's' || e.key === 'S'))) {
         e.preventDefault();
         return false;
       }
@@ -734,158 +696,28 @@
 
     // ═══════════════════════════════════════════════════════
     //  🌸 DATA PARFUM DEFAULT — JANGAN DIHAPUS!
-    //  Data ini dipakai sebagai fallback & reset
-    //
-    //  CARA GANTI GAMBAR:
-    //  1. Upload foto parfum ke imgbb.com (gratis)
-    //  2. Copy link gambar nya
-    //  3. Ganti URL di bagian "gambar"
-    //
-    //  UNTUK UPDATE STOK/NAMA/HARGA:
-    //  Bukak Admin Panel (klik logo VJ 5x kali) → edit → simpan
-    //  Atau langsung edit di bawah ini lalu reset di admin
     // ═══════════════════════════════════════════════════════
     const defaultParfumData = [
-      {
-        id: 1,
-        nama: "SCANDALOUS",
-        gambar: "https://placehold.co/400x500/1C1814/D4A574?text=SCANDALOUS",
-        harga: 200000,
-        stok: 10
-      },
-      {
-        id: 2,
-        nama: "BLACK OPIUM",
-        gambar: "https://placehold.co/400x500/1C1814/D4A574?text=BLACK+OPIUM",
-        harga: 200000,
-        stok: 10
-      },
-      {
-        id: 3,
-        nama: "AVRIL LAVIGNE",
-        gambar: "https://placehold.co/400x500/1C1814/D4A574?text=AVRIL+LAVIGNE",
-        harga: 200000,
-        stok: 10
-      },
-      {
-        id: 4,
-        nama: "SOFT",
-        gambar: "https://placehold.co/400x500/1C1814/D4A574?text=SOFT",
-        harga: 200000,
-        stok: 10
-      },
-      {
-        id: 5,
-        nama: "PINK CHIFFON",
-        gambar: "https://placehold.co/400x500/1C1814/D4A574?text=PINK+CHIFFON",
-        harga: 200000,
-        stok: 10
-      },
-      {
-        id: 6,
-        nama: "Produk 6",
-        gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+6",
-        harga: 200000,
-        stok: 10
-      },
-      {
-        id: 7,
-        nama: "Produk 7",
-        gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+7",
-        harga: 200000,
-        stok: 10
-      },
-      {
-        id: 8,
-        nama: "Produk 8",
-        gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+8",
-        harga: 200000,
-        stok: 10
-      },
-      {
-        id: 9,
-        nama: "Produk 9",
-        gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+9",
-        harga: 200000,
-        stok: 10
-      },
-      {
-        id: 10,
-        nama: "Produk 10",
-        gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+10",
-        harga: 200000,
-        stok: 10
-      },
-      {
-        id: 11,
-        nama: "Produk 11",
-        gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+11",
-        harga: 200000,
-        stok: 10
-      },
-      {
-        id: 12,
-        nama: "Produk 12",
-        gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+12",
-        harga: 200000,
-        stok: 10
-      },
-      {
-        id: 13,
-        nama: "Produk 13",
-        gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+13",
-        harga: 200000,
-        stok: 10
-      },
-      {
-        id: 14,
-        nama: "Produk 14",
-        gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+14",
-        harga: 200000,
-        stok: 10
-      },
-      {
-        id: 15,
-        nama: "Produk 15",
-        gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+15",
-        harga: 200000,
-        stok: 10
-      },
-      {
-        id: 16,
-        nama: "Produk 16",
-        gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+16",
-        harga: 200000,
-        stok: 10
-      },
-      {
-        id: 17,
-        nama: "Produk 17",
-        gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+17",
-        harga: 200000,
-        stok: 10
-      },
-      {
-        id: 18,
-        nama: "Produk 18",
-        gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+18",
-        harga: 200000,
-        stok: 10
-      },
-      {
-        id: 19,
-        nama: "Produk 19",
-        gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+19",
-        harga: 200000,
-        stok: 10
-      },
-      {
-        id: 20,
-        nama: "Produk 20",
-        gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+20",
-        harga: 200000,
-        stok: 10
-      }
+      { id: 1, nama: "SCANDALOUS", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=SCANDALOUS", harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 2, nama: "BLACK OPIUM", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=BLACK+OPIUM", harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 3, nama: "AVRIL LAVIGNE", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=AVRIL+LAVIGNE", harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 4, nama: "SOFT", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=SOFT", harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 5, nama: "PINK CHIFFON", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=PINK+CHIFFON", harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 6, nama: "Produk 6", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+6", harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 7, nama: "Produk 7", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+7", harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 8, nama: "Produk 8", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+8", harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 9, nama: "Produk 9", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+9", harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 10, nama: "Produk 10", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+10", harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 11, nama: "Produk 11", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+11", harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 12, nama: "Produk 12", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+12", harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 13, nama: "Produk 13", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+13", harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 14, nama: "Produk 14", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+14", harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 15, nama: "Produk 15", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+15", harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 16, nama: "Produk 16", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+16", harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 17, nama: "Produk 17", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+17", harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 18, nama: "Produk 18", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+18", harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 19, nama: "Produk 19", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+19", harga: 200000, stok: 10, ukuran: "35ml" },
+      { id: 20, nama: "Produk 20", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Produk+20", harga: 200000, stok: 10, ukuran: "35ml" }
     ];
 
     // ═══════════════════════════════════════
@@ -896,14 +728,18 @@
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
-          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
-        } catch(e) { /* ignore */ }
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            parsed.forEach(p => { if (!p.ukuran) p.ukuran = "35ml"; });
+            return parsed;
+          }
+        } catch(e) {}
       }
       return JSON.parse(JSON.stringify(defaultParfumData));
     }
 
     function saveParfumToStorage(data) {
-      localStorage.setItem('vj_parfum_data', JSON.stringify(data));
+      try { localStorage.setItem('vj_parfum_data', JSON.stringify(data)); }
+      catch(e) { alert('⚠️ Penyimpanan penuh! Upload gambar lebih kecil atau kurangi parfum.'); }
     }
 
     let parfumData = loadParfumData();
@@ -942,56 +778,44 @@
 
         let stockHtml = "";
         if (isSoldOut) {
-          stockHtml = `<span class="text-[10px] md:text-[11px] font-extrabold tracking-wide" style="color: #EF4444;">SOLD OUT</span>`;
+          stockHtml = '<span class="text-[10px] md:text-[11px] font-extrabold tracking-wide" style="color: #EF4444;">SOLD OUT</span>';
         } else if (isLow) {
-          stockHtml = `<span class="stock-dot stock-low"></span><span class="text-[10px] md:text-[11px] font-extrabold" style="color: #F59E0B;">Sisa ${p.stok}</span>`;
+          stockHtml = '<span class="stock-dot stock-low"></span><span class="text-[10px] md:text-[11px] font-extrabold" style="color: #F59E0B;">Sisa ' + p.stok + '</span>';
         } else {
-          stockHtml = `<span class="stock-dot stock-yes"></span><span class="text-[10px] md:text-[11px] font-extrabold" style="color: #22C55E;">Tersedia</span>`;
+          stockHtml = '<span class="stock-dot stock-yes"></span><span class="text-[10px] md:text-[11px] font-extrabold" style="color: #22C55E;">Tersedia</span>';
         }
 
         const usd = toUSD(p.harga);
         const khr = toKHR(p.harga);
+        const uk = p.ukuran || "35ml";
 
-        return `
-          <div class="perfume-card" style="animation: fadeUp 0.6s ease-out ${i * 0.05}s forwards; opacity: 0;">
-            ${isSoldOut ? `
-              <div class="sold-out-overlay">
-                <div class="sold-out-badge">SOLD OUT</div>
-              </div>
-            ` : ""}
-
-            <div class="relative aspect-[4/5] overflow-hidden flex-shrink-0" style="background: var(--bg-alt);">
-              <img src="${p.gambar}" alt="${p.nama}"
-                   class="card-img w-full h-full object-cover"
-                   loading="lazy"
-                   onerror="this.src='https://placehold.co/400x500/1C1814/D4A574?text=${encodeURIComponent(p.nama)}'">
-            </div>
-
-            <div class="p-2.5 md:p-3.5 flex flex-col flex-1">
-              <h3 class="font-extrabold text-[11px] md:text-sm mb-1.5 md:mb-2 tracking-tight leading-tight" style="color: var(--text);">${p.nama}</h3>
-
-              <p class="font-black text-sm md:text-base accent-text mb-0.5 md:mb-1">${fmtUSD(usd)}</p>
-              <p class="text-[10px] md:text-[11px] font-bold mb-1.5 md:mb-2 leading-snug" style="color: var(--text-muted);">${Math.round(khr).toLocaleString()} riel</p>
-              <p class="text-[10px] md:text-[11px] font-bold mb-2 md:mb-3" style="color: var(--text-muted);">${fmtIDR(p.harga)}</p>
-
-              <div class="flex items-center gap-1.5 mb-2 md:mb-3">${stockHtml}</div>
-
-              <div class="mt-auto">
-                <button onclick='openModal(${JSON.stringify(p).replace(/'/g, "&#39;")})'
-                        ${isSoldOut ? "disabled" : ""}
-                        class="w-full h-9 md:h-10 rounded-lg md:rounded-xl text-[10px] md:text-xs font-extrabold tracking-wide flex items-center justify-center gap-1.5
-                               ${isSoldOut
-                                 ? "cursor-not-allowed"
-                                 : "btn-order"}"
-                        ${isSoldOut ? "style='background: var(--bg-alt); color: var(--text-muted); border: 1px solid var(--border);'" : ""}>
-                  ${isSoldOut
-                    ? "SOLD OUT"
-                    : '<i data-lucide="shopping-bag" class="w-3 h-3"></i> Pesan Sekarang'}
-                </button>
-              </div>
-            </div>
-          </div>
-        `;
+        return '<div class="perfume-card" style="animation: fadeUp 0.6s ease-out ' + (i * 0.05) + 's forwards; opacity: 0;">' +
+          (isSoldOut ? '<div class="sold-out-overlay"><div class="sold-out-badge">SOLD OUT</div></div>' : '') +
+          '<div class="relative aspect-[4/5] overflow-hidden flex-shrink-0" style="background: var(--bg-alt);">' +
+            '<img src="' + p.gambar + '" alt="' + p.nama + '" class="card-img w-full h-full object-cover" loading="lazy" onerror="this.src=\'https://placehold.co/400x500/1C1814/D4A574?text=' + encodeURIComponent(p.nama) + '\'">' +
+          '</div>' +
+          '<div class="p-2.5 md:p-3.5 flex flex-col flex-1">' +
+            '<h3 class="font-extrabold text-[11px] md:text-sm mb-1 tracking-tight leading-tight" style="color: var(--text);">' + p.nama + '</h3>' +
+            '<div class="inline-block self-start px-2 py-0.5 rounded-md mb-2" style="background: rgba(212,165,116,0.15); border: 1px solid rgba(212,165,116,0.25);">' +
+              '<span class="text-[10px] md:text-[11px] font-black tracking-wide" style="color: var(--accent-dark);">🧴 ' + uk + '</span>' +
+            '</div>' +
+            '<div class="font-black text-sm md:text-base accent-text mb-1">' + fmtUSD(usd) + ' <span class="text-[10px] font-extrabold" style="color: var(--text-muted);">/botol</span></div>' +
+            '<div class="rounded-lg p-2 mb-2" style="background: rgba(212,165,116,0.05); border: 1px solid rgba(212,165,116,0.08);">' +
+              '<p class="text-[11px] md:text-xs font-extrabold" style="color: #E8C9A8;">💰 ' + Math.round(khr).toLocaleString() + ' riel</p>' +
+              '<p class="text-[11px] md:text-xs font-extrabold mt-0.5" style="color: #D4B896;">💵 ' + fmtIDR(p.harga) + '</p>' +
+            '</div>' +
+            '<div class="flex items-center gap-1.5 mb-2 md:mb-3">' + stockHtml + '</div>' +
+            '<div class="mt-auto">' +
+              '<button onclick=\'openModal(' + JSON.stringify(p).replace(/'/g, "&#39;") + ')\' ' +
+                (isSoldOut ? 'disabled ' : '') +
+                'class="w-full h-9 md:h-10 rounded-lg md:rounded-xl text-[10px] md:text-xs font-extrabold tracking-wide flex items-center justify-center gap-1.5 ' +
+                (isSoldOut ? 'cursor-not-allowed' : 'btn-order') + '" ' +
+                (isSoldOut ? 'style="background: var(--bg-alt); color: var(--text-muted); border: 1px solid var(--border);"' : '') + '>' +
+                (isSoldOut ? 'SOLD OUT' : '<i data-lucide="shopping-bag" class="w-3 h-3"></i> Pesan Sekarang') +
+              '</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
       }).join("");
 
       lucide.createIcons();
@@ -1016,18 +840,21 @@
       document.getElementById("modalNama").textContent = parfum.nama;
       document.getElementById("modalNama2").textContent = parfum.nama;
 
-      const usd = toUSD(parfum.harga);
-      const khr = toKHR(parfum.harga);
-      document.getElementById("modalHarga").innerHTML = `${fmtUSD(usd)} <span class="text-[10px] md:text-xs font-extrabold" style="color: var(--text-muted);">/ botol</span><br><span class="text-xs md:text-sm font-extrabold" style="color: var(--text-sec);">${Math.round(khr).toLocaleString()} riel · ${fmtIDR(parfum.harga)}</span>`;
+      var uk = parfum.ukuran || "35ml";
+      document.getElementById("modalUkuran").textContent = "🧴 " + uk + " / botol";
+
+      var usd = toUSD(parfum.harga);
+      var khr = toKHR(parfum.harga);
+      document.getElementById("modalHarga").innerHTML = fmtUSD(usd) + ' <span class="text-[10px] md:text-xs font-extrabold" style="color: var(--text-muted);">per botol</span><br><span class="text-xs md:text-sm font-extrabold" style="color: #E8C9A8;">' + Math.round(khr).toLocaleString() + ' riel · ' + fmtIDR(parfum.harga) + '</span>';
 
       document.getElementById("qtyDisplay").textContent = "1";
-      document.getElementById("stockInfo").textContent = `Maks: ${parfum.stok}`;
+      document.getElementById("stockInfo").textContent = "Maks: " + parfum.stok;
       updateTotal();
 
       document.getElementById("inputNama").value = "";
       document.getElementById("inputCatatan").value = "";
 
-      document.getElementById("modalTgLink").href = `https://telegram.me/vjparfume_premium?text=${encodeURIComponent('Halo, saya mau pesan ' + parfum.nama + ' (' + fmtIDR(parfum.harga) + ')')}`;
+      document.getElementById("modalTgLink").href = "https://telegram.me/vjparfume_premium?text=" + encodeURIComponent("Halo, saya mau pesan " + parfum.nama + " " + uk + " (" + fmtIDR(parfum.harga) + ")");
 
       document.getElementById("orderModal").classList.remove("hidden");
       document.body.style.overflow = "hidden";
@@ -1044,10 +871,7 @@
       if (e.target === document.getElementById("orderModal")) closeModal();
     });
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        closeModal();
-        closeAdminModal();
-      }
+      if (e.key === "Escape") { closeModal(); closeAdminModal(); }
     });
 
     // ═══════════════════════════════════════
@@ -1062,13 +886,12 @@
 
     function updateTotal() {
       if (!selectedParfum) return;
-      const totalIDR = selectedParfum.harga * currentQty;
-      const totalUSD = toUSD(totalIDR);
-      const totalKHR = toKHR(totalIDR);
-      document.getElementById("totalHarga").innerHTML = `
-        <span class="text-xl md:text-2xl">${fmtUSD(totalUSD)}</span>
-        <span class="block text-xs md:text-sm mt-1 font-extrabold" style="color: var(--text-muted);">${Math.round(totalKHR).toLocaleString()} riel · ${fmtIDR(totalIDR)}</span>
-      `;
+      var totalIDR = selectedParfum.harga * currentQty;
+      var totalUSD = toUSD(totalIDR);
+      var totalKHR = toKHR(totalIDR);
+      document.getElementById("totalHarga").innerHTML =
+        '<span class="text-xl md:text-2xl">' + fmtUSD(totalUSD) + '</span>' +
+        '<span class="block text-xs md:text-sm mt-1 font-extrabold" style="color: #E8C9A8;">' + Math.round(totalKHR).toLocaleString() + ' riel · ' + fmtIDR(totalIDR) + '</span>';
     }
 
     // ═══════════════════════════════════════
@@ -1077,27 +900,26 @@
     function submitOrder(e) {
       e.preventDefault();
 
-      const nama = document.getElementById("inputNama").value.trim();
-      const catatan = document.getElementById("inputCatatan").value.trim();
+      var nama = document.getElementById("inputNama").value.trim();
+      var catatan = document.getElementById("inputCatatan").value.trim();
 
-      if (!nama) {
-        alert("Mohon isi nama kamu");
-        return false;
-      }
+      if (!nama) { alert("Mohon isi nama kamu"); return false; }
 
-      const totalIDR = selectedParfum.harga * currentQty;
+      var totalIDR = selectedParfum.harga * currentQty;
+      var uk = selectedParfum.ukuran || "35ml";
 
-      const orderData = {
+      var orderData = {
         nama: nama,
         catatan: catatan || "-",
         parfum: selectedParfum.nama,
+        ukuran: uk,
         jumlah: currentQty,
         total: fmtIDR(totalIDR) + " / " + fmtUSD(toUSD(totalIDR)) + " / " + Math.round(toKHR(totalIDR)).toLocaleString() + " riel"
       };
 
-      const btn = document.getElementById("submitBtn");
+      var btn = document.getElementById("submitBtn");
       btn.disabled = true;
-      btn.innerHTML = `<svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg> Mengirim pesanan...`;
+      btn.innerHTML = '<svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg> Mengirim pesanan...';
 
       fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
@@ -1105,19 +927,11 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(orderData)
       })
-      .then(() => {
-        closeModal();
-        showToast();
-        renderProducts();
-      })
-      .catch(() => {
-        closeModal();
-        showToast();
-        renderProducts();
-      })
+      .then(() => { closeModal(); showToast(); renderProducts(); })
+      .catch(() => { closeModal(); showToast(); renderProducts(); })
       .finally(() => {
         btn.disabled = false;
-        btn.innerHTML = `<i data-lucide="shopping-bag" class="w-4 h-4"></i> Konfirmasi Pesanan`;
+        btn.innerHTML = '<i data-lucide="shopping-bag" class="w-4 h-4"></i> Konfirmasi Pesanan';
         lucide.createIcons();
       });
 
@@ -1128,7 +942,7 @@
     //  TOAST
     // ═══════════════════════════════════════
     function showToast() {
-      const toast = document.getElementById("successToast");
+      var toast = document.getElementById("successToast");
       toast.classList.remove("hidden");
       setTimeout(() => { toast.classList.add("hidden"); }, 4500);
     }
@@ -1139,32 +953,19 @@
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener("click", function(e) {
         e.preventDefault();
-        const t = document.querySelector(this.getAttribute("href"));
+        var t = document.querySelector(this.getAttribute("href"));
         if (t) t.scrollIntoView({ behavior: "smooth", block: "start" });
       });
     });
 
     // ═══════════════════════════════════════
     //  ADMIN PANEL — Akses: Klik Logo VJ 5x
-    //  ATAU buka URL ?admin
-    //  Password: vjadmin2025
-    //
-    //  Di dashboard kamu bisa:
-    //  ✅ Tambah parfum baru
-    //  ✅ Ganti nama, gambar, harga, stok
-    //  ✅ Hapus parfum
-    //  ✅ Stok 0 = otomatis SOLD OUT
-    //  ✅ Simpan ke localStorage (langsung berubah di toko)
     // ═══════════════════════════════════════
     document.getElementById("logoArea").addEventListener("click", function() {
       logoClickCount++;
       clearTimeout(logoClickTimer);
       logoClickTimer = setTimeout(() => { logoClickCount = 0; }, 800);
-
-      if (logoClickCount >= 5) {
-        logoClickCount = 0;
-        openAdminModal();
-      }
+      if (logoClickCount >= 5) { logoClickCount = 0; openAdminModal(); }
     });
 
     if (window.location.search.includes('admin')) {
@@ -1187,7 +988,7 @@
     }
 
     function attemptAdminLogin() {
-      const pass = document.getElementById("adminPassInput").value;
+      var pass = document.getElementById("adminPassInput").value;
       if (pass === ADMIN_PASSWORD) {
         document.getElementById("adminLogin").classList.add("hidden");
         document.getElementById("adminPanel").classList.remove("hidden");
@@ -1198,66 +999,101 @@
     }
 
     // ═══════════════════════════════════════
+    //  📸 UPLOAD GAMBAR DARI FILE
+    // ═══════════════════════════════════════
+    function handleImageUpload(input, idx) {
+      var file = input.files[0];
+      if (!file) return;
+
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var img = new Image();
+        img.onload = function() {
+          var canvas = document.createElement('canvas');
+          var maxW = 400, maxH = 500;
+          var w = img.width, h = img.height;
+          if (w > maxW) { h = Math.round(h * maxW / w); w = maxW; }
+          if (h > maxH) { w = Math.round(w * maxH / h); h = maxH; }
+          canvas.width = w;
+          canvas.height = h;
+          var ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+          parfumData[idx].gambar = canvas.toDataURL('image/jpeg', 0.7);
+
+          var preview = document.getElementById('ap-' + idx);
+          if (preview) preview.src = parfumData[idx].gambar;
+
+          var label = document.getElementById('fl-' + idx);
+          if (label) label.textContent = '✅ ' + file.name;
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // ═══════════════════════════════════════
     //  ADMIN RENDER
     // ═══════════════════════════════════════
     function renderAdminPanel() {
-      const container = document.getElementById("adminContent");
-      container.innerHTML = parfumData.map((p, i) => `
-        <div class="rounded-xl md:rounded-2xl p-3 md:p-4" style="background: var(--bg-alt); border: 1px solid var(--border);">
-          <div class="flex items-center gap-2.5 md:gap-3 mb-2.5 md:mb-3">
-            <img src="${p.gambar}" class="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl object-cover flex-shrink-0" style="border: 1px solid var(--border);"
-                 onerror="this.src='https://placehold.co/100x100/1C1814/D4A574?text=${encodeURIComponent(p.nama)}'">
-            <div class="flex-1 min-w-0">
-              <span class="text-[10px] font-extrabold accent-text">#${i + 1}</span>
-              <input type="text" value="${p.nama}" data-idx="${i}" data-field="nama" class="admin-input mt-0.5 font-extrabold text-xs md:text-sm" style="color: var(--text);">
-            </div>
-            <button onclick="deleteParfum(${i})" class="w-7 h-7 md:w-8 md:h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors" style="color: var(--text-muted);" onmouseover="this.style.color='#EF4444';this.style.background='rgba(239,68,68,0.08)'" onmouseout="this.style.color='var(--text-muted)';this.style.background='transparent'">
-              <i data-lucide="trash-2" class="w-3 h-3 md:w-3.5 md:h-3.5"></i>
-            </button>
-          </div>
-          <div class="grid grid-cols-3 gap-1.5 md:gap-2">
-            <div>
-              <label class="text-[9px] md:text-[10px] font-extrabold block mb-0.5 md:mb-1" style="color: var(--text-muted);">Gambar URL</label>
-              <input type="text" value="${p.gambar}" data-idx="${i}" data-field="gambar" class="admin-input text-[10px] md:text-[11px] font-bold">
-            </div>
-            <div>
-              <label class="text-[9px] md:text-[10px] font-extrabold block mb-0.5 md:mb-1" style="color: var(--text-muted);">Harga (IDR)</label>
-              <input type="number" value="${p.harga}" data-idx="${i}" data-field="harga" class="admin-input text-[10px] md:text-[11px] font-bold">
-            </div>
-            <div>
-              <label class="text-[9px] md:text-[10px] font-extrabold block mb-0.5 md:mb-1" style="color: var(--text-muted);">Stok (0=SOLD OUT)</label>
-              <input type="number" value="${p.stok}" data-idx="${i}" data-field="stok" class="admin-input text-[10px] md:text-[11px] font-bold">
-            </div>
-          </div>
-        </div>
-      `).join("");
+      var container = document.getElementById("adminContent");
+      var html = '';
+      for (var i = 0; i < parfumData.length; i++) {
+        var p = parfumData[i];
+        var uk = p.ukuran || "35ml";
+        html += '<div class="rounded-xl md:rounded-2xl p-3 md:p-4" style="background: var(--bg-alt); border: 1px solid var(--border);">' +
+          '<div class="flex items-start gap-2.5 md:gap-3 mb-2.5 md:mb-3">' +
+            '<img id="ap-' + i + '" src="' + p.gambar + '" class="w-14 h-14 md:w-16 md:h-16 rounded-lg md:rounded-xl object-cover flex-shrink-0" style="border: 1px solid var(--border);" onerror="this.src=\'https://placehold.co/100x100/1C1814/D4A574?text=' + encodeURIComponent(p.nama) + '\'">' +
+            '<div class="flex-1 min-w-0">' +
+              '<span class="text-[10px] font-extrabold accent-text">#' + (i + 1) + '</span>' +
+              '<input type="text" value="' + p.nama + '" data-idx="' + i + '" data-field="nama" class="admin-input mt-0.5 font-extrabold text-xs md:text-sm" style="color: var(--text);">' +
+            '</div>' +
+            '<button onclick="deleteParfum(' + i + ')" class="w-7 h-7 md:w-8 md:h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors" style="color: var(--text-muted);" onmouseover="this.style.color=\'#EF4444\';this.style.background=\'rgba(239,68,68,0.08)\'" onmouseout="this.style.color=\'var(--text-muted)\';this.style.background=\'transparent\'"><i data-lucide="trash-2" class="w-3 h-3 md:w-3.5 md:h-3.5"></i></button>' +
+          '</div>' +
+
+          '<div class="file-upload-btn mb-2.5 md:mb-3">' +
+            '<input type="file" accept="image/*" onchange="handleImageUpload(this, ' + i + ')">' +
+            '<span>📁</span>' +
+            '<span id="fl-' + i + '">Pilih Gambar dari File</span>' +
+          '</div>' +
+
+          '<div class="grid grid-cols-3 gap-1.5 md:gap-2">' +
+            '<div>' +
+              '<label class="text-[9px] md:text-[10px] font-extrabold block mb-0.5 md:mb-1" style="color: var(--text-muted);">Harga (IDR)</label>' +
+              '<input type="number" value="' + p.harga + '" data-idx="' + i + '" data-field="harga" class="admin-input text-[10px] md:text-[11px] font-bold">' +
+            '</div>' +
+            '<div>' +
+              '<label class="text-[9px] md:text-[10px] font-extrabold block mb-0.5 md:mb-1" style="color: var(--text-muted);">Stok</label>' +
+              '<input type="number" value="' + p.stok + '" data-idx="' + i + '" data-field="stok" class="admin-input text-[10px] md:text-[11px] font-bold">' +
+            '</div>' +
+            '<div>' +
+              '<label class="text-[9px] md:text-[10px] font-extrabold block mb-0.5 md:mb-1" style="color: var(--text-muted);">Ukuran</label>' +
+              '<input type="text" value="' + uk + '" data-idx="' + i + '" data-field="ukuran" class="admin-input text-[10px] md:text-[11px] font-bold">' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      }
+      container.innerHTML = html;
       lucide.createIcons();
     }
 
     function addNewParfum() {
-      const newId = parfumData.length > 0 ? Math.max(...parfumData.map(p => p.id)) + 1 : 1;
-      parfumData.push({
-        id: newId,
-        nama: "Parfum Baru",
-        gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Baru",
-        harga: 200000,
-        stok: 10
-      });
+      var newId = parfumData.length > 0 ? Math.max.apply(null, parfumData.map(function(p) { return p.id; })) + 1 : 1;
+      parfumData.push({ id: newId, nama: "Parfum Baru", gambar: "https://placehold.co/400x500/1C1814/D4A574?text=Baru", harga: 200000, stok: 10, ukuran: "35ml" });
       renderAdminPanel();
     }
 
     function deleteParfum(idx) {
-      if (confirm(`Hapus "${parfumData[idx].nama}"?`)) {
+      if (confirm("Hapus \"" + parfumData[idx].nama + "\"?")) {
         parfumData.splice(idx, 1);
         renderAdminPanel();
       }
     }
 
     function saveAdminData() {
-      const inputs = document.querySelectorAll("#adminContent .admin-input");
-      inputs.forEach(inp => {
-        const idx = parseInt(inp.dataset.idx);
-        const field = inp.dataset.field;
+      var inputs = document.querySelectorAll("#adminContent .admin-input");
+      inputs.forEach(function(inp) {
+        var idx = parseInt(inp.dataset.idx);
+        var field = inp.dataset.field;
         if (field === "harga" || field === "stok") {
           parfumData[idx][field] = parseInt(inp.value) || 0;
         } else {
