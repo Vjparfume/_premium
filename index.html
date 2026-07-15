@@ -404,6 +404,14 @@
       box-shadow: 0 6px 20px rgba(34,197,94,0.25);
       transform: translateY(-1px);
     }
+
+    @keyframes pulseBorder {
+      0%, 100% { border-color: rgba(34,197,94,0.3); }
+      50% { border-color: rgba(34,197,94,0.8); }
+    }
+    .pulse-green-border {
+      animation: pulseBorder 2s ease-in-out infinite;
+    }
   </style>
 </head>
 <body>
@@ -664,22 +672,21 @@
           <button onclick="closeAdminModal()" class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center transition-colors" style="background: var(--bg-alt);"><i data-lucide="x" class="w-4 h-4" style="color: var(--text-sec);"></i></button>
         </div>
         <div class="gold-divider mx-4 md:mx-5"></div>
-        <div class="px-4 md:px-5 py-2.5 md:py-3 flex-shrink-0 rounded-b-xl mx-3 mt-1" style="background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.12);">
-          <p class="text-[11px] md:text-xs leading-relaxed font-extrabold" style="color: #22C55E;">📌 CARA BIAR GAMBAR MUNCUL DI SEMUA DEVICE:</p>
-          <p class="text-[11px] md:text-xs leading-relaxed font-bold mt-1" style="color: var(--text-sec);">1. Buka <a href="https://imgbb.com" target="_blank" style="color:#7DD3FC;text-decoration:underline;font-weight:800;">imgbb.com</a> → upload foto parfum</p>
-          <p class="text-[11px] md:text-xs leading-relaxed font-bold" style="color: var(--text-sec);">2. Copy link yang ada tulisan <strong style="color:#7DD3FC;">"Direct link"</strong> (bukan page link)</p>
-          <p class="text-[11px] md:text-xs leading-relaxed font-bold" style="color: var(--text-sec);">3. Paste di kolom <strong style="color:#7DD3FC;">🔗 URL Gambar</strong> di bawah setiap produk</p>
-          <p class="text-[11px] md:text-xs leading-relaxed font-bold" style="color: var(--text-sec);">4. Klik <strong style="color:#22C55E;">"⬇️ Download HTML"</strong> → share file hasil download ke mana pun</p>
-          <p class="text-[10px] md:text-[11px] leading-relaxed font-bold mt-1" style="color: #F59E0B;">⚠️ Kolom "📁 Pilih Gambar" HANYA preview di browser ini — tidak muncul di device lain!</p>
+        <div class="px-4 md:px-5 py-3 flex-shrink-0 rounded-xl mx-3 mt-2 pulse-green-border" style="background: rgba(34,197,94,0.08); border: 2px solid rgba(34,197,94,0.3);">
+          <p class="text-[12px] md:text-sm leading-relaxed font-extrabold" style="color: #22C55E;">📌 CARA BIAR GAMBAR MUNCUL DI SEMUA DEVICE:</p>
+          <p class="text-[11px] md:text-xs leading-relaxed font-bold mt-1.5" style="color: var(--text-sec);">1. Klik <strong style="color: var(--accent);">📁 Pilih Gambar</strong> di bawah setiap produk → pilih foto parfum</p>
+          <p class="text-[11px] md:text-xs leading-relaxed font-bold" style="color: var(--text-sec);">2. Setelah semua gambar dipasang, klik <strong style="color: #22C55E;">"💾 Simpan & Download"</strong></p>
+          <p class="text-[11px] md:text-xs leading-relaxed font-bold" style="color: var(--text-sec);">3. File HTML akan otomatis terdownload — <strong style="color: #7DD3FC;">file itulah yang kamu share</strong></p>
+          <p class="text-[11px] md:text-xs leading-relaxed font-bold" style="color: var(--text-sec);">4. Buka file download itu di HP lain, email lain, incognito — <strong style="color: #22C55E;">gambar PASTI muncul</strong></p>
+          <p class="text-[10px] md:text-[11px] leading-relaxed font-extrabold mt-2" style="color: #F59E0B;">⚠️ File LAMA tidak akan berubah! Selalu pakai file HASIL DOWNLOAD terbaru!</p>
         </div>
         <div id="adminContent" class="flex-1 overflow-y-auto px-4 md:px-5 pb-3 md:pb-4 space-y-2.5 md:space-y-3"></div>
         <div class="p-4 md:p-5 pt-2.5 md:pt-3 flex flex-col gap-2 flex-shrink-0" style="border-top: 1px solid var(--border);">
           <div class="flex flex-col sm:flex-row gap-2">
             <button onclick="addNewParfum()" class="flex-1 py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-extrabold flex items-center justify-center gap-2 transition-all" style="background: var(--bg-alt); color: var(--text-sec); border: 1px solid var(--border);" onmouseover="this.style.borderColor='var(--border-accent)'" onmouseout="this.style.borderColor='var(--border)'"><i data-lucide="plus" class="w-4 h-4"></i> Tambah Parfum</button>
-            <button onclick="saveAdminData()" class="flex-1 btn-primary py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-extrabold flex items-center justify-center gap-2"><i data-lucide="save" class="w-4 h-4"></i> Simpan Semua</button>
             <button onclick="resetToDefault()" class="py-2.5 md:py-3 px-3 md:px-4 rounded-xl text-xs md:text-sm font-extrabold flex items-center justify-center gap-2 transition-all" style="background: rgba(239,68,68,0.06); color: #EF4444; border: 1px solid rgba(239,68,68,0.15);" onmouseover="this.style.background='rgba(239,68,68,0.1)'" onmouseout="this.style.background='rgba(239,68,68,0.06)'"><i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset</button>
           </div>
-          <button onclick="downloadHTML()" class="w-full btn-download-html py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-extrabold flex items-center justify-center gap-2"><i data-lucide="download" class="w-4 h-4"></i> ⬇️ Download HTML (share ke email/HP lain — gambar pasti muncul)</button>
+          <button onclick="saveAndDownload()" class="w-full btn-download-html py-3 md:py-3.5 rounded-xl text-sm md:text-base font-extrabold flex items-center justify-center gap-2.5"><i data-lucide="download" class="w-5 h-5"></i> 💾 SIMPAN & DOWNLOAD HTML</button>
         </div>
       </div>
     </div>
@@ -726,7 +733,7 @@
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxAD2_1eEHv4iSFFFfqI1Wl35escLyzph03SXXHr1-FU5gTxJgQMpyQ3rX5gGF6OsYiOg/exec";
 
     // ═══════════════════════════════════════════════════════
-    //  🔐 ADMIN PASSWORD — GANTI SESUAI KEINGINAN MU
+    //  🔐 ADMIN PASSWORD
     // ═══════════════════════════════════════════════════════
     const ADMIN_PASSWORD = "vjadmin2025";
 
@@ -743,7 +750,7 @@
     function fmtIDR(idr) { return 'Rp ' + idr.toLocaleString('id-ID'); }
 
     // ═══════════════════════════════════════════════════════
-    //  🖼️ PLACEHOLDER GAMBAR — SVG INLINE (TIDAK AKAN KEBLOK)
+    //  🖼️ PLACEHOLDER — SELALU MUNCUL, TIDAK PERLU INTERNET
     // ═══════════════════════════════════════════════════════
     function placeholderImg(text) {
       return "data:image/svg+xml," + encodeURIComponent(
@@ -757,18 +764,13 @@
       );
     }
 
-    // ═══════════════════════════════════════════════════════
-    //  🖼️ HANDLE GAMBAR ERROR — FALLBACK KE PLACEHOLDER
-    // ═══════════════════════════════════════════════════════
     function handleImgError(imgEl, nama) {
       imgEl.onerror = null;
       imgEl.src = placeholderImg(nama);
     }
 
     // ═══════════════════════════════════════════════════════
-    //  🌸 DATA PARFUM DEFAULT — SEMUA GAMBAR DIKOSONGKAN
-    //  gambarUrl = paste link dari imgbb.com di sini
-    //  gambar = fallback placeholder SVG (selalu muncul)
+    //  🌸 DATA DEFAULT — GAMBAR KOSONG, NANTI KAMU ISI
     // ═══════════════════════════════════════════════════════
     const defaultParfumData = [
       { id: 1, nama: "SCANDALOUS", gambar: placeholderImg("SCANDALOUS"), gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
@@ -779,13 +781,13 @@
     ];
 
     // ═══════════════════════════════════════
-    //  LOAD DATA DARI LOCALSTORAGE ATAU DEFAULT
+    //  LOAD / SAVE
     // ═══════════════════════════════════════
     function loadParfumData() {
-      const saved = localStorage.getItem('vj_parfum_data');
+      var saved = localStorage.getItem('vj_parfum_data');
       if (saved) {
         try {
-          const parsed = JSON.parse(saved);
+          var parsed = JSON.parse(saved);
           if (Array.isArray(parsed) && parsed.length > 0) {
             parsed.forEach(function(p) {
               if (!p.ukuran) p.ukuran = "35ml";
@@ -800,23 +802,22 @@
 
     function saveParfumToStorage(data) {
       try { localStorage.setItem('vj_parfum_data', JSON.stringify(data)); }
-      catch(e) { alert('⚠️ Penyimpanan penuh! Upload gambar lebih kecil atau kurangi parfum.'); }
+      catch(e) { alert('Penyimpanan penuh! Upload gambar lebih kecil.'); }
     }
 
-    let parfumData = loadParfumData();
+    var parfumData = loadParfumData();
 
     // ═══════════════════════════════════════
     //  STATE
     // ═══════════════════════════════════════
-    let currentSearch = "";
-    let selectedParfum = null;
-    let currentQty = 1;
-    let logoClickCount = 0;
-    let logoClickTimer = null;
+    var currentSearch = "";
+    var selectedParfum = null;
+    var currentQty = 1;
+    var logoClickCount = 0;
+    var logoClickTimer = null;
 
     // ═══════════════════════════════════════
-    //  AMBIL GAMBAR YANG BENAR:
-    //  Prioritas: gambarUrl (publik) > gambar (lokal) > placeholder
+    //  AMBIL GAMBAR: gambarUrl > gambar > placeholder
     // ═══════════════════════════════════════
     function getImgSrc(p) {
       if (p.gambarUrl && p.gambarUrl.trim() !== "") return p.gambarUrl;
@@ -1042,7 +1043,7 @@
     }
 
     // ═══════════════════════════════════════
-    //  ADMIN
+    //  ADMIN — KLIK LOGO 5X
     // ═══════════════════════════════════════
     document.getElementById("logoArea").addEventListener("click", function() {
       logoClickCount++;
@@ -1091,7 +1092,14 @@
       container.innerHTML = parfumData.map(function(p, idx) {
         var imgSrc = getImgSrc(p);
         var urlVal = (p.gambarUrl || "").replace(/"/g, "&quot;");
+        var hasImg = p.gambarUrl && p.gambarUrl.trim() !== "" || (p.gambar && p.gambar.indexOf("data:") === 0);
+        var statusText = hasImg ? '<span style="color:#22C55E;">✅ Gambar OK</span>' : '<span style="color:#F59E0B;">⬜ Belum ada gambar</span>';
+
         return '<div class="rounded-xl p-3 md:p-4" style="background: var(--bg-alt); border: 1px solid var(--border);">' +
+          '<div class="flex items-center justify-between mb-2">' +
+            '<span class="text-[11px] font-extrabold" style="color: var(--text-muted);">#' + (idx + 1) + '</span>' +
+            statusText +
+          '</div>' +
           '<div class="flex gap-3">' +
             '<div class="flex-shrink-0 w-16 h-20 md:w-20 md:h-24">' +
               '<img src="' + imgSrc + '" class="admin-img-preview" onerror="handleImgError(this,\'' + p.nama.replace(/'/g, "\\'") + '\')">' +
@@ -1106,10 +1114,9 @@
                 '<input type="number" value="' + p.stok + '" onchange="updateAdminField(' + idx + ',\'stok\',parseInt(this.value)||0)" class="admin-input" placeholder="Stok" style="flex:1; min-width:70px;">' +
                 '<button onclick="deleteParfum(' + idx + ')" class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all" style="background: rgba(239,68,68,0.06); color: #EF4444; border: 1px solid rgba(239,68,68,0.15);" onmouseover="this.style.background=\'rgba(239,68,68,0.15)\'" onmouseout="this.style.background=\'rgba(239,68,68,0.06)\'"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>' +
               '</div>' +
-              '<input type="text" value="' + urlVal + '" onchange="updateAdminField(' + idx + ',\'gambarUrl\',this.value)" class="admin-url-input" placeholder="🔗 Paste Direct Link dari imgbb.com di sini...">' +
               '<div class="file-upload-btn">' +
                 '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>' +
-                '<span>📁 Pilih Gambar (hanya preview di browser ini)</span>' +
+                '<span>📁 Pilih Gambar Parfum</span>' +
                 '<input type="file" accept="image/*" onchange="handleFileUpload(event,' + idx + ')">' +
               '</div>' +
             '</div>' +
@@ -1125,17 +1132,26 @@
       }
     }
 
+    // ═══════════════════════════════════════════════════════
+    //  🖼️ UPLOAD GAMBAR — DISIMPAN KE gambarUrl SEKALIGUS
+    //  INI YANG BIKIN GAMBAR TERTANAM DI FILE HTML HASIL DOWNLOAD
+    // ═══════════════════════════════════════════════════════
     function handleFileUpload(event, idx) {
       var file = event.target.files[0];
       if (!file) return;
+
       if (file.size > 2 * 1024 * 1024) {
-        alert("⚠️ File terlalu besar! Maksimal 2MB.");
+        alert("⚠️ File terlalu besar! Maksimal 2MB. Coba kompres dulu fotonya.");
         event.target.value = "";
         return;
       }
+
       var reader = new FileReader();
       reader.onload = function(e) {
-        parfumData[idx].gambar = e.target.result;
+        var base64 = e.target.result;
+        // SIMPAN KE DUA TEMPAT: gambar (lokal) DAN gambarUrl (untuk download HTML)
+        parfumData[idx].gambar = base64;
+        parfumData[idx].gambarUrl = base64;
         renderAdminPanel();
       };
       reader.readAsDataURL(file);
@@ -1168,37 +1184,39 @@
       container.scrollTop = container.scrollHeight;
     }
 
-    function saveAdminData() {
-      saveParfumToStorage(parfumData);
-      renderProducts();
-      alert("✅ Data berhasil disimpan!");
-    }
-
-    function resetToDefault() {
-      if (confirm("⚠️ Reset semua data ke default? Data yang sudah di-edit akan hilang!")) {
-        localStorage.removeItem('vj_parfum_data');
-        parfumData = JSON.parse(JSON.stringify(defaultParfumData));
-        renderAdminPanel();
-        renderProducts();
-        alert("✅ Data berhasil di-reset ke default!");
-      }
-    }
-
     // ═══════════════════════════════════════════════════════
-    //  ⬇️ DOWNLOAD HTML — SHARE KE MANA PUN, GAMBAR TETAP MUNCUL
-    //  Cara kerja: URL gambar yang kamu paste di kolom "URL Gambar"
-    //  akan langsung tertanam di dalam file HTML ini.
-    //  Jadi file ini STANDALONE — buka di mana pun gambar muncul.
+    //  💾 SIMPAN & DOWNLOAD — SATU TOMBOL UNTUK SEMUA
+    //  Simpan ke localStorage + download HTML yang berisi gambar
     // ═══════════════════════════════════════════════════════
-    function downloadHTML() {
-      // Cek apakah ada gambarUrl yang terisi
-      var adaGambarUrl = parfumData.some(function(p) { return p.gambarUrl && p.gambarUrl.trim() !== ""; });
+    function saveAndDownload() {
+      // Cek dulu apakah ada gambar yang sudah dipasang
+      var adaGambar = parfumData.some(function(p) {
+        return p.gambarUrl && p.gambarUrl.trim() !== "" && p.gambarUrl.indexOf("data:") === 0;
+      });
 
-      if (!adaGambarUrl) {
-        alert("⚠️ BELUM ADA GAMBAR YANG DIISI!\n\nKamu harus isi kolom '🔗 URL Gambar' dulu untuk setiap parfum.\n\nCaranya:\n1. Buka imgbb.com\n2. Upload foto parfum\n3. Copy 'Direct link'\n4. Paste di kolom URL Gambar\n5. Ulangi untuk semua parfum\n6. Lalu klik Download HTML lagi");
+      if (!adaGambar) {
+        alert("⚠️ BELUM ADA GAMBAR YANG DIPASANG!\n\nKlik '📁 Pilih Gambar Parfum' dulu untuk setiap produk,\nlalu baru klik 'Simpan & Download' lagi.");
         return;
       }
 
+      // Cek yang belum ada gambar
+      var belumAda = parfumData.filter(function(p) {
+        return !p.gambarUrl || p.gambarUrl.trim() === "" || p.gambarUrl.indexOf("data:") !== 0;
+      });
+
+      var lanjut = true;
+      if (belumAda.length > 0) {
+        var namaBelum = belumAda.map(function(p) { return p.nama; }).join(", ");
+        lanjut = confirm("⚠️ Produk ini belum ada gambar:\n\n" + namaBelum + "\n\nLanjutkan tetap download? (Produk tanpa gambar akan tampil placeholder)");
+      }
+
+      if (!lanjut) return;
+
+      // Simpan ke localStorage dulu
+      saveParfumToStorage(parfumData);
+      renderProducts();
+
+      // Download HTML dengan gambar tertanam
       var dataStr = JSON.stringify(parfumData, null, 2);
       var html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
 
@@ -1230,7 +1248,17 @@
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
 
-      alert("✅ HTML berhasil didownload!\n\nFile ini sudah berisi semua data parfum + URL gambar.\nShare file ini ke email, HP, atau device lain — gambar PASTI MUNCUL!");
+      alert("✅ BERHASIL!\n\nFile 'vj-parfume.html' sudah terdownload.\n\n📁 BUKA FILE ITU di HP lain, email lain, atau incognito — gambar PASTI MUNCUL!\n\n⚠️ JANGAN pakai file lama lagi — selalu pakai file hasil download terbaru!");
+    }
+
+    function resetToDefault() {
+      if (confirm("⚠️ Reset semua data ke default? Gambar yang sudah dipasang akan hilang!")) {
+        localStorage.removeItem('vj_parfum_data');
+        parfumData = JSON.parse(JSON.stringify(defaultParfumData));
+        renderAdminPanel();
+        renderProducts();
+        alert("✅ Data berhasil di-reset ke default!");
+      }
     }
 
     // ═══════════════════════════════════════
