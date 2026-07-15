@@ -32,27 +32,36 @@
       --border-accent: rgba(212, 165, 116, 0.2);
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    /* SISTEM BACKGROUND BARU BIAR GA NGELAG & GA BERANTAKAN DI HP */
+    html, body {
+      background-color: var(--bg);
+      min-height: 100%;
+    }
     body {
       font-family: 'Inter', sans-serif;
-      background-color: var(--bg);
       color: var(--text);
       overflow-x: hidden;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: fixed; /* Fixed biar ga geser gesar */
+      top: 0; left: 0; right: 0; bottom: 0;
       background-image: url('https://lh3.googleusercontent.com/d/1z2MYAcummRU0bv5Ery5cl3Xq3VyW0vkg');
       background-size: cover;
       background-position: center center;
-      background-attachment: scroll; /* DIUBAH DARI FIXED BIAR GA NGELAG */
       background-repeat: no-repeat;
+      z-index: -2; /* Di paling bawah */
     }
-    body::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      min-height: 100vh;
-      background: rgba(13, 10, 8, 0.80);
-      z-index: 0;
-      pointer-events: none;
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(13, 10, 8, 0.80); /* Gelapin background */
+      z-index: -1;
     }
-    body > * { position: relative; z-index: 1; }
+    /* SELESAI SISTEM BACKGROUND */
 
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: var(--bg-alt); }
@@ -72,7 +81,6 @@
       background: linear-gradient(135deg, #D4A574 0%, #B8865A 100%);
     }
 
-    /* ANIMASI PELANGI DIPERKUAT BIAR PASTI MUNCUL */
     @keyframes rainbowGlow {
       0%   { color: #FFD700 !important; text-shadow: 0 0 15px rgba(255,215,0,0.8), 0 0 40px rgba(255,215,0,0.4); transform: scale(1.02); }
       16%  { color: #FF69B4 !important; text-shadow: 0 0 15px rgba(255,105,180,0.8), 0 0 40px rgba(255,105,180,0.4); transform: scale(1); }
@@ -119,12 +127,12 @@
     /* KOTAK PARFUM DIBUAT SANGAT MEWAH */
     .perfume-card {
       background: linear-gradient(160deg, rgba(45, 38, 28, 0.92) 0%, rgba(18, 14, 10, 0.98) 100%);
-      border: 1px solid rgba(212, 165, 116, 0.3); /* BORDER EMAS TIPIS */
+      border: 1px solid rgba(212, 165, 116, 0.3);
       border-radius: 16px;
       overflow: hidden;
       transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
       position: relative;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08); /* SHADOW DALAM MEWAH */
+      box-shadow: 0 8px 32px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08);
       backdrop-filter: blur(16px);
       display: flex;
       flex-direction: column;
@@ -140,7 +148,7 @@
       background: radial-gradient(circle at 50% 30%, rgba(212,165,116,0.15) 0%, rgba(28,24,20,0.5) 80%);
     }
 
-    /* NAMA VARIAN DIBERI TULISAN EMAS MEWAH (BUKAN PUTIH POLOS) */
+    /* NAMA VARIAN EMAS MEWAH */
     .variant-name {
       background: linear-gradient(to right, #F0E8E0, #D4A574);
       -webkit-background-clip: text;
@@ -151,7 +159,7 @@
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
     }
 
-    /* TULISAN HARGA DIPERBAIKI JADI METALLIC GOLD (BUKAN KUNING JELEK) */
+    /* TULISAN HARGA METALLIC GOLD */
     .price-gold {
       background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
       -webkit-background-clip: text;
@@ -286,7 +294,6 @@
     </a>
   </nav>
 
-  <!-- KATA-KATA WELCOME DIPERBAIKI JADI LEBIH MENARIK -->
   <section class="min-h-screen flex flex-col items-center justify-center text-center px-5 md:px-6 relative overflow-hidden hero-pattern">
     <div class="anim-fade-up mb-6 md:mb-8">
       <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full" style="border: 1px solid var(--border-accent); background: rgba(212,165,116,0.04); backdrop-filter: blur(10px);">
@@ -561,7 +568,7 @@
     });
 
     // GANTI LINK INI DENGAN WEB APP URL DARI GOOGLE APPS SCRIPT KAMU!
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzVh_4diHgmUV7weqfASdYB6JwLWiuwciNx-J3xw8uVx1ivs1cL4UvH0qvqIX7fIaLGQw/exec"; 
+    const GOOGLE_SCRIPT_URL = "MASUKAN_LINK_GOOGLE_SCRIPT_DISINI"; 
     const ADMIN_PASSWORD = "vjadmin2025";
 
     const KURS_USD_TO_IDR = 16000;
@@ -613,45 +620,42 @@
       { id: 20, nama: "CRYSTAL MIST", gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" }
     ];
 
-    function loadParfumData() {
-      var saved = localStorage.getItem('vj_parfum_data');
-      if (saved) {
-        try {
-          var parsed = JSON.parse(saved);
-          if (Array.isArray(parsed) && parsed.length > 0) {
-            parsed.forEach(function(p) {
-              if (!p.ukuran) p.ukuran = "35ml";
-              if (p.gambarUrl === undefined || p.gambarUrl === null) p.gambarUrl = "";
-            });
-            return parsed;
-          }
-        } catch(e) {}
-      }
-      return JSON.parse(JSON.stringify(defaultParfumData));
-    }
+    var parfumData = JSON.parse(JSON.stringify(defaultParfumData)); // Default awal
 
     function saveParfumToStorage(data) {
       try { localStorage.setItem('vj_parfum_data', JSON.stringify(data)); }
-      catch(e) { alert('Penyimpanan penuh!'); }
+      catch(e) {}
     }
 
-    var parfumData = loadParfumData();
-
-    // FUNGSI BARU UNTUK AMBIL DATA DARI GOOGLE SHEETS (BIAR MUNCUL DI SEMUA HP)
+    // FUNGSI AMBIL DATA DARI GOOGLE SHEETS (PRIORITAS UTAMA)
     function fetchGoogleSheetsData() {
       if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL.includes("script.google.com")) {
         fetch(GOOGLE_SCRIPT_URL)
           .then(response => response.json())
           .then(data => {
             if (data && Array.isArray(data) && data.length > 0) {
-              parfumData = data;
+              parfumData = data; // Data Google Sheet menimpa data lokal
               saveParfumToStorage(parfumData);
-              renderProducts(); // Render ulang produk dengan data dari Google
+              renderProducts(); // Render ulang dengan data dari Google
             }
           })
-          .catch(error => {
-            console.log("Gagal fetch Google Sheet, memakai data lokal.");
-          });
+          .catch(error => console.log("Gagal fetch Google Sheet:", error));
+      } else {
+        // Kalau URL Google Script belum diisi, pakai data lokal saja
+        var saved = localStorage.getItem('vj_parfum_data');
+        if (saved) {
+          try {
+            var parsed = JSON.parse(saved);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              parsed.forEach(function(p) {
+                if (!p.ukuran) p.ukuran = "35ml";
+                if (p.gambarUrl === undefined || p.gambarUrl === null) p.gambarUrl = "";
+              });
+              parfumData = parsed;
+            }
+          } catch(e) {}
+        }
+        renderProducts();
       }
     }
 
@@ -683,7 +687,6 @@
       }
       empty.classList.add("hidden");
 
-      // HARGA PAKE PRICE-GOLD, NAMA PAKE VARIANT-NAME
       grid.innerHTML = filtered.map(function(p, i) {
         var isSoldOut = p.stok === 0;
         var isLow = p.stok > 0 && p.stok <= 3;
@@ -820,6 +823,30 @@
       else if (selectedPayment === "USD") { payString = "Dollar ($)"; totalString = fmtUSD(totalUSD); }
       else if (selectedPayment === "KHR") { payString = "Riel (៛)"; totalString = fmtKHR(totalKHR); }
 
+      // KIRIM DATA KE GOOGLE SHEET & EMAIL
+      if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL.includes("script.google.com")) {
+        fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          body: JSON.stringify({
+            nama: nama,
+            parfumNama: selectedParfum.nama,
+            parfumUkuran: selectedParfum.ukuran,
+            jumlah: currentQty,
+            bayar: payString,
+            total: totalString,
+            catatan: catatan
+          })
+        })
+        .then(res => res.json())
+        .then(res => {
+          console.log("Berhasil simpan ke sheet & kirim email", res);
+        })
+        .catch(err => {
+          console.log("Gagal simpan ke sheet:", err);
+        });
+      }
+
+      // KIRIM NOTIFIKASI KE TELEGRAM
       var tgMsg = "🌸 *PESANAN BARU VJ PARFUME* 🌸%0A%0A" +
                   "👤 *Nama:* " + encodeURIComponent(nama) + "%0A" +
                   "🧴 *Parfum:* " + encodeURIComponent(selectedParfum.nama) + " (" + encodeURIComponent(selectedParfum.ukuran) + ")%0A" +
@@ -931,9 +958,9 @@
       }
     }
 
-    renderProducts();
+    // INIT: PANGGIL DATA DARI GOOGLE SHEET SAAT PERTAMA KALI WEB DIBUKA
     lucide.createIcons();
-    fetchGoogleSheetsData(); // PANGGIL DATA DARI GOOGLE SHEET SAAT PERTAMA KALI WEB DIBUKA
+    fetchGoogleSheetsData(); 
   </script>
 </body>
 </html>
