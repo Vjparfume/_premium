@@ -33,7 +33,7 @@
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
-    /* SISTEM BACKGROUND BARU BIAR GA NGELAG & GA BERANTAKAN DI HP */
+    /* SISTEM BACKGROUND ANTI LAG & GA BERANTAKAN */
     html, body {
       background-color: var(--bg);
       min-height: 100%;
@@ -44,24 +44,21 @@
       overflow-x: hidden;
       position: relative;
     }
-    body::before {
-      content: "";
-      position: fixed; /* Fixed biar ga geser gesar */
-      top: 0; left: 0; right: 0; bottom: 0;
+    .bg-layer {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -2;
       background-image: url('https://lh3.googleusercontent.com/d/1z2MYAcummRU0bv5Ery5cl3Xq3VyW0vkg');
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
-      z-index: -2; /* Di paling bawah */
     }
-    body::after {
-      content: "";
+    .bg-overlay {
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(13, 10, 8, 0.80); /* Gelapin background */
+      top: 0; left: 0; width: 100%; height: 100%;
       z-index: -1;
+      background: rgba(13, 10, 8, 0.80);
     }
-    /* SELESAI SISTEM BACKGROUND */
 
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: var(--bg-alt); }
@@ -124,23 +121,23 @@
     .d4 { animation-delay: 0.4s; }
     .d5 { animation-delay: 0.5s; }
 
-    /* KOTAK PARFUM DIBUAT SANGAT MEWAH */
+    /* KOTAK PARFUM MEWAH & BERLAMPU */
     .perfume-card {
       background: linear-gradient(160deg, rgba(45, 38, 28, 0.92) 0%, rgba(18, 14, 10, 0.98) 100%);
-      border: 1px solid rgba(212, 165, 116, 0.3);
+      border: 1px solid rgba(212, 165, 116, 0.4);
       border-radius: 16px;
       overflow: hidden;
       transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
       position: relative;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 20px rgba(212,165,116,0.08), inset 0 1px 0 rgba(255,255,255,0.08);
       backdrop-filter: blur(16px);
       display: flex;
       flex-direction: column;
     }
     .perfume-card:hover {
       transform: translateY(-8px);
-      border-color: rgba(212, 165, 116, 0.6);
-      box-shadow: 0 20px 50px rgba(212,165,116,0.15), 0 0 0 1px rgba(212,165,116,0.2);
+      border-color: rgba(212, 165, 116, 0.8);
+      box-shadow: 0 20px 50px rgba(212,165,116,0.2), 0 0 30px rgba(212,165,116,0.15);
     }
     .perfume-card:hover .card-img { transform: scale(1.06); }
     .card-img { transition: transform 0.7s cubic-bezier(0.16,1,0.3,1); }
@@ -148,7 +145,7 @@
       background: radial-gradient(circle at 50% 30%, rgba(212,165,116,0.15) 0%, rgba(28,24,20,0.5) 80%);
     }
 
-    /* NAMA VARIAN EMAS MEWAH */
+    /* NAMA VARIAN LAMPU EMAS */
     .variant-name {
       background: linear-gradient(to right, #F0E8E0, #D4A574);
       -webkit-background-clip: text;
@@ -156,10 +153,10 @@
       color: transparent;
       font-weight: 800;
       letter-spacing: 0.03em;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
+      filter: drop-shadow(0 0 8px rgba(212, 165, 116, 0.7));
     }
 
-    /* TULISAN HARGA METALLIC GOLD */
+    /* HARGA EMAS LEBIH BESAR */
     .price-gold {
       background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
       -webkit-background-clip: text;
@@ -279,6 +276,9 @@
   </style>
 </head>
 <body>
+
+  <div class="bg-layer"></div>
+  <div class="bg-overlay"></div>
 
   <nav class="fixed top-0 left-0 right-0 z-40 h-14 md:h-16 flex items-center justify-between px-4 md:px-8"
        style="background: rgba(19,16,12,0.88); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border);">
@@ -442,7 +442,7 @@
           <p class="font-extrabold text-xs mt-0.5" style="color: var(--accent);" id="modalUkuran"></p>
           <div class="mt-1 space-y-0.5">
             <p class="font-black text-base md:text-lg price-gold" id="modalHargaIDR"></p>
-            <p class="font-bold text-[11px]" style="color: var(--text-sec);" id="modalHargaUsdKhr"></p>
+            <p class="font-bold text-xs" style="color: var(--text-sec);" id="modalHargaUsdKhr"></p>
           </div>
         </div>
       </div>
@@ -487,7 +487,7 @@
         <div class="rounded-xl md:rounded-2xl p-4 md:p-5 text-center" style="background: var(--accent-pale); border: 1px solid var(--border-accent); box-shadow: inset 0 0 20px rgba(212,165,116,0.05);">
           <p class="text-[10px] md:text-xs font-extrabold mb-1.5 md:mb-2 tracking-wide" style="color: var(--text-sec);">TOTAL HARGA</p>
           <div id="totalHarga" class="font-black price-gold text-2xl md:text-3xl">Rp 0</div>
-          <div id="totalHargaAlt" class="font-bold text-xs mt-1" style="color: var(--text-sec);"></div>
+          <div id="totalHargaAlt" class="font-bold text-sm mt-1" style="color: var(--text-sec);"></div>
         </div>
         
         <button type="submit" id="submitBtn" class="w-full btn-primary rounded-xl md:rounded-2xl font-extrabold text-xs md:text-sm flex items-center justify-center gap-2.5 tracking-wide py-3.5 md:py-4">
@@ -525,20 +525,11 @@
         <div class="gold-divider mx-4 md:mx-5"></div>
         
         <div class="px-4 md:px-5 py-3 flex-shrink-0 rounded-xl mx-3 mt-2 pulse-green-border" style="background: rgba(34,197,94,0.08); border: 2px solid rgba(34,197,94,0.3);">
-          <p class="text-[12px] md:text-sm leading-relaxed font-extrabold" style="color: #22C55E;">📌 CARA BIAR GAMBAR MUNCUL DI SEMUA HP:</p>
-          <p class="text-[11px] md:text-xs leading-relaxed font-bold mt-1.5" style="color: var(--text-sec);">Upload foto parfummu ke internet (misal: <strong>postimages.org</strong>).</p>
-          <p class="text-[11px] md:text-xs leading-relaxed font-bold mt-1" style="color: var(--text-sec);">Copy link <strong style="color: #7DD3FC;">Direct Link</strong> dari postimages</p>
-          <p class="text-[11px] md:text-xs leading-relaxed font-bold mt-1" style="color: var(--text-sec);">Paste link tersebut ke kolom <strong style="color: var(--accent);">URL Gambar</strong> di bawah ini!</p>
-          <p class="text-[10px] md:text-[11px] leading-relaxed font-extrabold mt-2" style="color: #F59E0B;">⚠️ Jangan upload file dari HP langsung, itu cuma muncul di HP mu saja! Pakai URL Link!</p>
+          <p class="text-[12px] md:text-sm leading-relaxed font-extrabold" style="color: #22C55E;">📌 INFO STOK:</p>
+          <p class="text-[11px] md:text-xs leading-relaxed font-bold mt-1.5" style="color: var(--text-sec);">Atur jumlah stok parfum di bawah ini. Jika ada yang beli, stok akan <strong>berkurang otomatis</strong>. Jika stok 0, akan langsung tulisan <strong>SOLD OUT</strong>.</p>
         </div>
         
         <div id="adminContent" class="flex-1 overflow-y-auto px-4 md:px-5 pb-3 md:pb-4 space-y-2.5 md:space-y-3"></div>
-        <div class="p-4 md:p-5 pt-2.5 md:pt-3 flex flex-col gap-2 flex-shrink-0" style="border-top: 1px solid var(--border);">
-          <div class="flex flex-col sm:flex-row gap-2">
-            <button onclick="addNewParfum()" class="flex-1 py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-extrabold flex items-center justify-center gap-2 transition-all" style="background: var(--bg-alt); color: var(--text-sec); border: 1px solid var(--border);" onmouseover="this.style.borderColor='var(--border-accent)'" onmouseout="this.style.borderColor='var(--border)'"><i data-lucide="plus" class="w-4 h-4"></i> Tambah Parfum</button>
-            <button onclick="resetToDefault()" class="py-2.5 md:py-3 px-3 md:px-4 rounded-xl text-xs md:text-sm font-extrabold flex items-center justify-center gap-2 transition-all" style="background: rgba(239,68,68,0.06); color: #EF4444; border: 1px solid rgba(239,68,68,0.15);" onmouseover="this.style.background='rgba(239,68,68,0.1)'" onmouseout="this.style.background='rgba(239,68,68,0.06)'"><i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset</button>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -567,8 +558,8 @@
       }
     });
 
-    // GANTI LINK INI DENGAN WEB APP URL DARI GOOGLE APPS SCRIPT KAMU!
-    const GOOGLE_SCRIPT_URL = "MASUKAN_LINK_GOOGLE_SCRIPT_DISINI"; 
+    // MASUKAN LINK WEB APP KAMU DI BAWAH INI!
+    const GOOGLE_SCRIPT_URL = "MASUKAN_LINK_WEB_APP_KAMU_DISINI"; 
     const ADMIN_PASSWORD = "vjadmin2025";
 
     const KURS_USD_TO_IDR = 16000;
@@ -597,67 +588,55 @@
       imgEl.src = placeholderImg(nama);
     }
 
+    // =================: DATA PARFUM KAMU :=================
+    // GANTI LINK GAMBAR DI BAWAH INI DENGAN LINK POSTIMAGES.ORG KAMU!
     const defaultParfumData = [
-      { id: 1, nama: "SCANDALOUS", gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 2, nama: "BLACK OPIUM", gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 3, nama: "AVRIL LAVIGNE", gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 4, nama: "SOFT", gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 5, nama: "PINK CHIFFON", gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 6, nama: "VELVET ROSE", gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 7, nama: "GOLDEN MUSE", gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 8, nama: "MIDNIGHT OUD", gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 9, nama: "FRESH AQUA", gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 10, nama: "LAVENDER DREAM", gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 11, nama: "CITRUS BURST", gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 12, nama: "WOODLAND SPIRIT", gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 13, nama: "VANILLA SKY", gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 14, nama: "JASMINE PEARL", gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 15, nama: "AMBER NIGHT", gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 16, nama: "OCEAN BREEZE", gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 17, nama: "BERRY KISS", gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 18, nama: "MUSK ROYALE", gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 19, nama: "SUNSET BOULEVARD", gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 20, nama: "CRYSTAL MIST", gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" }
+      { id: 1, nama: "SCANDALOUS", gambarUrl: "https://i.postimg.cc/8z7bL2p5/scandalous.jpg", harga: 200000, stok: 5, ukuran: "35ml" },
+      { id: 2, nama: "BLACK OPIUM", gambarUrl: "https://i.postimg.cc/8z7bL2p5/scandalous.jpg", harga: 200000, stok: 5, ukuran: "35ml" },
+      { id: 3, nama: "AVRIL LAVIGNE", gambarUrl: "https://i.postimg.cc/8z7bL2p5/scandalous.jpg", harga: 200000, stok: 5, ukuran: "35ml" },
+      { id: 4, nama: "SOFT", gambarUrl: "https://i.postimg.cc/8z7bL2p5/scandalous.jpg", harga: 200000, stok: 5, ukuran: "35ml" },
+      { id: 5, nama: "PINK CHIFFON", gambarUrl: "https://i.postimg.cc/8z7bL2p5/scandalous.jpg", harga: 200000, stok: 5, ukuran: "35ml" },
+      { id: 6, nama: "VELVET ROSE", gambarUrl: "https://i.postimg.cc/8z7bL2p5/scandalous.jpg", harga: 200000, stok: 5, ukuran: "35ml" },
+      { id: 7, nama: "GOLDEN MUSE", gambarUrl: "https://i.postimg.cc/8z7bL2p5/scandalous.jpg", harga: 200000, stok: 5, ukuran: "35ml" },
+      { id: 8, nama: "MIDNIGHT OUD", gambarUrl: "https://i.postimg.cc/8z7bL2p5/scandalous.jpg", harga: 200000, stok: 5, ukuran: "35ml" },
+      { id: 9, nama: "FRESH AQUA", gambarUrl: "https://i.postimg.cc/8z7bL2p5/scandalous.jpg", harga: 200000, stok: 5, ukuran: "35ml" },
+      { id: 10, nama: "LAVENDER DREAM", gambarUrl: "https://i.postimg.cc/8z7bL2p5/scandalous.jpg", harga: 200000, stok: 5, ukuran: "35ml" },
+      { id: 11, nama: "CITRUS BURST", gambarUrl: "https://i.postimg.cc/8z7bL2p5/scandalous.jpg", harga: 200000, stok: 5, ukuran: "35ml" },
+      { id: 12, nama: "WOODLAND SPIRIT", gambarUrl: "https://i.postimg.cc/8z7bL2p5/scandalous.jpg", harga: 200000, stok: 5, ukuran: "35ml" },
+      { id: 13, nama: "VANILLA SKY", gambarUrl: "https://i.postimg.cc/8z7bL2p5/scandalous.jpg", harga: 200000, stok: 5, ukuran: "35ml" },
+      { id: 14, nama: "JASMINE PEARL", gambarUrl: "https://i.postimg.cc/8z7bL2p5/scandalous.jpg", harga: 200000, stok: 5, ukuran: "35ml" },
+      { id: 15, nama: "AMBER NIGHT", gambarUrl: "https://i.postimg.cc/8z7bL2p5/scandalous.jpg", harga: 200000, stok: 5, ukuran: "35ml" },
+      { id: 16, nama: "OCEAN BREEZE", gambarUrl: "https://i.postimg.cc/8z7bL2p5/scandalous.jpg", harga: 200000, stok: 5, ukuran: "35ml" },
+      { id: 17, nama: "BERRY KISS", gambarUrl: "https://i.postimg.cc/8z7bL2p5/scandalous.jpg", harga: 200000, stok: 5, ukuran: "35ml" },
+      { id: 18, nama: "MUSK ROYALE", gambarUrl: "https://i.postimg.cc/8z7bL2p5/scandalous.jpg", harga: 200000, stok: 5, ukuran: "35ml" },
+      { id: 19, nama: "SUNSET BOULEVARD", gambarUrl: "https://i.postimg.cc/8z7bL2p5/scandalous.jpg", harga: 200000, stok: 5, ukuran: "35ml" },
+      { id: 20, nama: "CRYSTAL MIST", gambarUrl: "https://i.postimg.cc/8z7bL2p5/scandalous.jpg", harga: 200000, stok: 5, ukuran: "35ml" }
     ];
 
-    var parfumData = JSON.parse(JSON.stringify(defaultParfumData)); // Default awal
+    var parfumData = JSON.parse(JSON.stringify(defaultParfumData));
 
-    function saveParfumToStorage(data) {
-      try { localStorage.setItem('vj_parfum_data', JSON.stringify(data)); }
-      catch(e) {}
-    }
-
-    // FUNGSI AMBIL DATA DARI GOOGLE SHEETS (PRIORITAS UTAMA)
-    function fetchGoogleSheetsData() {
-      if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL.includes("script.google.com")) {
-        fetch(GOOGLE_SCRIPT_URL)
-          .then(response => response.json())
-          .then(data => {
-            if (data && Array.isArray(data) && data.length > 0) {
-              parfumData = data; // Data Google Sheet menimpa data lokal
-              saveParfumToStorage(parfumData);
-              renderProducts(); // Render ulang dengan data dari Google
-            }
-          })
-          .catch(error => console.log("Gagal fetch Google Sheet:", error));
-      } else {
-        // Kalau URL Google Script belum diisi, pakai data lokal saja
-        var saved = localStorage.getItem('vj_parfum_data');
-        if (saved) {
-          try {
-            var parsed = JSON.parse(saved);
-            if (Array.isArray(parsed) && parsed.length > 0) {
-              parsed.forEach(function(p) {
-                if (!p.ukuran) p.ukuran = "35ml";
-                if (p.gambarUrl === undefined || p.gambarUrl === null) p.gambarUrl = "";
-              });
-              parfumData = parsed;
-            }
-          } catch(e) {}
-        }
-        renderProducts();
+    function loadParfumData() {
+      var saved = localStorage.getItem('vj_parfum_data');
+      if (saved) {
+        try {
+          var parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length === defaultParfumData.length) {
+            parsed.forEach(function(p, i) {
+              if (parfumData[i] && p.id === parfumData[i].id) {
+                parfumData[i].stok = p.stok;
+              }
+            });
+          }
+        } catch(e) {}
       }
     }
+
+    function saveParfumToStorage() {
+      try { localStorage.setItem('vj_parfum_data', JSON.stringify(parfumData)); }
+      catch(e) { alert('Penyimpanan penuh!'); }
+    }
+
+    loadParfumData();
 
     var currentSearch = "";
     var selectedParfum = null;
@@ -718,7 +697,7 @@
             '</div>' +
             '<div class="mt-auto">' +
               '<p class="price-gold text-sm md:text-base mb-0.5">' + fmtIDR(p.harga) + '</p>' +
-              '<p class="text-[9px] md:text-[10px] font-bold mb-2.5" style="color: var(--text-sec);">' + fmtUSD(usd) + ' · ' + fmtKHR(khr) + '</p>' +
+              '<p class="text-[10px] md:text-xs font-bold mb-2.5" style="color: var(--text-sec);">' + fmtUSD(usd) + ' · ' + fmtKHR(khr) + '</p>' +
               (isSoldOut ? 
                 '<button disabled class="w-full py-2 rounded-lg text-[11px] md:text-xs font-extrabold cursor-not-allowed" style="background: var(--bg-alt); color: var(--text-muted);">Stok Habis</button>'
                 : '<button onclick="openModal(' + p.id + ')" class="btn-order w-full py-2 rounded-lg text-[11px] md:text-xs font-extrabold flex items-center justify-center gap-1.5">Pesan Sekarang</button>'
@@ -824,27 +803,26 @@
       else if (selectedPayment === "KHR") { payString = "Riel (៛)"; totalString = fmtKHR(totalKHR); }
 
       // KIRIM DATA KE GOOGLE SHEET & EMAIL
-      if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL.includes("script.google.com")) {
+      if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== "MASUKAN_LINK_WEB_APP_KAMU_DISINI") {
         fetch(GOOGLE_SCRIPT_URL, {
           method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             nama: nama,
-            parfumNama: selectedParfum.nama,
-            parfumUkuran: selectedParfum.ukuran,
+            parfum: selectedParfum.nama + " (" + selectedParfum.ukuran + ")",
             jumlah: currentQty,
             bayar: payString,
             total: totalString,
             catatan: catatan
           })
-        })
-        .then(res => res.json())
-        .then(res => {
-          console.log("Berhasil simpan ke sheet & kirim email", res);
-        })
-        .catch(err => {
-          console.log("Gagal simpan ke sheet:", err);
         });
       }
+
+      // KURANGI STOK OTOMATIS
+      selectedParfum.stok -= currentQty;
+      saveParfumToStorage();
+      renderProducts();
 
       // KIRIM NOTIFIKASI KE TELEGRAM
       var tgMsg = "🌸 *PESANAN BARU VJ PARFUME* 🌸%0A%0A" +
@@ -906,61 +884,31 @@
       var content = document.getElementById('adminContent');
       content.innerHTML = parfumData.map(function(p, i) {
         var img = getImgSrc(p);
-        return '<div class="rounded-xl p-3 flex gap-3 items-start" style="background: var(--bg-alt); border: 1px solid var(--border);">' +
+        return '<div class="rounded-xl p-3 flex gap-3 items-center" style="background: var(--bg-alt); border: 1px solid var(--border);">' +
           '<img src="' + img + '" class="w-16 h-16 rounded-lg object-contain flex-shrink-0" style="background: var(--bg);">' +
           '<div class="flex-1 space-y-2">' +
-            '<input type="text" value="' + p.nama.replace(/"/g, '&quot;') + '" onchange="updateParfum(' + i + ', \'nama\', this.value)" class="admin-input" placeholder="Nama Parfum">' +
-            '<div class="flex gap-2">' +
-              '<input type="number" value="' + p.harga + '" onchange="updateParfum(' + i + ', \'harga\', parseInt(this.value))" class="admin-input w-2/3" placeholder="Harga IDR">' +
-              '<input type="text" value="' + p.ukuran + '" onchange="updateParfum(' + i + ', \'ukuran\', this.value)" class="admin-input w-1/3" placeholder="Ukuran">' +
+            '<h4 class="font-extrabold text-sm" style="color: var(--text);">' + p.nama + '</h4>' +
+            '<p class="text-xs font-bold" style="color: var(--text-muted);">' + (p.ukuran || "35ml") + ' · ' + fmtIDR(p.harga) + '</p>' +
+            '<div class="flex gap-2 items-center">' +
+              '<label class="text-xs font-extrabold" style="color: var(--text-sec);">Stok:</label>' +
+              '<input type="number" value="' + p.stok + '" min="0" onchange="updateStok(' + i + ', parseInt(this.value))" class="admin-input w-24" placeholder="Stok">' +
             '</div>' +
-            '<div class="flex gap-2">' +
-              '<input type="number" value="' + p.stok + '" onchange="updateParfum(' + i + ', \'stok\', parseInt(this.value))" class="admin-input w-1/2" placeholder="Stok">' +
-            '</div>' +
-            '<input type="text" value="' + (p.gambarUrl||'') + '" onchange="updateParfum(' + i + ', \'gambarUrl\', this.value); renderAdminPanel();" class="admin-url-input" placeholder="🔗 PASTE LINK URL GAMBAR DI SINI!">' +
           '</div>' +
-          '<button onclick="deleteParfum(' + i + ')" class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors" style="background: rgba(239,68,68,0.1); color: #EF4444;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>' +
         '</div>';
       }).join('');
       lucide.createIcons();
     }
 
-    function updateParfum(index, field, value) {
-      parfumData[index][field] = value;
-      saveParfumToStorage(parfumData);
+    function updateStok(index, value) {
+      if (value < 0) value = 0;
+      parfumData[index].stok = value;
+      saveParfumToStorage();
       renderProducts();
     }
 
-    function addNewParfum() {
-      var newId = parfumData.length > 0 ? Math.max.apply(null, parfumData.map(p => p.id)) + 1 : 1;
-      parfumData.push({ id: newId, nama: "PARFUM BARU", gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" });
-      saveParfumToStorage(parfumData);
-      renderAdminPanel();
-      renderProducts();
-    }
-
-    function deleteParfum(index) {
-      if(confirm('Hapus parfum ini?')) {
-        parfumData.splice(index, 1);
-        saveParfumToStorage(parfumData);
-        renderAdminPanel();
-        renderProducts();
-      }
-    }
-
-    function resetToDefault() {
-      if(confirm('Reset ke data default? Semua perubahan akan hilang.')) {
-        localStorage.removeItem('vj_parfum_data');
-        parfumData = JSON.parse(JSON.stringify(defaultParfumData));
-        saveParfumToStorage(parfumData);
-        renderAdminPanel();
-        renderProducts();
-      }
-    }
-
-    // INIT: PANGGIL DATA DARI GOOGLE SHEET SAAT PERTAMA KALI WEB DIBUKA
+    // INIT
     lucide.createIcons();
-    fetchGoogleSheetsData(); 
+    renderProducts();
   </script>
 </body>
 </html>
