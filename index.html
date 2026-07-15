@@ -37,7 +37,6 @@
       background-color: var(--bg);
       color: var(--text);
       overflow-x: hidden;
-      /* BACKGROUND DARI LINK YANG KAMU KASIH */
       background-image: url('https://lh3.googleusercontent.com/d/1z2MYAcummRU0bv5Ery5cl3Xq3VyW0vkg');
       background-size: cover;
       background-position: center center;
@@ -48,7 +47,7 @@
       content: '';
       position: fixed;
       inset: 0;
-      background: rgba(13, 10, 8, 0.75); /* Gelapin background biar teks kelihatan */
+      background: rgba(13, 10, 8, 0.75);
       z-index: 0;
       pointer-events: none;
     }
@@ -72,32 +71,32 @@
       background: linear-gradient(135deg, #D4A574 0%, #B8865A 100%);
     }
 
-    /* ANIMASI PELANGI YANG SANGAT HIDUP DAN CANTIK */
+    /* ANIMASI PELANGI DIPERKUAT BIAR PASTI MUNCUL */
     @keyframes rainbowGlow {
-      0%   { color: #FFD700; text-shadow: 0 0 15px rgba(255,215,0,0.8), 0 0 40px rgba(255,215,0,0.4); transform: scale(1.02); }
-      16%  { color: #FF69B4; text-shadow: 0 0 15px rgba(255,105,180,0.8), 0 0 40px rgba(255,105,180,0.4); transform: scale(1); }
-      33%  { color: #00CED1; text-shadow: 0 0 15px rgba(0,206,209,0.8), 0 0 40px rgba(0,206,209,0.4); transform: scale(1.02); }
-      50%  { color: #DA70D6; text-shadow: 0 0 15px rgba(218,112,214,0.8), 0 0 40px rgba(218,112,214,0.4); transform: scale(1); }
-      66%  { color: #7FFF00; text-shadow: 0 0 15px rgba(127,255,0,0.8), 0 0 40px rgba(127,255,0,0.4); transform: scale(1.02); }
-      83%  { color: #FF6347; text-shadow: 0 0 15px rgba(255,99,71,0.8), 0 0 40px rgba(255,99,71,0.4); transform: scale(1); }
-      100% { color: #FFD700; text-shadow: 0 0 15px rgba(255,215,0,0.8), 0 0 40px rgba(255,215,0,0.4); transform: scale(1.02); }
+      0%   { color: #FFD700 !important; text-shadow: 0 0 15px rgba(255,215,0,0.8), 0 0 40px rgba(255,215,0,0.4); transform: scale(1.02); }
+      16%  { color: #FF69B4 !important; text-shadow: 0 0 15px rgba(255,105,180,0.8), 0 0 40px rgba(255,105,180,0.4); transform: scale(1); }
+      33%  { color: #00CED1 !important; text-shadow: 0 0 15px rgba(0,206,209,0.8), 0 0 40px rgba(0,206,209,0.4); transform: scale(1.02); }
+      50%  { color: #DA70D6 !important; text-shadow: 0 0 15px rgba(218,112,214,0.8), 0 0 40px rgba(218,112,214,0.4); transform: scale(1); }
+      66%  { color: #7FFF00 !important; text-shadow: 0 0 15px rgba(127,255,0,0.8), 0 0 40px rgba(127,255,0,0.4); transform: scale(1.02); }
+      83%  { color: #FF6347 !important; text-shadow: 0 0 15px rgba(255,99,71,0.8), 0 0 40px rgba(255,99,71,0.4); transform: scale(1); }
+      100% { color: #FFD700 !important; text-shadow: 0 0 15px rgba(255,215,0,0.8), 0 0 40px rgba(255,215,0,0.4); transform: scale(1.02); }
     }
     .rainbow-glow {
       animation: rainbowGlow 3.5s ease-in-out infinite;
       font-weight: 900;
-      -webkit-text-fill-color: initial;
+      -webkit-text-fill-color: initial !important;
     }
 
     @keyframes rainbowGlowSoft {
-      0%   { color: #FFD700; text-shadow: 0 0 12px rgba(255,215,0,0.6), 0 0 30px rgba(255,215,0,0.2); }
-      25%  { color: #FF69B4; text-shadow: 0 0 12px rgba(255,105,180,0.6), 0 0 30px rgba(255,105,180,0.2); }
-      50%  { color: #00CED1; text-shadow: 0 0 12px rgba(0,206,209,0.6), 0 0 30px rgba(0,206,209,0.2); }
-      75%  { color: #DA70D6; text-shadow: 0 0 12px rgba(218,112,214,0.6), 0 0 30px rgba(218,112,214,0.2); }
-      100% { color: #FFD700; text-shadow: 0 0 12px rgba(255,215,0,0.6), 0 0 30px rgba(255,215,0,0.2); }
+      0%   { color: #FFD700 !important; text-shadow: 0 0 12px rgba(255,215,0,0.6), 0 0 30px rgba(255,215,0,0.2); }
+      25%  { color: #FF69B4 !important; text-shadow: 0 0 12px rgba(255,105,180,0.6), 0 0 30px rgba(255,105,180,0.2); }
+      50%  { color: #00CED1 !important; text-shadow: 0 0 12px rgba(0,206,209,0.6), 0 0 30px rgba(0,206,209,0.2); }
+      75%  { color: #DA70D6 !important; text-shadow: 0 0 12px rgba(218,112,214,0.6), 0 0 30px rgba(218,112,214,0.2); }
+      100% { color: #FFD700 !important; text-shadow: 0 0 12px rgba(255,215,0,0.6), 0 0 30px rgba(255,215,0,0.2); }
     }
     .rainbow-glow-soft {
       animation: rainbowGlowSoft 4s ease-in-out infinite;
-      -webkit-text-fill-color: initial;
+      -webkit-text-fill-color: initial !important;
     }
 
     @keyframes fadeUp {
@@ -131,28 +130,41 @@
     .d4 { animation-delay: 0.4s; }
     .d5 { animation-delay: 0.5s; }
 
+    /* KOTAK PARFUM DIBUAT HIDUP & BERWARNA */
     .perfume-card {
-      background: var(--card);
-      border: 1px solid var(--border);
+      background: linear-gradient(160deg, rgba(40, 35, 28, 0.95) 0%, rgba(22, 18, 15, 0.98) 100%);
+      border: 1px solid rgba(212, 165, 116, 0.15);
       border-radius: 16px;
       overflow: hidden;
       transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
       position: relative;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
       backdrop-filter: blur(12px);
       display: flex;
       flex-direction: column;
     }
     .perfume-card:hover {
       transform: translateY(-6px);
-      border-color: var(--border-accent);
-      box-shadow: 0 16px 48px rgba(212,165,116,0.12), 0 0 0 1px rgba(212,165,116,0.08);
+      border-color: var(--accent);
+      box-shadow: 0 16px 48px rgba(212,165,116,0.15), 0 0 0 1px rgba(212,165,116,0.1);
     }
     .perfume-card:hover .card-img {
       transform: scale(1.06);
     }
     .card-img {
       transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    }
+    /* BACKGROUND GAMBAR BIAR TERLIHAT HIDUP */
+    .card-img-bg {
+      background: radial-gradient(circle at 50% 30%, rgba(212,165,116,0.12) 0%, rgba(28,24,20,0.5) 80%);
+    }
+
+    /* NAMA VARIAN DIBERI LAMPU (GLOW) */
+    .variant-name {
+      color: #F0E8E0;
+      text-shadow: 0 0 10px rgba(212, 165, 116, 0.6), 0 2px 5px rgba(0,0,0,0.6);
+      font-weight: 800;
+      letter-spacing: 0.02em;
     }
 
     .sold-out-overlay {
@@ -190,7 +202,6 @@
       box-shadow: 0 6px 24px rgba(212,165,116,0.2);
     }
 
-    /* TOMBOL PESAN SEKARANG JADI HIDUP & CANTIK */
     .btn-primary {
       background: linear-gradient(135deg, #D4A574, #B8865A);
       color: #13100C;
@@ -431,7 +442,6 @@
       animation: pulseBorder 2s ease-in-out infinite;
     }
 
-    /* STYLE UNTUK TOMBOL PEMBAYARAN (RUPIAH, DOLLAR, RIEL) */
     .pay-option {
       display: flex;
       flex-direction: column;
@@ -459,7 +469,6 @@
 </head>
 <body>
 
-  <!-- NAVBAR -->
   <nav class="fixed top-0 left-0 right-0 z-40 h-14 md:h-16 flex items-center justify-between px-4 md:px-8"
        style="background: rgba(19,16,12,0.88); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border);">
     <div id="logoArea" class="flex items-center gap-2.5 cursor-pointer select-none">
@@ -474,7 +483,7 @@
     </a>
   </nav>
 
-  <!-- HERO -->
+  <!-- KATA-KATA WELCOME DIPERBAIKI JADI LEBIH MENARIK -->
   <section class="min-h-screen flex flex-col items-center justify-center text-center px-5 md:px-6 relative overflow-hidden hero-pattern">
     <div class="anim-fade-up mb-6 md:mb-8">
       <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full" style="border: 1px solid var(--border-accent); background: rgba(212,165,116,0.04); backdrop-filter: blur(10px);">
@@ -482,13 +491,13 @@
       </div>
     </div>
     <h1 class="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[0.95] mb-2 md:mb-3 anim-fade-up d1 px-2">
-      <span class="rainbow-glow-soft" style="display:inline-block;">Selamat Datang di</span>
+      <span class="rainbow-glow-soft" style="display:inline-block;">Rasakan Kemewahan Sejati di</span>
     </h1>
     <h1 class="text-4xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[0.85] mb-5 md:mb-7 anim-fade-up d2 px-2">
       <span class="rainbow-glow" style="display:inline-block;">VJ PARFUME</span>
     </h1>
-    <p class="text-base md:text-xl max-w-lg leading-relaxed mb-2 anim-fade-up d3 font-extrabold px-4" style="color: #E8C9A8;">Mau wangi tapi tetap hemat?</p>
-    <p class="text-xs md:text-base max-w-md leading-relaxed mb-8 md:mb-12 anim-fade-up d4 font-bold px-4" style="color: var(--text-sec);">Pilih parfum favoritmu di bawah ini, tentukan yang kamu inginkan, dan langsung pesan sekarang. Gampang banget!</p>
+    <p class="text-base md:text-xl max-w-lg leading-relaxed mb-2 anim-fade-up d3 font-extrabold px-4" style="color: #E8C9A8;">Wangi Tahan Lama, Elegan, & Bikin Percaya Diri!</p>
+    <p class="text-xs md:text-base max-w-md leading-relaxed mb-8 md:mb-12 anim-fade-up d4 font-bold px-4" style="color: var(--text-sec);">Temukan varian parfum premium pilihanmu di bawah ini. Kualitas sekelas branded, namun ramah di kantong. Pesan sekarang, gampang banget!</p>
     <a href="#koleksi" class="btn-primary px-8 md:px-10 py-3.5 md:py-4 rounded-2xl font-extrabold text-xs md:text-sm anim-fade-up d5 inline-flex items-center gap-2.5 tracking-wide">
       Lihat Koleksi Parfum
       <i data-lucide="arrow-down" class="w-4 h-4"></i>
@@ -498,7 +507,6 @@
     </div>
   </section>
 
-  <!-- INFO PEMBAYARAN -->
   <section class="py-8 md:py-10 px-4 md:px-8 section-glass" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
     <div class="max-w-xl mx-auto text-center px-2">
       <p class="text-sm md:text-lg font-extrabold mb-1.5" style="color: #FFD7A8;">🌸 Ingin tampil wangi, elegan, dan tahan lama tanpa harus mahal?</p>
@@ -514,7 +522,6 @@
     </div>
   </section>
 
-  <!-- MARQUEE STRIP -->
   <div class="overflow-hidden py-4" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border); background: rgba(212,165,116,0.02);">
     <div class="marquee-track">
       <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #FFD700;">🌸 VJ Parfume</span>
@@ -550,7 +557,6 @@
     </div>
   </div>
 
-  <!-- TELEGRAM BANNER -->
   <section class="py-8 md:py-10 px-4 md:px-8 section-glass">
     <div class="max-w-xl mx-auto rounded-2xl md:rounded-3xl p-5 md:p-8" style="background: var(--card); border: 1px solid var(--border); box-shadow: 0 4px 24px rgba(0,0,0,0.3);">
       <div class="flex flex-col items-center text-center gap-4 md:gap-5">
@@ -569,7 +575,6 @@
     </div>
   </section>
 
-  <!-- CATALOG SECTION -->
   <section id="koleksi" class="max-w-7xl mx-auto px-3 md:px-8 pt-16 md:pt-24 pb-24 md:pb-32">
     <div class="text-center mb-10 md:mb-14">
       <p class="text-[10px] md:text-[11px] font-extrabold tracking-[0.35em] uppercase accent-text mb-3 md:mb-4">— Our Collection —</p>
@@ -591,7 +596,6 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="py-10 md:py-12 px-5 md:px-6 text-center section-glass" style="border-top: 1px solid var(--border);">
     <div class="flex items-center justify-center gap-2.5 mb-3 md:mb-4">
       <div class="w-7 h-7 rounded-lg accent-gradient-bg flex items-center justify-center"><span class="font-black text-[10px]" style="color: #13100C;">VJ</span></div>
@@ -607,12 +611,10 @@
     <p class="text-[10px] md:text-xs font-bold" style="color: var(--text-muted);">© 2025 VJ Parfume. All rights reserved.</p>
   </footer>
 
-  <!-- FLOATING TELEGRAM BUTTON -->
   <a href="https://telegram.me/vjparfume_premium" target="_blank" class="tg-float" title="Gabung Channel Telegram">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
   </a>
 
-  <!-- ORDER MODAL (KOTAK PESAN SEKARANG) -->
   <div id="orderModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 md:p-4 modal-backdrop">
     <div class="modal-box w-full max-w-md max-h-[92vh] overflow-y-auto anim-slide-up">
       <div class="flex items-center justify-between p-5 md:p-6 pb-3 md:pb-4">
@@ -644,7 +646,6 @@
           <textarea id="inputCatatan" rows="2" placeholder="Tulis catatan tambahan (opsional)..." class="input-field w-full px-3.5 md:px-4 py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-bold resize-none"></textarea>
         </div>
         
-        <!-- PILIHAN PEMBAYARAN (RUPIAH, DOLLAR, RIEL) -->
         <div>
           <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Pilih Metode Pembayaran <span style="color: #EF4444;">*</span></label>
           <div class="grid grid-cols-3 gap-2" id="paymentOptions">
@@ -692,7 +693,6 @@
     </div>
   </div>
 
-  <!-- ADMIN MODAL -->
   <div id="adminModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 md:p-4 modal-backdrop">
     <div class="modal-box w-full max-w-2xl max-h-[92vh] overflow-hidden flex flex-col anim-slide-up">
       <div id="adminLogin" class="p-6 md:p-8 text-center">
@@ -714,11 +714,10 @@
         </div>
         <div class="gold-divider mx-4 md:mx-5"></div>
         
-        <!-- PANDUAN ADMIN BIAR GAMBAR MUNCUL DI SEMUA HP -->
         <div class="px-4 md:px-5 py-3 flex-shrink-0 rounded-xl mx-3 mt-2 pulse-green-border" style="background: rgba(34,197,94,0.08); border: 2px solid rgba(34,197,94,0.3);">
           <p class="text-[12px] md:text-sm leading-relaxed font-extrabold" style="color: #22C55E;">📌 CARA BIAR GAMBAR MUNCUL DI SEMUA HP:</p>
-          <p class="text-[11px] md:text-xs leading-relaxed font-bold mt-1.5" style="color: var(--text-sec);">Upload foto parfummu ke internet (misal: <strong>imgur.com</strong> atau google photos).</p>
-          <p class="text-[11px] md:text-xs leading-relaxed font-bold mt-1" style="color: var(--text-sec);">Klik kanan fotonya -> <strong style="color: #7DD3FC;">Copy Image Address</strong></p>
+          <p class="text-[11px] md:text-xs leading-relaxed font-bold mt-1.5" style="color: var(--text-sec);">Upload foto parfummu ke internet (misal: <strong>postimages.org</strong>).</p>
+          <p class="text-[11px] md:text-xs leading-relaxed font-bold mt-1" style="color: var(--text-sec);">Copy link <strong style="color: #7DD3FC;">Direct Link</strong> dari postimages</p>
           <p class="text-[11px] md:text-xs leading-relaxed font-bold mt-1" style="color: var(--text-sec);">Paste link tersebut ke kolom <strong style="color: var(--accent);">URL Gambar</strong> di bawah ini!</p>
           <p class="text-[10px] md:text-[11px] leading-relaxed font-extrabold mt-2" style="color: #F59E0B;">⚠️ Jangan upload file dari HP langsung, itu cuma muncul di HP mu saja! Pakai URL Link!</p>
         </div>
@@ -734,7 +733,6 @@
     </div>
   </div>
 
-  <!-- SUCCESS TOAST -->
   <div id="successToast" class="hidden fixed top-16 md:top-20 right-3 md:right-6 left-3 md:left-auto z-[60] toast-box p-4 md:p-5 anim-slide-up">
     <div class="flex items-start gap-3 md:gap-4">
       <div class="w-10 h-10 md:w-11 md:h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(34,197,94,0.08);"><i data-lucide="check-circle" class="w-5 h-5" style="color: #22C55E;"></i></div>
@@ -745,7 +743,6 @@
     </div>
   </div>
 
-  <!-- SCRIPTS -->
   <script>
     document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
     document.addEventListener('keydown', function(e) {
@@ -839,7 +836,7 @@
     var currentSearch = "";
     var selectedParfum = null;
     var currentQty = 1;
-    var selectedPayment = "IDR"; // Default Rupiah
+    var selectedPayment = "IDR";
     var logoClickCount = 0;
     var logoClickTimer = null;
 
@@ -882,13 +879,14 @@
         var uk = p.ukuran || "35ml";
         var imgSrc = getImgSrc(p);
 
+        // DITAMBAHKAN: card-img-bg pada div image, dan class variant-name pada h3
         return '<div class="perfume-card" style="animation: fadeUp 0.6s ease-out ' + (i * 0.05) + 's forwards; opacity: 0;">' +
           (isSoldOut ? '<div class="sold-out-overlay"><div class="sold-out-badge">SOLD OUT</div></div>' : '') +
-          '<div class="relative aspect-[4/5] overflow-hidden flex-shrink-0" style="background: var(--bg-alt);">' +
+          '<div class="relative aspect-[4/5] overflow-hidden flex-shrink-0 card-img-bg">' +
             '<img src="' + imgSrc + '" alt="' + p.nama + '" class="card-img w-full h-full object-contain" style="object-position: center top;" loading="lazy" onerror="handleImgError(this,\'' + p.nama.replace(/'/g, "\\'") + '\')">' +
           '</div>' +
           '<div class="p-2.5 md:p-3.5 flex flex-col flex-1">' +
-            '<h3 class="font-extrabold text-[11px] md:text-sm mb-1 tracking-tight leading-tight" style="color: var(--text);">' + p.nama + '</h3>' +
+            '<h3 class="variant-name text-[11px] md:text-sm mb-1 tracking-tight leading-tight">' + p.nama + '</h3>' +
             '<div class="flex items-center justify-between mb-1.5">' +
               '<span class="text-[10px] md:text-xs font-bold" style="color: var(--text-muted);">' + uk + '</span>' +
               '<div class="flex items-center gap-1.5">' + stockHtml + '</div>' +
@@ -913,7 +911,6 @@
       renderProducts();
     });
 
-    // LOGIKA PILIHAN PEMBAYARAN
     document.querySelectorAll('.pay-option').forEach(function(opt) {
       opt.addEventListener('click', function() {
         document.querySelectorAll('.pay-option').forEach(function(o) { o.classList.remove('selected'); });
@@ -939,7 +936,6 @@
       
       document.getElementById('stockInfo').textContent = 'Stok: ' + selectedParfum.stok;
       
-      // Reset pembayaran ke IDR setiap buka modal
       selectedPayment = "IDR";
       document.querySelectorAll('.pay-option').forEach(function(o) {
         o.classList.remove('selected');
@@ -1010,7 +1006,6 @@
                   "💵 *Total:* " + totalString + "%0A";
       if (catatan) tgMsg += "📝 *Catatan:* " + encodeURIComponent(catatan) + "%0A";
       
-      // Ganti link ini ke nomor Telegram Admin pribadi (https://t.me/share/url?url=... text=...)
       window.open('https://t.me/share/url?url=https://telegram.me/vjparfume_premium&text=' + tgMsg, '_blank');
       
       document.getElementById('orderForm').reset();
@@ -1023,7 +1018,6 @@
       return false;
     }
 
-    // ADMIN PANEL
     document.getElementById('logoArea').addEventListener('click', function() {
       logoClickCount++;
       clearTimeout(logoClickTimer);
