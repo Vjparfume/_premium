@@ -9,529 +9,218 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
-        }
-      }
+      theme: { extend: { fontFamily: { sans: ['Inter','sans-serif'], serif: ['Playfair Display','serif'] } } }
     }
   </script>
   <style>
-    :root {
-      --bg: #13100C;
-      --bg-alt: #1C1814;
-      --card: rgba(26, 22, 18, 0.92);
-      --text: #F0E8E0;
-      --text-sec: #C4B5A5;
-      --text-muted: #8A7B6B;
-      --accent: #D4A574;
-      --accent-dark: #E8C9A8;
-      --accent-light: #4A3D32;
-      --accent-pale: rgba(212, 165, 116, 0.06);
-      --border: rgba(240, 232, 224, 0.07);
-      --border-accent: rgba(212, 165, 116, 0.2);
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      overflow-x: hidden;
-      background-image:
-        radial-gradient(ellipse 80% 60% at 20% 30%, rgba(212,165,116,0.04) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 80% at 80% 70%, rgba(180,130,90,0.03) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 50% at 50% 50%, rgba(28,24,20,1) 0%, rgba(19,16,12,1) 100%);
-      background-size: cover;
-      background-position: center top;
-      background-attachment: fixed;
-      background-repeat: no-repeat;
-    }
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: rgba(13, 10, 8, 0.78);
-      z-index: 0;
-      pointer-events: none;
-    }
-    body > * { position: relative; z-index: 1; }
+    :root{--bg:#13100C;--bg-alt:#1C1814;--card:rgba(26,22,18,0.92);--text:#F0E8E0;--text-sec:#C4B5A5;--text-muted:#8A7B6B;--accent:#D4A574;--accent-dark:#E8C9A8;--accent-light:#4A3D32;--accent-pale:rgba(212,165,116,0.06);--border:rgba(240,232,224,0.07);--border-accent:rgba(212,165,116,0.2)}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Inter',sans-serif;background-color:var(--bg);color:var(--text);overflow-x:hidden;background-image:radial-gradient(ellipse 80% 60% at 20% 30%,rgba(212,165,116,0.04) 0%,transparent 70%),radial-gradient(ellipse 60% 80% at 80% 70%,rgba(180,130,90,0.03) 0%,transparent 70%);background-size:cover;background-position:center top;background-attachment:fixed;background-repeat:no-repeat}
+    body::before{content:'';position:fixed;inset:0;background:rgba(13,10,8,0.78);z-index:0;pointer-events:none}
+    body>*{position:relative;z-index:1}
+    ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg-alt)}::-webkit-scrollbar-thumb{background:var(--accent);border-radius:10px}
+    .accent-text{color:var(--accent)}.accent-bg{background-color:var(--accent)}.accent-border{border-color:var(--accent)}
+    .accent-gradient-text{background:linear-gradient(135deg,#E8C9A8 0%,#D4A574 40%,#B8865A 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .accent-gradient-bg{background:linear-gradient(135deg,#D4A574 0%,#B8865A 100%)}
 
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: var(--bg-alt); }
-    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+    @keyframes rainbowGlow{
+      0%{color:#FFD700;text-shadow:0 0 12px rgba(255,215,0,0.7),0 0 35px rgba(255,215,0,0.35),0 0 70px rgba(255,215,0,0.15)}
+      16%{color:#FF69B4;text-shadow:0 0 12px rgba(255,105,180,0.7),0 0 35px rgba(255,105,180,0.35),0 0 70px rgba(255,105,180,0.15)}
+      33%{color:#00CED1;text-shadow:0 0 12px rgba(0,206,209,0.7),0 0 35px rgba(0,206,209,0.35),0 0 70px rgba(0,206,209,0.15)}
+      50%{color:#DA70D6;text-shadow:0 0 12px rgba(218,112,214,0.7),0 0 35px rgba(218,112,214,0.35),0 0 70px rgba(218,112,214,0.15)}
+      66%{color:#7FFF00;text-shadow:0 0 12px rgba(127,255,0,0.7),0 0 35px rgba(127,255,0,0.35),0 0 70px rgba(127,255,0,0.15)}
+      83%{color:#FF6347;text-shadow:0 0 12px rgba(255,99,71,0.7),0 0 35px rgba(255,99,71,0.35),0 0 70px rgba(255,99,71,0.15)}
+      100%{color:#FFD700;text-shadow:0 0 12px rgba(255,215,0,0.7),0 0 35px rgba(255,215,0,0.35),0 0 70px rgba(255,215,0,0.15)}
+    }
+    .rainbow-glow{animation:rainbowGlow 4s ease-in-out infinite;font-weight:900;-webkit-text-fill-color:initial}
 
-    .accent-text { color: var(--accent); }
-    .accent-bg { background-color: var(--accent); }
-    .accent-border { border-color: var(--accent); }
+    @keyframes rainbowGlowSoft{
+      0%{color:#FFD700;text-shadow:0 0 8px rgba(255,215,0,0.5),0 0 25px rgba(255,215,0,0.2)}
+      25%{color:#FF69B4;text-shadow:0 0 8px rgba(255,105,180,0.5),0 0 25px rgba(255,105,180,0.2)}
+      50%{color:#00CED1;text-shadow:0 0 8px rgba(0,206,209,0.5),0 0 25px rgba(0,206,209,0.2)}
+      75%{color:#DA70D6;text-shadow:0 0 8px rgba(218,112,214,0.5),0 0 25px rgba(218,112,214,0.2)}
+      100%{color:#FFD700;text-shadow:0 0 8px rgba(255,215,0,0.5),0 0 25px rgba(255,215,0,0.2)}
+    }
+    .rainbow-glow-soft{animation:rainbowGlowSoft 5s ease-in-out infinite;-webkit-text-fill-color:initial}
 
-    .accent-gradient-text {
-      background: linear-gradient(135deg, #E8C9A8 0%, #D4A574 40%, #B8865A 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .accent-gradient-bg {
-      background: linear-gradient(135deg, #D4A574 0%, #B8865A 100%);
-    }
+    @keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+    @keyframes slideUp{from{opacity:0;transform:translateY(20px) scale(0.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+    @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    @keyframes shineSwipe{to{left:150%}}
+    @keyframes pulseGlow{0%,100%{box-shadow:0 0 15px rgba(212,165,116,0.1)}50%{box-shadow:0 0 30px rgba(212,165,116,0.25)}}
+    @keyframes bgShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 
-    @keyframes rainbowGlow {
-      0%   { color: #FFD700; text-shadow: 0 0 10px rgba(255,215,0,0.6), 0 0 30px rgba(255,215,0,0.3), 0 0 60px rgba(255,215,0,0.15); }
-      16%  { color: #FF69B4; text-shadow: 0 0 10px rgba(255,105,180,0.6), 0 0 30px rgba(255,105,180,0.3), 0 0 60px rgba(255,105,180,0.15); }
-      33%  { color: #00CED1; text-shadow: 0 0 10px rgba(0,206,209,0.6), 0 0 30px rgba(0,206,209,0.3), 0 0 60px rgba(0,206,209,0.15); }
-      50%  { color: #DA70D6; text-shadow: 0 0 10px rgba(218,112,214,0.6), 0 0 30px rgba(218,112,214,0.3), 0 0 60px rgba(218,112,214,0.15); }
-      66%  { color: #7FFF00; text-shadow: 0 0 10px rgba(127,255,0,0.6), 0 0 30px rgba(127,255,0,0.3), 0 0 60px rgba(127,255,0,0.15); }
-      83%  { color: #FF6347; text-shadow: 0 0 10px rgba(255,99,71,0.6), 0 0 30px rgba(255,99,71,0.3), 0 0 60px rgba(255,99,71,0.15); }
-      100% { color: #FFD700; text-shadow: 0 0 10px rgba(255,215,0,0.6), 0 0 30px rgba(255,215,0,0.3), 0 0 60px rgba(255,215,0,0.15); }
-    }
-    .rainbow-glow {
-      animation: rainbowGlow 4s ease-in-out infinite;
-      font-weight: 900;
-      -webkit-text-fill-color: initial;
-    }
+    .anim-fade-up{animation:fadeUp 0.9s ease-out forwards;opacity:0}
+    .anim-fade-in{animation:fadeIn 0.7s ease-out forwards;opacity:0}
+    .anim-float{animation:float 3.5s ease-in-out infinite}
+    .anim-slide-up{animation:slideUp 0.4s cubic-bezier(0.16,1,0.3,1) forwards}
+    .d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}.d4{animation-delay:.4s}.d5{animation-delay:.5s}.d6{animation-delay:.6s}
 
-    @keyframes rainbowGlowSoft {
-      0%   { color: #FFD700; text-shadow: 0 0 8px rgba(255,215,0,0.4), 0 0 20px rgba(255,215,0,0.15); }
-      25%  { color: #FF69B4; text-shadow: 0 0 8px rgba(255,105,180,0.4), 0 0 20px rgba(255,105,180,0.15); }
-      50%  { color: #00CED1; text-shadow: 0 0 8px rgba(0,206,209,0.4), 0 0 20px rgba(0,206,209,0.15); }
-      75%  { color: #DA70D6; text-shadow: 0 0 8px rgba(218,112,214,0.4), 0 0 20px rgba(218,112,214,0.15); }
-      100% { color: #FFD700; text-shadow: 0 0 8px rgba(255,215,0,0.4), 0 0 20px rgba(255,215,0,0.15); }
-    }
-    .rainbow-glow-soft {
-      animation: rainbowGlowSoft 5s ease-in-out infinite;
-      -webkit-text-fill-color: initial;
-    }
+    .perfume-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all .5s cubic-bezier(.16,1,.3,1);position:relative;box-shadow:0 2px 16px rgba(0,0,0,.3);backdrop-filter:blur(12px);display:flex;flex-direction:column}
+    .perfume-card:hover{transform:translateY(-6px);border-color:var(--border-accent);box-shadow:0 16px 48px rgba(212,165,116,.12),0 0 0 1px rgba(212,165,116,.08)}
+    .perfume-card:hover .card-img{transform:scale(1.08)}
+    .card-img{transition:transform .7s cubic-bezier(.16,1,.3,1)}
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
-    }
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(20px) scale(0.98); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
+    .img-wrap{position:relative;overflow:hidden;background:var(--bg-alt)}
+    .img-wrap::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:60%;height:35%;background:radial-gradient(ellipse,rgba(212,165,116,.12),transparent);filter:blur(12px);transition:all .5s;pointer-events:none}
+    .perfume-card:hover .img-wrap::after{width:85%;height:45%;background:radial-gradient(ellipse,rgba(212,165,116,.22),transparent)}
 
-    .anim-fade-up { animation: fadeUp 0.9s ease-out forwards; opacity: 0; }
-    .anim-fade-in { animation: fadeIn 0.7s ease-out forwards; opacity: 0; }
-    .anim-float { animation: float 3.5s ease-in-out infinite; }
-    .anim-slide-up { animation: slideUp 0.4s cubic-bezier(0.16,1,0.3,1) forwards; }
-    .d1 { animation-delay: 0.1s; }
-    .d2 { animation-delay: 0.2s; }
-    .d3 { animation-delay: 0.3s; }
-    .d4 { animation-delay: 0.4s; }
-    .d5 { animation-delay: 0.5s; }
+    .sold-out-overlay{position:absolute;inset:0;background:rgba(19,16,12,.75);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;z-index:10}
+    .sold-out-badge{background:linear-gradient(135deg,#D4A574,#B8865A);color:#13100C;font-weight:800;font-size:14px;letter-spacing:4px;padding:8px 24px;border-radius:12px;transform:rotate(-8deg);box-shadow:0 8px 30px rgba(212,165,116,.2)}
 
-    .perfume-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
-      position: relative;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.3);
-      backdrop-filter: blur(12px);
-      display: flex;
-      flex-direction: column;
-    }
-    .perfume-card:hover {
-      transform: translateY(-6px);
-      border-color: var(--border-accent);
-      box-shadow: 0 16px 48px rgba(212,165,116,0.12), 0 0 0 1px rgba(212,165,116,0.08);
-    }
-    .perfume-card:hover .card-img {
-      transform: scale(1.06);
-    }
-    .card-img {
-      transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
-    }
+    .btn-order{position:relative;overflow:hidden;background:rgba(212,165,116,.08);border:1px solid rgba(212,165,116,.2);color:var(--accent-dark);transition:all .3s ease;cursor:pointer}
+    .btn-order::after{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);pointer-events:none}
+    .btn-order:hover{background:linear-gradient(135deg,#D4A574,#B8865A);color:#13100C;border-color:#D4A574;box-shadow:0 6px 24px rgba(212,165,116,.25);transform:translateY(-1px)}
+    .btn-order:hover::after{animation:shineSwipe .6s ease forwards}
+    .btn-order:active{transform:translateY(0);box-shadow:0 2px 8px rgba(212,165,116,.15)}
 
-    .sold-out-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(19,16,12,0.75);
-      backdrop-filter: blur(4px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 10;
-    }
-    .sold-out-badge {
-      background: linear-gradient(135deg, #D4A574, #B8865A);
-      color: #13100C;
-      font-weight: 800;
-      font-size: 14px;
-      letter-spacing: 4px;
-      padding: 8px 24px;
-      border-radius: 12px;
-      transform: rotate(-8deg);
-      box-shadow: 0 8px 30px rgba(212,165,116,0.2);
-    }
+    .btn-primary{background:linear-gradient(135deg,#D4A574,#B8865A);color:#13100C;transition:all .3s ease;position:relative;overflow:hidden}
+    .btn-primary::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);pointer-events:none}
+    .btn-primary:hover{background:linear-gradient(135deg,#E8C9A8,#D4A574);box-shadow:0 10px 35px rgba(212,165,116,.3);transform:translateY(-2px)}
+    .btn-primary:hover::after{animation:shineSwipe .7s ease forwards}
+    .btn-primary:active{transform:translateY(0)}
 
-    .btn-order {
-      background: rgba(212,165,116,0.08);
-      border: 1px solid rgba(212,165,116,0.2);
-      color: var(--accent-dark);
-      transition: all 0.3s ease;
-    }
-    .btn-order:hover {
-      background: linear-gradient(135deg, #D4A574, #B8865A);
-      color: #13100C;
-      border-color: #D4A574;
-      box-shadow: 0 6px 24px rgba(212,165,116,0.2);
-    }
+    .input-field{background:rgba(26,22,18,.9);border:1px solid var(--border);color:var(--text);transition:all .25s ease;backdrop-filter:blur(8px)}
+    .input-field::placeholder{color:var(--text-muted)}
+    .input-field:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(212,165,116,.1);background:rgba(26,22,18,.95);outline:none}
 
-    .btn-primary {
-      background: linear-gradient(135deg, #D4A574, #B8865A);
-      color: #13100C;
-      transition: all 0.3s ease;
-    }
-    .btn-primary:hover {
-      background: linear-gradient(135deg, #E8C9A8, #D4A574);
-      box-shadow: 0 10px 35px rgba(212,165,116,0.25);
-      transform: translateY(-2px);
-    }
+    .modal-backdrop{backdrop-filter:blur(16px);background:rgba(13,10,8,.6)}
+    .modal-box{background:rgba(28,24,20,.97);border:1px solid var(--border);border-radius:24px;box-shadow:0 32px 80px rgba(0,0,0,.5);backdrop-filter:blur(20px)}
 
-    .input-field {
-      background: rgba(26,22,18,0.9);
-      border: 1px solid var(--border);
-      color: var(--text);
-      transition: all 0.25s ease;
-      backdrop-filter: blur(8px);
-    }
-    .input-field::placeholder { color: var(--text-muted); }
-    .input-field:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(212,165,116,0.1);
-      background: rgba(26,22,18,0.95);
-      outline: none;
-    }
+    .qty-btn{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-accent);border-radius:12px;background:rgba(212,165,116,.06);color:var(--accent-dark);cursor:pointer;transition:all .2s;font-size:20px;user-select:none}
+    .qty-btn:hover{background:rgba(212,165,116,.15);border-color:var(--accent)}
 
-    .modal-backdrop {
-      backdrop-filter: blur(16px);
-      background: rgba(13,10,8,0.6);
-    }
-    .modal-box {
-      background: rgba(28,24,20,0.97);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.5);
-      backdrop-filter: blur(20px);
-    }
+    .pay-chip{display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:10px;font-weight:800;font-size:13px;white-space:nowrap}
 
-    .qty-btn {
-      width: 40px; height: 40px;
-      display: flex; align-items: center; justify-content: center;
-      border: 1px solid var(--border-accent);
-      border-radius: 12px;
-      background: rgba(212,165,116,0.06);
-      color: var(--accent-dark);
-      cursor: pointer;
-      transition: all 0.2s;
-      font-size: 20px;
-      user-select: none;
-    }
-    .qty-btn:hover {
-      background: rgba(212,165,116,0.15);
-      border-color: var(--accent);
-    }
+    .pay-select{flex:1;padding:10px 6px;border-radius:12px;border:1px solid var(--border);background:transparent;color:var(--text-muted);font-weight:800;font-size:11px;cursor:pointer;transition:all .25s;text-align:center;font-family:'Inter',sans-serif}
+    .pay-select:hover{border-color:var(--border-accent);color:var(--text-sec)}
+    .pay-select.active{border-color:var(--accent);background:rgba(212,165,116,.1);color:var(--accent-dark);box-shadow:0 0 16px rgba(212,165,116,.1)}
 
-    .marquee-track {
-      display: flex;
-      animation: marquee 35s linear infinite;
-      width: max-content;
-    }
+    .marquee-track{display:flex;animation:marquee 35s linear infinite;width:max-content}
 
-    .stock-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      display: inline-block;
-    }
-    .stock-yes { background: #22C55E; box-shadow: 0 0 6px rgba(34,197,94,0.4); }
-    .stock-low { background: #F59E0B; box-shadow: 0 0 6px rgba(245,158,11,0.4); }
+    .stock-dot{width:6px;height:6px;border-radius:50%;display:inline-block}
+    .stock-yes{background:#22C55E;box-shadow:0 0 6px rgba(34,197,94,.4)}
+    .stock-low{background:#F59E0B;box-shadow:0 0 6px rgba(245,158,11,.4)}
 
-    .toast-box {
-      background: rgba(28,24,20,0.97);
-      border: 1px solid rgba(34,197,94,0.2);
-      border-radius: 16px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 20px rgba(34,197,94,0.06);
-      backdrop-filter: blur(16px);
-    }
+    .toast-box{background:rgba(28,24,20,.97);border:1px solid rgba(34,197,94,.2);border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,.4),0 0 20px rgba(34,197,94,.06);backdrop-filter:blur(16px)}
 
-    .gold-divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border-accent), transparent);
-    }
+    .gold-divider{height:1px;background:linear-gradient(90deg,transparent,var(--border-accent),transparent)}
 
-    .tg-float {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 45;
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #2AABEE, #229ED9);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 6px 24px rgba(42,171,238,0.35);
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-    .tg-float:hover {
-      transform: scale(1.1);
-      box-shadow: 0 8px 32px rgba(42,171,238,0.45);
-    }
+    .tg-float{position:fixed;bottom:20px;right:20px;z-index:45;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#2AABEE,#229ED9);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(42,171,238,.35);transition:all .3s ease;cursor:pointer}
+    .tg-float:hover{transform:scale(1.1);box-shadow:0 8px 32px rgba(42,171,238,.45)}
 
-    .admin-input {
-      background: rgba(19,16,12,0.8);
-      border: 1px solid var(--border);
-      color: var(--text);
-      border-radius: 10px;
-      padding: 8px 12px;
-      font-size: 13px;
-      width: 100%;
-      transition: all 0.2s;
-      outline: none;
-      font-family: 'Inter', sans-serif;
-    }
-    .admin-input:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(212,165,116,0.1);
-    }
+    .section-glass{background:rgba(19,16,12,.6);backdrop-filter:blur(16px)}
 
-    .hero-pattern {
-      background-image: radial-gradient(rgba(212,165,116,0.03) 1px, transparent 1px);
-      background-size: 24px 24px;
-    }
+    .admin-input{background:rgba(19,16,12,.8);border:1px solid var(--border);color:var(--text);border-radius:10px;padding:8px 12px;font-size:13px;width:100%;transition:all .2s;outline:none;font-family:'Inter',sans-serif}
+    .admin-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(212,165,116,.1)}
 
-    .section-glass {
-      background: rgba(19,16,12,0.6);
-      backdrop-filter: blur(16px);
-    }
+    .file-upload-btn{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:8px 10px;border-radius:10px;border:2px dashed var(--border-accent);background:rgba(212,165,116,.06);color:var(--accent-dark);font-weight:800;font-size:12px;cursor:pointer;transition:all .2s;position:relative;font-family:'Inter',sans-serif}
+    .file-upload-btn:hover{border-color:var(--accent);background:rgba(212,165,116,.12)}
+    .file-upload-btn input[type="file"]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+    .file-upload-btn span,.file-upload-btn svg{pointer-events:none}
 
-    .pay-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 6px 14px;
-      border-radius: 10px;
-      font-weight: 800;
-      font-size: 13px;
-      white-space: nowrap;
-    }
+    .btn-download-html{background:linear-gradient(135deg,#22C55E,#16A34A);color:#fff;transition:all .3s ease;position:relative;overflow:hidden}
+    .btn-download-html::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);pointer-events:none}
+    .btn-download-html:hover{background:linear-gradient(135deg,#4ADE80,#22C55E);box-shadow:0 6px 20px rgba(34,197,94,.3);transform:translateY(-1px)}
+    .btn-download-html:hover::after{animation:shineSwipe .7s ease forwards}
 
-    .file-upload-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      width: 100%;
-      padding: 8px 10px;
-      border-radius: 10px;
-      border: 2px dashed var(--border-accent);
-      background: rgba(212,165,116,0.06);
-      color: var(--accent-dark);
-      font-weight: 800;
-      font-size: 12px;
-      cursor: pointer;
-      transition: all 0.2s;
-      position: relative;
-    }
-    .file-upload-btn:hover {
-      border-color: var(--accent);
-      background: rgba(212,165,116,0.12);
-    }
-    .file-upload-btn input[type="file"] {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      cursor: pointer;
-    }
-    .file-upload-btn span { pointer-events: none; }
-    .file-upload-btn svg { pointer-events: none; }
+    @keyframes pulseBorder{0%,100%{border-color:rgba(34,197,94,.3)}50%{border-color:rgba(34,197,94,.8)}}
+    .pulse-green-border{animation:pulseBorder 2s ease-in-out infinite}
 
-    .admin-url-input {
-      background: rgba(19,16,12,0.8);
-      border: 1px solid var(--border);
-      color: #7DD3FC;
-      border-radius: 10px;
-      padding: 7px 10px;
-      font-size: 11px;
-      width: 100%;
-      transition: all 0.2s;
-      outline: none;
-      font-family: 'Inter', monospace;
-    }
-    .admin-url-input:focus {
-      border-color: #7DD3FC;
-      box-shadow: 0 0 0 3px rgba(125,211,252,0.1);
-    }
-    .admin-url-input::placeholder {
-      color: var(--text-muted);
-      font-family: 'Inter', sans-serif;
-    }
+    .hero-canvas{position:absolute;inset:0;pointer-events:none;z-index:0}
 
-    .admin-img-preview {
-      width: 100%;
-      aspect-ratio: 4/5;
-      object-fit: contain;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: var(--bg-alt);
-    }
-
-    .btn-download-html {
-      background: linear-gradient(135deg, #22C55E, #16A34A);
-      color: #fff;
-      transition: all 0.3s ease;
-    }
-    .btn-download-html:hover {
-      background: linear-gradient(135deg, #4ADE80, #22C55E);
-      box-shadow: 0 6px 20px rgba(34,197,94,0.25);
-      transform: translateY(-1px);
-    }
-
-    @keyframes pulseBorder {
-      0%, 100% { border-color: rgba(34,197,94,0.3); }
-      50% { border-color: rgba(34,197,94,0.8); }
-    }
-    .pulse-green-border {
-      animation: pulseBorder 2s ease-in-out infinite;
-    }
+    @keyframes heroBgPulse{0%,100%{opacity:.4}50%{opacity:.7}}
+    .hero-bg-orb{position:absolute;border-radius:50%;filter:blur(80px);animation:heroBgPulse 6s ease-in-out infinite;pointer-events:none}
   </style>
 </head>
 <body>
 
-  <!-- ╔══════════════════════════════════════╗ -->
-  <!-- ║            NAVBAR                    ║ -->
-  <!-- ╚══════════════════════════════════════╝ -->
-  <nav class="fixed top-0 left-0 right-0 z-40 h-14 md:h-16 flex items-center justify-between px-4 md:px-8"
-       style="background: rgba(19,16,12,0.88); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border);">
+  <!-- NAVBAR -->
+  <nav class="fixed top-0 left-0 right-0 z-40 h-14 md:h-16 flex items-center justify-between px-4 md:px-8" style="background:rgba(19,16,12,.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);">
     <div id="logoArea" class="flex items-center gap-2.5 cursor-pointer select-none">
-      <div class="w-8 h-8 md:w-9 md:h-9 rounded-xl accent-gradient-bg flex items-center justify-center shadow-lg" style="box-shadow: 0 4px 15px rgba(212,165,116,0.2);">
-        <span class="font-black text-[10px] md:text-xs" style="color: #13100C;">VJ</span>
-      </div>
+      <div class="w-8 h-8 md:w-9 md:h-9 rounded-xl accent-gradient-bg flex items-center justify-center shadow-lg" style="box-shadow:0 4px 15px rgba(212,165,116,.2);"><span class="font-black text-[10px] md:text-xs" style="color:#13100C;">VJ</span></div>
       <span class="font-black text-sm md:text-base tracking-tight rainbow-glow">VJ PARFUME</span>
     </div>
-    <a href="#koleksi" class="text-xs md:text-sm flex items-center gap-1.5 transition-colors font-extrabold" style="color: var(--accent-dark);" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--accent-dark)'">
-      Lihat Koleksi
-      <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
-    </a>
+    <a href="#koleksi" class="text-xs md:text-sm flex items-center gap-1.5 transition-colors font-extrabold" style="color:var(--accent-dark);" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--accent-dark)'">Lihat Koleksi <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i></a>
   </nav>
 
-
-  <!-- ╔══════════════════════════════════════╗ -->
-  <!-- ║             HERO                     ║ -->
-  <!-- ╚══════════════════════════════════════╝ -->
-  <section class="min-h-screen flex flex-col items-center justify-center text-center px-5 md:px-6 relative overflow-hidden hero-pattern">
-    <div class="anim-fade-up mb-6 md:mb-8">
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full" style="border: 1px solid var(--border-accent); background: rgba(212,165,116,0.04);">
-        <span class="text-[10px] md:text-[11px] font-extrabold accent-text tracking-widest uppercase">✦ Premium Fragrance ✦</span>
+  <!-- HERO -->
+  <section class="min-h-screen flex flex-col items-center justify-center text-center px-5 md:px-6 relative overflow-hidden">
+    <canvas id="heroCanvas" class="hero-canvas"></canvas>
+    <div class="hero-bg-orb" style="width:300px;height:300px;background:rgba(212,165,116,.08);top:15%;left:10%;animation-delay:0s;"></div>
+    <div class="hero-bg-orb" style="width:250px;height:250px;background:rgba(255,105,180,.06);bottom:20%;right:8%;animation-delay:2s;"></div>
+    <div class="hero-bg-orb" style="width:200px;height:200px;background:rgba(0,206,209,.05);top:50%;left:50%;transform:translate(-50%,-50%);animation-delay:4s;"></div>
+    <div class="relative z-10">
+      <div class="anim-fade-up mb-5 md:mb-7">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full" style="border:1px solid var(--border-accent);background:rgba(212,165,116,.04);">
+          <span class="text-[10px] md:text-[11px] font-extrabold accent-text tracking-widest uppercase">✦ Premium Fragrance ✦</span>
+        </div>
       </div>
+      <h1 class="text-2xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[.95] mb-2 md:mb-3 anim-fade-up d1 px-2">
+        <span class="rainbow-glow-soft" style="display:inline-block;">Selamat Datang di</span>
+      </h1>
+      <h1 class="text-4xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[.85] mb-5 md:mb-7 anim-fade-up d2 px-2">
+        <span class="rainbow-glow" style="display:inline-block;">VJ PARFUME</span>
+      </h1>
+      <p class="text-base md:text-xl max-w-lg leading-relaxed mb-2 anim-fade-up d3 font-extrabold px-4" style="color:#E8C9A8;">Mau wangi tapi tetap hemat?</p>
+      <p class="text-xs md:text-base max-w-md leading-relaxed mb-8 md:mb-12 anim-fade-up d4 font-bold px-4" style="color:var(--text-sec);">Pilih parfum favoritmu, tentukan yang kamu inginkan, dan langsung pesan sekarang. Gampang banget!</p>
+      <a href="#koleksi" class="btn-primary px-8 md:px-10 py-3.5 md:py-4 rounded-2xl font-extrabold text-xs md:text-sm anim-fade-up d5 inline-flex items-center gap-2.5 tracking-wide">
+        Lihat Koleksi Parfum <i data-lucide="arrow-down" class="w-4 h-4"></i>
+      </a>
     </div>
-    <h1 class="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[0.95] mb-2 md:mb-3 anim-fade-up d1 px-2">
-      <span class="rainbow-glow-soft" style="display:inline-block;">Selamat Datang di</span>
-    </h1>
-    <h1 class="text-4xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[0.85] mb-5 md:mb-7 anim-fade-up d2 px-2">
-      <span class="rainbow-glow" style="display:inline-block;">VJ PARFUME</span>
-    </h1>
-    <p class="text-base md:text-xl max-w-lg leading-relaxed mb-2 anim-fade-up d3 font-extrabold px-4" style="color: #E8C9A8;">Mau wangi tapi tetap hemat?</p>
-    <p class="text-xs md:text-base max-w-md leading-relaxed mb-8 md:mb-12 anim-fade-up d4 font-bold px-4" style="color: var(--text-sec);">Pilih parfum favoritmu di bawah ini, tentukan yang kamu inginkan, dan langsung pesan sekarang. Gampang banget!</p>
-    <a href="#koleksi" class="btn-primary px-8 md:px-10 py-3.5 md:py-4 rounded-2xl font-extrabold text-xs md:text-sm anim-fade-up d5 inline-flex items-center gap-2.5 tracking-wide">
-      Lihat Koleksi Parfum
-      <i data-lucide="arrow-down" class="w-4 h-4"></i>
-    </a>
-    <div class="absolute bottom-8 md:bottom-10 anim-float">
-      <i data-lucide="chevrons-down" class="w-5 h-5" style="color: var(--text-muted);"></i>
-    </div>
+    <div class="absolute bottom-8 md:bottom-10 anim-float relative z-10"><i data-lucide="chevrons-down" class="w-5 h-5" style="color:var(--text-muted);"></i></div>
   </section>
 
-
-  <!-- ╔══════════════════════════════════════╗ -->
-  <!-- ║       INFO PEMBAYARAN                ║ -->
-  <!-- ╚══════════════════════════════════════╝ -->
-  <section class="py-8 md:py-10 px-4 md:px-8 section-glass" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <!-- INFO PEMBAYARAN -->
+  <section class="py-8 md:py-10 px-4 md:px-8 section-glass" style="border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
     <div class="max-w-xl mx-auto text-center px-2">
-      <p class="text-sm md:text-lg font-extrabold mb-1.5" style="color: #FFD7A8;">🌸 Ingin tampil wangi, elegan, dan tahan lama tanpa harus mahal?</p>
-      <p class="text-sm md:text-lg font-extrabold mb-5 md:mb-6" style="color: #FFB6D9;">Silakan order di <span class="rainbow-glow" style="font-size:1.05em;">VJ PARFUME</span>! 💖</p>
+      <p class="text-sm md:text-lg font-extrabold mb-1.5" style="color:#FFD7A8;">🌸 Ingin tampil wangi, elegan, dan tahan lama tanpa mahal?</p>
+      <p class="text-sm md:text-lg font-extrabold mb-5 md:mb-6" style="color:#FFB6D9;">Silakan order di <span class="rainbow-glow" style="font-size:1.05em;">VJ PARFUME</span>! 💖</p>
       <div class="flex flex-col items-center gap-2">
-        <span class="font-extrabold text-xs md:text-sm" style="color: var(--text-sec);">💳 Menerima Pembayaran:</span>
+        <span class="font-extrabold text-xs md:text-sm" style="color:var(--text-sec);">💳 Menerima Pembayaran:</span>
         <div class="flex flex-wrap items-center justify-center gap-2">
-          <span class="pay-chip" style="background: rgba(212,165,116,0.1); color: var(--accent-dark);">💵 Cash</span>
-          <span class="pay-chip" style="background: rgba(125,211,252,0.08); color: #7DD3FC;">📱 ABA</span>
-          <span class="pay-chip" style="background: rgba(196,181,253,0.08); color: #C4B5FD;">🪽 Wings</span>
+          <span class="pay-chip" style="background:rgba(212,165,116,.1);color:var(--accent-dark);">💵 Cash</span>
+          <span class="pay-chip" style="background:rgba(125,211,252,.08);color:#7DD3FC;">📱 ABA</span>
+          <span class="pay-chip" style="background:rgba(196,181,253,.08);color:#C4B5FD;">🪽 Wings</span>
         </div>
       </div>
     </div>
   </section>
 
-
-  <!-- ╔══════════════════════════════════════╗ -->
-  <!-- ║          MARQUEE STRIP               ║ -->
-  <!-- ╚══════════════════════════════════════╝ -->
-  <div class="overflow-hidden py-4" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border); background: rgba(212,165,116,0.02);">
+  <!-- MARQUEE -->
+  <div class="overflow-hidden py-4" style="border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(212,165,116,.02);">
     <div class="marquee-track">
-      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #FFD700;">🌸 VJ Parfume</span>
-      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">✨</span>
-      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #FFB6D9;">💐 Wangi Berkualitas</span>
-      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">🎀</span>
-      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #7DD3FC;">💎 Harga Bersahabat</span>
-      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">✨</span>
-      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #C4B5FD;">🌷 Premium Fragrance</span>
-      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">💕</span>
-      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #7FFF00;">💵 Cash · 📱 ABA · 🪽 Wings</span>
-      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">🌹</span>
-      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #FFD700;">🌸 VJ Parfume</span>
-      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">✨</span>
-      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #FFB6D9;">💐 Wangi Berkualitas</span>
-      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">🎀</span>
-      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #7DD3FC;">💎 Harga Bersahabat</span>
-      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">✨</span>
-      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #C4B5FD;">🌷 Premium Fragrance</span>
-      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">💕</span>
-      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #7FFF00;">💵 Cash · 📱 ABA · 🪽 Wings</span>
-      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">🌹</span>
-      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #FFD700;">🌸 VJ Parfume</span>
-      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">✨</span>
-      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #FFB6D9;">💐 Wangi Berkualitas</span>
-      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">🎀</span>
-      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #7DD3FC;">💎 Harga Bersahabat</span>
-      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">✨</span>
-      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #C4B5FD;">🌷 Premium Fragrance</span>
-      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">💕</span>
-      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #7FFF00;">💵 Cash · 📱 ABA · 🪽 Wings</span>
-      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">🌹</span>
+      <span class="text-xs font-extrabold tracking-[.2em] uppercase whitespace-nowrap px-5" style="color:#FFD700;">🌸 VJ Parfume</span><span class="text-xs whitespace-nowrap px-2" style="color:var(--accent-light);">✨</span>
+      <span class="text-xs font-extrabold tracking-[.2em] uppercase whitespace-nowrap px-5" style="color:#FFB6D9;">💐 Wangi Berkualitas</span><span class="text-xs whitespace-nowrap px-2" style="color:var(--accent-light);">🎀</span>
+      <span class="text-xs font-extrabold tracking-[.2em] uppercase whitespace-nowrap px-5" style="color:#7DD3FC;">💎 Harga Bersahabat</span><span class="text-xs whitespace-nowrap px-2" style="color:var(--accent-light);">✨</span>
+      <span class="text-xs font-extrabold tracking-[.2em] uppercase whitespace-nowrap px-5" style="color:#C4B5FD;">🌷 Premium Fragrance</span><span class="text-xs whitespace-nowrap px-2" style="color:var(--accent-light);">💕</span>
+      <span class="text-xs font-extrabold tracking-[.2em] uppercase whitespace-nowrap px-5" style="color:#7FFF00;">💵 Cash · 📱 ABA · 🪽 Wings</span><span class="text-xs whitespace-nowrap px-2" style="color:var(--accent-light);">🌹</span>
+      <span class="text-xs font-extrabold tracking-[.2em] uppercase whitespace-nowrap px-5" style="color:#FFD700;">🌸 VJ Parfume</span><span class="text-xs whitespace-nowrap px-2" style="color:var(--accent-light);">✨</span>
+      <span class="text-xs font-extrabold tracking-[.2em] uppercase whitespace-nowrap px-5" style="color:#FFB6D9;">💐 Wangi Berkualitas</span><span class="text-xs whitespace-nowrap px-2" style="color:var(--accent-light);">🎀</span>
+      <span class="text-xs font-extrabold tracking-[.2em] uppercase whitespace-nowrap px-5" style="color:#7DD3FC;">💎 Harga Bersahabat</span><span class="text-xs whitespace-nowrap px-2" style="color:var(--accent-light);">✨</span>
+      <span class="text-xs font-extrabold tracking-[.2em] uppercase whitespace-nowrap px-5" style="color:#C4B5FD;">🌷 Premium Fragrance</span><span class="text-xs whitespace-nowrap px-2" style="color:var(--accent-light);">💕</span>
+      <span class="text-xs font-extrabold tracking-[.2em] uppercase whitespace-nowrap px-5" style="color:#7FFF00;">💵 Cash · 📱 ABA · 🪽 Wings</span><span class="text-xs whitespace-nowrap px-2" style="color:var(--accent-light);">🌹</span>
+      <span class="text-xs font-extrabold tracking-[.2em] uppercase whitespace-nowrap px-5" style="color:#FFD700;">🌸 VJ Parfume</span><span class="text-xs whitespace-nowrap px-2" style="color:var(--accent-light);">✨</span>
+      <span class="text-xs font-extrabold tracking-[.2em] uppercase whitespace-nowrap px-5" style="color:#FFB6D9;">💐 Wangi Berkualitas</span><span class="text-xs whitespace-nowrap px-2" style="color:var(--accent-light);">🎀</span>
+      <span class="text-xs font-extrabold tracking-[.2em] uppercase whitespace-nowrap px-5" style="color:#7DD3FC;">💎 Harga Bersahabat</span><span class="text-xs whitespace-nowrap px-2" style="color:var(--accent-light);">✨</span>
+      <span class="text-xs font-extrabold tracking-[.2em] uppercase whitespace-nowrap px-5" style="color:#C4B5FD;">🌷 Premium Fragrance</span><span class="text-xs whitespace-nowrap px-2" style="color:var(--accent-light);">💕</span>
+      <span class="text-xs font-extrabold tracking-[.2em] uppercase whitespace-nowrap px-5" style="color:#7FFF00;">💵 Cash · 📱 ABA · 🪽 Wings</span><span class="text-xs whitespace-nowrap px-2" style="color:var(--accent-light);">🌹</span>
     </div>
   </div>
 
-
-  <!-- ╔══════════════════════════════════════╗ -->
-  <!-- ║        TELEGRAM BANNER               ║ -->
-  <!-- ╚══════════════════════════════════════╝ -->
+  <!-- TELEGRAM BANNER -->
   <section class="py-8 md:py-10 px-4 md:px-8 section-glass">
-    <div class="max-w-xl mx-auto rounded-2xl md:rounded-3xl p-5 md:p-8" style="background: var(--card); border: 1px solid var(--border); box-shadow: 0 4px 24px rgba(0,0,0,0.3);">
+    <div class="max-w-xl mx-auto rounded-2xl md:rounded-3xl p-5 md:p-8" style="background:var(--card);border:1px solid var(--border);box-shadow:0 4px 24px rgba(0,0,0,.3);">
       <div class="flex flex-col items-center text-center gap-4 md:gap-5">
-        <div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #2AABEE, #229ED9); box-shadow: 0 6px 20px rgba(42,171,238,0.2);">
+        <div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,#2AABEE,#229ED9);box-shadow:0 6px 20px rgba(42,171,238,.2);">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
         </div>
         <div>
-          <h3 class="font-serif text-lg md:text-2xl font-extrabold mb-1.5" style="color: var(--text);">Gabung Channel Telegram Kami</h3>
-          <p class="text-xs md:text-sm mb-4 md:mb-5 font-bold" style="color: var(--text-sec);">Dapatkan info parfum terbaru & promo spesial langsung di channel kami</p>
-          <a href="https://telegram.me/vjparfume_premium" target="_blank" class="inline-flex items-center justify-center gap-2 px-6 py-2.5 md:px-7 md:py-3 rounded-xl text-xs md:text-sm font-extrabold text-white transition-all hover:opacity-90" style="background: linear-gradient(135deg, #2AABEE, #229ED9); box-shadow: 0 4px 14px rgba(42,171,238,0.2);">
+          <h3 class="font-serif text-lg md:text-2xl font-extrabold mb-1.5" style="color:var(--text);">Gabung Channel Telegram Kami</h3>
+          <p class="text-xs md:text-sm mb-4 md:mb-5 font-bold" style="color:var(--text-sec);">Dapatkan info parfum terbaru & promo spesial</p>
+          <a href="https://telegram.me/vjparfume_premium" target="_blank" class="inline-flex items-center justify-center gap-2 px-6 py-2.5 md:px-7 md:py-3 rounded-xl text-xs md:text-sm font-extrabold text-white transition-all hover:opacity-90" style="background:linear-gradient(135deg,#2AABEE,#229ED9);box-shadow:0 4px 14px rgba(42,171,238,.2);">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
             Gabung Channel Sekarang
           </a>
@@ -540,151 +229,146 @@
     </div>
   </section>
 
-
-  <!-- ╔══════════════════════════════════════╗ -->
-  <!-- ║           CATALOG SECTION            ║ -->
-  <!-- ╚══════════════════════════════════════╝ -->
+  <!-- CATALOG -->
   <section id="koleksi" class="max-w-7xl mx-auto px-3 md:px-8 pt-16 md:pt-24 pb-24 md:pb-32">
     <div class="text-center mb-10 md:mb-14">
-      <p class="text-[10px] md:text-[11px] font-extrabold tracking-[0.35em] uppercase accent-text mb-3 md:mb-4">— Our Collection —</p>
-      <h2 class="text-2xl md:text-5xl font-serif font-extrabold tracking-tight mb-3 md:mb-4" style="color: var(--text);">Koleksi <span class="accent-gradient-text">Parfum</span> Kami</h2>
-      <p class="text-xs md:text-base max-w-md mx-auto font-bold" style="color: var(--text-sec);">Pilih yang kamu suka, langsung pesan tanpa ribet</p>
+      <p class="text-[10px] md:text-[11px] font-extrabold tracking-[.35em] uppercase accent-text mb-3 md:mb-4">— Our Collection —</p>
+      <h2 class="text-2xl md:text-5xl font-serif font-extrabold tracking-tight mb-3 md:mb-4" style="color:var(--text);">Koleksi <span class="accent-gradient-text">Parfum</span> Kami</h2>
+      <p class="text-xs md:text-base max-w-md mx-auto font-bold" style="color:var(--text-sec);">Pilih yang kamu suka, langsung pesan tanpa ribet</p>
       <div class="gold-divider max-w-[100px] md:max-w-[120px] mx-auto mt-4 md:mt-6"></div>
     </div>
     <div class="max-w-md mx-auto mb-8 md:mb-12 px-1">
       <div class="relative">
-        <i data-lucide="search" class="w-4 h-4 absolute left-3.5 md:left-4 top-1/2 -translate-y-1/2" style="color: var(--text-muted);"></i>
+        <i data-lucide="search" class="w-4 h-4 absolute left-3.5 md:left-4 top-1/2 -translate-y-1/2" style="color:var(--text-muted);"></i>
         <input type="text" id="searchInput" placeholder="Cari parfum..." class="input-field w-full h-11 md:h-12 pl-10 md:pl-12 pr-4 md:pr-5 rounded-xl md:rounded-2xl text-xs md:text-sm font-bold">
       </div>
     </div>
     <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2.5 md:gap-5"></div>
     <div id="emptyState" class="hidden text-center py-20 md:py-24">
-      <div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-5" style="background: var(--bg-alt);"><i data-lucide="search-x" class="w-6 h-6 md:w-7 md:h-7" style="color: var(--text-muted);"></i></div>
-      <p class="font-extrabold mb-1 text-sm md:text-base" style="color: var(--text-sec);">Parfum tidak ditemukan</p>
-      <p class="text-xs md:text-sm font-bold" style="color: var(--text-muted);">Coba kata kunci lain</p>
+      <div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-5" style="background:var(--bg-alt);"><i data-lucide="search-x" class="w-6 h-6 md:w-7 md:h-7" style="color:var(--text-muted);"></i></div>
+      <p class="font-extrabold mb-1 text-sm md:text-base" style="color:var(--text-sec);">Parfum tidak ditemukan</p>
+      <p class="text-xs md:text-sm font-bold" style="color:var(--text-muted);">Coba kata kunci lain</p>
     </div>
   </section>
 
-
-  <!-- ╔══════════════════════════════════════╗ -->
-  <!-- ║             FOOTER                   ║ -->
-  <!-- ╚══════════════════════════════════════╝ -->
-  <footer class="py-10 md:py-12 px-5 md:px-6 text-center section-glass" style="border-top: 1px solid var(--border);">
+  <!-- FOOTER -->
+  <footer class="py-10 md:py-12 px-5 md:px-6 text-center section-glass" style="border-top:1px solid var(--border);">
     <div class="flex items-center justify-center gap-2.5 mb-3 md:mb-4">
-      <div class="w-7 h-7 rounded-lg accent-gradient-bg flex items-center justify-center"><span class="font-black text-[10px]" style="color: #13100C;">VJ</span></div>
-      <span class="font-black text-sm rainbow-glow" style="font-size: 13px;">VJ PARFUME</span>
+      <div class="w-7 h-7 rounded-lg accent-gradient-bg flex items-center justify-center"><span class="font-black text-[10px]" style="color:#13100C;">VJ</span></div>
+      <span class="font-black text-sm rainbow-glow" style="font-size:13px;">VJ PARFUME</span>
     </div>
-    <p class="text-xs md:text-sm mb-3 font-bold" style="color: var(--text-sec);">Wangi Berkualitas, Harga Bersahabat</p>
+    <p class="text-xs md:text-sm mb-3 font-bold" style="color:var(--text-sec);">Wangi Berkualitas, Harga Bersahabat</p>
     <div class="flex items-center justify-center gap-4 mb-3 md:mb-4">
-      <a href="https://telegram.me/vjparfume_premium" target="_blank" class="inline-flex items-center gap-1.5 text-[11px] md:text-xs font-bold transition-colors" style="color: var(--accent-dark);" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--accent-dark)'">
+      <a href="https://telegram.me/vjparfume_premium" target="_blank" class="inline-flex items-center gap-1.5 text-[11px] md:text-xs font-bold transition-colors" style="color:var(--accent-dark);" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--accent-dark)'">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
         Channel Telegram
       </a>
     </div>
-    <p class="text-[10px] md:text-xs font-bold" style="color: var(--text-muted);">© 2025 VJ Parfume. All rights reserved.</p>
+    <p class="text-[10px] md:text-xs font-bold" style="color:var(--text-muted);">© 2025 VJ Parfume. All rights reserved.</p>
   </footer>
 
-
-  <!-- ╔══════════════════════════════════════╗ -->
-  <!-- ║      FLOATING TELEGRAM BUTTON        ║ -->
-  <!-- ╚══════════════════════════════════════╝ -->
+  <!-- FLOATING TG -->
   <a href="https://telegram.me/vjparfume_premium" target="_blank" class="tg-float" title="Gabung Channel Telegram">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
   </a>
 
-
-  <!-- ╔══════════════════════════════════════╗ -->
-  <!-- ║          ORDER MODAL                 ║ -->
-  <!-- ╚══════════════════════════════════════╝ -->
+  <!-- ORDER MODAL -->
   <div id="orderModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 md:p-4 modal-backdrop">
     <div class="modal-box w-full max-w-md max-h-[92vh] overflow-y-auto anim-slide-up">
       <div class="flex items-center justify-between p-5 md:p-6 pb-3 md:pb-4">
         <div>
-          <p class="text-[10px] font-extrabold tracking-[0.25em] uppercase accent-text mb-1">Pesan Sekarang</p>
-          <h3 class="font-extrabold text-base md:text-lg" style="color: var(--text);" id="modalNama">Nama Parfum</h3>
+          <p class="text-[10px] font-extrabold tracking-[.25em] uppercase accent-text mb-1">Pesan Sekarang</p>
+          <h3 class="font-extrabold text-base md:text-lg" style="color:var(--text);" id="modalNama">Nama Parfum</h3>
         </div>
-        <button onclick="closeModal()" class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center transition-colors" style="background: var(--bg-alt);"><i data-lucide="x" class="w-4 h-4" style="color: var(--text-sec);"></i></button>
+        <button onclick="closeModal()" class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center transition-colors" style="background:var(--bg-alt);"><i data-lucide="x" class="w-4 h-4" style="color:var(--text-sec);"></i></button>
       </div>
       <div class="gold-divider mx-5 md:mx-6"></div>
       <div class="p-5 md:p-6 pb-3 md:pb-4 flex items-center gap-3 md:gap-4">
-        <img id="modalImg" src="" alt="" class="w-16 h-16 md:w-20 md:h-20 rounded-xl md:rounded-2xl object-contain" style="border: 1px solid var(--border); background: var(--bg-alt);">
+        <img id="modalImg" src="" alt="" class="w-16 h-16 md:w-20 md:h-20 rounded-xl md:rounded-2xl object-contain" style="border:1px solid var(--border);background:var(--bg-alt);">
         <div>
-          <p class="font-extrabold text-xs md:text-sm" style="color: var(--text);" id="modalNama2"></p>
-          <p class="font-extrabold text-xs mt-0.5" style="color: var(--accent);" id="modalUkuran"></p>
-          <p class="font-extrabold text-base md:text-lg mt-1 accent-text" id="modalHarga"></p>
+          <p class="font-extrabold text-xs md:text-sm" style="color:var(--text);" id="modalNama2"></p>
+          <p class="font-extrabold text-xs mt-0.5" style="color:var(--accent);" id="modalUkuran"></p>
+          <div class="mt-1 space-y-0.5">
+            <p class="font-extrabold text-sm md:text-base accent-text" id="modalHargaIDR"></p>
+            <p class="font-extrabold text-xs" style="color:#7DD3FC;" id="modalHargaUSD"></p>
+            <p class="font-extrabold text-xs" style="color:#C4B5FD;" id="modalHargaKHR"></p>
+          </div>
         </div>
       </div>
       <form id="orderForm" class="px-5 md:px-6 pb-5 md:pb-6 space-y-3.5 md:space-y-4" onsubmit="return submitOrder(event)">
         <div>
-          <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Nama Lengkap <span style="color: #EF4444;">*</span></label>
+          <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color:var(--text-sec);">Nama Lengkap <span style="color:#EF4444;">*</span></label>
           <input type="text" id="inputNama" required placeholder="Tulis nama kamu di sini" class="input-field w-full h-11 md:h-12 px-3.5 md:px-4 rounded-xl text-xs md:text-sm font-bold">
         </div>
         <div>
-          <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Catatan</label>
+          <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color:var(--text-sec);">Pilih Mata Uang Pembayaran</label>
+          <div class="flex gap-2">
+            <button type="button" class="pay-select active" data-currency="idr" onclick="selectCurrency('idr')">🇮🇩 Rupiah</button>
+            <button type="button" class="pay-select" data-currency="usd" onclick="selectCurrency('usd')">💵 Dollar</button>
+            <button type="button" class="pay-select" data-currency="khr" onclick="selectCurrency('khr')">💰 Riel</button>
+          </div>
+        </div>
+        <div>
+          <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color:var(--text-sec);">Catatan</label>
           <textarea id="inputCatatan" rows="2" placeholder="Tulis catatan tambahan (opsional)..." class="input-field w-full px-3.5 md:px-4 py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-bold resize-none"></textarea>
         </div>
         <div>
-          <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Jumlah Pesanan</label>
+          <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color:var(--text-sec);">Jumlah Pesanan</label>
           <div class="flex items-center gap-3 md:gap-4">
             <button type="button" class="qty-btn" onclick="changeQty(-1)">−</button>
-            <span id="qtyDisplay" class="text-xl md:text-2xl font-black w-8 md:w-10 text-center" style="color: var(--text);">1</span>
+            <span id="qtyDisplay" class="text-xl md:text-2xl font-black w-8 md:w-10 text-center" style="color:var(--text);">1</span>
             <button type="button" class="qty-btn" onclick="changeQty(1)">+</button>
-            <span id="stockInfo" class="text-[11px] md:text-xs font-bold ml-auto" style="color: var(--text-muted);"></span>
+            <span id="stockInfo" class="text-[11px] md:text-xs font-bold ml-auto" style="color:var(--text-muted);"></span>
           </div>
         </div>
-        <div class="rounded-xl md:rounded-2xl p-4 md:p-5 text-center" style="background: var(--accent-pale); border: 1px solid var(--border-accent);">
-          <p class="text-[10px] md:text-xs font-extrabold mb-1.5 md:mb-2 tracking-wide" style="color: var(--text-sec);">TOTAL HARGA</p>
+        <div class="rounded-xl md:rounded-2xl p-4 md:p-5 text-center" style="background:var(--accent-pale);border:1px solid var(--border-accent);animation:pulseGlow 3s ease-in-out infinite;">
+          <p class="text-[10px] md:text-xs font-extrabold mb-1.5 md:mb-2 tracking-wide" style="color:var(--text-sec);">TOTAL HARGA</p>
           <div id="totalHarga" class="font-black accent-text text-2xl md:text-3xl">Rp 0</div>
+          <p id="totalHargaSub" class="text-[10px] md:text-xs font-bold mt-1" style="color:var(--text-muted);"></p>
         </div>
         <button type="submit" id="submitBtn" class="w-full btn-primary rounded-xl md:rounded-2xl font-extrabold text-xs md:text-sm flex items-center justify-center gap-2.5 tracking-wide py-3.5 md:py-4">
           <i data-lucide="shopping-bag" class="w-4 h-4"></i> Konfirmasi Pesanan
         </button>
-        <a id="modalTgLink" href="#" target="_blank" class="w-full rounded-xl md:rounded-2xl font-extrabold text-xs md:text-sm flex items-center justify-center gap-2.5 tracking-wide py-3 md:py-3.5 transition-all" style="background: rgba(42,171,238,0.08); border: 1px solid rgba(42,171,238,0.2); color: #2AABEE;" onmouseover="this.style.background='linear-gradient(135deg,#2AABEE,#229ED9)';this.style.color='#fff';this.style.borderColor='#2AABEE'" onmouseout="this.style.background='rgba(42,171,238,0.08)';this.style.color='#2AABEE';this.style.borderColor='rgba(42,171,238,0.2)'">
+        <a id="modalTgLink" href="#" target="_blank" class="w-full rounded-xl md:rounded-2xl font-extrabold text-xs md:text-sm flex items-center justify-center gap-2.5 tracking-wide py-3 md:py-3.5 transition-all" style="background:rgba(42,171,238,.08);border:1px solid rgba(42,171,238,.2);color:#2AABEE;" onmouseover="this.style.background='linear-gradient(135deg,#2AABEE,#229ED9)';this.style.color='#fff';this.style.borderColor='#2AABEE'" onmouseout="this.style.background='rgba(42,171,238,.08)';this.style.color='#2AABEE';this.style.borderColor='rgba(42,171,238,.2)'">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
           Atau Pesan via Channel Telegram
         </a>
-        <p class="text-center text-[10px] md:text-[11px] mt-1 font-bold" style="color: var(--text-muted);">Pesanan akan dikirim ke admin VJ Parfume</p>
+        <p class="text-center text-[10px] md:text-[11px] mt-1 font-bold" style="color:var(--text-muted);">Pesanan akan dikirim ke admin VJ Parfume</p>
       </form>
     </div>
   </div>
 
-
-  <!-- ╔══════════════════════════════════════╗ -->
-  <!-- ║          ADMIN MODAL                 ║ -->
-  <!-- ╚══════════════════════════════════════╝ -->
+  <!-- ADMIN MODAL -->
   <div id="adminModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 md:p-4 modal-backdrop">
     <div class="modal-box w-full max-w-2xl max-h-[92vh] overflow-hidden flex flex-col anim-slide-up">
       <div id="adminLogin" class="p-6 md:p-8 text-center">
-        <div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl mx-auto mb-4 md:mb-5 flex items-center justify-center" style="background: var(--accent-pale);"><i data-lucide="lock" class="w-6 h-6 md:w-7 md:h-7 accent-text"></i></div>
-        <h3 class="font-extrabold text-lg md:text-xl mb-2" style="color: var(--text);">Admin Panel</h3>
-        <p class="text-xs md:text-sm mb-5 md:mb-6 font-bold" style="color: var(--text-muted);">Masukkan password untuk mengelola parfum</p>
+        <div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl mx-auto mb-4 md:mb-5 flex items-center justify-center" style="background:var(--accent-pale);"><i data-lucide="lock" class="w-6 h-6 md:w-7 md:h-7 accent-text"></i></div>
+        <h3 class="font-extrabold text-lg md:text-xl mb-2" style="color:var(--text);">Admin Panel</h3>
+        <p class="text-xs md:text-sm mb-5 md:mb-6 font-bold" style="color:var(--text-muted);">Masukkan password untuk mengelola parfum</p>
         <input type="password" id="adminPassInput" placeholder="Password..." class="input-field w-full h-11 md:h-12 px-4 rounded-xl text-xs md:text-sm font-bold mb-3 md:mb-4 text-center" onkeydown="if(event.key==='Enter')attemptAdminLogin()">
         <button onclick="attemptAdminLogin()" class="w-full btn-primary rounded-xl font-extrabold text-xs md:text-sm py-3 md:py-3.5">Masuk</button>
-        <button onclick="closeAdminModal()" class="w-full mt-2.5 md:mt-3 py-2.5 md:py-3 text-xs md:text-sm font-bold rounded-xl transition-colors" style="color: var(--text-muted);" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-muted)'">Batal</button>
-        <p id="adminError" class="text-[11px] md:text-xs mt-2.5 md:mt-3 font-extrabold hidden" style="color: #EF4444;">Password salah! Coba lagi.</p>
+        <button onclick="closeAdminModal()" class="w-full mt-2.5 md:mt-3 py-2.5 md:py-3 text-xs md:text-sm font-bold rounded-xl transition-colors" style="color:var(--text-muted);" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-muted)'">Batal</button>
+        <p id="adminError" class="text-[11px] md:text-xs mt-2.5 md:mt-3 font-extrabold hidden" style="color:#EF4444;">Password salah! Coba lagi.</p>
       </div>
-      <div id="adminPanel" class="hidden flex flex-col" style="max-height: 92vh;">
+      <div id="adminPanel" class="hidden flex flex-col" style="max-height:92vh;">
         <div class="flex items-center justify-between p-4 md:p-5 pb-3 md:pb-4 flex-shrink-0">
-          <div>
-            <p class="text-[10px] font-extrabold tracking-[0.25em] uppercase accent-text mb-0.5">Admin Mode</p>
-            <h3 class="font-extrabold text-base md:text-lg" style="color: var(--text);">Kelola Parfum</h3>
-          </div>
-          <button onclick="closeAdminModal()" class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center transition-colors" style="background: var(--bg-alt);"><i data-lucide="x" class="w-4 h-4" style="color: var(--text-sec);"></i></button>
+          <div><p class="text-[10px] font-extrabold tracking-[.25em] uppercase accent-text mb-0.5">Admin Mode</p><h3 class="font-extrabold text-base md:text-lg" style="color:var(--text);">Kelola Parfum</h3></div>
+          <button onclick="closeAdminModal()" class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center transition-colors" style="background:var(--bg-alt);"><i data-lucide="x" class="w-4 h-4" style="color:var(--text-sec);"></i></button>
         </div>
         <div class="gold-divider mx-4 md:mx-5"></div>
-        <div class="px-4 md:px-5 py-3 flex-shrink-0 rounded-xl mx-3 mt-2 pulse-green-border" style="background: rgba(34,197,94,0.08); border: 2px solid rgba(34,197,94,0.3);">
-          <p class="text-[12px] md:text-sm leading-relaxed font-extrabold" style="color: #22C55E;">📌 CARA BIAR GAMBAR MUNCUL DI SEMUA DEVICE:</p>
-          <p class="text-[11px] md:text-xs leading-relaxed font-bold mt-1.5" style="color: var(--text-sec);">1. Klik <strong style="color: var(--accent);">📁 Pilih Gambar</strong> di bawah setiap produk → pilih foto parfum</p>
-          <p class="text-[11px] md:text-xs leading-relaxed font-bold" style="color: var(--text-sec);">2. Setelah semua gambar dipasang, klik <strong style="color: #22C55E;">"💾 Simpan & Download"</strong></p>
-          <p class="text-[11px] md:text-xs leading-relaxed font-bold" style="color: var(--text-sec);">3. File HTML akan otomatis terdownload — <strong style="color: #7DD3FC;">file itulah yang kamu share</strong></p>
-          <p class="text-[11px] md:text-xs leading-relaxed font-bold" style="color: var(--text-sec);">4. Buka file download itu di HP lain, email lain, incognito — <strong style="color: #22C55E;">gambar PASTI muncul</strong></p>
-          <p class="text-[10px] md:text-[11px] leading-relaxed font-extrabold mt-2" style="color: #F59E0B;">⚠️ File LAMA tidak akan berubah! Selalu pakai file HASIL DOWNLOAD terbaru!</p>
+        <div class="px-4 md:px-5 py-3 flex-shrink-0 rounded-xl mx-3 mt-2 pulse-green-border" style="background:rgba(34,197,94,.08);border:2px solid rgba(34,197,94,.3);">
+          <p class="text-[12px] md:text-sm leading-relaxed font-extrabold" style="color:#22C55E;">📌 CARA BIAR GAMBAR MUNCUL DI SEMUA DEVICE:</p>
+          <p class="text-[11px] md:text-xs leading-relaxed font-bold mt-1" style="color:var(--text-sec);">1. Klik <strong style="color:var(--accent);">📁 Pilih Gambar</strong> → pilih foto parfum dari file HP/komputer</p>
+          <p class="text-[11px] md:text-xs leading-relaxed font-bold" style="color:var(--text-sec);">2. Setelah semua gambar dipasang, klik <strong style="color:#22C55E;">"💾 SIMPAN & DOWNLOAD"</strong></p>
+          <p class="text-[11px] md:text-xs leading-relaxed font-bold" style="color:var(--text-sec);">3. File HTML baru akan terdownload — <strong style="color:#7DD3FC;">ITU file yang kamu share</strong></p>
+          <p class="text-[11px] md:text-xs leading-relaxed font-bold" style="color:var(--text-sec);">4. Buka file download itu di HP lain / browser lain — <strong style="color:#22C55E;">gambar PASTI muncul!</strong></p>
+          <p class="text-[10px] md:text-[11px] leading-relaxed font-extrabold mt-1.5" style="color:#F59E0B;">⚠️ File LAMA tidak akan berubah! Selalu pakai file HASIL DOWNLOAD terbaru!</p>
         </div>
         <div id="adminContent" class="flex-1 overflow-y-auto px-4 md:px-5 pb-3 md:pb-4 space-y-2.5 md:space-y-3"></div>
-        <div class="p-4 md:p-5 pt-2.5 md:pt-3 flex flex-col gap-2 flex-shrink-0" style="border-top: 1px solid var(--border);">
+        <div class="p-4 md:p-5 pt-2.5 md:pt-3 flex flex-col gap-2 flex-shrink-0" style="border-top:1px solid var(--border);">
           <div class="flex flex-col sm:flex-row gap-2">
-            <button onclick="addNewParfum()" class="flex-1 py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-extrabold flex items-center justify-center gap-2 transition-all" style="background: var(--bg-alt); color: var(--text-sec); border: 1px solid var(--border);" onmouseover="this.style.borderColor='var(--border-accent)'" onmouseout="this.style.borderColor='var(--border)'"><i data-lucide="plus" class="w-4 h-4"></i> Tambah Parfum</button>
-            <button onclick="resetToDefault()" class="py-2.5 md:py-3 px-3 md:px-4 rounded-xl text-xs md:text-sm font-extrabold flex items-center justify-center gap-2 transition-all" style="background: rgba(239,68,68,0.06); color: #EF4444; border: 1px solid rgba(239,68,68,0.15);" onmouseover="this.style.background='rgba(239,68,68,0.1)'" onmouseout="this.style.background='rgba(239,68,68,0.06)'"><i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset</button>
+            <button onclick="addNewParfum()" class="flex-1 py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-extrabold flex items-center justify-center gap-2 transition-all" style="background:var(--bg-alt);color:var(--text-sec);border:1px solid var(--border);" onmouseover="this.style.borderColor='var(--border-accent)'" onmouseout="this.style.borderColor='var(--border)'"><i data-lucide="plus" class="w-4 h-4"></i> Tambah Parfum</button>
+            <button onclick="resetToDefault()" class="py-2.5 md:py-3 px-3 md:px-4 rounded-xl text-xs md:text-sm font-extrabold flex items-center justify-center gap-2 transition-all" style="background:rgba(239,68,68,.06);color:#EF4444;border:1px solid rgba(239,68,68,.15);" onmouseover="this.style.background='rgba(239,68,68,.1)'" onmouseout="this.style.background='rgba(239,68,68,.06)'"><i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset</button>
           </div>
           <button onclick="saveAndDownload()" class="w-full btn-download-html py-3 md:py-3.5 rounded-xl text-sm md:text-base font-extrabold flex items-center justify-center gap-2.5"><i data-lucide="download" class="w-5 h-5"></i> 💾 SIMPAN & DOWNLOAD HTML</button>
         </div>
@@ -692,97 +376,114 @@
     </div>
   </div>
 
-
-  <!-- ╔══════════════════════════════════════╗ -->
-  <!-- ║         SUCCESS TOAST                ║ -->
-  <!-- ╚══════════════════════════════════════╝ -->
+  <!-- TOAST -->
   <div id="successToast" class="hidden fixed top-16 md:top-20 right-3 md:right-6 left-3 md:left-auto z-[60] toast-box p-4 md:p-5 anim-slide-up">
     <div class="flex items-start gap-3 md:gap-4">
-      <div class="w-10 h-10 md:w-11 md:h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(34,197,94,0.08);"><i data-lucide="check-circle" class="w-5 h-5" style="color: #22C55E;"></i></div>
+      <div class="w-10 h-10 md:w-11 md:h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(34,197,94,.08);"><i data-lucide="check-circle" class="w-5 h-5" style="color:#22C55E;"></i></div>
       <div>
-        <p class="font-extrabold text-xs md:text-sm" style="color: #22C55E;">Pesanan Berhasil Dikirim! 🎉</p>
-        <p class="text-[10px] md:text-xs mt-0.5 md:mt-1 font-bold" style="color: var(--text-muted);">Admin akan segera memproses pesananmu</p>
+        <p class="font-extrabold text-xs md:text-sm" style="color:#22C55E;" id="toastTitle">Pesanan Berhasil Dikirim! 🎉</p>
+        <p class="text-[10px] md:text-xs mt-0.5 md:mt-1 font-bold" style="color:var(--text-muted);" id="toastMsg">Admin akan segera memproses pesananmu</p>
       </div>
     </div>
   </div>
 
-
-  <!-- ╔══════════════════════════════════════╗ -->
-  <!-- ║            SCRIPTS                   ║ -->
-  <!-- ╚══════════════════════════════════════╝ -->
   <script>
-    // ═══════════════════════════════════════════════════════
-    //  🔒 KUNCI F12 / DEVTOOLS / RIGHT CLICK
-    // ═══════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════
+    //  KEAMANAN
+    // ═══════════════════════════════════════════
     document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'F12' ||
-          (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) ||
-          (e.ctrlKey && (e.key === 'u' || e.key === 'U')) ||
-          (e.ctrlKey && (e.key === 's' || e.key === 'S')) ||
-          (e.metaKey && (e.key === 'u' || e.key === 'U')) ||
-          (e.metaKey && (e.key === 's' || e.key === 'S'))) {
-        e.preventDefault();
-        return false;
-      }
+      if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) || (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 's' || e.key === 'S')) || (e.metaKey && (e.key === 'u' || e.key === 'U' || e.key === 's' || e.key === 'S'))) { e.preventDefault(); return false; }
     });
 
-    // ═══════════════════════════════════════════════════════
-    //  🔧 PASTE URL GOOGLE SHEETS KAMU DI BAWAH INI
-    // ═══════════════════════════════════════════════════════
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxAD2_1eEHv4iSFFFfqI1Wl35escLyzph03SXXHr1-FU5gTxJgQMpyQ3rX5gGF6OsYiOg/exec";
-
-    // ═══════════════════════════════════════════════════════
-    //  🔐 ADMIN PASSWORD
-    // ═══════════════════════════════════════════════════════
-    const ADMIN_PASSWORD = "vjadmin2025";
-
-    // ═══════════════════════════════════════════════════════
-    //  💱 KURS MATA UANG
-    // ═══════════════════════════════════════════════════════
-    const KURS_USD_TO_IDR = 16000;
-    const KURS_USD_TO_KHR = 4100;
+    // ═══════════════════════════════════════════
+    //  KONFIGURASI
+    // ═══════════════════════════════════════════
+    var GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxAD2_1eEHv4iSFFFfqI1Wl35escLyzph03SXXHr1-FU5gTxJgQMpyQ3rX5gGF6OsYiOg/exec";
+    var ADMIN_PASSWORD = "vjadmin2025";
+    var KURS_USD_TO_IDR = 16000;
+    var KURS_USD_TO_KHR = 4100;
 
     function toUSD(idr) { return idr / KURS_USD_TO_IDR; }
     function toKHR(idr) { return idr / KURS_USD_TO_IDR * KURS_USD_TO_KHR; }
-    function fmtUSD(usd) { return '$' + usd.toFixed(2); }
-    function fmtKHR(khr) { return Math.round(khr).toLocaleString() + ' riel'; }
-    function fmtIDR(idr) { return 'Rp ' + idr.toLocaleString('id-ID'); }
+    function fmtUSD(u) { return '$' + u.toFixed(2); }
+    function fmtKHR(k) { return Math.round(k).toLocaleString() + ' riel'; }
+    function fmtIDR(i) { return 'Rp ' + i.toLocaleString('id-ID'); }
 
-    // ═══════════════════════════════════════════════════════
-    //  🖼️ PLACEHOLDER — SELALU MUNCUL, TIDAK PERLU INTERNET
-    // ═══════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════
+    //  PLACEHOLDER GAMBAR (SELALU MUNCUL)
+    // ═══════════════════════════════════════════
     function placeholderImg(text) {
       return "data:image/svg+xml," + encodeURIComponent(
         '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500">' +
-        '<rect width="400" height="500" fill="#1C1814"/>' +
-        '<rect x="20" y="20" width="360" height="460" rx="8" fill="none" stroke="#4A3D32" stroke-width="1.5" stroke-dasharray="6,4"/>' +
-        '<text x="200" y="220" text-anchor="middle" fill="#D4A574" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="bold">' + text + '</text>' +
-        '<text x="200" y="250" text-anchor="middle" fill="#8A7B6B" font-family="Arial,Helvetica,sans-serif" font-size="11">Belum ada gambar</text>' +
-        '<text x="200" y="280" text-anchor="middle" fill="#4A3D32" font-family="Arial,Helvetica,sans-serif" font-size="10">Upload via Admin Panel</text>' +
+        '<defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1C1814"/><stop offset="100%" stop-color="#13100C"/></linearGradient></defs>' +
+        '<rect width="400" height="500" fill="url(#bg)"/>' +
+        '<rect x="30" y="30" width="340" height="440" rx="12" fill="none" stroke="#4A3D32" stroke-width="1.5" stroke-dasharray="8,5"/>' +
+        '<circle cx="200" cy="180" r="40" fill="none" stroke="#D4A574" stroke-width="1" opacity="0.3"/>' +
+        '<rect x="170" y="210" width="60" height="80" rx="6" fill="none" stroke="#D4A574" stroke-width="1" opacity="0.3"/>' +
+        '<line x1="185" y1="230" x2="215" y2="230" stroke="#D4A574" stroke-width="0.8" opacity="0.2"/>' +
+        '<line x1="185" y1="245" x2="215" y2="245" stroke="#D4A574" stroke-width="0.8" opacity="0.2"/>' +
+        '<text x="200" y="330" text-anchor="middle" fill="#D4A574" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="bold">' + text + '</text>' +
+        '<text x="200" y="355" text-anchor="middle" fill="#8A7B6B" font-family="Arial,Helvetica,sans-serif" font-size="11">Belum ada gambar</text>' +
+        '<text x="200" y="375" text-anchor="middle" fill="#4A3D32" font-family="Arial,Helvetica,sans-serif" font-size="10">Upload via Admin Panel</text>' +
         '</svg>'
       );
     }
+    function handleImgError(imgEl, nama) { imgEl.onerror = null; imgEl.src = placeholderImg(nama); }
 
-    function handleImgError(imgEl, nama) {
-      imgEl.onerror = null;
-      imgEl.src = placeholderImg(nama);
+    // ═══════════════════════════════════════════
+    //  KOMPRESI GAMBAR (BIAR FILE HTML KECIL)
+    // ═══════════════════════════════════════════
+    function compressImage(file, callback) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var img = new Image();
+        img.onload = function() {
+          var canvas = document.createElement('canvas');
+          var maxW = 400;
+          var w = img.width, h = img.height;
+          if (w > maxW) { h = Math.round((maxW / w) * h); w = maxW; }
+          canvas.width = w; canvas.height = h;
+          var ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+          callback(canvas.toDataURL('image/jpeg', 0.7));
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
     }
 
-    // ═══════════════════════════════════════════════════════
-    //  🌸 DATA DEFAULT — GAMBAR KOSONG, NANTI KAMU ISI
-    // ═══════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════
+    //  DATA DEFAULT — 20 VARIAN PARFUM
+    // ═══════════════════════════════════════════
+    /* __VJ_DATA_START__ */
     const defaultParfumData = [
-      { id: 1, nama: "SCANDALOUS", gambar: placeholderImg("SCANDALOUS"), gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 2, nama: "BLACK OPIUM", gambar: placeholderImg("BLACK OPIUM"), gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 3, nama: "AVRIL LAVIGNE", gambar: placeholderImg("AVRIL LAVIGNE"), gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 4, nama: "SOFT", gambar: placeholderImg("SOFT"), gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" },
-      { id: 5, nama: "PINK CHIFFON", gambar: placeholderImg("PINK CHIFFON"), gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" }
+      { id:1, nama:"SCANDALOUS", gambar:placeholderImg("SCANDALOUS"), gambarUrl:"", harga:200000, stok:10, ukuran:"35ml" },
+      { id:2, nama:"BLACK OPIUM", gambar:placeholderImg("BLACK OPIUM"), gambarUrl:"", harga:250000, stok:10, ukuran:"35ml" },
+      { id:3, nama:"AVRIL LAVIGNE", gambar:placeholderImg("AVRIL LAVIGNE"), gambarUrl:"", harga:200000, stok:10, ukuran:"35ml" },
+      { id:4, nama:"SOFT", gambar:placeholderImg("SOFT"), gambarUrl:"", harga:180000, stok:10, ukuran:"35ml" },
+      { id:5, nama:"PINK CHIFFON", gambar:placeholderImg("PINK CHIFFON"), gambarUrl:"", harga:180000, stok:10, ukuran:"35ml" },
+      { id:6, nama:"ROMANTIC WISH", gambar:placeholderImg("ROMANTIC WISH"), gambarUrl:"", harga:200000, stok:10, ukuran:"35ml" },
+      { id:7, nama:"OLLA RAMLAN", gambar:placeholderImg("OLLA RAMLAN"), gambarUrl:"", harga:200000, stok:10, ukuran:"35ml" },
+      { id:8, nama:"DIOR SAUVAGE", gambar:placeholderImg("DIOR SAUVAGE"), gambarUrl:"", harga:280000, stok:10, ukuran:"35ml" },
+      { id:9, nama:"DUNHILL BLUE", gambar:placeholderImg("DUNHILL BLUE"), gambarUrl:"", harga:250000, stok:10, ukuran:"35ml" },
+      { id:10, nama:"BVLGARI AQUA", gambar:placeholderImg("BVLGARI AQUA"), gambarUrl:"", harga:280000, stok:10, ukuran:"35ml" },
+      { id:11, nama:"GREY JAY ROSE", gambar:placeholderImg("GREY JAY ROSE"), gambarUrl:"", harga:200000, stok:10, ukuran:"35ml" },
+      { id:12, nama:"SOTB", gambar:placeholderImg("SOTB"), gambarUrl:"", harga:200000, stok:10, ukuran:"35ml" },
+      { id:13, nama:"SELENA GOMES", gambar:placeholderImg("SELENA GOMES"), gambarUrl:"", harga:200000, stok:10, ukuran:"35ml" },
+      { id:14, nama:"LOVELY", gambar:placeholderImg("LOVELY"), gambarUrl:"", harga:180000, stok:10, ukuran:"35ml" },
+      { id:15, nama:"MONT BLANC LEGEND", gambar:placeholderImg("MONT BLANC LEGEND"), gambarUrl:"", harga:280000, stok:10, ukuran:"35ml" },
+      { id:16, nama:"YSL LIBRE", gambar:placeholderImg("YSL LIBRE"), gambarUrl:"", harga:280000, stok:10, ukuran:"35ml" },
+      { id:17, nama:"PINK FANTASY", gambar:placeholderImg("PINK FANTASY"), gambarUrl:"", harga:180000, stok:10, ukuran:"35ml" },
+      { id:18, nama:"BLUE EMOTION", gambar:placeholderImg("BLUE EMOTION"), gambarUrl:"", harga:180000, stok:10, ukuran:"35ml" },
+      { id:19, nama:"BACCARAT", gambar:placeholderImg("BACCARAT"), gambarUrl:"", harga:320000, stok:10, ukuran:"35ml" },
+      { id:20, nama:"DRAKAR", gambar:placeholderImg("DRAKAR"), gambarUrl:"", harga:250000, stok:10, ukuran:"35ml" }
     ];
+    /* __VJ_DATA_END__ */
 
-    // ═══════════════════════════════════════
-    //  LOAD / SAVE
-    // ═══════════════════════════════════════
+    // ═══════════════════════════════════════════
+    //  LOAD / SAVE DATA
+    // ═══════════════════════════════════════════
     function loadParfumData() {
       var saved = localStorage.getItem('vj_parfum_data');
       if (saved) {
@@ -799,473 +500,388 @@
       }
       return JSON.parse(JSON.stringify(defaultParfumData));
     }
-
     function saveParfumToStorage(data) {
       try { localStorage.setItem('vj_parfum_data', JSON.stringify(data)); }
-      catch(e) { alert('Penyimpanan penuh! Upload gambar lebih kecil.'); }
+      catch(e) { alert('Penyimpanan penuh! Gunakan gambar lebih kecil atau hapus beberapa gambar.'); }
     }
-
     var parfumData = loadParfumData();
 
-    // ═══════════════════════════════════════
+    // ═══════════════════════════════════════════
     //  STATE
-    // ═══════════════════════════════════════
+    // ═══════════════════════════════════════════
     var currentSearch = "";
     var selectedParfum = null;
     var currentQty = 1;
+    var selectedCurrency = 'idr';
     var logoClickCount = 0;
     var logoClickTimer = null;
 
-    // ═══════════════════════════════════════
-    //  AMBIL GAMBAR: gambarUrl > gambar > placeholder
-    // ═══════════════════════════════════════
     function getImgSrc(p) {
-      if (p.gambarUrl && p.gambarUrl.trim() !== "") return p.gambarUrl;
       if (p.gambar && p.gambar.indexOf("data:") === 0) return p.gambar;
+      if (p.gambarUrl && p.gambarUrl.trim() !== "") return p.gambarUrl;
       return placeholderImg(p.nama);
     }
 
-    // ═══════════════════════════════════════
-    //  RENDER PRODUCTS
-    // ═══════════════════════════════════════
+    // ═══════════════════════════════════════════
+    //  RENDER PRODUK
+    // ═══════════════════════════════════════════
     function renderProducts() {
       var grid = document.getElementById("productGrid");
       var empty = document.getElementById("emptyState");
-
-      var filtered = parfumData.filter(function(p) {
-        return p.nama.toLowerCase().includes(currentSearch.toLowerCase());
-      });
-
-      if (filtered.length === 0) {
-        grid.innerHTML = "";
-        empty.classList.remove("hidden");
-        lucide.createIcons();
-        return;
-      }
+      var filtered = parfumData.filter(function(p) { return p.nama.toLowerCase().indexOf(currentSearch.toLowerCase()) !== -1; });
+      if (filtered.length === 0) { grid.innerHTML = ""; empty.classList.remove("hidden"); lucide.createIcons(); return; }
       empty.classList.add("hidden");
-
       grid.innerHTML = filtered.map(function(p, i) {
-        var isSoldOut = p.stok === 0;
-        var isLow = p.stok > 0 && p.stok <= 3;
-
-        var stockHtml = "";
-        if (isSoldOut) {
-          stockHtml = '<span class="text-[10px] md:text-[11px] font-extrabold tracking-wide" style="color: #EF4444;">SOLD OUT</span>';
-        } else if (isLow) {
-          stockHtml = '<span class="stock-dot stock-low"></span><span class="text-[10px] md:text-[11px] font-extrabold" style="color: #F59E0B;">Sisa ' + p.stok + '</span>';
-        } else {
-          stockHtml = '<span class="stock-dot stock-yes"></span><span class="text-[10px] md:text-[11px] font-extrabold" style="color: #22C55E;">Tersedia</span>';
-        }
-
-        var usd = toUSD(p.harga);
-        var khr = toKHR(p.harga);
-        var uk = p.ukuran || "35ml";
-        var imgSrc = getImgSrc(p);
-
-        return '<div class="perfume-card" style="animation: fadeUp 0.6s ease-out ' + (i * 0.05) + 's forwards; opacity: 0;">' +
-          (isSoldOut ? '<div class="sold-out-overlay"><div class="sold-out-badge">SOLD OUT</div></div>' : '') +
-          '<div class="relative aspect-[4/5] overflow-hidden flex-shrink-0" style="background: var(--bg-alt);">' +
-            '<img src="' + imgSrc + '" alt="' + p.nama + '" class="card-img w-full h-full object-contain" style="object-position: center top;" loading="lazy" onerror="handleImgError(this,\'' + p.nama.replace(/'/g, "\\'") + '\')">' +
+        var so = p.stok === 0;
+        var lo = p.stok > 0 && p.stok <= 3;
+        var stk = so ? '<span class="text-[10px] md:text-[11px] font-extrabold tracking-wide" style="color:#EF4444;">SOLD OUT</span>' : lo ? '<span class="stock-dot stock-low"></span><span class="text-[10px] md:text-[11px] font-extrabold" style="color:#F59E0B;">Sisa ' + p.stok + '</span>' : '<span class="stock-dot stock-yes"></span><span class="text-[10px] md:text-[11px] font-extrabold" style="color:#22C55E;">Tersedia</span>';
+        var usd = toUSD(p.harga), khr = toKHR(p.harga), uk = p.ukuran || "35ml", src = getImgSrc(p);
+        return '<div class="perfume-card" style="animation:fadeUp 0.6s ease-out ' + (i * 0.04) + 's forwards;opacity:0;">' +
+          (so ? '<div class="sold-out-overlay"><div class="sold-out-badge">SOLD OUT</div></div>' : '') +
+          '<div class="img-wrap relative aspect-[4/5] overflow-hidden flex-shrink-0">' +
+            '<img src="' + src + '" alt="' + p.nama + '" class="card-img w-full h-full object-contain" style="object-position:center top;" loading="lazy" onerror="handleImgError(this,\'' + p.nama.replace(/'/g, "\\'") + '\')">' +
           '</div>' +
           '<div class="p-2.5 md:p-3.5 flex flex-col flex-1">' +
-            '<h3 class="font-extrabold text-[11px] md:text-sm mb-1 tracking-tight leading-tight" style="color: var(--text);">' + p.nama + '</h3>' +
-            '<div class="inline-block self-start px-2 py-0.5 rounded-md mb-2" style="background: rgba(212,165,116,0.15); border: 1px solid rgba(212,165,116,0.25);">' +
-              '<span class="text-[10px] md:text-[11px] font-black tracking-wide" style="color: var(--accent-dark);">🧴 ' + uk + '</span>' +
-            '</div>' +
-            '<div class="font-black text-sm md:text-base accent-text mb-1">' + fmtUSD(usd) + ' <span class="text-[10px] font-extrabold" style="color: var(--text-muted);">/botol</span></div>' +
-            '<div class="rounded-lg p-2 mb-2" style="background: rgba(212,165,116,0.05); border: 1px solid rgba(212,165,116,0.08);">' +
-              '<p class="text-[11px] md:text-xs font-extrabold" style="color: #E8C9A8;">💰 ' + Math.round(khr).toLocaleString() + ' riel</p>' +
-              '<p class="text-[11px] md:text-xs font-extrabold mt-0.5" style="color: #D4B896;">💵 ' + fmtIDR(p.harga) + '</p>' +
-            '</div>' +
-            '<div class="flex items-center gap-1.5 mb-2 md:mb-3">' + stockHtml + '</div>' +
-            '<div class="mt-auto">' +
-              '<button onclick=\'openModal(' + JSON.stringify(p).replace(/'/g, "&#39;") + ')\' ' +
-                (isSoldOut ? 'disabled ' : '') +
-                'class="w-full h-9 md:h-10 rounded-lg md:rounded-xl text-[10px] md:text-xs font-extrabold tracking-wide flex items-center justify-center gap-1.5 ' +
-                (isSoldOut ? 'cursor-not-allowed' : 'btn-order') + '" ' +
-                (isSoldOut ? 'style="background: var(--bg-alt); color: var(--text-muted); border: 1px solid var(--border);"' : '') + '>' +
-                (isSoldOut ? 'SOLD OUT' : '<i data-lucide="shopping-bag" class="w-3 h-3"></i> Pesan Sekarang') +
-              '</button>' +
-            '</div>' +
-          '</div>' +
-        '</div>';
-      }).join("");
-
+            '<h3 class="font-extrabold text-[11px] md:text-sm mb-1 tracking-tight leading-tight" style="color:var(--text);">' + p.nama + '</h3>' +
+            '<div class="inline-block self-start px-2 py-0.5 rounded-md mb-2" style="background:rgba(212,165,116,.15);border:1px solid rgba(212,165,116,.25);"><span class="text-[10px] md:text-[11px] font-black tracking-wide" style="color:var(--accent-dark);">🧴 ' + uk + '</span></div>' +
+            '<div class="font-black text-sm md:text-base accent-text mb-0.5">' + fmtIDR(p.harga) + '</div>' +
+            '<div class="text-[10px] md:text-[11px] font-bold mb-2" style="color:#7DD3FC;">💵 ' + fmtUSD(usd) + ' · 💰 ' + Math.round(khr).toLocaleString() + ' riel</div>' +
+            '<div class="flex items-center gap-1.5 mb-2">' + stk + '</div>' +
+            '<button onclick="openModal(' + p.id + ')" class="btn-order w-full py-2 md:py-2.5 rounded-xl text-[11px] md:text-xs font-extrabold tracking-wide flex items-center justify-center gap-1.5 mt-auto"' + (so ? ' disabled style="opacity:0.3;pointer-events:none;"' : '') + '><i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i> Pesan Sekarang</button>' +
+          '</div></div>';
+      }).join('');
       lucide.createIcons();
     }
 
-    // ═══════════════════════════════════════
+    // ═══════════════════════════════════════════
     //  SEARCH
-    // ═══════════════════════════════════════
+    // ═══════════════════════════════════════════
     document.getElementById("searchInput").addEventListener("input", function(e) {
       currentSearch = e.target.value;
       renderProducts();
     });
 
-    // ═══════════════════════════════════════
-    //  MODAL
-    // ═══════════════════════════════════════
-    function openModal(parfum) {
-      selectedParfum = parfum;
+    // ═══════════════════════════════════════════
+    //  ORDER MODAL
+    // ═══════════════════════════════════════════
+    function openModal(id) {
+      selectedParfum = parfumData.find(function(p) { return p.id === id; });
+      if (!selectedParfum) return;
       currentQty = 1;
-
-      document.getElementById("modalNama").textContent = parfum.nama;
-      document.getElementById("modalNama2").textContent = parfum.nama;
-      document.getElementById("modalUkuran").textContent = "🧴 " + (parfum.ukuran || "35ml");
-      document.getElementById("modalHarga").textContent = fmtIDR(parfum.harga);
-
-      var modalImgEl = document.getElementById("modalImg");
-      modalImgEl.src = getImgSrc(parfum);
-      modalImgEl.onerror = function() { handleImgError(this, parfum.nama); };
-
+      selectedCurrency = 'idr';
+      document.getElementById("modalNama").textContent = selectedParfum.nama;
+      document.getElementById("modalNama2").textContent = selectedParfum.nama;
+      document.getElementById("modalUkuran").textContent = "🧴 " + (selectedParfum.ukuran || "35ml");
+      document.getElementById("modalImg").src = getImgSrc(selectedParfum);
+      document.getElementById("modalHargaIDR").textContent = fmtIDR(selectedParfum.harga);
+      document.getElementById("modalHargaUSD").textContent = "💵 " + fmtUSD(toUSD(selectedParfum.harga));
+      document.getElementById("modalHargaKHR").textContent = "💰 " + fmtKHR(toKHR(selectedParfum.harga));
       document.getElementById("qtyDisplay").textContent = "1";
-      document.getElementById("stockInfo").textContent = parfum.stok > 0 ? ("Stok: " + parfum.stok) : "Habis";
-
+      document.getElementById("stockInfo").textContent = "Stok: " + selectedParfum.stok;
+      document.querySelectorAll('.pay-select').forEach(function(b) { b.classList.toggle('active', b.dataset.currency === 'idr'); });
       updateTotal();
-
-      var tgLink = "https://t.me/vjparfume_premium?text=" + encodeURIComponent(
-        " halo kak, saya mau pesan:\n\n" +
-        "🧴 Parfum: " + parfum.nama + "\n" +
-        "📦 Ukuran: " + (parfum.ukuran || "35ml") + "\n" +
-        "💰 Harga: " + fmtIDR(parfum.harga) + "\n" +
-        "🔢 Jumlah: 1\n\n" +
-        "Nama: \nCatatan: "
-      );
-      document.getElementById("modalTgLink").href = tgLink;
-
       document.getElementById("orderModal").classList.remove("hidden");
       document.body.style.overflow = "hidden";
-
-      setTimeout(function() { lucide.createIcons(); }, 50);
+      lucide.createIcons();
     }
-
     function closeModal() {
       document.getElementById("orderModal").classList.add("hidden");
       document.body.style.overflow = "";
-      document.getElementById("orderForm").reset();
-      selectedParfum = null;
-      currentQty = 1;
     }
-
-    document.getElementById("orderModal").addEventListener("click", function(e) {
-      if (e.target === this) closeModal();
-    });
-
-    function changeQty(delta) {
+    function changeQty(d) {
       if (!selectedParfum) return;
-      currentQty = Math.max(1, Math.min(currentQty + delta, selectedParfum.stok || 999));
+      var nq = currentQty + d;
+      if (nq < 1) return;
+      if (nq > selectedParfum.stok) { nq = selectedParfum.stok; }
+      currentQty = nq;
       document.getElementById("qtyDisplay").textContent = currentQty;
       updateTotal();
     }
-
+    function selectCurrency(cur) {
+      selectedCurrency = cur;
+      document.querySelectorAll('.pay-select').forEach(function(b) { b.classList.toggle('active', b.dataset.currency === cur); });
+      updateTotal();
+    }
     function updateTotal() {
       if (!selectedParfum) return;
       var total = selectedParfum.harga * currentQty;
-      document.getElementById("totalHarga").textContent = fmtIDR(total);
-
-      var tgLink = "https://t.me/vjparfume_premium?text=" + encodeURIComponent(
-        " halo kak, saya mau pesan:\n\n" +
-        "🧴 Parfum: " + selectedParfum.nama + "\n" +
-        "📦 Ukuran: " + (selectedParfum.ukuran || "35ml") + "\n" +
-        "💰 Harga: " + fmtIDR(selectedParfum.harga) + "\n" +
-        "🔢 Jumlah: " + currentQty + "\n" +
-        "💵 Total: " + fmtIDR(total) + "\n\n" +
-        "Nama: \nCatatan: "
-      );
-      document.getElementById("modalTgLink").href = tgLink;
+      var el = document.getElementById("totalHarga");
+      var sub = document.getElementById("totalHargaSub");
+      if (selectedCurrency === 'idr') { el.textContent = fmtIDR(total); sub.textContent = "💵 " + fmtUSD(toUSD(total)) + " · 💰 " + fmtKHR(toKHR(total)); }
+      else if (selectedCurrency === 'usd') { el.textContent = fmtUSD(toUSD(total)); sub.textContent = fmtIDR(total) + " · 💰 " + fmtKHR(toKHR(total)); }
+      else { el.textContent = fmtKHR(toKHR(total)); sub.textContent = fmtIDR(total) + " · 💵 " + fmtUSD(toUSD(total)); }
     }
-
     function submitOrder(e) {
       e.preventDefault();
       if (!selectedParfum) return false;
-
       var nama = document.getElementById("inputNama").value.trim();
+      if (!nama) { alert("Nama harus diisi!"); return false; }
       var catatan = document.getElementById("inputCatatan").value.trim();
-
-      if (!nama) {
-        alert("⚠️ Nama lengkap wajib diisi!");
-        return false;
-      }
-
       var total = selectedParfum.harga * currentQty;
-      var data = {
-        nama: nama,
-        parfum: selectedParfum.nama,
-        ukuran: selectedParfum.ukuran || "35ml",
-        harga: selectedParfum.harga,
-        jumlah: currentQty,
-        total: total,
-        catatan: catatan,
-        waktu: new Date().toLocaleString('id-ID')
-      };
+      var totalStr = selectedCurrency === 'idr' ? fmtIDR(total) : selectedCurrency === 'usd' ? fmtUSD(toUSD(total)) : fmtKHR(toKHR(total));
+      var curLabel = selectedCurrency === 'idr' ? 'Rupiah' : selectedCurrency === 'usd' ? 'Dollar' : 'Riel';
+      var msg = "🛍️ *PESANAN BARU - VJ PARFUME*\n\n" +
+        "👤 Nama: " + nama + "\n" +
+        "🌸 Parfum: " + selectedParfum.nama + "\n" +
+        "🧴 Ukuran: " + (selectedParfum.ukuran || "35ml") + "\n" +
+        "📦 Jumlah: " + currentQty + " botol\n" +
+        "💰 Bayar: " + curLabel + " (" + totalStr + ")\n";
+      if (catatan) msg += "📝 Catatan: " + catatan + "\n";
+      msg += "\n⏰ " + new Date().toLocaleString('id-ID');
 
-      var submitBtn = document.getElementById("submitBtn");
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<svg class="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="32" stroke-dashoffset="32"/></svg> Mengirim...';
+      var tgLink = "https://t.me/share/url?url=" + encodeURIComponent("https://telegram.me/vjparfume_premium") + "&text=" + encodeURIComponent(msg);
+      document.getElementById("modalTgLink").href = tgLink;
 
-      fetch(GOOGLE_SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-      })
-      .then(function() {
-        closeModal();
-        showToast();
-        if (selectedParfum && selectedParfum.stok > 0) {
-          var idx = parfumData.findIndex(function(p) { return p.id === selectedParfum.id; });
-          if (idx !== -1) {
-            parfumData[idx].stok = Math.max(0, parfumData[idx].stok - currentQty);
-            saveParfumToStorage(parfumData);
-            renderProducts();
-          }
-        }
-      })
-      .catch(function() {
-        closeModal();
-        showToast();
-      })
-      .finally(function() {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i data-lucide="shopping-bag" class="w-4 h-4"></i> Konfirmasi Pesanan';
-        lucide.createIcons();
-      });
+      // Kirim ke Google Sheets
+      var formData = new FormData();
+      formData.append("nama", nama);
+      formData.append("parfum", selectedParfum.nama);
+      formData.append("ukuran", selectedParfum.ukuran || "35ml");
+      formData.append("jumlah", currentQty);
+      formData.append("mata_uang", curLabel);
+      formData.append("total_display", totalStr);
+      formData.append("total_idr", total);
+      formData.append("catatan", catatan);
+      formData.append("waktu", new Date().toLocaleString('id-ID'));
 
+      fetch(GOOGLE_SCRIPT_URL, { method: "POST", body: formData, mode: "no-cors" }).catch(function() {});
+
+      closeModal();
+      showToast("Pesanan Berhasil Dikirim! 🎉", "Admin akan segera memproses pesananmu");
+      document.getElementById("inputNama").value = "";
+      document.getElementById("inputCatatan").value = "";
       return false;
     }
 
-    function showToast() {
-      var toast = document.getElementById("successToast");
-      toast.classList.remove("hidden");
-      setTimeout(function() {
-        toast.classList.add("hidden");
-      }, 4000);
+    // ═══════════════════════════════════════════
+    //  TOAST
+    // ═══════════════════════════════════════════
+    function showToast(title, msg) {
+      document.getElementById("toastTitle").textContent = title;
+      document.getElementById("toastMsg").textContent = msg;
+      var t = document.getElementById("successToast");
+      t.classList.remove("hidden");
+      lucide.createIcons();
+      setTimeout(function() { t.classList.add("hidden"); }, 4000);
     }
 
-    // ═══════════════════════════════════════
-    //  ADMIN — KLIK LOGO 5X
-    // ═══════════════════════════════════════
+    // ═══════════════════════════════════════════
+    //  ADMIN PANEL
+    // ═══════════════════════════════════════════
     document.getElementById("logoArea").addEventListener("click", function() {
       logoClickCount++;
-      if (logoClickTimer) clearTimeout(logoClickTimer);
-      logoClickTimer = setTimeout(function() { logoClickCount = 0; }, 3000);
-      if (logoClickCount >= 5) {
-        logoClickCount = 0;
-        openAdminModal();
-      }
+      clearTimeout(logoClickTimer);
+      if (logoClickCount >= 5) { logoClickCount = 0; openAdminModal(); }
+      else { logoClickTimer = setTimeout(function() { logoClickCount = 0; }, 800); }
     });
-
     function openAdminModal() {
       document.getElementById("adminModal").classList.remove("hidden");
       document.getElementById("adminLogin").classList.remove("hidden");
       document.getElementById("adminPanel").classList.add("hidden");
-      document.getElementById("adminError").classList.add("hidden");
       document.getElementById("adminPassInput").value = "";
+      document.getElementById("adminError").classList.add("hidden");
       document.body.style.overflow = "hidden";
-      setTimeout(function() { lucide.createIcons(); }, 50);
+      lucide.createIcons();
     }
-
     function closeAdminModal() {
       document.getElementById("adminModal").classList.add("hidden");
       document.body.style.overflow = "";
     }
-
-    document.getElementById("adminModal").addEventListener("click", function(e) {
-      if (e.target === this) closeAdminModal();
-    });
-
     function attemptAdminLogin() {
       var pass = document.getElementById("adminPassInput").value;
       if (pass === ADMIN_PASSWORD) {
         document.getElementById("adminLogin").classList.add("hidden");
         document.getElementById("adminPanel").classList.remove("hidden");
-        renderAdminPanel();
+        renderAdminItems();
       } else {
         document.getElementById("adminError").classList.remove("hidden");
-        document.getElementById("adminPassInput").value = "";
-        document.getElementById("adminPassInput").focus();
       }
     }
-
-    function renderAdminPanel() {
-      var container = document.getElementById("adminContent");
-      container.innerHTML = parfumData.map(function(p, idx) {
-        var imgSrc = getImgSrc(p);
-        var urlVal = (p.gambarUrl || "").replace(/"/g, "&quot;");
-        var hasImg = p.gambarUrl && p.gambarUrl.trim() !== "" || (p.gambar && p.gambar.indexOf("data:") === 0);
-        var statusText = hasImg ? '<span style="color:#22C55E;">✅ Gambar OK</span>' : '<span style="color:#F59E0B;">⬜ Belum ada gambar</span>';
-
-        return '<div class="rounded-xl p-3 md:p-4" style="background: var(--bg-alt); border: 1px solid var(--border);">' +
-          '<div class="flex items-center justify-between mb-2">' +
-            '<span class="text-[11px] font-extrabold" style="color: var(--text-muted);">#' + (idx + 1) + '</span>' +
-            statusText +
-          '</div>' +
+    function renderAdminItems() {
+      var c = document.getElementById("adminContent");
+      c.innerHTML = parfumData.map(function(p, idx) {
+        var src = getImgSrc(p);
+        return '<div class="rounded-xl p-3" style="background:var(--bg-alt);border:1px solid var(--border);">' +
           '<div class="flex gap-3">' +
-            '<div class="flex-shrink-0 w-16 h-20 md:w-20 md:h-24">' +
-              '<img src="' + imgSrc + '" class="admin-img-preview" onerror="handleImgError(this,\'' + p.nama.replace(/'/g, "\\'") + '\')">' +
-            '</div>' +
-            '<div class="flex-1 space-y-2 min-w-0">' +
-              '<div class="flex gap-2">' +
-                '<input type="text" value="' + p.nama.replace(/"/g, "&quot;") + '" onchange="updateAdminField(' + idx + ',\'nama\',this.value)" class="admin-input" placeholder="Nama parfum" style="flex:2;">' +
-                '<input type="number" value="' + p.harga + '" onchange="updateAdminField(' + idx + ',\'harga\',parseInt(this.value)||0)" class="admin-input" placeholder="Harga IDR" style="flex:1;">' +
-              '</div>' +
-              '<div class="flex gap-2">' +
-                '<input type="text" value="' + (p.ukuran || "35ml").replace(/"/g, "&quot;") + '" onchange="updateAdminField(' + idx + ',\'ukuran\',this.value)" class="admin-input" placeholder="Ukuran" style="flex:1;">' +
-                '<input type="number" value="' + p.stok + '" onchange="updateAdminField(' + idx + ',\'stok\',parseInt(this.value)||0)" class="admin-input" placeholder="Stok" style="flex:1; min-width:70px;">' +
-                '<button onclick="deleteParfum(' + idx + ')" class="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-all" style="background: rgba(239,68,68,0.06); color: #EF4444; border: 1px solid rgba(239,68,68,0.15);" onmouseover="this.style.background=\'rgba(239,68,68,0.15)\'" onmouseout="this.style.background=\'rgba(239,68,68,0.06)\'"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>' +
-              '</div>' +
-              '<div class="file-upload-btn">' +
-                '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>' +
-                '<span>📁 Pilih Gambar Parfum</span>' +
-                '<input type="file" accept="image/*" onchange="handleFileUpload(event,' + idx + ')">' +
+            '<div class="flex-shrink-0"><img src="' + src + '" style="width:56px;height:70px;object-fit:contain;border-radius:8px;border:1px solid var(--border);background:var(--bg);" onerror="handleImgError(this,\'' + p.nama.replace(/'/g, "\\'") + '\')"></div>' +
+            '<div class="flex-1 grid grid-cols-2 gap-1.5">' +
+              '<div class="col-span-2"><input class="admin-input" value="' + p.nama.replace(/"/g, "&quot;") + '" onchange="updateField(' + idx + ',\'nama\',this.value)" placeholder="Nama"></div>' +
+              '<div><input class="admin-input" type="number" value="' + p.harga + '" onchange="updateField(' + idx + ',\'harga\',+this.value)" placeholder="Harga IDR"></div>' +
+              '<div class="flex gap-1.5">' +
+                '<input class="admin-input" type="number" value="' + p.stok + '" onchange="updateField(' + idx + ',\'stok\',+this.value)" placeholder="Stk" style="width:45%;">' +
+                '<input class="admin-input" value="' + (p.ukuran || "35ml") + '" onchange="updateField(' + idx + ',\'ukuran\',this.value)" placeholder="Size" style="width:55%;">' +
               '</div>' +
             '</div>' +
           '</div>' +
-        '</div>';
-      }).join("");
+          '<div class="flex gap-2 mt-2">' +
+            '<div class="file-upload-btn flex-1"><span>📁 Pilih Gambar</span><input type="file" accept="image/*" onchange="handleFileUpload(' + idx + ',this)"></div>' +
+            '<button onclick="deleteParfum(' + idx + ')" class="px-3 py-2 rounded-lg text-xs font-extrabold transition-colors" style="background:rgba(239,68,68,.08);color:#EF4444;border:1px solid rgba(239,68,68,.15);" onmouseover="this.style.background=\'rgba(239,68,68,.15)\'" onmouseout="this.style.background=\'rgba(239,68,68,.08)\'">🗑</button>' +
+          '</div></div>';
+      }).join('');
       lucide.createIcons();
     }
-
-    function updateAdminField(idx, field, value) {
-      if (parfumData[idx]) {
-        parfumData[idx][field] = value;
-      }
-    }
-
-    // ═══════════════════════════════════════════════════════
-    //  🖼️ UPLOAD GAMBAR — DISIMPAN KE gambarUrl SEKALIGUS
-    //  INI YANG BIKIN GAMBAR TERTANAM DI FILE HTML HASIL DOWNLOAD
-    // ═══════════════════════════════════════════════════════
-    function handleFileUpload(event, idx) {
-      var file = event.target.files[0];
-      if (!file) return;
-
-      if (file.size > 2 * 1024 * 1024) {
-        alert("⚠️ File terlalu besar! Maksimal 2MB. Coba kompres dulu fotonya.");
-        event.target.value = "";
-        return;
-      }
-
-      var reader = new FileReader();
-      reader.onload = function(e) {
-        var base64 = e.target.result;
-        // SIMPAN KE DUA TEMPAT: gambar (lokal) DAN gambarUrl (untuk download HTML)
-        parfumData[idx].gambar = base64;
-        parfumData[idx].gambarUrl = base64;
-        renderAdminPanel();
-      };
-      reader.readAsDataURL(file);
-    }
-
-    function deleteParfum(idx) {
-      if (parfumData.length <= 1) {
-        alert("⚠️ Minimal harus ada 1 parfum!");
-        return;
-      }
-      if (confirm("Hapus parfum \"" + parfumData[idx].nama + "\"?")) {
-        parfumData.splice(idx, 1);
-        renderAdminPanel();
-      }
-    }
-
-    function addNewParfum() {
-      var newId = parfumData.length > 0 ? Math.max.apply(null, parfumData.map(function(p) { return p.id; })) + 1 : 1;
-      parfumData.push({
-        id: newId,
-        nama: "Parfum Baru",
-        gambar: placeholderImg("Parfum Baru"),
-        gambarUrl: "",
-        harga: 200000,
-        stok: 10,
-        ukuran: "35ml"
-      });
-      renderAdminPanel();
-      var container = document.getElementById("adminContent");
-      container.scrollTop = container.scrollHeight;
-    }
-
-    // ═══════════════════════════════════════════════════════
-    //  💾 SIMPAN & DOWNLOAD — SATU TOMBOL UNTUK SEMUA
-    //  Simpan ke localStorage + download HTML yang berisi gambar
-    // ═══════════════════════════════════════════════════════
-    function saveAndDownload() {
-      // Cek dulu apakah ada gambar yang sudah dipasang
-      var adaGambar = parfumData.some(function(p) {
-        return p.gambarUrl && p.gambarUrl.trim() !== "" && p.gambarUrl.indexOf("data:") === 0;
-      });
-
-      if (!adaGambar) {
-        alert("⚠️ BELUM ADA GAMBAR YANG DIPASANG!\n\nKlik '📁 Pilih Gambar Parfum' dulu untuk setiap produk,\nlalu baru klik 'Simpan & Download' lagi.");
-        return;
-      }
-
-      // Cek yang belum ada gambar
-      var belumAda = parfumData.filter(function(p) {
-        return !p.gambarUrl || p.gambarUrl.trim() === "" || p.gambarUrl.indexOf("data:") !== 0;
-      });
-
-      var lanjut = true;
-      if (belumAda.length > 0) {
-        var namaBelum = belumAda.map(function(p) { return p.nama; }).join(", ");
-        lanjut = confirm("⚠️ Produk ini belum ada gambar:\n\n" + namaBelum + "\n\nLanjutkan tetap download? (Produk tanpa gambar akan tampil placeholder)");
-      }
-
-      if (!lanjut) return;
-
-      // Simpan ke localStorage dulu
+    function updateField(idx, field, val) {
+      parfumData[idx][field] = val;
       saveParfumToStorage(parfumData);
       renderProducts();
-
-      // Download HTML dengan gambar tertanam
-      var dataStr = JSON.stringify(parfumData, null, 2);
-      var html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
-
-      var markerStart = 'const defaultParfumData = [';
-      var startIdx = html.indexOf(markerStart);
-      if (startIdx !== -1) {
-        var bracketCount = 0;
-        var endIdx = -1;
-        for (var i = startIdx + markerStart.length - 1; i < html.length; i++) {
-          if (html[i] === '[') bracketCount++;
-          if (html[i] === ']') bracketCount--;
-          if (bracketCount === 0) {
-            endIdx = i + 1;
-            break;
-          }
-        }
-        if (endIdx !== -1) {
-          html = html.substring(0, startIdx) + 'const defaultParfumData = ' + dataStr + ';' + html.substring(endIdx);
-        }
-      }
-
-      var blob = new Blob([html], { type: 'text/html;charset=utf-8' });
-      var url = URL.createObjectURL(blob);
-      var a = document.createElement('a');
-      a.href = url;
-      a.download = 'vj-parfume.html';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-
-      alert("✅ BERHASIL!\n\nFile 'vj-parfume.html' sudah terdownload.\n\n📁 BUKA FILE ITU di HP lain, email lain, atau incognito — gambar PASTI MUNCUL!\n\n⚠️ JANGAN pakai file lama lagi — selalu pakai file hasil download terbaru!");
     }
-
+    function handleFileUpload(idx, input) {
+      if (input.files && input.files[0]) {
+        compressImage(input.files[0], function(base64) {
+          parfumData[idx].gambar = base64;
+          parfumData[idx].gambarUrl = "";
+          saveParfumToStorage(parfumData);
+          renderAdminItems();
+          renderProducts();
+        });
+      }
+    }
+    function deleteParfum(idx) {
+      if (!confirm("Hapus " + parfumData[idx].nama + "?")) return;
+      parfumData.splice(idx, 1);
+      saveParfumToStorage(parfumData);
+      renderAdminItems();
+      renderProducts();
+    }
+    function addNewParfum() {
+      var maxId = 0;
+      parfumData.forEach(function(p) { if (p.id > maxId) maxId = p.id; });
+      parfumData.push({ id: maxId + 1, nama: "PARFUM BARU", gambar: placeholderImg("PARFUM BARU"), gambarUrl: "", harga: 200000, stok: 10, ukuran: "35ml" });
+      saveParfumToStorage(parfumData);
+      renderAdminItems();
+      renderProducts();
+      var ac = document.getElementById("adminContent");
+      ac.scrollTop = ac.scrollHeight;
+    }
     function resetToDefault() {
-      if (confirm("⚠️ Reset semua data ke default? Gambar yang sudah dipasang akan hilang!")) {
-        localStorage.removeItem('vj_parfum_data');
-        parfumData = JSON.parse(JSON.stringify(defaultParfumData));
-        renderAdminPanel();
-        renderProducts();
-        alert("✅ Data berhasil di-reset ke default!");
+      if (!confirm("Reset semua data ke default? Gambar yang diupload akan hilang!")) return;
+      localStorage.removeItem('vj_parfum_data');
+      parfumData = JSON.parse(JSON.stringify(defaultParfumData));
+      renderAdminItems();
+      renderProducts();
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    //  💾 SAVE & DOWNLOAD — INI YANG MEMPERBAIKI GAMBAR HILANG
+    // ═══════════════════════════════════════════════════════════════
+    function saveAndDownload() {
+      // 1. Simpan dulu ke localStorage
+      saveParfumToStorage(parfumData);
+
+      // 2. Siapkan data export — gambar base64 LANGSUNG disisipkan
+      var exportData = parfumData.map(function(p) {
+        var img = (p.gambar && p.gambar.indexOf("data:") === 0) ? p.gambar : placeholderImg(p.nama);
+        return { id: p.id, nama: p.nama, gambar: img, gambarUrl: "", harga: p.harga, stok: p.stok, ukuran: p.ukuran || "35ml" };
+      });
+
+      var jsonStr = JSON.stringify(exportData);
+
+      // 3. Kosongkan grid dulu biar gak duplikat
+      var grid = document.getElementById("productGrid");
+      var gridBackup = grid.innerHTML;
+      grid.innerHTML = "";
+
+      // 4. Ambil seluruh HTML halaman
+      var html = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+
+      // 5. Ganti data di antara marker dengan data terbaru (termasuk base64 gambar)
+      var markerStart = "/* __VJ_DATA_START__ */";
+      var markerEnd = "/* __VJ_DATA_END__ */";
+      var regex = new RegExp(markerStart.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "[\\s\\S]*?" + markerEnd.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+      var replacement = markerStart + "\n    const defaultParfumData = " + jsonStr + ";\n    " + markerEnd;
+      html = html.replace(regex, replacement);
+
+      // 6. Restore grid
+      grid.innerHTML = gridBackup;
+
+      // 7. Download file
+      try {
+        var blob = new Blob([html], { type: "text/html;charset=utf-8" });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.href = url;
+        a.download = "vj-parfume.html";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(function() { URL.revokeObjectURL(url); }, 2000);
+        showToast("File HTML Berhasil Didownload! 🎉", "File ini sudah siap dishare — gambar PASTI muncul di semua device!");
+      } catch(err) {
+        alert("Gagal download! Error: " + err.message + "\n\nCoba: kurangi jumlah/ukuran gambar.");
       }
     }
 
-    // ═══════════════════════════════════════
+    // ═══════════════════════════════════════════
+    //  HERO PARTICLES — EFEK PELANGI HIDUP
+    // ═══════════════════════════════════════════
+    var heroCanvas = document.getElementById("heroCanvas");
+    var hCtx = heroCanvas.getContext("2d");
+    var particles = [];
+    var particleColors = ["#FFD700","#FF69B4","#00CED1","#DA70D6","#7FFF00","#FF6347","#D4A574","#E8C9A8"];
+
+    function initParticles() {
+      var parent = heroCanvas.parentElement;
+      heroCanvas.width = parent.offsetWidth;
+      heroCanvas.height = parent.offsetHeight;
+      particles = [];
+      var count = window.innerWidth < 768 ? 25 : 45;
+      for (var i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * heroCanvas.width,
+          y: Math.random() * heroCanvas.height,
+          r: Math.random() * 2.5 + 0.5,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: -Math.random() * 0.6 - 0.1,
+          alpha: Math.random() * 0.6 + 0.1,
+          alphaDir: Math.random() > 0.5 ? 1 : -1,
+          color: particleColors[Math.floor(Math.random() * particleColors.length)]
+        });
+      }
+    }
+    function animateParticles() {
+      hCtx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.alpha += p.alphaDir * 0.003;
+        if (p.alpha > 0.7) { p.alpha = 0.7; p.alphaDir = -1; }
+        if (p.alpha < 0.05) { p.alpha = 0.05; p.alphaDir = 1; }
+        if (p.y < -10) { p.y = heroCanvas.height + 10; p.x = Math.random() * heroCanvas.width; }
+        if (p.x < -10) p.x = heroCanvas.width + 10;
+        if (p.x > heroCanvas.width + 10) p.x = -10;
+
+        hCtx.save();
+        hCtx.globalAlpha = p.alpha;
+        hCtx.beginPath();
+        hCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        hCtx.fillStyle = p.color;
+        hCtx.fill();
+        // Glow effect
+        hCtx.beginPath();
+        hCtx.arc(p.x, p.y, p.r * 3, 0, Math.PI * 2);
+        hCtx.fillStyle = p.color;
+        hCtx.globalAlpha = p.alpha * 0.15;
+        hCtx.fill();
+        hCtx.restore();
+      }
+      requestAnimationFrame(animateParticles);
+    }
+    window.addEventListener("resize", function() {
+      initParticles();
+    });
+
+    // ═══════════════════════════════════════════
     //  INIT
-    // ═══════════════════════════════════════
+    // ═══════════════════════════════════════════
     renderProducts();
+    initParticles();
+    animateParticles();
     lucide.createIcons();
+
+    // Tutup modal kalau klik backdrop
+    document.getElementById("orderModal").addEventListener("click", function(e) { if (e.target === this) closeModal(); });
+    document.getElementById("adminModal").addEventListener("click", function(e) { if (e.target === this) closeAdminModal(); });
   </script>
 </body>
 </html>
