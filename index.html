@@ -33,7 +33,6 @@
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
-    /* SISTEM BACKGROUND ANTI LAG & GA BERANTAKAN */
     html, body {
       background-color: var(--bg);
       min-height: 100%;
@@ -44,20 +43,27 @@
       overflow-x: hidden;
       position: relative;
     }
-    .bg-layer {
+    /* BACKGROUND FIX ANTI HILANG & ANTI LAG */
+    body::before {
+      content: "";
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      z-index: -2;
+      z-index: 0;
       background-image: url('https://lh3.googleusercontent.com/d/1z2MYAcummRU0bv5Ery5cl3Xq3VyW0vkg');
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
     }
-    .bg-overlay {
+    body::after {
+      content: "";
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      z-index: -1;
+      z-index: 0;
       background: rgba(13, 10, 8, 0.80);
+    }
+    nav, section, div, footer, a, img, form, button, input, textarea, i {
+      position: relative;
+      z-index: 1;
     }
 
     ::-webkit-scrollbar { width: 5px; }
@@ -276,9 +282,6 @@
   </style>
 </head>
 <body>
-
-  <div class="bg-layer"></div>
-  <div class="bg-overlay"></div>
 
   <nav class="fixed top-0 left-0 right-0 z-40 h-14 md:h-16 flex items-center justify-between px-4 md:px-8"
        style="background: rgba(19,16,12,0.88); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border);">
@@ -559,7 +562,7 @@
     });
 
     // MASUKAN LINK WEB APP KAMU DI BAWAH INI!
-    const GOOGLE_SCRIPT_URL = "MASUKAN_LINK_WEB_APP_KAMU_DISINI"; 
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw847kIdCEEicyooTMAWY3gN2-nmF8lG0kcUesrWgQ_DJjp89Rng8S8y7PCtoFFVFEXtg/exec"; 
     const ADMIN_PASSWORD = "vjadmin2025";
 
     const KURS_USD_TO_IDR = 16000;
