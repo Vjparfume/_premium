@@ -97,19 +97,6 @@
     .rainbow-glow {
       animation: rainbowGlow 3.5s ease-in-out infinite !important;
       font-weight: 900 !important;
-      color: #FFD700; /* Fallback */
-    }
-
-    @keyframes rainbowGlowSoft {
-      0%   { color: #FFD700 !important; -webkit-text-fill-color: #FFD700 !important; text-shadow: 0 0 12px rgba(255,215,0,0.6), 0 0 30px rgba(255,215,0,0.2); }
-      25%  { color: #FF69B4 !important; -webkit-text-fill-color: #FF69B4 !important; text-shadow: 0 0 12px rgba(255,105,180,0.6), 0 0 30px rgba(255,105,180,0.2); }
-      50%  { color: #00CED1 !important; -webkit-text-fill-color: #00CED1 !important; text-shadow: 0 0 12px rgba(0,206,209,0.6), 0 0 30px rgba(0,206,209,0.2); }
-      75%  { color: #DA70D6 !important; -webkit-text-fill-color: #DA70D6 !important; text-shadow: 0 0 12px rgba(218,112,214,0.6), 0 0 30px rgba(218,112,214,0.2); }
-      100% { color: #FFD700 !important; -webkit-text-fill-color: #FFD700 !important; text-shadow: 0 0 12px rgba(255,215,0,0.6), 0 0 30px rgba(255,215,0,0.2); }
-    }
-    .rainbow-glow-soft {
-      animation: rainbowGlowSoft 4s ease-in-out infinite !important;
-      color: #FFD700; /* Fallback */
     }
 
     @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
@@ -292,6 +279,16 @@
 </head>
 <body>
 
+  <!-- POPUP IMAGE -->
+  <div id="promoPopup" class="hidden fixed inset-0 z-[70] flex items-center justify-center p-4 modal-backdrop">
+    <div class="relative max-w-sm w-full anim-slide-up">
+      <button onclick="closePromo()" class="absolute -top-4 -right-4 w-10 h-10 rounded-full bg-red-500 text-white flex items-center justify-center font-extrabold text-xl z-10 shadow-lg">×</button>
+      <a href="#koleksi" onclick="closePromo()">
+        <img src="https://lh3.googleusercontent.com/d/1_iz9ST5wXUFpMcC6-YJk_ZBKeE2wtecN" alt="Promo VJ Parfume" class="w-full rounded-2xl shadow-2xl border-2 border-[var(--accent)]">
+      </a>
+    </div>
+  </div>
+
   <nav class="fixed top-0 left-0 right-0 z-40 h-14 md:h-16 flex items-center justify-between px-4 md:px-8"
        style="background: rgba(19,16,12,0.88); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border);">
     <div id="logoArea" class="flex items-center gap-2.5 cursor-pointer select-none">
@@ -312,14 +309,29 @@
         <span class="text-[10px] md:text-[11px] font-extrabold accent-text tracking-widest uppercase">✦ Premium Fragrance ✦</span>
       </div>
     </div>
-    <h1 class="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[0.95] mb-2 md:mb-3 anim-fade-up d1 px-2">
-      <span class="rainbow-glow-soft" style="display:inline-block;">Rasakan Kemewahan Sejati di</span>
+    <!-- HANYA VJ PARFUME YANG PELANGI -->
+    <h1 class="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[0.95] mb-2 md:mb-3 anim-fade-up d1 px-2 accent-gradient-text">
+      Rasakan Kemewahan Sejati di
     </h1>
     <h1 class="text-4xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[0.85] mb-5 md:mb-7 anim-fade-up d2 px-2">
       <span class="rainbow-glow" style="display:inline-block;">VJ PARFUME</span>
     </h1>
     <p class="text-base md:text-xl max-w-lg leading-relaxed mb-2 anim-fade-up d3 font-extrabold px-4" style="color: #E8C9A8;">Wangi Tahan Lama, Elegan, & Bikin Percaya Diri!</p>
-    <p class="text-xs md:text-base max-w-md leading-relaxed mb-8 md:mb-12 anim-fade-up d4 font-bold px-4" style="color: var(--text-sec);">Temukan varian parfum premium pilihanmu di bawah ini. Kualitas sekelas branded, namun ramah di kantong. Pesan sekarang, gampang banget!</p>
+    <p class="text-xs md:text-base max-w-md leading-relaxed mb-6 md:mb-8 anim-fade-up d4 font-bold px-4" style="color: var(--text-sec);">Temukan varian parfum premium pilihanmu di bawah ini. Kualitas sekelas branded, namun ramah di kantong. Pesan sekarang, gampang banget!</p>
+    
+    <!-- SOSMED DI ATAS -->
+    <div class="flex items-center justify-center gap-3 md:gap-4 mb-8 md:mb-12 anim-fade-up d5">
+      <a href="https://instagram.com/vjparfume" target="_blank" class="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center transition-all hover:scale-110" style="background: linear-gradient(135deg, #833AB4, #FD1D1D, #FCB045); box-shadow: 0 4px 15px rgba(252,176,69,0.3);" title="Instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a href="https://wa.me/60173698359" target="_blank" class="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center transition-all hover:scale-110" style="background: linear-gradient(135deg, #25D366, #128C7E); box-shadow: 0 4px 15px rgba(37,211,102,0.3);" title="WhatsApp">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      </a>
+      <a href="https://telegram.me/vjparfume_premium" target="_blank" class="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center transition-all hover:scale-110" style="background: linear-gradient(135deg, #2AABEE, #229ED9); box-shadow: 0 4px 15px rgba(42,171,238,0.3);" title="Telegram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      </a>
+    </div>
+
     <a href="#koleksi" class="btn-primary px-8 md:px-10 py-3.5 md:py-4 rounded-2xl font-extrabold text-xs md:text-sm anim-fade-up d5 inline-flex items-center gap-2.5 tracking-wide">
       Lihat Koleksi Parfum
       <i data-lucide="arrow-down" class="w-4 h-4"></i>
@@ -329,7 +341,7 @@
     </div>
   </section>
 
-  <!-- MENU REQUEST VARIAN (DIPINDAHKAN KE ATAS & DIPERBESAR) -->
+  <!-- MENU REQUEST VARIAN -->
   <section id="request" class="max-w-3xl mx-auto px-3 md:px-8 py-10 md:py-16">
     <div class="rounded-2xl md:rounded-3xl p-6 md:p-10 text-center" style="background: var(--card); border: 1px solid var(--border-accent); box-shadow: 0 8px 30px rgba(0,0,0,0.4), 0 0 40px rgba(212,165,116,0.1);">
       <div class="w-16 h-16 rounded-2xl mx-auto mb-5 flex items-center justify-center" style="background: var(--accent-pale); border: 1px solid var(--border-accent);">
@@ -571,12 +583,13 @@
       }
     });
 
-    // MASUKAN LINK WEB APP KAMU DI BAWAH INI!
+    // GANTI LINK INI DAN LINK IG DI BAGIAN SOSMED ATAS!
     const GOOGLE_SCRIPT_URL = "MASUKAN_LINK_WEB_APP_KAMU_DISINI"; 
     const ADMIN_PASSWORD = "vjadmin2025";
 
-    const KURS_USD_TO_IDR = 16000;
-    const KURS_USD_TO_KHR = 4100;
+    // KURS DISESUAIKAN BIAR PAS 200000 IDR = 11.25 USD = 45000 KHR
+    const KURS_USD_TO_IDR = 17777.7778;
+    const KURS_USD_TO_KHR = 4000;
 
     function toUSD(idr) { return idr / KURS_USD_TO_IDR; }
     function toKHR(idr) { return idr / KURS_USD_TO_IDR * KURS_USD_TO_KHR; }
@@ -601,8 +614,7 @@
       imgEl.src = placeholderImg(nama);
     }
 
-    // =================: DATA PARFUM KAMU :=================
-    // GANTI LINK GAMBAR DI BAWAH INI DENGAN LINK POSTIMAGES.ORG KAMU!
+    // DATA PARFUM DARI KAMU
     const defaultParfumData = [
       { id: 1, nama: "SCANDALOUS", gambarUrl: "https://i.postimg.cc/zXDhNNQ4/39a185c4-7258-47d5-ba38-778150d52090.png", harga: 200000, stok: 5, ukuran: "35ml" },
       { id: 2, nama: "BLACK OPIUM", gambarUrl: "https://i.postimg.cc/NFh08wVz/18b33d8d-4c5e-40af-be85-1f7023366a5e.png", harga: 200000, stok: 5, ukuran: "35ml" },
@@ -623,7 +635,7 @@
       { id: 17, nama: "PINK FANTASY", gambarUrl: "https://i.postimg.cc/25cVwLTS/454dc429-8b34-42b0-998f-b9c712af8691.png", harga: 200000, stok: 5, ukuran: "35ml" },
       { id: 18, nama: "BLUE EMOTION", gambarUrl: "https://i.postimg.cc/fLSTf2J8/39081197-8eed-4587-9451-b9ecf5c6bd74.png", harga: 200000, stok: 5, ukuran: "35ml" },
       { id: 19, nama: "BACCARAT", gambarUrl: "https://i.postimg.cc/SxK4GTPc/31ec123f-b149-4235-9cd2-f4be00720458.png", harga: 200000, stok: 5, ukuran: "35ml" },
-      { id: 20, nama: "DRAKAR  ", gambarUrl: "https://i.postimg.cc/GmfWxcYN/8cd03f13-b49c-42ec-ac9e-2575db75803a.png", harga: 200000, stok: 5, ukuran: "35ml" }
+      { id: 20, nama: "DRAKAR", gambarUrl: "https://i.postimg.cc/GmfWxcYN/8cd03f13-b49c-42ec-ac9e-2575db75803a.png", harga: 200000, stok: 5, ukuran: "35ml" }
     ];
 
     var parfumData = JSON.parse(JSON.stringify(defaultParfumData));
@@ -817,12 +829,13 @@
       else if (selectedPayment === "KHR") { payString = "Riel (៛)"; totalString = fmtKHR(totalKHR); }
 
       // 1. KIRIM DATA KE GOOGLE SHEET & EMAIL (Via Apps Script)
-      if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== "https://script.google.com/macros/s/AKfycbyWL5OHCMdJ8TxUL-7t0vbVY7Kf77pdPWK_Q0VSqJ8NjvHcky37U9NjHnYIvZXEiBh9Sg/exec") {
+      if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== "https://script.google.com/macros/s/AKfycbx-nvAITWRZbCH1pynzRPu2DkCW4TmyFUuBnZS-ZVQxHbWAwhTObFgu4prt0E7rSDduMw/exec") {
         fetch(GOOGLE_SCRIPT_URL, {
           method: 'POST',
           mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
+            type: 'order',
             nama: nama,
             parfum: selectedParfum.nama + " (" + selectedParfum.ukuran + ")",
             jumlah: currentQty,
@@ -859,12 +872,27 @@
       return false;
     }
 
-    // KIRIM REQUEST VARIAN VIA WHATSAPP
+    // KIRIM REQUEST VARIAN VIA WHATSAPP & EMAIL
     function submitRequest(e) {
       e.preventDefault();
       var reqNama = document.getElementById('reqNama').value;
       var reqVarian = document.getElementById('reqVarian').value;
       var reqCatatan = document.getElementById('reqCatatan').value;
+
+      // KIRIM DATA REQUEST KE GOOGLE SHEET & EMAIL
+      if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== "MASUKAN_LINK_WEB_APP_KAMU_DISINI") {
+        fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'request',
+            nama: reqNama,
+            varian: reqVarian,
+            catatan: reqCatatan
+          })
+        });
+      }
 
       var waMsg = "💌 *REQUEST VARIAN PARFUM* 🌸%0A%0A" +
                   "👤 *Nama:* " + encodeURIComponent(reqNama) + "%0A" +
@@ -943,7 +971,17 @@
       renderProducts();
     }
 
+    // FUNGSI POPUP
+    function closePromo() {
+      document.getElementById('promoPopup').classList.add('hidden');
+    }
+
     // INIT
+    window.onload = function() {
+      setTimeout(function() {
+        document.getElementById('promoPopup').classList.remove('hidden');
+      }, 1000);
+    };
     lucide.createIcons();
     renderProducts();
   </script>
