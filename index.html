@@ -263,15 +263,15 @@
 </head>
 <body>
 
-  <!-- POPUP IMAGE DIPERBAIKI (TOMBOL TUTUP DI BAWAH) -->
-  <div id="promoPopup" class="hidden fixed inset-0 z-[70] flex flex-col items-center justify-center p-4 modal-backdrop">
-    <div class="relative w-full max-w-xs sm:max-w-sm anim-slide-up flex flex-col items-center">
+  <!-- POPUP IMAGE (TOMBOL BESAR HAPUS, GANTI SILANG KECIL DI POJOK, POSISI AGAK KEBAWAH) -->
+  <div id="promoPopup" class="hidden fixed inset-0 z-[70] flex flex-col items-center justify-center p-4 pt-20 modal-backdrop">
+    <div class="relative w-full max-w-xs sm:max-w-sm anim-slide-up">
+      <button onclick="closePromo()" class="absolute -top-3 -right-3 w-9 h-9 rounded-full bg-red-500 text-white flex items-center justify-center font-bold text-lg z-20 shadow-lg hover:bg-red-600 transition-colors">
+        ✕
+      </button>
       <a href="#koleksi" onclick="closePromo()" class="block w-full">
         <img src="https://lh3.googleusercontent.com/d/1_iz9ST5wXUFpMcC6-YJk_ZBKeE2wtecN" alt="Promo VJ Parfume" class="w-full rounded-2xl shadow-2xl border-2 border-[var(--accent)]">
       </a>
-      <button onclick="closePromo()" class="mt-4 px-5 py-2 rounded-full bg-red-500 text-white flex items-center justify-center font-extrabold text-sm z-10 shadow-lg hover:bg-red-600 transition-colors">
-        Tutup (✕)
-      </button>
     </div>
   </div>
 
