@@ -115,39 +115,37 @@
     .d4 { animation-delay: 0.4s; }
     .d5 { animation-delay: 0.5s; }
 
-    /* KOTAK PARFUM MEWAH & BERLAMPU */
+    /* KOTAK PARFUM DIPERBAIKI JADI ELEGAN */
     .perfume-card {
       background: linear-gradient(160deg, rgba(45, 38, 28, 0.92) 0%, rgba(18, 14, 10, 0.98) 100%);
-      border: 1px solid rgba(212, 165, 116, 0.4);
+      border: 1px solid rgba(212, 165, 116, 0.3);
       border-radius: 16px;
       overflow: hidden;
       transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
       position: relative;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 20px rgba(212,165,116,0.08), inset 0 1px 0 rgba(255,255,255,0.08);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 15px rgba(212,165,116,0.05), inset 0 1px 0 rgba(255,255,255,0.08);
       backdrop-filter: blur(16px);
       display: flex;
       flex-direction: column;
     }
     .perfume-card:hover {
       transform: translateY(-8px);
-      border-color: rgba(212, 165, 116, 0.8);
-      box-shadow: 0 20px 50px rgba(212,165,116,0.2), 0 0 30px rgba(212,165,116,0.15);
+      border-color: rgba(212, 165, 116, 0.7);
+      box-shadow: 0 20px 50px rgba(212,165,116,0.15), 0 0 25px rgba(212,165,116,0.1);
     }
-    .perfume-card:hover .card-img { transform: scale(1.06); }
+    .perfume-card:hover .card-img { transform: scale(1.05); }
     
-    /* EFEK LAMPU PADA BOTOL PARFUM */
     .card-img {
       transition: transform 0.7s cubic-bezier(0.16,1,0.3,1), filter 0.7s ease;
-      filter: drop-shadow(0 0 15px rgba(212, 165, 116, 0.4)) drop-shadow(0 10px 20px rgba(0,0,0,0.6));
+      filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
     }
     .perfume-card:hover .card-img {
-      filter: drop-shadow(0 0 25px rgba(212, 165, 116, 0.8)) drop-shadow(0 15px 30px rgba(0,0,0,0.5));
+      filter: drop-shadow(0 0 20px rgba(212, 165, 116, 0.5)) drop-shadow(0 10px 20px rgba(0,0,0,0.4));
     }
     .card-img-bg {
-      background: radial-gradient(circle at 50% 30%, rgba(212,165,116,0.18) 0%, rgba(28,24,20,0.5) 80%);
+      background: radial-gradient(circle at 50% 40%, rgba(212,165,116,0.1) 0%, rgba(28,24,20,0.8) 80%);
     }
 
-    /* NAMA VARIAN LAMPU EMAS */
     .variant-name {
       background: linear-gradient(to right, #F0E8E0, #D4A574);
       -webkit-background-clip: text;
@@ -155,10 +153,9 @@
       color: transparent;
       font-weight: 800;
       letter-spacing: 0.03em;
-      filter: drop-shadow(0 0 8px rgba(212, 165, 116, 0.7));
+      filter: drop-shadow(0 0 6px rgba(212, 165, 116, 0.6));
     }
 
-    /* HARGA EMAS LEBIH BESAR */
     .price-gold {
       background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
       -webkit-background-clip: text;
@@ -258,19 +255,6 @@
     .hero-pattern { background-image: radial-gradient(rgba(212,165,116,0.03) 1px, transparent 1px); background-size: 24px 24px; }
     .section-glass { background: rgba(19,16,12,0.6); backdrop-filter: blur(16px); }
     .pay-chip { display: inline-flex; align-items: center; gap: 4px; padding: 6px 14px; border-radius: 10px; font-weight: 800; font-size: 13px; white-space: nowrap; }
-    .file-upload-btn { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; padding: 8px 10px; border-radius: 10px; border: 2px dashed var(--border-accent); background: rgba(212,165,116,0.06); color: var(--accent-dark); font-weight: 800; font-size: 12px; cursor: pointer; transition: all 0.2s; position: relative; }
-    .file-upload-btn:hover { border-color: var(--accent); background: rgba(212,165,116,0.12); }
-    .file-upload-btn input[type="file"] { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
-    .file-upload-btn span { pointer-events: none; }
-    .file-upload-btn svg { pointer-events: none; }
-    .admin-url-input { background: rgba(19,16,12,0.8); border: 1px solid var(--border); color: #7DD3FC; border-radius: 10px; padding: 7px 10px; font-size: 11px; width: 100%; transition: all 0.2s; outline: none; font-family: 'Inter', monospace; }
-    .admin-url-input:focus { border-color: #7DD3FC; box-shadow: 0 0 0 3px rgba(125,211,252,0.1); }
-    .admin-url-input::placeholder { color: var(--text-muted); font-family: 'Inter', sans-serif; }
-    .admin-img-preview { width: 100%; aspect-ratio: 4/5; object-fit: contain; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-alt); }
-    .btn-download-html { background: linear-gradient(135deg, #22C55E, #16A34A); color: #fff; transition: all 0.3s ease; }
-    .btn-download-html:hover { background: linear-gradient(135deg, #4ADE80, #22C55E); box-shadow: 0 6px 20px rgba(34,197,94,0.25); transform: translateY(-1px); }
-    @keyframes pulseBorder { 0%, 100% { border-color: rgba(34,197,94,0.3); } 50% { border-color: rgba(34,197,94,0.8); } }
-    .pulse-green-border { animation: pulseBorder 2s ease-in-out infinite; }
     .pay-option { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px; border: 2px solid var(--border); border-radius: 12px; cursor: pointer; transition: all 0.2s; background: rgba(19,16,12,0.6); color: var(--text-sec); }
     .pay-option:hover { border-color: var(--border-accent); }
     .pay-option.selected { border-color: var(--accent); background: rgba(212,165,116,0.1); color: var(--accent-dark); box-shadow: 0 0 12px rgba(212,165,116,0.2); }
@@ -279,13 +263,15 @@
 </head>
 <body>
 
-  <!-- POPUP IMAGE -->
-  <div id="promoPopup" class="hidden fixed inset-0 z-[70] flex items-center justify-center p-4 modal-backdrop">
-    <div class="relative max-w-sm w-full anim-slide-up">
-      <button onclick="closePromo()" class="absolute -top-4 -right-4 w-10 h-10 rounded-full bg-red-500 text-white flex items-center justify-center font-extrabold text-xl z-10 shadow-lg">×</button>
-      <a href="#koleksi" onclick="closePromo()">
+  <!-- POPUP IMAGE DIPERBAIKI (X DI BAWAH, GAMBAR BESAR) -->
+  <div id="promoPopup" class="hidden fixed inset-0 z-[70] flex flex-col items-center justify-center p-4 modal-backdrop">
+    <div class="relative max-w-sm w-full anim-slide-up flex flex-col items-center">
+      <a href="#koleksi" onclick="closePromo()" class="block w-full">
         <img src="https://lh3.googleusercontent.com/d/1_iz9ST5wXUFpMcC6-YJk_ZBKeE2wtecN" alt="Promo VJ Parfume" class="w-full rounded-2xl shadow-2xl border-2 border-[var(--accent)]">
       </a>
+      <button onclick="closePromo()" class="mt-4 w-9 h-9 rounded-full bg-red-500 text-white flex items-center justify-center font-extrabold text-lg z-10 shadow-lg hover:bg-red-600 transition-colors">
+        ✕
+      </button>
     </div>
   </div>
 
@@ -309,7 +295,6 @@
         <span class="text-[10px] md:text-[11px] font-extrabold accent-text tracking-widest uppercase">✦ Premium Fragrance ✦</span>
       </div>
     </div>
-    <!-- HANYA VJ PARFUME YANG PELANGI -->
     <h1 class="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[0.95] mb-2 md:mb-3 anim-fade-up d1 px-2 accent-gradient-text">
       Rasakan Kemewahan Sejati di
     </h1>
@@ -319,7 +304,6 @@
     <p class="text-base md:text-xl max-w-lg leading-relaxed mb-2 anim-fade-up d3 font-extrabold px-4" style="color: #E8C9A8;">Wangi Tahan Lama, Elegan, & Bikin Percaya Diri!</p>
     <p class="text-xs md:text-base max-w-md leading-relaxed mb-6 md:mb-8 anim-fade-up d4 font-bold px-4" style="color: var(--text-sec);">Temukan varian parfum premium pilihanmu di bawah ini. Kualitas sekelas branded, namun ramah di kantong. Pesan sekarang, gampang banget!</p>
     
-    <!-- SOSMED DI ATAS -->
     <div class="flex items-center justify-center gap-3 md:gap-4 mb-8 md:mb-12 anim-fade-up d5">
       <a href="https://instagram.com/vjparfume" target="_blank" class="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center transition-all hover:scale-110" style="background: linear-gradient(135deg, #833AB4, #FD1D1D, #FCB045); box-shadow: 0 4px 15px rgba(252,176,69,0.3);" title="Instagram">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
@@ -341,36 +325,57 @@
     </div>
   </section>
 
-  <!-- MENU REQUEST VARIAN -->
-  <section id="request" class="max-w-3xl mx-auto px-3 md:px-8 py-10 md:py-16">
-    <div class="rounded-2xl md:rounded-3xl p-6 md:p-10 text-center" style="background: var(--card); border: 1px solid var(--border-accent); box-shadow: 0 8px 30px rgba(0,0,0,0.4), 0 0 40px rgba(212,165,116,0.1);">
-      <div class="w-16 h-16 rounded-2xl mx-auto mb-5 flex items-center justify-center" style="background: var(--accent-pale); border: 1px solid var(--border-accent);">
-        <i data-lucide="gift" class="w-8 h-8 accent-text"></i>
+  <!-- MENU TELEGRAM DIBUAT KECIL/MINIMALIS -->
+  <section class="py-4 md:py-5 px-4 md:px-8 section-glass" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="max-w-md mx-auto rounded-xl p-3 md:p-4 flex items-center justify-between" style="background: var(--card); border: 1px solid var(--border);">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #2AABEE, #229ED9);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        </div>
+        <div>
+          <h3 class="font-bold text-xs md:text-sm" style="color: var(--text);">Gabung Channel Telegram</h3>
+          <p class="text-[10px] font-bold" style="color: var(--text-muted);">Info promo & parfum terbaru</p>
+        </div>
       </div>
-      <h2 class="text-2xl md:text-4xl font-serif font-extrabold mb-3 accent-gradient-text">Req Varian Yang Anda Inginkan!</h2>
-      <p class="text-sm md:text-lg mb-6 font-bold" style="color: var(--text-sec);">Tidak menemukan parfum favoritmu? Kirimkan request varian impianmu, admin kami akan mencarikannya untukmu!</p>
-      
-      <form id="requestForm" class="space-y-3 text-left max-w-md mx-auto" onsubmit="return submitRequest(event)">
-        <div>
-          <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Nama Lengkap <span style="color: #EF4444;">*</span></label>
-          <input type="text" id="reqNama" required placeholder="Tulis namamu di sini" class="input-field w-full h-11 md:h-12 px-3.5 md:px-4 rounded-xl text-xs md:text-sm font-bold">
-        </div>
-        <div>
-          <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Nama Parfum / Varian yang Dicari <span style="color: #EF4444;">*</span></label>
-          <input type="text" id="reqVarian" required placeholder="Contoh: Bleu de Chanel, Sauvage, dll" class="input-field w-full h-11 md:h-12 px-3.5 md:px-4 rounded-xl text-xs md:text-sm font-bold">
-        </div>
-        <div>
-          <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Catatan Tambahan</label>
-          <textarea id="reqCatatan" rows="2" placeholder="Misal: Minta yang tahan lama, ukuran 50ml, dll" class="input-field w-full px-3.5 md:px-4 py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-bold resize-none"></textarea>
-        </div>
-        <button type="submit" class="w-full btn-primary rounded-xl md:rounded-2xl font-extrabold text-xs md:text-sm flex items-center justify-center gap-2.5 tracking-wide py-3.5 md:py-4 mt-2">
-          <i data-lucide="send" class="w-4 h-4"></i> Kirim Request Varian via WhatsApp
-        </button>
-      </form>
+      <a href="https://telegram.me/vjparfume_premium" target="_blank" class="px-3 py-1.5 rounded-lg text-[10px] md:text-xs font-extrabold text-white transition-all hover:opacity-90" style="background: #2AABEE;">
+        Join
+      </a>
     </div>
   </section>
 
-  <section class="py-8 md:py-10 px-4 md:px-8 section-glass" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <!-- MENU REQUEST VARIAN DIBUAT MEWAH -->
+  <section id="request" class="max-w-3xl mx-auto px-3 md:px-8 py-10 md:py-16">
+    <div class="rounded-2xl md:rounded-3xl p-6 md:p-10 text-center relative overflow-hidden" style="background: linear-gradient(160deg, rgba(45, 38, 28, 0.95) 0%, rgba(18, 14, 10, 0.98) 100%); border: 1px solid var(--accent); box-shadow: 0 0 30px rgba(212,165,116,0.15), inset 0 0 20px rgba(212,165,116,0.05);">
+      <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 50% 0%, var(--accent) 0%, transparent 60%);"></div>
+      <div class="relative z-10">
+        <div class="w-16 h-16 rounded-full mx-auto mb-5 flex items-center justify-center" style="background: var(--accent-pale); border: 1px solid var(--border-accent); box-shadow: 0 0 20px rgba(212,165,116,0.2);">
+          <i data-lucide="sparkles" class="w-8 h-8 accent-text"></i>
+        </div>
+        <h2 class="text-2xl md:text-4xl font-serif font-extrabold mb-3 accent-gradient-text">Req Varian Yang Anda Inginkan</h2>
+        <p class="text-sm md:text-lg mb-6 font-bold" style="color: var(--text-sec);">Tidak menemukan parfum favoritmu? Kirimkan request varian impianmu, admin kami akan mencarikannya untukmu!</p>
+        
+        <form id="requestForm" class="space-y-3 text-left max-w-md mx-auto" onsubmit="return submitRequest(event)">
+          <div>
+            <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Nama Lengkap <span style="color: #EF4444;">*</span></label>
+            <input type="text" id="reqNama" required placeholder="Tulis namamu di sini" class="input-field w-full h-11 md:h-12 px-3.5 md:px-4 rounded-xl text-xs md:text-sm font-bold">
+          </div>
+          <div>
+            <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Nama Parfum / Varian yang Dicari <span style="color: #EF4444;">*</span></label>
+            <input type="text" id="reqVarian" required placeholder="Contoh: Bleu de Chanel, Sauvage, dll" class="input-field w-full h-11 md:h-12 px-3.5 md:px-4 rounded-xl text-xs md:text-sm font-bold">
+          </div>
+          <div>
+            <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Catatan Tambahan</label>
+            <textarea id="reqCatatan" rows="2" placeholder="Misal: Minta yang tahan lama, ukuran 50ml, dll" class="input-field w-full px-3.5 md:px-4 py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-bold resize-none"></textarea>
+          </div>
+          <button type="submit" class="w-full btn-primary rounded-xl md:rounded-2xl font-extrabold text-xs md:text-sm flex items-center justify-center gap-2.5 tracking-wide py-3.5 md:py-4 mt-2">
+            <i data-lucide="send" class="w-4 h-4"></i> Kirim Request Varian via WhatsApp
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-6 md:py-8 px-4 md:px-8 section-glass" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
     <div class="max-w-xl mx-auto text-center px-2">
       <p class="text-sm md:text-lg font-extrabold mb-1.5" style="color: #FFD7A8;">🌸 Ingin tampil wangi, elegan, dan tahan lama tanpa harus mahal?</p>
       <p class="text-sm md:text-lg font-extrabold mb-5 md:mb-6" style="color: #FFB6D9;">Silakan order di <span class="rainbow-glow" style="font-size:1.05em;">VJ PARFUME</span>! 💖</p>
@@ -385,7 +390,7 @@
     </div>
   </section>
 
-  <div class="overflow-hidden py-4" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border); background: rgba(212,165,116,0.02);">
+  <div class="overflow-hidden py-3" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border); background: rgba(212,165,116,0.02);">
     <div class="marquee-track">
       <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #FFD700;">🌸 VJ Parfume</span>
       <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">✨</span>
@@ -583,11 +588,10 @@
       }
     });
 
-    // GANTI LINK INI DAN LINK IG DI BAGIAN SOSMED ATAS!
-    const GOOGLE_SCRIPT_URL = "MASUKAN_LINK_WEB_APP_KAMU_DISINI"; 
+    // MASUKAN LINK WEB APP KAMU DI BAWAH INI!
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzHEE1eFBGKxtwGSzclyT4Tmzj2GO4DTAHAARJ8WJpaHHTXBRB3JRaQXFd_kNXgEeE4og/exec"; 
     const ADMIN_PASSWORD = "vjadmin2025";
 
-    // KURS DISESUAIKAN BIAR PAS 200000 IDR = 11.25 USD = 45000 KHR
     const KURS_USD_TO_IDR = 17777.7778;
     const KURS_USD_TO_KHR = 4000;
 
@@ -614,7 +618,6 @@
       imgEl.src = placeholderImg(nama);
     }
 
-    // DATA PARFUM DARI KAMU
     const defaultParfumData = [
       { id: 1, nama: "SCANDALOUS", gambarUrl: "https://i.postimg.cc/zXDhNNQ4/39a185c4-7258-47d5-ba38-778150d52090.png", harga: 200000, stok: 5, ukuran: "35ml" },
       { id: 2, nama: "BLACK OPIUM", gambarUrl: "https://i.postimg.cc/NFh08wVz/18b33d8d-4c5e-40af-be85-1f7023366a5e.png", harga: 200000, stok: 5, ukuran: "35ml" },
@@ -691,6 +694,7 @@
       }
       empty.classList.add("hidden");
 
+      // KARTU PARFUM DIPERBAIKI JADI ELEGAN (CUMA TAMPILIN RUPIAH)
       grid.innerHTML = filtered.map(function(p, i) {
         var isSoldOut = p.stok === 0;
         var isLow = p.stok > 0 && p.stok <= 3;
@@ -704,25 +708,22 @@
           stockHtml = '<span class="stock-dot stock-yes"></span><span class="text-[10px] md:text-[11px] font-extrabold" style="color: #22C55E;">Tersedia</span>';
         }
 
-        var usd = toUSD(p.harga);
-        var khr = toKHR(p.harga);
         var uk = p.ukuran || "35ml";
         var imgSrc = getImgSrc(p);
 
         return '<div class="perfume-card" style="animation: fadeUp 0.6s ease-out ' + (i * 0.05) + 's forwards; opacity: 0;">' +
           (isSoldOut ? '<div class="sold-out-overlay"><div class="sold-out-badge">SOLD OUT</div></div>' : '') +
-          '<div class="relative aspect-[4/5] overflow-hidden flex-shrink-0 card-img-bg">' +
-            '<img src="' + imgSrc + '" alt="' + p.nama + '" class="card-img w-full h-full object-contain" style="object-position: center top;" loading="lazy" onerror="handleImgError(this,\'' + p.nama.replace(/'/g, "\\'") + '\')">' +
+          '<div class="relative aspect-[4/5] overflow-hidden flex-shrink-0 card-img-bg flex items-center justify-center p-3 md:p-4">' +
+            '<img src="' + imgSrc + '" alt="' + p.nama + '" class="card-img w-full h-full object-contain" style="object-position: center;" loading="lazy" onerror="handleImgError(this,\'' + p.nama.replace(/'/g, "\\'") + '\')">' +
           '</div>' +
           '<div class="p-2.5 md:p-3.5 flex flex-col flex-1">' +
-            '<h3 class="variant-name text-[11px] md:text-sm mb-1 tracking-tight leading-tight">' + p.nama + '</h3>' +
-            '<div class="flex items-center justify-between mb-1.5">' +
-              '<span class="text-[10px] md:text-xs font-bold" style="color: var(--text-muted);">' + uk + '</span>' +
+            '<h3 class="variant-name text-[11px] md:text-sm mb-1 tracking-tight leading-tight text-center">' + p.nama + '</h3>' +
+            '<div class="flex items-center justify-center mb-2">' +
+              '<span class="text-[10px] md:text-xs font-bold mr-2" style="color: var(--text-muted);">' + uk + '</span>' +
               '<div class="flex items-center gap-1.5">' + stockHtml + '</div>' +
             '</div>' +
-            '<div class="mt-auto">' +
-              '<p class="price-gold text-sm md:text-base mb-0.5">' + fmtIDR(p.harga) + '</p>' +
-              '<p class="text-[10px] md:text-xs font-bold mb-2.5" style="color: var(--text-sec);">' + fmtUSD(usd) + ' · ' + fmtKHR(khr) + '</p>' +
+            '<div class="mt-auto text-center">' +
+              '<p class="price-gold text-base md:text-lg mb-2">' + fmtIDR(p.harga) + '</p>' +
               (isSoldOut ? 
                 '<button disabled class="w-full py-2 rounded-lg text-[11px] md:text-xs font-extrabold cursor-not-allowed" style="background: var(--bg-alt); color: var(--text-muted);">Stok Habis</button>'
                 : '<button onclick="openModal(' + p.id + ')" class="btn-order w-full py-2 rounded-lg text-[11px] md:text-xs font-extrabold flex items-center justify-center gap-1.5">Pesan Sekarang</button>'
@@ -793,6 +794,7 @@
       updateTotalHarga();
     }
 
+    // LOGIKA TOTAL HARGA DIPERBAIKI (CUMA MUNCUL YANG DIPILIH)
     function updateTotalHarga() {
       var totalIDR = selectedParfum.harga * currentQty;
       var totalUSD = toUSD(totalIDR);
@@ -803,17 +805,16 @@
       
       if (selectedPayment === "IDR") {
         mainTotal.textContent = fmtIDR(totalIDR);
-        altTotal.textContent = fmtUSD(totalUSD) + ' · ' + fmtKHR(totalKHR);
+        altTotal.textContent = ""; // KOSONG
       } else if (selectedPayment === "USD") {
         mainTotal.textContent = fmtUSD(totalUSD);
-        altTotal.textContent = fmtIDR(totalIDR) + ' · ' + fmtKHR(totalKHR);
+        altTotal.textContent = ""; // KOSONG
       } else if (selectedPayment === "KHR") {
         mainTotal.textContent = fmtKHR(totalKHR);
-        altTotal.textContent = fmtIDR(totalIDR) + ' · ' + fmtUSD(totalUSD);
+        altTotal.textContent = ""; // KOSONG
       }
     }
 
-    // KIRIM PESANAN VIA WHATSAPP & EMAIL
     function submitOrder(e) {
       e.preventDefault();
       var nama = document.getElementById('inputNama').value;
@@ -828,8 +829,7 @@
       else if (selectedPayment === "USD") { payString = "Dollar ($)"; totalString = fmtUSD(totalUSD); }
       else if (selectedPayment === "KHR") { payString = "Riel (៛)"; totalString = fmtKHR(totalKHR); }
 
-      // 1. KIRIM DATA KE GOOGLE SHEET & EMAIL (Via Apps Script)
-      if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== "https://script.google.com/macros/s/AKfycbx-nvAITWRZbCH1pynzRPu2DkCW4TmyFUuBnZS-ZVQxHbWAwhTObFgu4prt0E7rSDduMw/exec") {
+      if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== "MASUKAN_LINK_WEB_APP_KAMU_DISINI") {
         fetch(GOOGLE_SCRIPT_URL, {
           method: 'POST',
           mode: 'no-cors',
@@ -846,12 +846,10 @@
         });
       }
 
-      // 2. KURANGI STOK OTOMATIS
       selectedParfum.stok -= currentQty;
       saveParfumToStorage();
       renderProducts();
 
-      // 3. KIRIM PESANAN KE WHATSAPP ADMIN
       var waMsg = "🌸 *PESANAN BARU VJ PARFUME* 🌸%0A%0A" +
                   "👤 *Nama:* " + encodeURIComponent(nama) + "%0A" +
                   "🧴 *Parfum:* " + encodeURIComponent(selectedParfum.nama) + " (" + encodeURIComponent(selectedParfum.ukuran) + ")%0A" +
@@ -872,14 +870,12 @@
       return false;
     }
 
-    // KIRIM REQUEST VARIAN VIA WHATSAPP & EMAIL
     function submitRequest(e) {
       e.preventDefault();
       var reqNama = document.getElementById('reqNama').value;
       var reqVarian = document.getElementById('reqVarian').value;
       var reqCatatan = document.getElementById('reqCatatan').value;
 
-      // KIRIM DATA REQUEST KE GOOGLE SHEET & EMAIL
       if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== "MASUKAN_LINK_WEB_APP_KAMU_DISINI") {
         fetch(GOOGLE_SCRIPT_URL, {
           method: 'POST',
@@ -971,7 +967,6 @@
       renderProducts();
     }
 
-    // FUNGSI POPUP
     function closePromo() {
       document.getElementById('promoPopup').classList.add('hidden');
     }
