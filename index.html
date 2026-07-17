@@ -43,7 +43,6 @@
       overflow-x: hidden;
       position: relative;
     }
-    /* BACKGROUND FIX ANTI HILANG & ANTI LAG */
     body::before {
       content: "";
       position: fixed;
@@ -84,7 +83,6 @@
       background: linear-gradient(135deg, #D4A574 0%, #B8865A 100%);
     }
 
-    /* ANIMASI PELANGI DIPERBAIKI TOTAL (PASTI MUNCUL) */
     @keyframes rainbowGlow {
       0%   { color: #FFD700 !important; -webkit-text-fill-color: #FFD700 !important; text-shadow: 0 0 15px rgba(255,215,0,0.8), 0 0 40px rgba(255,215,0,0.4); transform: scale(1.02); }
       16%  { color: #FF69B4 !important; -webkit-text-fill-color: #FF69B4 !important; text-shadow: 0 0 15px rgba(255,105,180,0.8), 0 0 40px rgba(255,105,180,0.4); transform: scale(1); }
@@ -115,7 +113,6 @@
     .d4 { animation-delay: 0.4s; }
     .d5 { animation-delay: 0.5s; }
 
-    /* KOTAK PARFUM DIPERBAIKI JADI ELEGAN */
     .perfume-card {
       background: linear-gradient(160deg, rgba(45, 38, 28, 0.92) 0%, rgba(18, 14, 10, 0.98) 100%);
       border: 1px solid rgba(212, 165, 116, 0.3);
@@ -263,7 +260,7 @@
 </head>
 <body>
 
-  <!-- POPUP IMAGE (TOMBOL SILANG MERAH DIHAPUS, BISA TUTUP DENGAN KLIK GAMBAR/AREA KOSONG) -->
+  <!-- POPUP IMAGE -->
   <div id="promoPopup" class="hidden fixed inset-0 z-[70] flex flex-col items-center justify-center p-4 pt-20 modal-backdrop" onclick="closePromo()">
     <div class="relative w-full max-w-xs sm:max-w-sm anim-slide-up" onclick="event.stopPropagation()">
       <a href="#koleksi" onclick="closePromo()" class="block w-full">
@@ -322,7 +319,6 @@
     </div>
   </section>
 
-  <!-- MENU TELEGRAM DIBUAT KECIL/MINIMALIS -->
   <section class="py-4 md:py-5 px-4 md:px-8 section-glass" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
     <div class="max-w-md mx-auto rounded-xl p-3 md:p-4 flex items-center justify-between" style="background: var(--card); border: 1px solid var(--border);">
       <div class="flex items-center gap-3">
@@ -340,7 +336,6 @@
     </div>
   </section>
 
-  <!-- MENU REQUEST VARIAN DIBUAT MEWAH -->
   <section id="request" class="max-w-3xl mx-auto px-3 md:px-8 py-10 md:py-16">
     <div class="rounded-2xl md:rounded-3xl p-6 md:p-10 text-center relative overflow-hidden" style="background: linear-gradient(160deg, rgba(45, 38, 28, 0.95) 0%, rgba(18, 14, 10, 0.98) 100%); border: 1px solid var(--accent); box-shadow: 0 0 30px rgba(212,165,116,0.15), inset 0 0 20px rgba(212,165,116,0.05);">
       <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 50% 0%, var(--accent) 0%, transparent 60%);"></div>
@@ -561,7 +556,6 @@
     </div>
   </div>
 
-  <!-- POPUP SUCCESS TOAST DIUBAH TEXNYA -->
   <div id="successToast" class="hidden fixed top-16 md:top-20 right-3 md:right-6 left-3 md:left-auto z-[60] toast-box p-4 md:p-5 anim-slide-up">
     <div class="flex items-start gap-3 md:gap-4">
       <div class="w-10 h-10 md:w-11 md:h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(34,197,94,0.08);"><i data-lucide="check-circle" class="w-5 h-5" style="color: #22C55E;"></i></div>
@@ -586,7 +580,6 @@
       }
     });
 
-    // LINK WEB APP KAMU SUDAH DIMASUKKAN
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzHEE1eFBGKxtwGSzclyT4Tmzj2GO4DTAHAARJ8WJpaHHTXBRB3JRaQXFd_kNXgEeE4og/exec"; 
     const ADMIN_PASSWORD = "vjadmin2025";
 
@@ -692,16 +685,12 @@
       }
       empty.classList.add("hidden");
 
-      // KARTU PARFUM DIPERBAIKI JADI ELEGAN (DENGAN 3 HARGA)
       grid.innerHTML = filtered.map(function(p, i) {
         var isSoldOut = p.stok === 0;
-        var isLow = p.stok > 0 && p.stok <= 3;
 
         var stockHtml = "";
         if (isSoldOut) {
           stockHtml = '<span class="text-[10px] md:text-[11px] font-extrabold tracking-wide" style="color: #EF4444;">SOLD OUT</span>';
-        } else if (isLow) {
-          stockHtml = '<span class="stock-dot stock-low"></span><span class="text-[10px] md:text-[11px] font-extrabold" style="color: #F59E0B;">Sisa ' + p.stok + '</span>';
         } else {
           stockHtml = '<span class="stock-dot stock-yes"></span><span class="text-[10px] md:text-[11px] font-extrabold" style="color: #22C55E;">Tersedia</span>';
         }
@@ -795,7 +784,6 @@
       updateTotalHarga();
     }
 
-    // LOGIKA TOTAL HARGA DIPERBAIKI (CUMA MUNCUL YANG DIPILIH)
     function updateTotalHarga() {
       var totalIDR = selectedParfum.harga * currentQty;
       var totalUSD = toUSD(totalIDR);
@@ -806,17 +794,16 @@
       
       if (selectedPayment === "IDR") {
         mainTotal.textContent = fmtIDR(totalIDR);
-        altTotal.textContent = ""; // KOSONG
+        altTotal.textContent = ""; 
       } else if (selectedPayment === "USD") {
         mainTotal.textContent = fmtUSD(totalUSD);
-        altTotal.textContent = ""; // KOSONG
+        altTotal.textContent = ""; 
       } else if (selectedPayment === "KHR") {
         mainTotal.textContent = fmtKHR(totalKHR);
-        altTotal.textContent = ""; // KOSONG
+        altTotal.textContent = ""; 
       }
     }
 
-    // SUBMIT ORDER: KIRIM KE SHEET, KURANGI STOK, TAMPILKAN POPUP (TIDAK DIRECT KE WA)
     function submitOrder(e) {
       e.preventDefault();
       var nama = document.getElementById('inputNama').value;
@@ -831,7 +818,6 @@
       else if (selectedPayment === "USD") { payString = "Dollar ($)"; totalString = fmtUSD(totalUSD); }
       else if (selectedPayment === "KHR") { payString = "Riel (៛)"; totalString = fmtKHR(totalKHR); }
 
-      // KIRIM DATA KE GOOGLE SHEET & EMAIL (DATA PASTI AMAN MASUK)
       if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== "MASUKAN_LINK_WEB_APP_KAMU_DISINI") {
         fetch(GOOGLE_SCRIPT_URL, {
           method: 'POST',
@@ -849,12 +835,10 @@
         });
       }
 
-      // KURANGI STOK OTOMATIS
       selectedParfum.stok -= currentQty;
       saveParfumToStorage();
       renderProducts();
 
-      // TUTUP MODAL PESANAN & TAMPILKAN POPUP NOTIFIKASI
       document.getElementById('orderForm').reset();
       closeModal();
       
@@ -865,14 +849,12 @@
       return false;
     }
 
-    // SUBMIT REQUEST: KIRIM KE SHEET & TAMPILKAN POPUP (TIDAK DIRECT KE WA)
     function submitRequest(e) {
       e.preventDefault();
       var reqNama = document.getElementById('reqNama').value;
       var reqVarian = document.getElementById('reqVarian').value;
       var reqCatatan = document.getElementById('reqCatatan').value;
 
-      // KIRIM DATA REQUEST KE GOOGLE SHEET & EMAIL
       if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== "MASUKAN_LINK_WEB_APP_KAMU_DISINI") {
         fetch(GOOGLE_SCRIPT_URL, {
           method: 'POST',
@@ -887,7 +869,6 @@
         });
       }
 
-      // TAMPILKAN POPUP NOTIFIKASI
       document.getElementById('requestForm').reset();
       
       var toast = document.getElementById('successToast');
@@ -962,7 +943,6 @@
       document.getElementById('promoPopup').classList.add('hidden');
     }
 
-    // INIT
     window.onload = function() {
       setTimeout(function() {
         document.getElementById('promoPopup').classList.remove('hidden');
