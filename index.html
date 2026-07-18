@@ -496,7 +496,7 @@
           </div>
         </div>
         
-        <!-- DETAIL PEMBAYARAN DINAMIS -->
+        <!-- DETAIL PEMBAYARAN DINAMIS (BARCODE & REKENING) -->
         <div id="paymentDetails" class="hidden rounded-xl p-4 text-center" style="background: var(--accent-pale); border: 1px solid var(--border-accent);">
           <!-- Diisi via JS -->
         </div>
@@ -586,6 +586,9 @@
       }
     });
 
+    // GANTI LINK INI DENGAN LINK GAMBAR BARCODE DARI POSTIMAGES.ORG AGAR PERMANEN!
+    const BARCODE_URL = "https://i.postimg.cc/ZRx57tnm/Screenshot-1.png"; 
+    
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzHEE1eFBGKxtwGSzclyT4Tmzj2GO4DTAHAARJ8WJpaHHTXBRB3JRaQXFd_kNXgEeE4og/exec"; 
     const ADMIN_PASSWORD = "vjadmin2025";
 
@@ -758,15 +761,21 @@
           <p class="text-xs font-bold mb-3" style="color: var(--text-sec);">a.n. Pijai kumar</p>
           <button type="button" onclick="copyText('100698330638')" class="px-4 py-1.5 rounded-lg text-xs font-extrabold bg-[var(--accent)] text-[var(--bg)] transition-all hover:opacity-90">Salin Nomor Rekening</button>
         `;
+      } else if (method === 'USD') {
+        detailsDiv.classList.remove('hidden');
+        detailsDiv.innerHTML = `
+          <p class="text-xs font-extrabold mb-3 accent-text">SCAN BARCODE UNTUK PEMBAYARAN DOLLAR:</p>
+          <img src="${https://i.postimg.cc/ZRx57tnm/Screenshot-1.png}" alt="Barcode Dollar" class="w-48 h-48 md:w-56 md:h-56 mx-auto rounded-lg object-contain bg-white p-2 shadow-lg">
+        `;
       } else if (method === 'KHR') {
         detailsDiv.classList.remove('hidden');
         detailsDiv.innerHTML = `
-          <p class="text-xs font-extrabold mb-2 accent-text">PILIH METODE PEMBAYARAN RIEL:</p>
+          <p class="text-xs font-extrabold mb-3 accent-text">PILIH METODE PEMBAYARAN RIEL:</p>
           <div class="flex justify-center gap-3">
             <button type="button" onclick="showKhrMethod('Cash')" class="px-4 py-2 rounded-lg text-xs font-extrabold bg-[var(--bg-alt)] text-[var(--text)] border border-[var(--border-accent)] transition-all hover:bg-[var(--accent-pale)]">Cash</button>
             <button type="button" onclick="showKhrMethod('ABA')" class="px-4 py-2 rounded-lg text-xs font-extrabold bg-[var(--bg-alt)] text-[var(--text)] border border-[var(--border-accent)] transition-all hover:bg-[var(--accent-pale)]">ABA</button>
           </div>
-          <div id="khrMethodDisplay" class="mt-3"></div>
+          <div id="khrMethodDisplay" class="mt-4"></div>
         `;
       } else {
         detailsDiv.classList.add('hidden');
@@ -777,8 +786,8 @@
       var display = document.getElementById('khrMethodDisplay');
       if (type === 'ABA') {
         display.innerHTML = `
-          <p class="text-xs font-extrabold mb-2 accent-text">SCAN BARCODE ABA:</p>
-          <img src="https://z-cdn-media.chatglm.cn/files/f8567ca8-0d9b-46f1-9cae-291c5b5e347b.png" alt="ABA QR" class="w-32 h-32 mx-auto rounded-lg object-contain bg-white p-1">
+          <p class="text-xs font-extrabold mb-3 accent-text">SCAN BARCODE ABA:</p>
+          <img src="${https://i.postimg.cc/ZRx57tnm/Screenshot-1.png}" alt="Barcode ABA" class="w-48 h-48 md:w-56 md:h-56 mx-auto rounded-lg object-contain bg-white p-2 shadow-lg">
         `;
       } else if (type === 'Cash') {
         display.innerHTML = `<p class="text-xs font-bold mt-2" style="color: var(--text-sec);">Silakan bayar tunai (Cash) saat item diterima.</p>`;
