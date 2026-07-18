@@ -260,7 +260,6 @@
 </head>
 <body>
 
-  <!-- POPUP IMAGE DIPERBAIKI (LINK BARU, POSISI TURUN) -->
   <div id="promoPopup" class="hidden fixed inset-0 z-[70] flex flex-col items-center justify-center p-4 pt-24 modal-backdrop" onclick="closePromo()">
     <div class="relative w-full max-w-xs sm:max-w-sm anim-slide-up" onclick="event.stopPropagation()">
       <a href="#koleksi" onclick="closePromo()" class="block w-full">
@@ -496,10 +495,7 @@
           </div>
         </div>
         
-        <!-- DETAIL PEMBAYARAN DINAMIS (BARCODE & REKENING) -->
-        <div id="paymentDetails" class="hidden rounded-xl p-4 text-center" style="background: var(--accent-pale); border: 1px solid var(--border-accent);">
-          <!-- Diisi via JS -->
-        </div>
+        <div id="paymentDetails" class="hidden rounded-xl p-4 text-center" style="background: var(--accent-pale); border: 1px solid var(--border-accent);"></div>
 
         <div>
           <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Jumlah Pesanan</label>
@@ -586,7 +582,6 @@
       }
     });
 
-    // GANTI LINK INI DENGAN LINK GAMBAR BARCODE DARI POSTIMAGES.ORG AGAR PERMANEN!
     const BARCODE_URL = "https://i.postimg.cc/ZRx57tnm/Screenshot-1.png"; 
     
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzHEE1eFBGKxtwGSzclyT4Tmzj2GO4DTAHAARJ8WJpaHHTXBRB3JRaQXFd_kNXgEeE4og/exec"; 
@@ -764,8 +759,8 @@
       } else if (method === 'USD') {
         detailsDiv.classList.remove('hidden');
         detailsDiv.innerHTML = `
-          <p class="text-xs font-extrabold mb-3 accent-text">SCAN BARCODE UNTUK PEMBAYARAN DOLLAR:</p>
-          <img src="${https://i.postimg.cc/ZRx57tnm/Screenshot-1.png}" alt="Barcode Dollar" class="w-48 h-48 md:w-56 md:h-56 mx-auto rounded-lg object-contain bg-white p-2 shadow-lg">
+          <p class="text-xs font-extrabold mb-3 accent-text">SCAN ABA QR UNTUK PEMBAYARAN DOLLAR:</p>
+          <img src="${BARCODE_URL}" alt="ABA QR Dollar" class="w-full max-w-[260px] mx-auto rounded-xl shadow-lg border border-[var(--border-accent)]">
         `;
       } else if (method === 'KHR') {
         detailsDiv.classList.remove('hidden');
@@ -786,8 +781,8 @@
       var display = document.getElementById('khrMethodDisplay');
       if (type === 'ABA') {
         display.innerHTML = `
-          <p class="text-xs font-extrabold mb-3 accent-text">SCAN BARCODE ABA:</p>
-          <img src="${https://i.postimg.cc/ZRx57tnm/Screenshot-1.png}" alt="Barcode ABA" class="w-48 h-48 md:w-56 md:h-56 mx-auto rounded-lg object-contain bg-white p-2 shadow-lg">
+          <p class="text-xs font-extrabold mb-3 accent-text">SCAN ABA QR:</p>
+          <img src="${BARCODE_URL}" alt="ABA QR Riel" class="w-full max-w-[260px] mx-auto rounded-xl shadow-lg border border-[var(--border-accent)]">
         `;
       } else if (type === 'Cash') {
         display.innerHTML = `<p class="text-xs font-bold mt-2" style="color: var(--text-sec);">Silakan bayar tunai (Cash) saat item diterima.</p>`;
