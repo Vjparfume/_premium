@@ -260,11 +260,11 @@
 </head>
 <body>
 
-  <!-- POPUP IMAGE -->
-  <div id="promoPopup" class="hidden fixed inset-0 z-[70] flex flex-col items-center justify-center p-4 pt-20 modal-backdrop" onclick="closePromo()">
+  <!-- POPUP IMAGE DIPERBAIKI (LINK BARU, POSISI TURUN) -->
+  <div id="promoPopup" class="hidden fixed inset-0 z-[70] flex flex-col items-center justify-center p-4 pt-24 modal-backdrop" onclick="closePromo()">
     <div class="relative w-full max-w-xs sm:max-w-sm anim-slide-up" onclick="event.stopPropagation()">
       <a href="#koleksi" onclick="closePromo()" class="block w-full">
-        <img src="https://lh3.googleusercontent.com/d/1_iz9ST5wXUFpMcC6-YJk_ZBKeE2wtecN" alt="Promo VJ Parfume" class="w-full rounded-2xl shadow-2xl border-2 border-[var(--accent)] cursor-pointer">
+        <img src="https://lh3.googleusercontent.com/d/1-qAqhhq78BJ3m6zVNTUUDjhPRZmxTRCp" alt="Promo VJ Parfume" class="w-full h-auto rounded-2xl shadow-2xl border-2 border-[var(--accent)] cursor-pointer object-contain">
       </a>
     </div>
   </div>
@@ -474,26 +474,31 @@
           <input type="text" id="inputNama" required placeholder="Tulis nama kamu di sini" class="input-field w-full h-11 md:h-12 px-3.5 md:px-4 rounded-xl text-xs md:text-sm font-bold">
         </div>
         <div>
-          <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Catatan</label>
-          <textarea id="inputCatatan" rows="2" placeholder="Tulis catatan tambahan (opsional)..." class="input-field w-full px-3.5 md:px-4 py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-bold resize-none"></textarea>
+          <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Catatan (Opsional). Cth: Nama Mess / Situs</label>
+          <textarea id="inputCatatan" rows="2" placeholder="Tulis catatan tambahan..." class="input-field w-full px-3.5 md:px-4 py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-bold resize-none"></textarea>
         </div>
         
         <div>
           <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Pilih Metode Pembayaran <span style="color: #EF4444;">*</span></label>
           <div class="grid grid-cols-3 gap-2" id="paymentOptions">
-            <label class="pay-option selected" data-val="IDR">
+            <label class="pay-option selected" data-val="IDR" onclick="updatePaymentDetails('IDR')">
               <input type="radio" name="paymentMethod" value="IDR" checked>
               <span class="text-[10px] md:text-xs font-extrabold mt-1">Rupiah (Rp)</span>
             </label>
-            <label class="pay-option" data-val="USD">
+            <label class="pay-option" data-val="USD" onclick="updatePaymentDetails('USD')">
               <input type="radio" name="paymentMethod" value="USD">
               <span class="text-[10px] md:text-xs font-extrabold mt-1">Dollar ($)</span>
             </label>
-            <label class="pay-option" data-val="KHR">
+            <label class="pay-option" data-val="KHR" onclick="updatePaymentDetails('KHR')">
               <input type="radio" name="paymentMethod" value="KHR">
               <span class="text-[10px] md:text-xs font-extrabold mt-1">Riel (៛)</span>
             </label>
           </div>
+        </div>
+        
+        <!-- DETAIL PEMBAYARAN DINAMIS -->
+        <div id="paymentDetails" class="hidden rounded-xl p-4 text-center" style="background: var(--accent-pale); border: 1px solid var(--border-accent);">
+          <!-- Diisi via JS -->
         </div>
 
         <div>
@@ -510,6 +515,7 @@
           <p class="text-[10px] md:text-xs font-extrabold mb-1.5 md:mb-2 tracking-wide" style="color: var(--text-sec);">TOTAL HARGA</p>
           <div id="totalHarga" class="font-black price-gold text-2xl md:text-3xl">Rp 0</div>
           <div id="totalHargaAlt" class="font-bold text-sm mt-1" style="color: var(--text-sec);"></div>
+          <p id="discountInfo" class="text-[10px] mt-1 font-bold hidden" style="color: #22C55E;">🎉 Diskon Min. 4 Botol Diterapkan!</p>
         </div>
         
         <button type="submit" id="submitBtn" class="w-full btn-primary rounded-xl md:rounded-2xl font-extrabold text-xs md:text-sm flex items-center justify-center gap-2.5 tracking-wide py-3.5 md:py-4">
@@ -736,9 +742,56 @@
         document.querySelectorAll('.pay-option').forEach(function(o) { o.classList.remove('selected'); });
         this.classList.add('selected');
         selectedPayment = this.getAttribute('data-val');
+        updatePaymentDetails(selectedPayment);
         updateTotalHarga();
       });
     });
+
+    function updatePaymentDetails(method) {
+      var detailsDiv = document.getElementById('paymentDetails');
+      if (method === 'IDR') {
+        detailsDiv.classList.remove('hidden');
+        detailsDiv.innerHTML = `
+          <p class="text-xs font-extrabold mb-2 accent-text">SILAKAN TRANSFER KE:</p>
+          <p class="text-sm font-black" style="color: var(--text);">Bank Jago</p>
+          <p class="text-lg font-black price-gold mb-1">100698330638</p>
+          <p class="text-xs font-bold mb-3" style="color: var(--text-sec);">a.n. Pijai kumar</p>
+          <button type="button" onclick="copyText('100698330638')" class="px-4 py-1.5 rounded-lg text-xs font-extrabold bg-[var(--accent)] text-[var(--bg)] transition-all hover:opacity-90">Salin Nomor Rekening</button>
+        `;
+      } else if (method === 'KHR') {
+        detailsDiv.classList.remove('hidden');
+        detailsDiv.innerHTML = `
+          <p class="text-xs font-extrabold mb-2 accent-text">PILIH METODE PEMBAYARAN RIEL:</p>
+          <div class="flex justify-center gap-3">
+            <button type="button" onclick="showKhrMethod('Cash')" class="px-4 py-2 rounded-lg text-xs font-extrabold bg-[var(--bg-alt)] text-[var(--text)] border border-[var(--border-accent)] transition-all hover:bg-[var(--accent-pale)]">Cash</button>
+            <button type="button" onclick="showKhrMethod('ABA')" class="px-4 py-2 rounded-lg text-xs font-extrabold bg-[var(--bg-alt)] text-[var(--text)] border border-[var(--border-accent)] transition-all hover:bg-[var(--accent-pale)]">ABA</button>
+          </div>
+          <div id="khrMethodDisplay" class="mt-3"></div>
+        `;
+      } else {
+        detailsDiv.classList.add('hidden');
+      }
+    }
+
+    function showKhrMethod(type) {
+      var display = document.getElementById('khrMethodDisplay');
+      if (type === 'ABA') {
+        display.innerHTML = `
+          <p class="text-xs font-extrabold mb-2 accent-text">SCAN BARCODE ABA:</p>
+          <img src="https://z-cdn-media.chatglm.cn/files/f8567ca8-0d9b-46f1-9cae-291c5b5e347b.png" alt="ABA QR" class="w-32 h-32 mx-auto rounded-lg object-contain bg-white p-1">
+        `;
+      } else if (type === 'Cash') {
+        display.innerHTML = `<p class="text-xs font-bold mt-2" style="color: var(--text-sec);">Silakan bayar tunai (Cash) saat item diterima.</p>`;
+      }
+    }
+
+    function copyText(text) {
+      navigator.clipboard.writeText(text).then(function() {
+        alert('Nomor rekening berhasil disalin!');
+      }, function(err) {
+        alert('Gagal menyalin. Silakan salin manual: ' + text);
+      });
+    }
 
     function openModal(id) {
       selectedParfum = parfumData.find(p => p.id === id);
@@ -751,16 +804,14 @@
       document.getElementById('modalUkuran').textContent = selectedParfum.ukuran || "35ml";
       document.getElementById('modalImg').src = getImgSrc(selectedParfum);
       
-      document.getElementById('modalHargaIDR').textContent = fmtIDR(selectedParfum.harga);
-      document.getElementById('modalHargaUsdKhr').textContent = fmtUSD(toUSD(selectedParfum.harga)) + ' · ' + fmtKHR(toKHR(selectedParfum.harga));
-      
-      document.getElementById('stockInfo').textContent = 'Stok: ' + selectedParfum.stok;
-      
       selectedPayment = "IDR";
       document.querySelectorAll('.pay-option').forEach(function(o) {
         o.classList.remove('selected');
         if (o.getAttribute('data-val') === 'IDR') o.classList.add('selected');
       });
+      updatePaymentDetails('IDR');
+      
+      document.getElementById('stockInfo').textContent = 'Stok: ' + selectedParfum.stok;
       
       updateTotalHarga();
       
@@ -785,12 +836,20 @@
     }
 
     function updateTotalHarga() {
-      var totalIDR = selectedParfum.harga * currentQty;
+      var hargaPerBotol = selectedParfum.harga;
+      var discountApplied = false;
+      if (currentQty >= 4) { // MINIMAL 4 BOTOL DAPAT DISKON
+        hargaPerBotol = 190000;
+        discountApplied = true;
+      }
+      
+      var totalIDR = hargaPerBotol * currentQty;
       var totalUSD = toUSD(totalIDR);
       var totalKHR = toKHR(totalIDR);
       
       var mainTotal = document.getElementById('totalHarga');
       var altTotal = document.getElementById('totalHargaAlt');
+      var discInfo = document.getElementById('discountInfo');
       
       if (selectedPayment === "IDR") {
         mainTotal.textContent = fmtIDR(totalIDR);
@@ -802,13 +861,25 @@
         mainTotal.textContent = fmtKHR(totalKHR);
         altTotal.textContent = ""; 
       }
+      
+      if (discountApplied) {
+        discInfo.classList.remove('hidden');
+      } else {
+        discInfo.classList.add('hidden');
+      }
     }
 
     function submitOrder(e) {
       e.preventDefault();
       var nama = document.getElementById('inputNama').value;
       var catatan = document.getElementById('inputCatatan').value;
-      var totalIDR = selectedParfum.harga * currentQty;
+      
+      var hargaPerBotol = selectedParfum.harga;
+      if (currentQty >= 4) { // MINIMAL 4 BOTOL DAPAT DISKON
+        hargaPerBotol = 190000;
+      }
+      
+      var totalIDR = hargaPerBotol * currentQty;
       var totalUSD = toUSD(totalIDR);
       var totalKHR = toKHR(totalIDR);
       
