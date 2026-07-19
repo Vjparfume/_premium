@@ -558,12 +558,13 @@
     </div>
   </div>
 
+  <!-- TOAST DIPERBAIKI: ID DITAMBAHKAN AGAR TEKS BISA DIGANTI DYNAMIS -->
   <div id="successToast" class="hidden fixed top-16 md:top-20 right-3 md:right-6 left-3 md:left-auto z-[60] toast-box p-4 md:p-5 anim-slide-up">
     <div class="flex items-start gap-3 md:gap-4">
       <div class="w-10 h-10 md:w-11 md:h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(34,197,94,0.08);"><i data-lucide="check-circle" class="w-5 h-5" style="color: #22C55E;"></i></div>
       <div>
-        <p class="font-extrabold text-xs md:text-sm" style="color: #22C55E;">Pesanan Sedang Disiapkan! 🎉</p>
-        <p class="text-[10px] md:text-xs mt-0.5 md:mt-1 font-bold" style="color: var(--text-muted);">Pesanan Anda sedang disiapkan oleh Admin</p>
+        <p class="font-extrabold text-xs md:text-sm" style="color: #22C55E;" id="toastTitle">Pesanan Sedang Disiapkan! 🎉</p>
+        <p class="text-[10px] md:text-xs mt-0.5 md:mt-1 font-bold" style="color: var(--text-muted);" id="toastDesc">Pesanan Anda sedang disiapkan oleh Admin</p>
       </div>
     </div>
   </div>
@@ -613,7 +614,6 @@
       imgEl.src = placeholderImg(nama);
     }
 
-    // GANTI LINK POSTIMG DI BAWAH INI DENGAN LINK IMGUR (i.imgur.com/...) AGAR MUNCUL DI INDONESIA!
     const defaultParfumData = [
       { id: 1, nama: "SCANDALOUS", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/f_auto,q_auto/scandal_g2pi1v", harga: 200000, stok: 5, ukuran: "35ml" },
       { id: 2, nama: "BLACK OPIUM", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/f_auto,q_auto/black_hvuzkm", harga: 200000, stok: 5, ukuran: "35ml" },
@@ -629,12 +629,13 @@
       { id: 12, nama: "SOTB", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429987/0f0279bb-0d1d-4421-9688-f3f66920f0d8_ksjji0.png", harga: 200000, stok: 5, ukuran: "35ml" },
       { id: 13, nama: "SELENA GOMES", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784430022/selena_j4ylkr.png", harga: 200000, stok: 5, ukuran: "35ml" },
       { id: 14, nama: "LOVELY", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784430047/92ec90ee-88a9-4f9a-b696-83074c243553_rbkxiq.png", harga: 200000, stok: 5, ukuran: "35ml" },
-      { id: 15, nama: "MONT BLANC LEGEND", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784430072/fc820462-cf97-4602-9028-00eb58ad326a_adtglh.png", harga: 200000, stok: 5, ukuran: "35ml" },
-      { id: 16, nama: "YSL LIBRE", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784430098/590dc64e-a532-4e03-915f-2773fa5454eb_mxrnbd.png", harga: 200000, stok: 5, ukuran: "35ml" },
-      { id: 17, nama: "PINK FANTASY", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784430122/454dc429-8b34-42b0-998f-b9c712af8691_rlezmp.png", harga: 200000, stok: 5, ukuran: "35ml" },
-      { id: 18, nama: "BLUE EMOTION", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784430147/39081197-8eed-4587-9451-b9ecf5c6bd74_rozdt5.png", harga: 200000, stok: 5, ukuran: "35ml" },
-      { id: 19, nama: "BACCARAT", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784430179/31ec123f-b149-4235-9cd2-f4be00720458_plpwrf.png", harga: 200000, stok: 5, ukuran: "35ml" },
-      { id: 20, nama: "DRAKAR", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784430209/8cd03f13-b49c-42ec-ac9e-2575db75803a_ztistu.png", harga: 200000, stok: 5, ukuran: "35ml" }
+      // Catatan: Link item 15-20 menggunakan postimg. Jika mau aman di semua negara, silakan ganti ke cloudinary seperti 1-14
+      { id: 15, nama: "MONT BLANC LEGEND", gambarUrl: "https://i.postimg.cc/CLptZHwp/fc820462-cf97-4602-9028-00eb58ad326a.png", harga: 200000, stok: 5, ukuran: "35ml" },
+      { id: 16, nama: "YSL LIBRE", gambarUrl: "https://i.postimg.cc/K8TkmYZK/590dc64e-a532-4e03-915f-2773fa5454eb.png", harga: 200000, stok: 5, ukuran: "35ml" },
+      { id: 17, nama: "PINK FANTASY", gambarUrl: "https://i.postimg.cc/25cVwLTS/454dc429-8b34-42b0-998f-b9c712af8691.png", harga: 200000, stok: 5, ukuran: "35ml" },
+      { id: 18, nama: "BLUE EMOTION", gambarUrl: "https://i.postimg.cc/fLSTf2J8/39081197-8eed-4587-9451-b9ecf5c6bd74.png", harga: 200000, stok: 5, ukuran: "35ml" },
+      { id: 19, nama: "BACCARAT", gambarUrl: "https://i.postimg.cc/SxK4GTPc/31ec123f-b149-4235-9cd2-f4be00720458.png", harga: 200000, stok: 5, ukuran: "35ml" },
+      { id: 20, nama: "DRAKAR", gambarUrl: "https://i.postimg.cc/GmfWxcYN/8cd03f13-b49c-42ec-ac9e-2575db75803a.png", harga: 200000, stok: 5, ukuran: "35ml" }
     ];
 
     var parfumData = JSON.parse(JSON.stringify(defaultParfumData));
@@ -898,6 +899,7 @@
         fetch(GOOGLE_SCRIPT_URL, {
           method: 'POST',
           mode: 'no-cors',
+          keepalive: true, 
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             type: 'order',
@@ -908,7 +910,7 @@
             total: totalString,
             catatan: catatan
           })
-        });
+        }).catch(err => console.error("Order fetch failed:", err));
       }
 
       selectedParfum.stok -= currentQty;
@@ -918,6 +920,9 @@
       document.getElementById('orderForm').reset();
       closeModal();
       
+      document.getElementById('toastTitle').innerText = "Pesanan Sedang Disiapkan! 🎉";
+      document.getElementById('toastDesc').innerText = "Pesanan Anda sedang disiapkan oleh Admin";
+      
       var toast = document.getElementById('successToast');
       toast.classList.remove('hidden');
       setTimeout(function() { toast.classList.add('hidden'); }, 3500);
@@ -925,6 +930,7 @@
       return false;
     }
 
+    // SUBMIT REQUEST DIPERBAIKI: keepalive: true agar pasti masuk sheet, dan teks notifikasi diubah dinamis
     function submitRequest(e) {
       e.preventDefault();
       var reqNama = document.getElementById('reqNama').value;
@@ -935,6 +941,7 @@
         fetch(GOOGLE_SCRIPT_URL, {
           method: 'POST',
           mode: 'no-cors',
+          keepalive: true,
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             type: 'request',
@@ -942,10 +949,14 @@
             varian: reqVarian,
             catatan: reqCatatan
           })
-        });
+        }).catch(err => console.error("Request fetch failed:", err));
       }
 
       document.getElementById('requestForm').reset();
+      
+      // GANTI TEKS NOTIFIKASI SESUAI PERMINTAAN
+      document.getElementById('toastTitle').innerText = "Req Varian Diterima! 🌸";
+      document.getElementById('toastDesc').innerText = "Req varian anda sedang kami cek tersedia atau tidak";
       
       var toast = document.getElementById('successToast');
       toast.classList.remove('hidden');
