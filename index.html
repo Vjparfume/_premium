@@ -629,7 +629,7 @@
     var parfumData = JSON.parse(JSON.stringify(defaultParfumData));
 
     function loadParfumData() {
-      var parfumData = [...defaultParfumData];
+      var parfumData = JSON.parse(localStorage.getItem('vj_parfum_data')) || [...defaultParfumData];
       if (saved) {
         try {
           var parsed = JSON.parse(saved);
