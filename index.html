@@ -1,923 +1,1044 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VJ PARFUME - Wangi Berkualitas, Harga Bersahabat</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
-        }
-      }
-    }
-  </script>
-  <style>
-    :root {
-      --bg: #13100C;
-      --bg-alt: #1C1814;
-      --card: rgba(26, 22, 18, 0.85);
-      --text: #F0E8E0;
-      --text-sec: #C4B5A5;
-      --text-muted: #8A7B6B;
-      --accent: #D4A574;
-      --accent-dark: #E8C9A8;
-      --accent-light: #4A3D32;
-      --accent-pale: rgba(212, 165, 116, 0.06);
-      --border: rgba(240, 232, 224, 0.07);
-      --border-accent: rgba(212, 165, 116, 0.2);
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { background-color: var(--bg); min-height: 100%; }
-    body { font-family: 'Inter', sans-serif; color: var(--text); overflow-x: hidden; position: relative; }
-    body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; background-image: url('https://lh3.googleusercontent.com/d/1z2MYAcummRU0bv5Ery5cl3Xq3VyW0vkg'); background-size: cover; background-position: center center; background-repeat: no-repeat; background-attachment: fixed; }
-    body::after { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; background: rgba(13, 10, 8, 0.80); }
-    nav, section, div, footer, a, img, form, button, input, textarea, i { position: relative; z-index: 1; }
-    @media (max-width: 768px) { body::before, body::after { background-attachment: scroll !important; } }
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: var(--bg-alt); }
-    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
-    .accent-text { color: var(--accent); }
-    .accent-bg { background-color: var(--accent); }
-    .accent-border { border-color: var(--accent); }
-    .accent-gradient-text { background: linear-gradient(135deg, #E8C9A8 0%, #D4A574 40%, #B8865A 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .accent-gradient-bg { background: linear-gradient(135deg, #D4A574 0%, #B8865A 100%); }
-    @keyframes rainbowGlow {
-      0%   { color: #FFD700 !important; -webkit-text-fill-color: #FFD700 !important; text-shadow: 0 0 15px rgba(255,215,0,0.8), 0 0 40px rgba(255,215,0,0.4); transform: scale(1.02); }
-      16%  { color: #FF69B4 !important; -webkit-text-fill-color: #FF69B4 !important; text-shadow: 0 0 15px rgba(255,105,180,0.8), 0 0 40px rgba(255,105,180,0.4); transform: scale(1); }
-      33%  { color: #00CED1 !important; -webkit-text-fill-color: #00CED1 !important; text-shadow: 0 0 15px rgba(0,206,209,0.8), 0 0 40px rgba(0,206,209,0.4); transform: scale(1.02); }
-      50%  { color: #DA70D6 !important; -webkit-text-fill-color: #DA70D6 !important; text-shadow: 0 0 15px rgba(218,112,214,0.8), 0 0 40px rgba(218,112,214,0.4); transform: scale(1); }
-      66%  { color: #7FFF00 !important; -webkit-text-fill-color: #7FFF00 !important; text-shadow: 0 0 15px rgba(127,255,0,0.8), 0 0 40px rgba(127,255,0,0.4); transform: scale(1.02); }
-      83%  { color: #FF6347 !important; -webkit-text-fill-color: #FF6347 !important; text-shadow: 0 0 15px rgba(255,99,71,0.8), 0 0 40px rgba(255,99,71,0.4); transform: scale(1); }
-      100% { color: #FFD700 !important; -webkit-text-fill-color: #FFD700 !important; text-shadow: 0 0 15px rgba(255,215,0,0.8), 0 0 40px rgba(255,215,0,0.4); transform: scale(1.02); }
-    }
-    .rainbow-glow { animation: rainbowGlow 3.5s ease-in-out infinite !important; font-weight: 900 !important; }
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-    @keyframes slideUp { from { opacity: 0; transform: translateY(20px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
-    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    .anim-fade-up { animation: fadeUp 0.9s ease-out forwards; opacity: 0; }
-    .anim-fade-in { animation: fadeIn 0.7s ease-out forwards; opacity: 0; }
-    .anim-float { animation: float 3.5s ease-in-out infinite; }
-    .anim-slide-up { animation: slideUp 0.4s cubic-bezier(0.16,1,0.3,1) forwards; }
-    .d1 { animation-delay: 0.1s; } .d2 { animation-delay: 0.2s; } .d3 { animation-delay: 0.3s; } .d4 { animation-delay: 0.4s; } .d5 { animation-delay: 0.5s; }
-    .perfume-card {
-      background: linear-gradient(160deg, rgba(45, 38, 28, 0.92) 0%, rgba(18, 14, 10, 0.98) 100%);
-      border: 1px solid rgba(212, 165, 116, 0.3);
-      border-radius: 16px; overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
-      position: relative;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 15px rgba(212,165,116,0.05), inset 0 1px 0 rgba(255,255,255,0.08);
-      backdrop-filter: blur(16px);
-      display: flex; flex-direction: column;
-      transform: translateZ(0);
-    }
-    .perfume-card:hover { transform: translateY(-8px) translateZ(0); border-color: rgba(212, 165, 116, 0.7); box-shadow: 0 20px 50px rgba(212,165,116,0.15), 0 0 25px rgba(212,165,116,0.1); }
-    .perfume-card:hover .card-img { transform: scale(1.05); }
-    .card-img { transition: transform 0.7s cubic-bezier(0.16,1,0.3,1), filter 0.7s ease; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5)); }
-    .perfume-card:hover .card-img { filter: drop-shadow(0 0 20px rgba(212, 165, 116, 0.5)) drop-shadow(0 10px 20px rgba(0,0,0,0.4)); }
-    .card-img-bg { background: radial-gradient(circle at 50% 40%, rgba(212,165,116,0.1) 0%, rgba(28,24,20,0.8) 80%); }
-    .variant-name { background: linear-gradient(to right, #F0E8E0, #D4A574); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: 800; letter-spacing: 0.03em; filter: drop-shadow(0 0 6px rgba(212, 165, 116, 0.6)); }
-    .price-gold { background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: 900; letter-spacing: 0.02em; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.4)); }
-    .btn-order { background: rgba(212,165,116,0.08); border: 1px solid rgba(212,165,116,0.2); color: var(--accent-dark); transition: all 0.3s ease; }
-    .btn-order:hover { background: linear-gradient(135deg, #D4A574, #B8865A); color: #13100C; border-color: #D4A574; box-shadow: 0 6px 24px rgba(212,165,116,0.2); }
-    .btn-primary { background: linear-gradient(135deg, #D4A574, #B8865A); color: #13100C; transition: all 0.3s ease; position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(212,165,116,0.3); }
-    .btn-primary:hover { background: linear-gradient(135deg, #E8C9A8, #D4A574); box-shadow: 0 10px 35px rgba(212,165,116,0.5); transform: translateY(-2px); }
-    .btn-primary::after { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(45deg, transparent, rgba(255,255,255,0.4), transparent); transform: translateX(-100%) rotate(45deg); animation: shine 3s infinite; }
-    @keyframes shine { 0% { transform: translateX(-100%) rotate(45deg); } 100% { transform: translateX(100%) rotate(45deg); } }
-    .input-field { background: rgba(26,22,18,0.9); border: 1px solid var(--border); color: var(--text); transition: all 0.25s ease; backdrop-filter: blur(8px); }
-    .input-field::placeholder { color: var(--text-muted); }
-    .input-field:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(212,165,116,0.1); background: rgba(26,22,18,0.95); outline: none; }
-    .modal-backdrop { backdrop-filter: blur(16px); background: rgba(13,10,8,0.6); }
-    .modal-box { background: rgba(28,24,20,0.97); border: 1px solid var(--border-accent); border-radius: 24px; box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 40px rgba(212,165,116,0.1); backdrop-filter: blur(20px); }
-    .qty-btn { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-accent); border-radius: 12px; background: rgba(212,165,116,0.06); color: var(--accent-dark); cursor: pointer; transition: all 0.2s; font-size: 20px; user-select: none; }
-    .qty-btn:hover { background: rgba(212,165,116,0.15); border-color: var(--accent); }
-    .marquee-track { display: flex; animation: marquee 35s linear infinite; width: max-content; transform: translateZ(0); }
-    .stock-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
-    .stock-yes { background: #22C55E; box-shadow: 0 0 6px rgba(34,197,94,0.4); }
-    .stock-low { background: #F59E0B; box-shadow: 0 0 6px rgba(245,158,11,0.4); }
-    .toast-box { background: rgba(28,24,20,0.97); border: 1px solid rgba(34,197,94,0.2); border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 20px rgba(34,197,94,0.06); backdrop-filter: blur(16px); }
-    .gold-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border-accent), transparent); }
-    .tg-float { position: fixed; bottom: 20px; right: 20px; z-index: 45; width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, #25D366, #128C7E); display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 24px rgba(37,211,102,0.35); transition: all 0.3s ease; cursor: pointer; }
-    .tg-float:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,0.45); }
-    .admin-input { background: rgba(19,16,12,0.8); border: 1px solid var(--border); color: var(--text); border-radius: 10px; padding: 8px 12px; font-size: 13px; width: 100%; transition: all 0.2s; outline: none; font-family: 'Inter', sans-serif; }
-    .admin-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(212,165,116,0.1); }
-    .hero-pattern { background-image: radial-gradient(rgba(212,165,116,0.03) 1px, transparent 1px); background-size: 24px 24px; }
-    .section-glass { background: rgba(19,16,12,0.6); backdrop-filter: blur(16px); }
-    .pay-chip { display: inline-flex; align-items: center; gap: 4px; padding: 6px 14px; border-radius: 10px; font-weight: 800; font-size: 13px; white-space: nowrap; }
-    .pay-option { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px; border: 2px solid var(--border); border-radius: 12px; cursor: pointer; transition: all 0.2s; background: rgba(19,16,12,0.6); color: var(--text-sec); }
-    .pay-option:hover { border-color: var(--border-accent); }
-    .pay-option.selected { border-color: var(--accent); background: rgba(212,165,116,0.1); color: var(--accent-dark); box-shadow: 0 0 12px rgba(212,165,116,0.2); }
-    .pay-option input { display: none; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VJ PARFUME - Wangi Berkualitas, Harga Bersahabat</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+theme: {
+extend: {
+fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
+}
+}
+}
+</script>
+<style>
+:root {
+--bg: #13100C;
+--bg-alt: #1C1814;
+--card: rgba(26, 22, 18, 0.85);
+--text: #F0E8E0;
+--text-sec: #C4B5A5;
+--text-muted: #8A7B6B;
+--accent: #D4A574;
+--accent-dark: #E8C9A8;
+--accent-light: #4A3D32;
+--accent-pale: rgba(212, 165, 116, 0.06);
+--border: rgba(240, 232, 224, 0.07);
+--border-accent: rgba(212, 165, 116, 0.2);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* === SOLD OUT BADGE === */
-    .sold-out-badge {
-      position: absolute; top: 10px; right: 10px; z-index: 10;
-      padding: 4px 10px; border-radius: 8px;
-      font-size: 10px; font-weight: 900; letter-spacing: 0.08em;
-      background: rgba(239, 68, 68, 0.92); color: #fff;
-      box-shadow: 0 2px 10px rgba(239,68,68,0.4);
-      animation: pulseSoldOut 2s ease-in-out infinite;
-    }
-    @keyframes pulseSoldOut {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.75; }
-    }
-    .sold-out-card { opacity: 0.7; }
-    .sold-out-card:hover { transform: translateY(-4px) translateZ(0); }
-    .sold-out-card .card-img { filter: grayscale(0.4) drop-shadow(0 5px 15px rgba(0,0,0,0.5)) !important; }
+html, body {
+background-color: var(--bg);
+min-height: 100%;
+}
+body {
+font-family: 'Inter', sans-serif;
+color: var(--text);
+overflow-x: hidden;
+position: relative;
+}
+body::before {
+content: "";
+position: fixed;
+top: 0; left: 0; width: 100%; height: 100%;
+z-index: 0;
+background-image: url('https://lh3.googleusercontent.com/d/1z2MYAcummRU0bv5Ery5cl3Xq3VyW0vkg');
+background-size: cover;
+background-position: center center;
+background-repeat: no-repeat;
+}
+body::after {
+content: "";
+position: fixed;
+top: 0; left: 0; width: 100%; height: 100%;
+z-index: 0;
+background: rgba(13, 10, 8, 0.80);
+}
+nav, section, div, footer, a, img, form, button, input, textarea, i {
+position: relative;
+z-index: 1;
+}
 
-    /* Loading spinner */
-    .loading-spinner { display: inline-block; width: 20px; height: 20px; border: 2px solid var(--border-accent); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.6s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-  </style>
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-alt); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+
+.accent-text { color: var(--accent); }
+.accent-bg { background-color: var(--accent); }
+.accent-border { border-color: var(--accent); }
+
+.accent-gradient-text {
+background: linear-gradient(135deg, #E8C9A8 0%, #D4A574 40%, #B8865A 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+}
+.accent-gradient-bg {
+background: linear-gradient(135deg, #D4A574 0%, #B8865A 100%);
+}
+
+@keyframes rainbowGlow {
+0%   { color: #FFD700 !important; -webkit-text-fill-color: #FFD700 !important; text-shadow: 0 0 15px rgba(255,215,0,0.8), 0 0 40px rgba(255,215,0,0.4); transform: scale(1.02); }
+16%  { color: #FF69B4 !important; -webkit-text-fill-color: #FF69B4 !important; text-shadow: 0 0 15px rgba(255,105,180,0.8), 0 0 40px rgba(255,105,180,0.4); transform: scale(1); }
+33%  { color: #00CED1 !important; -webkit-text-fill-color: #00CED1 !important; text-shadow: 0 0 15px rgba(0,206,209,0.8), 0 0 40px rgba(0,206,209,0.4); transform: scale(1.02); }
+50%  { color: #DA70D6 !important; -webkit-text-fill-color: #DA70D6 !important; text-shadow: 0 0 15px rgba(218,112,214,0.8), 0 0 40px rgba(218,112,214,0.4); transform: scale(1); }
+66%  { color: #7FFF00 !important; -webkit-text-fill-color: #7FFF00 !important; text-shadow: 0 0 15px rgba(127,255,0,0.8), 0 0 40px rgba(127,255,0,0.4); transform: scale(1.02); }
+83%  { color: #FF6347 !important; -webkit-text-fill-color: #FF6347 !important; text-shadow: 0 0 15px rgba(255,99,71,0.8), 0 0 40px rgba(255,99,71,0.4); transform: scale(1); }
+100% { color: #FFD700 !important; -webkit-text-fill-color: #FFD700 !important; text-shadow: 0 0 15px rgba(255,215,0,0.8), 0 0 40px rgba(255,215,0,0.4); transform: scale(1.02); }
+}
+.rainbow-glow {
+animation: rainbowGlow 3.5s ease-in-out infinite !important;
+font-weight: 900 !important;
+}
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+.anim-fade-up { animation: fadeUp 0.9s ease-out forwards; opacity: 0; }
+.anim-fade-in { animation: fadeIn 0.7s ease-out forwards; opacity: 0; }
+.anim-float { animation: float 3.5s ease-in-out infinite; }
+.anim-slide-up { animation: slideUp 0.4s cubic-bezier(0.16,1,0.3,1) forwards; }
+.d1 { animation-delay: 0.1s; }
+.d2 { animation-delay: 0.2s; }
+.d3 { animation-delay: 0.3s; }
+.d4 { animation-delay: 0.4s; }
+.d5 { animation-delay: 0.5s; }
+
+.perfume-card {
+background: linear-gradient(160deg, rgba(45, 38, 28, 0.92) 0%, rgba(18, 14, 10, 0.98) 100%);
+border: 1px solid rgba(212, 165, 116, 0.3);
+border-radius: 16px;
+overflow: hidden;
+transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+position: relative;
+box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 15px rgba(212,165,116,0.05), inset 0 1px 0 rgba(255,255,255,0.08);
+backdrop-filter: blur(16px);
+display: flex;
+flex-direction: column;
+}
+.perfume-card:hover {
+transform: translateY(-8px);
+border-color: rgba(212, 165, 116, 0.7);
+box-shadow: 0 20px 50px rgba(212,165,116,0.15), 0 0 25px rgba(212,165,116,0.1);
+}
+.perfume-card:hover .card-img { transform: scale(1.05); }
+
+.card-img {
+transition: transform 0.7s cubic-bezier(0.16,1,0.3,1), filter 0.7s ease;
+filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+}
+.perfume-card:hover .card-img {
+filter: drop-shadow(0 0 20px rgba(212, 165, 116, 0.5)) drop-shadow(0 10px 20px rgba(0,0,0,0.4));
+}
+.card-img-bg {
+background: radial-gradient(circle at 50% 40%, rgba(212,165,116,0.1) 0%, rgba(28,24,20,0.8) 80%);
+}
+
+.variant-name {
+background: linear-gradient(to right, #F0E8E0, #D4A574);
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+font-weight: 800;
+letter-spacing: 0.03em;
+filter: drop-shadow(0 0 6px rgba(212, 165, 116, 0.6));
+}
+
+.price-gold {
+background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+font-weight: 900;
+letter-spacing: 0.02em;
+filter: drop-shadow(0 2px 2px rgba(0,0,0,0.4));
+}
+
+.sold-out-overlay {
+position: absolute;
+inset: 0;
+background: rgba(19,16,12,0.75);
+backdrop-filter: blur(4px);
+display: flex;
+align-items: center;
+justify-content: center;
+z-index: 10;
+}
+.sold-out-badge {
+background: linear-gradient(135deg, #D4A574, #B8865A);
+color: #13100C;
+font-weight: 800;
+font-size: 14px;
+letter-spacing: 4px;
+padding: 8px 24px;
+border-radius: 12px;
+transform: rotate(-8deg);
+box-shadow: 0 8px 30px rgba(212,165,116,0.2);
+}
+
+.btn-order {
+background: rgba(212,165,116,0.08);
+border: 1px solid rgba(212,165,116,0.2);
+color: var(--accent-dark);
+transition: all 0.3s ease;
+}
+.btn-order:hover {
+background: linear-gradient(135deg, #D4A574, #B8865A);
+color: #13100C;
+border-color: #D4A574;
+box-shadow: 0 6px 24px rgba(212,165,116,0.2);
+}
+
+.btn-primary {
+background: linear-gradient(135deg, #D4A574, #B8865A);
+color: #13100C;
+transition: all 0.3s ease;
+position: relative;
+overflow: hidden;
+box-shadow: 0 4px 15px rgba(212,165,116,0.3);
+}
+.btn-primary:hover {
+background: linear-gradient(135deg, #E8C9A8, #D4A574);
+box-shadow: 0 10px 35px rgba(212,165,116,0.5);
+transform: translateY(-2px);
+}
+.btn-primary::after {
+content: '';
+position: absolute;
+top: -50%;
+left: -50%;
+width: 200%;
+height: 200%;
+background: linear-gradient(45deg, transparent, rgba(255,255,255,0.4), transparent);
+transform: translateX(-100%) rotate(45deg);
+animation: shine 3s infinite;
+}
+@keyframes shine {
+0% { transform: translateX(-100%) rotate(45deg); }
+100% { transform: translateX(100%) rotate(45deg); }
+}
+
+.input-field { background: rgba(26,22,18,0.9); border: 1px solid var(--border); color: var(--text); transition: all 0.25s ease; backdrop-filter: blur(8px); }
+.input-field::placeholder { color: var(--text-muted); }
+.input-field:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(212,165,116,0.1); background: rgba(26,22,18,0.95); outline: none; }
+
+.modal-backdrop { backdrop-filter: blur(16px); background: rgba(13,10,8,0.6); }
+.modal-box { background: rgba(28,24,20,0.97); border: 1px solid var(--border-accent); border-radius: 24px; box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 40px rgba(212,165,116,0.1); backdrop-filter: blur(20px); }
+
+.qty-btn { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-accent); border-radius: 12px; background: rgba(212,165,116,0.06); color: var(--accent-dark); cursor: pointer; transition: all 0.2s; font-size: 20px; user-select: none; }
+.qty-btn:hover { background: rgba(212,165,116,0.15); border-color: var(--accent); }
+
+.marquee-track { display: flex; animation: marquee 35s linear infinite; width: max-content; }
+.stock-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
+.stock-yes { background: #22C55E; box-shadow: 0 0 6px rgba(34,197,94,0.4); }
+.stock-low { background: #F59E0B; box-shadow: 0 0 6px rgba(245,158,11,0.4); }
+
+.toast-box { background: rgba(28,24,20,0.97); border: 1px solid rgba(34,197,94,0.2); border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 20px rgba(34,197,94,0.06); backdrop-filter: blur(16px); }
+.gold-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border-accent), transparent); }
+.tg-float { position: fixed; bottom: 20px; right: 20px; z-index: 45; width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, #25D366, #128C7E); display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 24px rgba(37,211,102,0.35); transition: all 0.3s ease; cursor: pointer; }
+.tg-float:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,0.45); }
+
+.admin-input { background: rgba(19,16,12,0.8); border: 1px solid var(--border); color: var(--text); border-radius: 10px; padding: 8px 12px; font-size: 13px; width: 100%; transition: all 0.2s; outline: none; font-family: 'Inter', sans-serif; }
+.admin-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(212,165,116,0.1); }
+.hero-pattern { background-image: radial-gradient(rgba(212,165,116,0.03) 1px, transparent 1px); background-size: 24px 24px; }
+.section-glass { background: rgba(19,16,12,0.6); backdrop-filter: blur(16px); }
+.pay-chip { display: inline-flex; align-items: center; gap: 4px; padding: 6px 14px; border-radius: 10px; font-weight: 800; font-size: 13px; white-space: nowrap; }
+.pay-option { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px; border: 2px solid var(--border); border-radius: 12px; cursor: pointer; transition: all 0.2s; background: rgba(19,16,12,0.6); color: var(--text-sec); }
+.pay-option:hover { border-color: var(--border-accent); }
+.pay-option.selected { border-color: var(--accent); background: rgba(212,165,116,0.1); color: var(--accent-dark); box-shadow: 0 0 12px rgba(212,165,116,0.2); }
+.pay-option input { display: none; }
+</style>
 </head>
 <body>
 
-  <!-- PROMO POPUP -->
-  <div id="promoPopup" class="hidden fixed inset-0 z-[70] flex flex-col items-center justify-center p-4 pt-24 modal-backdrop" onclick="closePromo()">
-    <div class="relative w-full max-w-xs sm:max-w-sm anim-slide-up" onclick="event.stopPropagation()">
-      <a href="#koleksi" onclick="closePromo()" class="block w-full">
-        <img src="https://lh3.googleusercontent.com/d/1-qAqhhq78BJ3m6zVNTUUDjhPRZmxTRCp" alt="Promo VJ Parfume" class="w-full h-auto rounded-2xl shadow-2xl border-2 border-[var(--accent)] cursor-pointer object-contain">
-      </a>
-    </div>
-  </div>
-
-  <!-- NAVBAR -->
-  <nav class="fixed top-0 left-0 right-0 z-40 h-14 md:h-16 flex items-center justify-between px-4 md:px-8" style="background: rgba(19,16,12,0.88); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border);">
-    <div id="logoArea" class="flex items-center gap-2.5 cursor-pointer select-none">
-      <div class="w-8 h-8 md:w-9 md:h-9 rounded-xl accent-gradient-bg flex items-center justify-center shadow-lg" style="box-shadow: 0 4px 15px rgba(212,165,116,0.2);">
-        <span class="font-black text-[10px] md:text-xs" style="color: #13100C;">VJ</span>
-      </div>
-      <span class="font-black text-sm md:text-base tracking-tight rainbow-glow">VJ PARFUME</span>
-    </div>
-    <a href="#koleksi" class="text-xs md:text-sm flex items-center gap-1.5 transition-colors font-extrabold" style="color: var(--accent-dark);">
-      Lihat Koleksi <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
-    </a>
-  </nav>
-
-  <!-- HERO -->
-  <section class="min-h-screen flex flex-col items-center justify-center text-center px-5 md:px-6 relative overflow-hidden hero-pattern">
-    <div class="anim-fade-up mb-6 md:mb-8">
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full" style="border: 1px solid var(--border-accent); background: rgba(212,165,116,0.04); backdrop-filter: blur(10px);">
-        <span class="text-[10px] md:text-[11px] font-extrabold accent-text tracking-widest uppercase">✦ Premium Fragrance ✦</span>
-      </div>
-    </div>
-    <h1 class="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[0.95] mb-2 md:mb-3 anim-fade-up d1 px-2 accent-gradient-text">Rasakan Kemewahan Sejati di</h1>
-    <h1 class="text-4xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[0.85] mb-5 md:mb-7 anim-fade-up d2 px-2">
-      <span class="rainbow-glow" style="display:inline-block;">VJ PARFUME</span>
-    </h1>
-    <p class="text-base md:text-xl max-w-lg leading-relaxed mb-2 anim-fade-up d3 font-extrabold px-4" style="color: #E8C9A8;">Wangi Tahan Lama, Elegan, & Bikin Percaya Diri!</p>
-    <p class="text-xs md:text-base max-w-md leading-relaxed mb-6 md:mb-8 anim-fade-up d4 font-bold px-4" style="color: var(--text-sec);">Temukan varian parfum premium pilihanmu di bawah ini. Kualitas sekelas branded, namun ramah di kantong. Pesan sekarang, gampang banget!</p>
-    <div class="flex items-center justify-center gap-3 md:gap-4 mb-8 md:mb-12 anim-fade-up d5">
-      <a href="https://instagram.com/vjparfume" target="_blank" class="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center transition-all hover:scale-110" style="background: linear-gradient(135deg, #833AB4, #FD1D1D, #FCB045); box-shadow: 0 4px 15px rgba(252,176,69,0.3);" title="Instagram">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-      </a>
-      <a href="https://wa.me/60173698359" target="_blank" class="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center transition-all hover:scale-110" style="background: linear-gradient(135deg, #25D366, #128C7E); box-shadow: 0 4px 15px rgba(37,211,102,0.3);" title="WhatsApp">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-      </a>
-      <a href="https://telegram.me/vjparfume_premium" target="_blank" class="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center transition-all hover:scale-110" style="background: linear-gradient(135deg, #2AABEE, #229ED9); box-shadow: 0 4px 15px rgba(42,171,238,0.3);" title="Telegram">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-      </a>
-    </div>
-    <a href="#koleksi" class="btn-primary px-8 md:px-10 py-3.5 md:py-4 rounded-2xl font-extrabold text-xs md:text-sm anim-fade-up d5 inline-flex items-center gap-2.5 tracking-wide">
-      Lihat Koleksi Parfum <i data-lucide="arrow-down" class="w-4 h-4"></i>
-    </a>
-    <div class="absolute bottom-8 md:bottom-10 anim-float">
-      <i data-lucide="chevrons-down" class="w-5 h-5" style="color: var(--text-muted);"></i>
-    </div>
-  </section>
-
-  <!-- TELEGRAM CTA -->
-  <section class="py-4 md:py-5 px-4 md:px-8 section-glass" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
-    <div class="max-w-md mx-auto rounded-xl p-3 md:p-4 flex items-center justify-between" style="background: var(--card); border: 1px solid var(--border);">
-      <div class="flex items-center gap-3">
-        <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #2AABEE, #229ED9);">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-        </div>
-        <div>
-          <h3 class="font-bold text-xs md:text-sm" style="color: var(--text);">Gabung Channel Telegram</h3>
-          <p class="text-[10px] font-bold" style="color: var(--text-muted);">Info promo & parfum terbaru</p>
-        </div>
-      </div>
-      <a href="https://telegram.me/vjparfume_premium" target="_blank" class="px-3 py-1.5 rounded-lg text-[10px] md:text-xs font-extrabold text-white transition-all hover:opacity-90" style="background: #2AABEE;">Join</a>
-    </div>
-  </section>
-
-  <!-- REQUEST SECTION -->
-  <section id="request" class="max-w-3xl mx-auto px-3 md:px-8 py-10 md:py-16">
-    <div class="rounded-2xl md:rounded-3xl p-6 md:p-10 text-center relative overflow-hidden" style="background: linear-gradient(160deg, rgba(45, 38, 28, 0.95) 0%, rgba(18, 14, 10, 0.98) 100%); border: 1px solid var(--accent); box-shadow: 0 0 30px rgba(212,165,116,0.15), inset 0 0 20px rgba(212,165,116,0.05);">
-      <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 50% 0%, var(--accent) 0%, transparent 60%);"></div>
-      <div class="relative z-10">
-        <div class="w-16 h-16 rounded-full mx-auto mb-5 flex items-center justify-center" style="background: var(--accent-pale); border: 1px solid var(--border-accent); box-shadow: 0 0 20px rgba(212,165,116,0.2);"><i data-lucide="sparkles" class="w-8 h-8 accent-text"></i></div>
-        <h2 class="text-2xl md:text-4xl font-serif font-extrabold mb-3 accent-gradient-text">Req Varian Yang Anda Inginkan</h2>
-        <p class="text-sm md:text-lg mb-6 font-bold" style="color: var(--text-sec);">Tidak menemukan parfum favoritmu? Kirimkan request varian impianmu, admin kami akan mencarikannya untukmu!</p>
-        <form id="requestForm" class="space-y-3 text-left max-w-md mx-auto" onsubmit="return submitRequest(event)">
-          <div>
-            <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Nama Lengkap <span style="color: #EF4444;">*</span></label>
-            <input type="text" id="reqNama" required placeholder="Tulis namamu di sini" class="input-field w-full h-11 md:h-12 px-3.5 md:px-4 rounded-xl text-xs md:text-sm font-bold">
-          </div>
-          <div>
-            <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Nama Parfum / Varian yang Dicari <span style="color: #EF4444;">*</span></label>
-            <input type="text" id="reqVarian" required placeholder="Contoh: Bleu de Chanel, Sauvage, dll" class="input-field w-full h-11 md:h-12 px-3.5 md:px-4 rounded-xl text-xs md:text-sm font-bold">
-          </div>
-          <div>
-            <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Catatan Tambahan</label>
-            <textarea id="reqCatatan" rows="2" placeholder="Misal: Minta yang tahan lama, ukuran 50ml, dll" class="input-field w-full px-3.5 md:px-4 py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-bold resize-none"></textarea>
-          </div>
-          <button type="submit" class="w-full btn-primary rounded-xl md:rounded-2xl font-extrabold text-xs md:text-sm flex items-center justify-center gap-2.5 tracking-wide py-3.5 md:py-4 mt-2">
-            <i data-lucide="send" class="w-4 h-4"></i> Kirim Request Varian
-          </button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- PAYMENT INFO -->
-  <section class="py-6 md:py-8 px-4 md:px-8 section-glass" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
-    <div class="max-w-xl mx-auto text-center px-2">
-      <p class="text-sm md:text-lg font-extrabold mb-1.5" style="color: #FFD7A8;">🌸 Ingin tampil wangi, elegan, dan tahan lama tanpa harus mahal?</p>
-      <p class="text-sm md:text-lg font-extrabold mb-5 md:mb-6" style="color: #FFB6D9;">Silakan order di <span class="rainbow-glow" style="font-size:1.05em;">VJ PARFUME</span>! 💖</p>
-      <div class="flex flex-col items-center gap-2">
-        <span class="font-extrabold text-xs md:text-sm" style="color: var(--text-sec);">💳 Menerima Pembayaran:</span>
-        <div class="flex flex-wrap items-center justify-center gap-2">
-          <span class="pay-chip" style="background: rgba(212,165,116,0.1); color: var(--accent-dark);">💵 Cash</span>
-          <span class="pay-chip" style="background: rgba(125,211,252,0.08); color: #7DD3FC;">📱 ABA</span>
-          <span class="pay-chip" style="background: rgba(196,181,253,0.08); color: #C4B5FD;">🪽 Wings</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MARQUEE -->
-  <div class="overflow-hidden py-3" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border); background: rgba(212,165,116,0.02);">
-    <div class="marquee-track">
-      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #FFD700;">🌸 VJ Parfume</span>
-      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">✨</span>
-      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #FFB6D9;">💐 Wangi Berkualitas</span>
-      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">🎀</span>
-      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #7DD3FC;">💎 Harga Bersahabat</span>
-      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">✨</span>
-      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #C4B5FD;">🌷 Premium Fragrance</span>
-      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">💕</span>
-      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #7FFF00;">💵 Cash · 📱 ABA · 🪽 Wings</span>
-      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">🌹</span>
-      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #FFD700;">🌸 VJ Parfume</span>
-      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">✨</span>
-      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #FFB6D9;">💐 Wangi Berkualitas</span>
-      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">🎀</span>
-      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #7DD3FC;">💎 Harga Bersahabat</span>
-      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">✨</span>
-      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #C4B5FD;">🌷 Premium Fragrance</span>
-      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">💕</span>
-      <span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #7FFF00;">💵 Cash · 📱 ABA · 🪽 Wings</span>
-      <span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">🌹</span>
-    </div>
-  </div>
-
-  <!-- KOLEKSI -->
-  <section id="koleksi" class="max-w-7xl mx-auto px-3 md:px-8 pt-16 md:pt-24 pb-24 md:pb-32">
-    <div class="text-center mb-10 md:mb-14">
-      <p class="text-[10px] md:text-[11px] font-extrabold tracking-[0.35em] uppercase accent-text mb-3 md:mb-4">— Our Collection —</p>
-      <h2 class="text-2xl md:text-5xl font-serif font-extrabold tracking-tight mb-3 md:mb-4" style="color: var(--text);">Koleksi <span class="accent-gradient-text">Parfum</span> Kami</h2>
-      <p class="text-xs md:text-base max-w-md mx-auto font-bold" style="color: var(--text-sec);">Pilih yang kamu suka, langsung pesan tanpa ribet</p>
-      <div class="gold-divider max-w-[100px] md:max-w-[120px] mx-auto mt-4 md:mt-6"></div>
-    </div>
-    <div class="max-w-md mx-auto mb-8 md:mb-12 px-1">
-      <div class="relative">
-        <i data-lucide="search" class="w-4 h-4 absolute left-3.5 md:left-4 top-1/2 -translate-y-1/2" style="color: var(--text-muted);"></i>
-        <input type="text" id="searchInput" placeholder="Cari parfum..." class="input-field w-full h-11 md:h-12 pl-10 md:pl-12 pr-4 md:pr-5 rounded-xl md:rounded-2xl text-xs md:text-sm font-bold">
-      </div>
-    </div>
-    <!-- Loading state -->
-    <div id="loadingState" class="text-center py-20">
-      <div class="loading-spinner mx-auto mb-4"></div>
-      <p class="text-sm font-bold" style="color: var(--text-muted);">Memuat data parfum...</p>
-    </div>
-    <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2.5 md:gap-5"></div>
-    <div id="emptyState" class="hidden text-center py-20 md:py-24">
-      <div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-5" style="background: var(--bg-alt);"><i data-lucide="search-x" class="w-6 h-6 md:w-7 md:h-7" style="color: var(--text-muted);"></i></div>
-      <p class="font-extrabold mb-1 text-sm md:text-base" style="color: var(--text-sec);">Parfum tidak ditemukan</p>
-      <p class="text-xs md:text-sm font-bold" style="color: var(--text-muted);">Coba kata kunci lain</p>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="py-10 md:py-12 px-5 md:px-6 text-center section-glass" style="border-top: 1px solid var(--border);">
-    <div class="flex items-center justify-center gap-2.5 mb-3 md:mb-4">
-      <div class="w-7 h-7 rounded-lg accent-gradient-bg flex items-center justify-center"><span class="font-black text-[10px]" style="color: #13100C;">VJ</span></div>
-      <span class="font-black text-sm rainbow-glow" style="font-size: 13px;">VJ PARFUME</span>
-    </div>
-    <p class="text-xs md:text-sm mb-3 font-bold" style="color: var(--text-sec);">Wangi Berkualitas, Harga Bersahabat</p>
-    <div class="flex items-center justify-center gap-4 mb-3 md:mb-4">
-      <a href="https://wa.me/60173698359" target="_blank" class="inline-flex items-center gap-1.5 text-[11px] md:text-xs font-bold" style="color: #25D366;">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-        Chat Admin via WhatsApp
-      </a>
-    </div>
-    <p class="text-[10px] md:text-xs font-bold" style="color: var(--text-muted);">© 2025 VJ Parfume. All rights reserved.</p>
-  </footer>
-
-  <!-- WA FLOAT -->
-  <a href="https://wa.me/60173698359" target="_blank" class="tg-float" title="Chat Admin via WhatsApp">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-  </a>
-
-  <!-- ORDER MODAL -->
-  <div id="orderModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 md:p-4 modal-backdrop">
-    <div class="modal-box w-full max-w-md max-h-[92vh] overflow-y-auto anim-slide-up">
-      <div class="flex items-center justify-between p-5 md:p-6 pb-3 md:pb-4">
-        <div>
-          <p class="text-[10px] font-extrabold tracking-[0.25em] uppercase accent-text mb-1">Pesan Sekarang</p>
-          <h3 class="font-extrabold text-base md:text-lg" style="color: var(--text);" id="modalNama">Nama Parfum</h3>
-        </div>
-        <button onclick="closeModal()" class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center transition-colors" style="background: var(--bg-alt);"><i data-lucide="x" class="w-4 h-4" style="color: var(--text-sec);"></i></button>
-      </div>
-      <div class="gold-divider mx-5 md:mx-6"></div>
-      <div class="p-5 md:p-6 pb-3 md:pb-4 flex items-center gap-3 md:gap-4">
-        <img id="modalImg" src="" alt="" class="w-16 h-16 md:w-20 md:h-20 rounded-xl md:rounded-2xl object-contain" style="border: 1px solid var(--border); background: var(--bg-alt);">
-        <div>
-          <p class="font-extrabold text-xs md:text-sm" style="color: var(--text);" id="modalNama2"></p>
-          <p class="font-extrabold text-xs mt-0.5" style="color: var(--accent);" id="modalUkuran"></p>
-          <div class="mt-1 space-y-0.5">
-            <p class="font-black text-base md:text-lg price-gold" id="modalHargaIDR"></p>
-            <p class="font-bold text-xs" style="color: var(--text-sec);" id="modalHargaUsdKhr"></p>
-          </div>
-        </div>
-      </div>
-      <form id="orderForm" class="px-5 md:px-6 pb-5 md:pb-6 space-y-3.5 md:space-y-4" onsubmit="return submitOrder(event)">
-        <div>
-          <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Nama Lengkap <span style="color: #EF4444;">*</span></label>
-          <input type="text" id="inputNama" required placeholder="Tulis nama kamu di sini" class="input-field w-full h-11 md:h-12 px-3.5 md:px-4 rounded-xl text-xs md:text-sm font-bold">
-        </div>
-        <div>
-          <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Catatan (Opsional). Cth: Nama Alamat</label>
-          <textarea id="inputCatatan" rows="2" placeholder="Tulis catatan tambahan..." class="input-field w-full px-3.5 md:px-4 py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-bold resize-none"></textarea>
-        </div>
-        <div>
-          <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Pilih Metode Pembayaran <span style="color: #EF4444;">*</span></label>
-          <div class="grid grid-cols-3 gap-2" id="paymentOptions">
-            <label class="pay-option selected" data-val="IDR" onclick="updatePaymentDetails('IDR')">
-              <input type="radio" name="paymentMethod" value="IDR" checked>
-              <span class="text-[10px] md:text-xs font-extrabold mt-1">Rupiah (Rp)</span>
-            </label>
-            <label class="pay-option" data-val="USD" onclick="updatePaymentDetails('USD')">
-              <input type="radio" name="paymentMethod" value="USD">
-              <span class="text-[10px] md:text-xs font-extrabold mt-1">Dollar ($)</span>
-            </label>
-            <label class="pay-option" data-val="KHR" onclick="updatePaymentDetails('KHR')">
-              <input type="radio" name="paymentMethod" value="KHR">
-              <span class="text-[10px] md:text-xs font-extrabold mt-1">Riel (៛)</span>
-            </label>
-          </div>
-        </div>
-        <div id="paymentDetails" class="hidden rounded-xl p-4 text-center" style="background: var(--accent-pale); border: 1px solid var(--border-accent);"></div>
-        <div>
-          <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Jumlah Pesanan</label>
-          <div class="flex items-center gap-3 md:gap-4">
-            <button type="button" class="qty-btn" onclick="changeQty(-1)">−</button>
-            <span id="qtyDisplay" class="text-xl md:text-2xl font-black w-8 md:w-10 text-center" style="color: var(--text);">1</span>
-            <button type="button" class="qty-btn" onclick="changeQty(1)">+</button>
-            <span id="stockInfo" class="text-[11px] md:text-xs font-bold ml-auto" style="color: var(--text-muted);"></span>
-          </div>
-        </div>
-        <div class="rounded-xl md:rounded-2xl p-4 md:p-5 text-center" style="background: var(--accent-pale); border: 1px solid var(--border-accent); box-shadow: inset 0 0 20px rgba(212,165,116,0.05);">
-          <p class="text-[10px] md:text-xs font-extrabold mb-1.5 md:mb-2 tracking-wide" style="color: var(--text-sec);">TOTAL HARGA</p>
-          <div id="totalHarga" class="font-black price-gold text-2xl md:text-3xl">Rp 0</div>
-          <div id="totalHargaAlt" class="font-bold text-sm mt-1" style="color: var(--text-sec);"></div>
-          <p id="discountInfo" class="text-[10px] mt-1 font-bold hidden" style="color: #22C55E;">🎉 Diskon Min. 4 Botol Diterapkan!</p>
-        </div>
-        <button type="submit" id="submitBtn" class="w-full btn-primary rounded-xl md:rounded-2xl font-extrabold text-xs md:text-sm flex items-center justify-center gap-2.5 tracking-wide py-3.5 md:py-4">
-          <i data-lucide="shopping-bag" class="w-4 h-4"></i> Konfirmasi Pesanan
-        </button>
-        <a href="https://wa.me/60173698359" target="_blank" class="w-full rounded-xl md:rounded-2xl font-extrabold text-xs md:text-sm flex items-center justify-center gap-2.5 tracking-wide py-3 md:py-3.5 transition-all" style="background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.2); color: #25D366;">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-          Chat Admin via WhatsApp
-        </a>
-        <p class="text-center text-[10px] md:text-[11px] mt-1 font-bold" style="color: var(--text-muted);">Pesanan akan diproses oleh Admin</p>
-      </form>
-    </div>
-  </div>
-
-  <!-- ADMIN MODAL -->
-  <div id="adminModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 md:p-4 modal-backdrop">
-    <div class="modal-box w-full max-w-2xl max-h-[92vh] overflow-hidden flex flex-col anim-slide-up">
-      <div id="adminLogin" class="p-6 md:p-8 text-center">
-        <div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl mx-auto mb-4 md:mb-5 flex items-center justify-center" style="background: var(--accent-pale);"><i data-lucide="lock" class="w-6 h-6 md:w-7 md:h-7 accent-text"></i></div>
-        <h3 class="font-extrabold text-lg md:text-xl mb-2" style="color: var(--text);">Admin Panel</h3>
-        <p class="text-xs md:text-sm mb-5 md:mb-6 font-bold" style="color: var(--text-muted);">Masukkan password untuk mengelola parfum</p>
-        <input type="password" id="adminPassInput" placeholder="Password..." class="input-field w-full h-11 md:h-12 px-4 rounded-xl text-xs md:text-sm font-bold mb-3 md:mb-4 text-center" onkeydown="if(event.key==='Enter')attemptAdminLogin()">
-        <button onclick="attemptAdminLogin()" class="w-full btn-primary rounded-xl font-extrabold text-xs md:text-sm py-3 md:py-3.5">Masuk</button>
-        <button onclick="closeAdminModal()" class="w-full mt-2.5 md:mt-3 py-2.5 md:py-3 text-xs md:text-sm font-bold rounded-xl transition-colors" style="color: var(--text-muted);">Batal</button>
-        <p id="adminError" class="text-[11px] md:text-xs mt-2.5 md:mt-3 font-extrabold hidden" style="color: #EF4444;">Password salah! Coba lagi.</p>
-      </div>
-      <div id="adminPanel" class="hidden flex flex-col" style="max-height: 92vh;">
-        <div class="flex items-center justify-between p-4 md:p-5 pb-3 md:pb-4 flex-shrink-0">
-          <div>
-            <p class="text-[10px] font-extrabold tracking-[0.25em] uppercase accent-text mb-0.5">Admin Mode</p>
-            <h3 class="font-extrabold text-base md:text-lg" style="color: var(--text);">Kelola Parfum</h3>
-          </div>
-          <button onclick="closeAdminModal()" class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center transition-colors" style="background: var(--bg-alt);"><i data-lucide="x" class="w-4 h-4" style="color: var(--text-sec);"></i></button>
-        </div>
-        <div class="gold-divider mx-4 md:mx-5"></div>
-        <div class="px-4 md:px-5 py-3 flex-shrink-0 rounded-xl mx-3 mt-2" style="background: rgba(34,197,94,0.08); border: 2px solid rgba(34,197,94,0.3);">
-          <p class="text-[12px] md:text-sm leading-relaxed font-extrabold" style="color: #22C55E;">📌 INFO STOK:</p>
-          <p class="text-[11px] md:text-xs leading-relaxed font-bold mt-1.5" style="color: var(--text-sec);">Atur jumlah stok parfum di bawah ini. Jika ada yang beli, stok akan <strong>berkurang otomatis</strong>. Jika stok 0, akan langsung tulisan <strong>SOLD OUT</strong> di semua device.</p>
-        </div>
-        <div id="adminContent" class="flex-1 overflow-y-auto px-4 md:px-5 pb-3 md:pb-4 space-y-2.5 md:space-y-3"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SUCCESS TOAST -->
-  <div id="successToast" class="hidden fixed top-16 md:top-20 right-3 md:right-6 left-3 md:left-auto z-[60] toast-box p-4 md:p-5 anim-slide-up">
-    <div class="flex items-start gap-3 md:gap-4">
-      <div class="w-10 h-10 md:w-11 md:h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(34,197,94,0.08);"><i data-lucide="check-circle" class="w-5 h-5" style="color: #22C55E;"></i></div>
-      <div>
-        <p class="font-extrabold text-xs md:text-sm" style="color: #22C55E;" id="toastTitle">Pesanan Sedang Disiapkan! 🎉</p>
-        <p class="text-[10px] md:text-xs mt-0.5 md:mt-1 font-bold" style="color: var(--text-muted);" id="toastDesc">Pesanan Anda sedang disiapkan oleh Admin</p>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    /* ============================================================
-       ANTI INSPECT (dari script asli, tetap dipertahankan)
-       ============================================================ */
-    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'F12' ||
-          (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) ||
-          (e.ctrlKey && (e.key === 'u' || e.key === 'U')) ||
-          (e.ctrlKey && (e.key === 's' || e.key === 'S')) ||
-          (e.metaKey && (e.key === 'u' || e.key === 'U')) ||
-          (e.metaKey && (e.key === 's' || e.key === 'S'))) {
-        e.preventDefault(); return false;
-      }
-    });
-
-    /* ============================================================
-       KONFIGURASI
-       ============================================================ */
-    const BARCODE_URL = "https://i.postimg.cc/ZRx57tnm/Screenshot-1.png";
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzHEE1eFBGKxtwGSzclyT4Tmzj2GO4DTAHAARJ8WJpaHHTXBRB3JRaQXFd_kNXgEeE4og/exec";
-    const ADMIN_PASSWORD = "vjadmin2025";
-    const KURS_USD_TO_IDR = 17777.7778;
-    const KURS_USD_TO_KHR = 4000;
-
-    /* ============================================================
-       HELPER KURS & FORMAT
-       ============================================================ */
-    function toUSD(idr) { return idr / KURS_USD_TO_IDR; }
-    function toKHR(idr) { return idr / KURS_USD_TO_IDR * KURS_USD_TO_KHR; }
-    function fmtUSD(usd) { return '$' + usd.toFixed(2); }
-    function fmtKHR(khr) { return Math.round(khr).toLocaleString() + ' Riel'; }
-    function fmtIDR(idr) { return 'Rp ' + idr.toLocaleString('id-ID'); }
-
-    /* ============================================================
-       PLACEHOLDER GAMBAR
-       ============================================================ */
-    function placeholderImg(text) {
-      return "data:image/svg+xml," + encodeURIComponent(
-        '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500">' +
-        '<rect width="400" height="500" fill="#1C1814"/>' +
-        '<rect x="20" y="20" width="360" height="460" rx="8" fill="none" stroke="#4A3D32" stroke-width="1.5" stroke-dasharray="6,4"/>' +
-        '<text x="200" y="220" text-anchor="middle" fill="#D4A574" font-family="Arial" font-size="16" font-weight="bold">' + text + '</text>' +
-        '<text x="200" y="250" text-anchor="middle" fill="#8A7B6B" font-family="Arial" font-size="11">Belum ada gambar</text>' +
-        '</svg>'
-      );
-    }
-    function handleImgError(imgEl, nama) {
-      imgEl.onerror = null;
-      imgEl.src = placeholderImg(nama);
-    }
-
-    /* ============================================================
-       DATA DEFAULT PARFUM
-       ============================================================ */
-    const defaultParfumData = [
-      { id: 1, nama: "SCANDALOUS", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/f_auto,q_auto/scandal_g2pi1v", harga: 200000, stok: 5, ukuran: "35ml" },
-      { id: 2, nama: "BLACK OPIUM", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/f_auto,q_auto/black_hvuzkm", harga: 200000, stok: 5, ukuran: "35ml" },
-      { id: 3, nama: "AVRIL LAVIGNE", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429588/avril_yo9eko.png", harga: 200000, stok: 5, ukuran: "35ml" },
-      { id: 4, nama: "SOFT", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429686/3b98691c-2334-4421-b295-f6f3fa999cd3_vcodzm.png", harga: 200000, stok: 5, ukuran: "35ml" },
-      { id: 5, nama: "PINK CHIFFON", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429761/pink_grm8q5.png", harga: 200000, stok: 5, ukuran: "35ml" },
-      { id: 6, nama: "ROMANTIC WISH", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429790/romantic_vap75o.png", harga: 200000, stok: 5, ukuran: "35ml" },
-      { id: 7, nama: "OLLA RAMLAN", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429826/aeaffa6d-5fb0-4a83-a08e-998e0b2c98b8_mkxhl8.png", harga: 200000, stok: 5, ukuran: "35ml" },
-      { id: 8, nama: "DIOR SAUVAGE", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429866/63d67ae6-b3a8-4147-9634-26f5c583d2d1_gsmspt.png", harga: 200000, stok: 5, ukuran: "35ml" },
-      { id: 9, nama: "DUNHILL BLUE", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429895/ee2272d7-46cc-4380-acb2-2d28371036fd_grqraz.png", harga: 200000, stok: 5, ukuran: "35ml" },
-      { id: 10, nama: "BVLGARI AQUA", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429924/75abc422-0f69-4d82-9656-bab60d3d7917_rscsb7.png", harga: 200000, stok: 5, ukuran: "35ml" },
-      { id: 11, nama: "GREY JAY ROSE", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429951/b6eac3d7-c3a1-42f4-8711-0c1298c7675f_plgmsl.png", harga: 200000, stok: 5, ukuran: "35ml" },
-      { id: 12, nama: "SOTB", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429987/0f0279bb-0d1d-4421-9688-f3f66920f0d8_ksjji0.png", harga: 200000, stok: 5, ukuran: "35ml" },
-      { id: 13, nama: "SELENA GOMES", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784430022/selena_j4ylkr.png", harga: 200000, stok: 5, ukuran: "35ml" },
-      { id: 14, nama: "LOVELY", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784430047/92ec90ee-88a9-4f9a-b696-83074c243553_rbkxiq.png", harga: 200000, stok: 5, ukuran: "35ml" },
-      { id: 15, nama: "MONT BLANC LEGEND", gambarUrl: "https://i.postimg.cc/CLptZHwp/fc820462-cf97-4602-9028-00eb58ad326a.png", harga: 200000, stok: 5, ukuran: "35ml" },
-      { id: 16, nama: "YSL LIBRE", gambarUrl: "https://i.postimg.cc/K8TkmYZK/590dc64e-a532-4e03-915f-2773fa5454eb.png", harga: 200000, stok: 5, ukuran: "35ml" },
-      { id: 17, nama: "PINK FANTASY", gambarUrl: "https://i.postimg.cc/25cVwLTS/454dc429-8b34-42b0-998f-b9c712af8691.png", harga: 200000, stok: 5, ukuran: "35ml" }
-    ];
-
-    /* ============================================================
-       STATE
-       ============================================================ */
-    let parfumData = [];
-    let currentOrderProduct = null;
-    let orderQty = 1;
-    let isAdminLoggedIn = false;
-    let selectedPayment = 'IDR';
-
-    /* ============================================================
-       ★★★ FIX UTAMA: LOAD DATA DARI SERVER ★★★
-       Prioritas: Google Script (server) → localStorage → defaultData
-       ============================================================ */
-    async function loadData() {
-      const loadingEl = document.getElementById('loadingState');
-      const gridEl = document.getElementById('productGrid');
-
-      // Tampilkan loading
-      if (loadingEl) loadingEl.classList.remove('hidden');
-      if (gridEl) gridEl.innerHTML = '';
-
-      // STEP 1: Coba ambil dari Google Script (sumber utama kebenaran)
-      try {
-        const res = await fetch(GOOGLE_SCRIPT_URL + '?action=readProducts', {
-          cache: 'no-store',
-          headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' }
-        });
-        if (res.ok) {
-          const text = await res.text();
-          let data = null;
-          try { data = JSON.parse(text); } catch(e) {}
-          if (data && Array.isArray(data) && data.length > 0) {
-            // ✅ Data dari server ditemukan - ini sumber utama
-            parfumData = data;
-            // Sinkronkan ke localStorage juga
-            localStorage.setItem('vjParfumeData', JSON.stringify(parfumData));
-            localStorage.setItem('vjParfumeDataTS', Date.now().toString());
-            if (loadingEl) loadingEl.classList.add('hidden');
-            renderProducts();
-            console.log('[VJ] Data dimuat dari SERVER (' + parfumData.length + ' produk)');
-            return;
-          }
-        }
-      } catch(e) {
-        console.log('[VJ] Server tidak tersedia, mencoba localStorage...');
-      }
-
-      // STEP 2: Coba localStorage
-      const cached = localStorage.getItem('vjParfumeData');
-      if (cached) {
-        try {
-          const parsed = JSON.parse(cached);
-          if (parsed && Array.isArray(parsed) && parsed.length > 0) {
-            parfumData = parsed;
-            if (loadingEl) loadingEl.classList.add('hidden');
-            renderProducts();
-            console.log('[VJ] Data dimuat dari LOCALSTORAGE (' + parfumData.length + ' produk)');
-            return;
-          }
-        } catch(e) {}
-      }
-
-      // STEP 3: Fallback ke data default
-      parfumData = JSON.parse(JSON.stringify(defaultParfumData));
-      localStorage.setItem('vjParfumeData', JSON.stringify(parfumData));
-      localStorage.setItem('vjParfumeDataTS', Date.now().toString());
-      if (loadingEl) loadingEl.classList.add('hidden');
-      renderProducts();
-      console.log('[VJ] Data dimuat dari DEFAULT (' + parfumData.length + ' produk)');
-    }
-
-    /* ============================================================
-       ★★★ FIX UTAMA: SAVE DATA KE SERVER + LOCALSTORAGE ★★★
-       ============================================================ */
-    async function saveData() {
-      // Simpan ke localStorage langsung (cepat)
-      localStorage.setItem('vjParfumeData', JSON.stringify(parfumData));
-      localStorage.setItem('vjParfumeDataTS', Date.now().toString());
-
-      // Kirim ke Google Script (supaya semua device dapat data yang sama)
-      try {
-        await fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain' },
-          body: JSON.stringify({ action: 'saveProducts', data: parfumData })
-        });
-        console.log('[VJ] Data tersimpan ke SERVER + LOCALSTORAGE');
-      } catch(e) {
-        console.log('[VJ] Server gagal, data hanya tersimpan di LOCALSTORAGE');
-      }
-    }
-
-    /* ============================================================
-       ★★★ FIX UTAMA: RENDER PRODUK DENGAN LOGIKA STOK BENAR ★★★
-       stok <= 0 → SOLD OUT (badge + tombol disabled)
-       stok > 0  → Tersedia (tombol pesan aktif)
-       ============================================================ */
-    function renderProducts(filter) {
-      if (typeof filter === 'undefined') filter = '';
-      var grid = document.getElementById('productGrid');
-      var empty = document.getElementById('emptyState');
-      var search = filter.toLowerCase().trim();
-
-      var filtered = parfumData;
-      if (search) {
-        filtered = parfumData.filter(function(p) {
-          return p.nama.toLowerCase().includes(search);
-        });
-      }
-
-      if (filtered.length === 0) {
-        grid.innerHTML = '';
-        empty.classList.remove('hidden');
-        return;
-      }
-      empty.classList.add('hidden');
-
-      grid.innerHTML = filtered.map(function(p) {
-        // ★★★ CEK STOK: 0 atau kurang = SOLD OUT ★★★
-        var isSoldOut = (!p.stok && p.stok !== 0) ? false : p.stok <= 0;
-        var usd = toUSD(p.harga);
-        var khr = toKHR(p.harga);
-        var imgSrc = p.gambarUrl || '';
-        var safeNama = (p.nama || '').replace(/'/g, "\\'");
-
-        if (isSoldOut) {
-          // ★★★ KARTU SOLD OUT ★★★
-          return '<div class="perfume-card sold-out-card">' +
-            '<div class="sold-out-badge">SOLD OUT</div>' +
-            '<div class="card-img-bg p-3 md:p-4 flex items-center justify-center" style="height:160px;">' +
-              '<img src="' + imgSrc + '" alt="' + p.nama + '" class="card-img h-full object-contain" onerror="handleImgError(this,\'' + safeNama + '\')">' +
-            '</div>' +
-            '<div class="p-3 md:p-4 flex flex-col flex-1">' +
-              '<h3 class="variant-name text-sm md:text-base mb-1">' + p.nama + '</h3>' +
-              '<p class="text-[10px] md:text-xs font-bold mb-2" style="color:var(--text-muted);">' + (p.ukuran || '35ml') + '</p>' +
-              '<div class="mt-auto">' +
-                '<p class="font-black text-base md:text-lg mb-0.5" style="color:#EF4444;">SOLD OUT</p>' +
-                '<p class="text-[10px] font-bold mb-2" style="color:var(--text-muted);">Stok Habis</p>' +
-                '<button disabled class="w-full py-2.5 rounded-xl text-[10px] md:text-xs font-extrabold cursor-not-allowed opacity-50" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);color:#EF4444;">Stok Habis</button>' +
-              '</div>' +
-            '</div>' +
-          '</div>';
-        } else {
-          // ★★★ KARTU TERSEDIA ★★★
-          var stockClass = p.stok <= 3 ? 'stock-low' : 'stock-yes';
-          var stockColor = p.stok <= 3 ? '#F59E0B' : '#22C55E';
-          return '<div class="perfume-card">' +
-            '<div class="card-img-bg p-3 md:p-4 flex items-center justify-center" style="height:160px;">' +
-              '<img src="' + imgSrc + '" alt="' + p.nama + '" class="card-img h-full object-contain" onerror="handleImgError(this,\'' + safeNama + '\')">' +
-            '</div>' +
-            '<div class="p-3 md:p-4 flex flex-col flex-1">' +
-              '<h3 class="variant-name text-sm md:text-base mb-1">' + p.nama + '</h3>' +
-              '<p class="text-[10px] md:text-xs font-bold mb-2" style="color:var(--text-muted);">' + (p.ukuran || '35ml') + '</p>' +
-              '<div class="mt-auto">' +
-                '<p class="font-black text-base md:text-lg price-gold mb-0.5">' + fmtIDR(p.harga) + '</p>' +
-                '<p class="font-bold text-[10px] md:text-xs mb-2" style="color:var(--text-sec);">' + fmtUSD(usd) + ' · ' + fmtKHR(khr) + '</p>' +
-                '<div class="flex items-center gap-1.5 mb-2.5">' +
-                  '<span class="stock-dot ' + stockClass + '"></span>' +
-                  '<span class="text-[10px] md:text-xs font-bold" style="color:' + stockColor + ';">Tersedia (' + p.stok + ')</span>' +
-                '</div>' +
-                '<button onclick="openOrderModal(' + p.id + ')" class="w-full btn-order py-2.5 rounded-xl text-[10px] md:text-xs font-extrabold flex items-center justify-center gap-1.5">Pesan Sekarang</button>' +
-              '</div>' +
-            '</div>' +
-          '</div>';
-        }
-      }).join('');
-
-      // Re-init Lucide icons
-      if (typeof lucide !== 'undefined') lucide.createIcons();
-    }
-
-    /* ============================================================
-       SEARCH
-       ============================================================ */
-    document.getElementById('searchInput').addEventListener('input', function(e) {
-      renderProducts(e.target.value);
-    });
-
-    /* ============================================================
-       ORDER MODAL
-       ============================================================ */
-    function openOrderModal(id) {
-      var p = parfumData.find(function(item) { return item.id === id; });
-      if (!p) return;
-
-      // ★★★ CEK STOK: Jika 0, jangan buka modal pesanan ★★★
-      if (p.stok <= 0) {
-        showToast('Stok Habis!', 'Parfum ' + p.nama + ' sedang tidak tersedia.', true);
-        return;
-      }
-
-      currentOrderProduct = p;
-      orderQty = 1;
-      selectedPayment = 'IDR';
-
-      document.getElementById('modalNama').textContent = p.nama;
-      document.getElementById('modalNama2').textContent = p.nama;
-      document.getElementById('modalUkuran').textContent = p.ukuran || '35ml';
-      document.getElementById('modalImg').src = p.gambarUrl || '';
-      document.getElementById('modalImg').onerror = function() { handleImgError(this, p.nama); };
-      document.getElementById('modalHargaIDR').textContent = fmtIDR(p.harga);
-      document.getElementById('modalHargaUsdKhr').textContent = fmtUSD(toUSD(p.harga)) + ' · ' + fmtKHR(toKHR(p.harga));
-      document.getElementById('qtyDisplay').textContent = '1';
-      document.getElementById('stockInfo').textContent = 'Stok: ' + p.stok;
-      document.getElementById('inputNama').value = '';
-      document.getElementById('inputCatatan').value = '';
-
-      // Reset payment selection
-      document.querySelectorAll('.pay-option').forEach(function(el) {
-        el.classList.remove('selected');
-        if (el.dataset.val === 'IDR') el.classList.add('selected');
-      });
-      document.querySelector('input[name="paymentMethod"][value="IDR"]').checked = true;
-      document.getElementById('paymentDetails').classList.add('hidden');
-
-      updateTotal();
-      document.getElementById('orderModal').classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-      document.getElementById('orderModal').classList.add('hidden');
-      document.body.style.overflow = '';
-      currentOrderProduct = null;
-    }
-
-    /* ============================================================
-       QTY & TOTAL
-       ============================================================ */
-    function changeQty(delta) {
-      if (!currentOrderProduct) return;
-      orderQty = orderQty + delta;
-      if (orderQty < 1) orderQty = 1;
-      if (orderQty > currentOrderProduct.stok) orderQty = currentOrderProduct.stok;
-      document.getElementById('qtyDisplay').textContent = orderQty;
-      document.getElementById('stockInfo').textContent = 'Stok: ' + currentOrderProduct.stok;
-      updateTotal();
-    }
-
-    function updateTotal() {
-      if (!currentOrderProduct) return;
-      var harga = currentOrderProduct.harga;
-      var total = harga * orderQty;
-      var hasDiscount = false;
-
-      // Diskon min 4 botol (jika ada)
-      if (orderQty >= 4) {
-        total = total * 0.95; // diskon 5%
-        hasDiscount = true;
-      }
-
-      document.getElementById('totalHarga').textContent = fmtIDR(Math.round(total));
-      document.getElementById('totalHargaAlt').textContent = fmtUSD(toUSD(total)) + ' · ' + fmtKHR(toKHR(total));
-
-      var discountEl = document.getElementById('discountInfo');
-      if (hasDiscount) {
-        discountEl.classList.remove('hidden');
-      } else {
-        discountEl.classList.add('hidden');
-      }
-
-      // Update payment details jika terlihat
-      if (selectedPayment !== 'IDR') {
-        updatePaymentDetails(selectedPayment);
-      }
-    }
-
-    /* ============================================================
-       PAYMENT DETAILS
-       ============================================================ */
-    function updatePaymentDetails(method) {
-      selectedPayment = method;
-      document.querySelectorAll('.pay-option').forEach(function(el) {
-        el.classList.remove('selected');
-        if (el.dataset.val === method) el.classList.add('selected');
-        el.querySelector('input').checked = (el.dataset.val === method);
-      });
-
-      var detailsEl = document.getElementById('paymentDetails');
-      if (method === 'IDR') {
-        detailsEl.classList.add('hidden');
-        return;
-      }
-
-      if (!currentOrderProduct) return;
-      var harga = currentOrderProduct.harga;
-      var total = harga * orderQty;
-      if (orderQty >= 4) total = total * 0.95;
-
-      detailsEl.classList.remove('hidden');
-
-      if (method === 'USD') {
-        detailsEl.innerHTML = '<p class="text-xs font-bold" style="color:var(--text-sec);">Pembayaran dalam Dollar (USD)</p>' +
-          '<p class="font-black text-lg mt-1 price-gold">' + fmtUSD(toUSD(total)) + '</p>' +
-          '<p class="text-[10px] font-bold mt-1" style="color:var(--text-muted);">Kurs: 1 USD = ' + KURS_USD_TO_IDR.toLocaleString() + ' IDR</p>';
-      } else if (method === 'KHR') {
-        detailsEl.innerHTML = '<p class="text-xs font-bold" style="color:var(--text-sec);">Pembayaran dalam Riel (KHR)</p>' +
-          '<p class="font-black text-lg mt-1 price-gold">' + fmtKHR(toKHR(total)) + '</p>' +
-          '<p class="text-[10px] font-bold mt-1" style="color:var(--text-muted);">Kurs: 1 USD = ' + KURS_USD_TO_KHR.toLocaleString() + ' Riel</p>';
-      }
-    }
-
-    /* ============================================================
-       SUBMIT ORDER
-       ============================================================ */
-    function submitOrder(e) {
-      e.preventDefault();
-      if (!currentOrderProduct) return false;
-
-      // ★★★ DOUBLE CEK STOK SEBELUM SUBMIT ★★★
-      var p = parfumData.find(function(item) { return item.id === currentOrderProduct.id; });
-      if (!p || p.stok <= 0) {
-        showToast('Stok Habis!', 'Maaf, parfum ini sudah habis.', true);
-        closeModal();
-        renderProducts(document.getElementById('searchInput').value);
-        return false;
-      }
-      if (orderQty > p.stok) {
-        orderQty = p.stok;
-        showToast('Stok Terbatas', 'Jumlah pesanan disesuaikan dengan stok tersedia.', true);
-        changeQty(0);
-        return false;
-      }
-
-      var nama = document.getElementById('inputNama').value.trim();
-      var catatan = document.getElementById('inputCatatan').value.trim();
-
-      if (!nama) {
-        alert('Nama lengkap wajib diisi!');
-        return false;
-      }
-
-      // ★★★ KURANGI STOK ★★★
-      p.stok = p.stok - orderQty;
-
-      // Hitung total
-      var harga = p.harga * orderQty;
-      var hasDiscount = orderQty >= 4;
-      if (hasDiscount) harga = Math.round(harga * 0.95);
-
-      var paymentLabel = selectedPayment === 'IDR' ? fmtIDR(harga) : (selectedPayment === 'USD' ? fmtUSD(toUSD(harga)) : fmtKHR(toKHR(harga)));
-
-      // Kirim data order ke Google Script
-      var orderData = {
-        action: 'newOrder',
-        nama: nama,
-        parfum: p.nama,
-        ukuran: p.ukuran || '35ml',
-        qty: orderQty,
-        total: harga,
-        payment: selectedPayment,
-        catatan: catatan,
-        timestamp: new Date().toISOString()
-      };
-
-      fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify(orderData)
-      }).catch(function() {});
-
-      // ★★★ SIMPAN DATA YG SUDAH DIKURANGI STOK ★★★
-      saveData();
-
-      // Update UI
-      closeModal();
-      renderProducts(document.getElementById('searchInput').value);
-      showToast('Pesanan Sedang Disiapkan! 🎉', nama + ' memesan ' + orderQty + 'x ' + p.nama + ' (' + paymentLabel + ')', false);
-
-      return false;
-    }
-
-    /* ============================================================
-       TOAST
-       ============================================================ */
-    function showToast(title, desc, isError) {
-      var toast = document.getElementById('successToast');
-      var tTitle = document.getElementById('toastTitle');
-      var tDesc = document.getElementById('toastDesc');
-      tTitle.textContent = title;
-      tTitle.style.color = isError ? '#EF4444' : '#22C55E';
-      tDesc.textContent = desc;
-      toast.classList.remove('hidden');
-      toast.style.borderColor = isError ? 'rgba(239,68,68,0.2)' : 'rgba(34,197,94,0.2)';
-      setTimeout(function() { toast.classList.add('hidden'); }, 4000);
-    }
-
-    /* ============================================================
-       ADMIN PANEL
-       ============================================================ */
-    function openAdminModal() {
-      document.getElementById('adminModal').classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-      if (isAdminLoggedIn) {
-        document.getElementById('adminLogin').classList.add('hidden');
-        document.getElementById('adminPanel').classList.remove('hidden');
-        renderAdmin();
-      } else {
-        document.getElementById('adminLogin').classList.remove('hidden
+<div id="promoPopup" class="hidden fixed inset-0 z-[70] flex flex-col items-center justify-center p-4 pt-24 modal-backdrop" onclick="closePromo()">
+<div class="relative w-full max-w-xs sm:max-w-sm anim-slide-up" onclick="event.stopPropagation()">
+<a href="#koleksi" onclick="closePromo()" class="block w-full">
+<img src="https://lh3.googleusercontent.com/d/1-qAqhhq78BJ3m6zVNTUUDjhPRZmxTRCp" alt="Promo VJ Parfume" class="w-full h-auto rounded-2xl shadow-2xl border-2 border-[var(--accent)] cursor-pointer object-contain">
+</a>
+</div>
+</div>
+
+<nav class="fixed top-0 left-0 right-0 z-40 h-14 md:h-16 flex items-center justify-between px-4 md:px-8"
+style="background: rgba(19,16,12,0.88); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border);">
+<div id="logoArea" class="flex items-center gap-2.5 cursor-pointer select-none">
+<div class="w-8 h-8 md:w-9 md:h-9 rounded-xl accent-gradient-bg flex items-center justify-center shadow-lg" style="box-shadow: 0 4px 15px rgba(212,165,116,0.2);">
+<span class="font-black text-[10px] md:text-xs" style="color: #13100C;">VJ</span>
+</div>
+<span class="font-black text-sm md:text-base tracking-tight rainbow-glow">VJ PARFUME</span>
+</div>
+<a href="#koleksi" class="text-xs md:text-sm flex items-center gap-1.5 transition-colors font-extrabold" style="color: var(--accent-dark);" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--accent-dark)'">
+Lihat Koleksi
+<i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+</a>
+</nav>
+
+<section class="min-h-screen flex flex-col items-center justify-center text-center px-5 md:px-6 relative overflow-hidden hero-pattern">
+<div class="anim-fade-up mb-6 md:mb-8">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full" style="border: 1px solid var(--border-accent); background: rgba(212,165,116,0.04); backdrop-filter: blur(10px);">
+<span class="text-[10px] md:text-[11px] font-extrabold accent-text tracking-widest uppercase">✦ Premium Fragrance ✦</span>
+</div>
+</div>
+<h1 class="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[0.95] mb-2 md:mb-3 anim-fade-up d1 px-2 accent-gradient-text">
+Rasakan Kemewahan Sejati di
+</h1>
+<h1 class="text-4xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[0.85] mb-5 md:mb-7 anim-fade-up d2 px-2">
+<span class="rainbow-glow" style="display:inline-block;">VJ PARFUME</span>
+</h1>
+<p class="text-base md:text-xl max-w-lg leading-relaxed mb-2 anim-fade-up d3 font-extrabold px-4" style="color: #E8C9A8;">Wangi Tahan Lama, Elegan, & Bikin Percaya Diri!</p>
+<p class="text-xs md:text-base max-w-md leading-relaxed mb-6 md:mb-8 anim-fade-up d4 font-bold px-4" style="color: var(--text-sec);">Temukan varian parfum premium pilihanmu di bawah ini. Kualitas sekelas branded, namun ramah di kantong. Pesan sekarang, gampang banget!</p>
+
+<div class="flex items-center justify-center gap-3 md:gap-4 mb-8 md:mb-12 anim-fade-up d5">
+<a href="https://instagram.com/vjparfume" target="_blank" class="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center transition-all hover:scale-110" style="background: linear-gradient(135deg, #833AB4, #FD1D1D, #FCB045); box-shadow: 0 4px 15px rgba(252,176,69,0.3);" title="Instagram">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+</a>
+<a href="https://wa.me/60173698359" target="_blank" class="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center transition-all hover:scale-110" style="background: linear-gradient(135deg, #25D366, #128C7E); box-shadow: 0 4px 15px rgba(37,211,102,0.3);" title="WhatsApp">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+<a href="https://telegram.me/vjparfume_premium" target="_blank" class="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center transition-all hover:scale-110" style="background: linear-gradient(135deg, #2AABEE, #229ED9); box-shadow: 0 4px 15px rgba(42,171,238,0.3);" title="Telegram">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+</a>
+</div>
+
+<a href="#koleksi" class="btn-primary px-8 md:px-10 py-3.5 md:py-4 rounded-2xl font-extrabold text-xs md:text-sm anim-fade-up d5 inline-flex items-center gap-2.5 tracking-wide">
+Lihat Koleksi Parfum
+<i data-lucide="arrow-down" class="w-4 h-4"></i>
+</a>
+<div class="absolute bottom-8 md:bottom-10 anim-float">
+<i data-lucide="chevrons-down" class="w-5 h-5" style="color: var(--text-muted);"></i>
+</div>
+</section>
+
+<section class="py-4 md:py-5 px-4 md:px-8 section-glass" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+<div class="max-w-md mx-auto rounded-xl p-3 md:p-4 flex items-center justify-between" style="background: var(--card); border: 1px solid var(--border);">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #2AABEE, #229ED9);">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 I 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+</div>
+<div>
+<h3 class="font-bold text-xs md:text-sm" style="color: var(--text);">Gabung Channel Telegram</h3>
+<p class="text-[10px] font-bold" style="color: var(--text-muted);">Info promo & parfum terbaru</p>
+</div>
+</div>
+<a href="https://telegram.me/vjparfume_premium" target="_blank" class="px-3 py-1.5 rounded-lg text-[10px] md:text-xs font-extrabold text-white transition-all hover:opacity-90" style="background: #2AABEE;">
+Join
+</a>
+</div>
+</section>
+
+<section id="request" class="max-w-3xl mx-auto px-3 md:px-8 py-10 md:py-16">
+<div class="rounded-2xl md:rounded-3xl p-6 md:p-10 text-center relative overflow-hidden" style="background: linear-gradient(160deg, rgba(45, 38, 28, 0.95) 0%, rgba(18, 14, 10, 0.98) 100%); border: 1px solid var(--accent); box-shadow: 0 0 30px rgba(212,165,116,0.15), inset 0 0 20px rgba(212,165,116,0.05);">
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 50% 0%, var(--accent) 0%, transparent 60%);"></div>
+<div class="relative z-10">
+<div class="w-16 h-16 rounded-full mx-auto mb-5 flex items-center justify-center" style="background: var(--accent-pale); border: 1px solid var(--border-accent); box-shadow: 0 0 20px rgba(212,165,116,0.2);">
+<i data-lucide="sparkles" class="w-8 h-8 accent-text"></i>
+</div>
+<h2 class="text-2xl md:text-4xl font-serif font-extrabold mb-3 accent-gradient-text">Req Varian Yang Anda Inginkan</h2>
+<p class="text-sm md:text-lg mb-6 font-bold" style="color: var(--text-sec);">Tidak menemukan parfum favoritmu? Kirimkan request varian impianmu, admin kami akan mencarikannya untukmu!</p>
+
+<form id="requestForm" class="space-y-3 text-left max-w-md mx-auto" onsubmit="return submitRequest(event)">
+<div>
+<label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Nama Lengkap <span style="color: #EF4444;">*</span></label>
+<input type="text" id="reqNama" required placeholder="Tulis namamu di sini" class="input-field w-full h-11 md:h-12 px-3.5 md:px-4 rounded-xl text-xs md:text-sm font-bold">
+</div>
+<div>
+<label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Nama Parfum / Varian yang Dicari <span style="color: #EF4444;">*</span></label>
+<input type="text" id="reqVarian" required placeholder="Contoh: Bleu de Chanel, Sauvage, dll" class="input-field w-full h-11 md:h-12 px-3.5 md:px-4 rounded-xl text-xs md:text-sm font-bold">
+</div>
+<div>
+<label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Catatan Tambahan</label>
+<textarea id="reqCatatan" rows="2" placeholder="Misal: Minta yang tahan lama, ukuran 50ml, dll" class="input-field w-full px-3.5 md:px-4 py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-bold resize-none"></textarea>
+</div>
+<button type="submit" class="w-full btn-primary rounded-xl md:rounded-2xl font-extrabold text-xs md:text-sm flex items-center justify-center gap-2.5 tracking-wide py-3.5 md:py-4 mt-2">
+<i data-lucide="send" class="w-4 h-4"></i> Kirim Request Varian
+</button>
+</form>
+</div>
+</div>
+</section>
+
+<section class="py-6 md:py-8 px-4 md:px-8 section-glass" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+<div class="max-w-xl mx-auto text-center px-2">
+<p class="text-sm md:text-lg font-extrabold mb-1.5" style="color: #FFD7A8;">🌸 Ingin tampil wangi, elegan, dan tahan lama tanpa harus mahal?</p>
+<p class="text-sm md:text-lg font-extrabold mb-5 md:mb-6" style="color: #FFB6D9;">Silakan order di <span class="rainbow-glow" style="font-size:1.05em;">VJ PARFUME</span>! 💖</p>
+<div class="flex flex-col items-center gap-2">
+<span class="font-extrabold text-xs md:text-sm" style="color: var(--text-sec);">💳 Menerima Pembayaran:</span>
+<div class="flex flex-wrap items-center justify-center gap-2">
+<span class="pay-chip" style="background: rgba(212,165,116,0.1); color: var(--accent-dark);">💵 Cash</span>
+<span class="pay-chip" style="background: rgba(125,211,252,0.08); color: #7DD3FC;">📱 ABA</span>
+<span class="pay-chip" style="background: rgba(196,181,253,0.08); color: #C4B5FD;">🪽 Wings</span>
+</div>
+</div>
+</div>
+</section>
+
+<div class="overflow-hidden py-3" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border); background: rgba(212,165,116,0.02);">
+<div class="marquee-track">
+<span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #FFD700;">🌸 VJ Parfume</span>
+<span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">✨</span>
+<span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #FFB6D9;">💐 Wangi Berkualitas</span>
+<span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">🎀</span>
+<span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #7DD3FC;">💎 Harga Bersahabat</span>
+<span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">✨</span>
+<span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #C4B5FD;">🌷 Premium Fragrance</span>
+<span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">💕</span>
+<span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #7FFF00;">💵 Cash · 📱 ABA · 🪽 Wings</span>
+<span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">🌹</span>
+<span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #FFD700;">🌸 VJ Parfume</span>
+<span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">✨</span>
+<span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #FFB6D9;">💐 Wangi Berkualitas</span>
+<span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">🎀</span>
+<span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #7DD3FC;">💎 Harga Bersahabat</span>
+<span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">✨</span>
+<span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #C4B5FD;">🌷 Premium Fragrance</span>
+<span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">💕</span>
+<span class="text-xs font-extrabold tracking-[0.2em] uppercase whitespace-nowrap px-5" style="color: #7FFF00;">💵 Cash · 📱 ABA · 🪽 Wings</span>
+<span class="text-xs whitespace-nowrap px-2" style="color: var(--accent-light);">🌹</span>
+</div>
+</div>
+
+<section id="koleksi" class="max-w-7xl mx-auto px-3 md:px-8 pt-16 md:pt-24 pb-24 md:pb-32">
+<div class="text-center mb-10 md:mb-14">
+<p class="text-[10px] md:text-[11px] font-extrabold tracking-[0.35em] uppercase accent-text mb-3 md:mb-4">— Our Collection —</p>
+<h2 class="text-2xl md:text-5xl font-serif font-extrabold tracking-tight mb-3 md:mb-4" style="color: var(--text);">Koleksi <span class="accent-gradient-text">Parfum</span> Kami</h2>
+<p class="text-xs md:text-base max-w-md mx-auto font-bold" style="color: var(--text-sec);">Pilih yang kamu suka, langsung pesan tanpa ribet</p>
+<div class="gold-divider max-w-[100px] md:max-w-[120px] mx-auto mt-4 md:mt-6"></div>
+</div>
+<div class="max-w-md mx-auto mb-8 md:mb-12 px-1">
+<div class="relative">
+<i data-lucide="search" class="w-4 h-4 absolute left-3.5 md:left-4 top-1/2 -translate-y-1/2" style="color: var(--text-muted);"></i>
+<input type="text" id="searchInput" placeholder="Cari parfum..." class="input-field w-full h-11 md:h-12 pl-10 md:pl-12 pr-4 md:pr-5 rounded-xl md:rounded-2xl text-xs md:text-sm font-bold">
+</div>
+</div>
+<div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2.5 md:gap-5"></div>
+<div id="emptyState" class="hidden text-center py-20 md:py-24">
+<div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-5" style="background: var(--bg-alt);"><i data-lucide="search-x" class="w-6 h-6 md:w-7 md:h-7" style="color: var(--text-muted);"></i></div>
+<p class="font-extrabold mb-1 text-sm md:text-base" style="color: var(--text-sec);">Parfum tidak ditemukan</p>
+<p class="text-xs md:text-sm font-bold" style="color: var(--text-muted);">Coba kata kunci lain</p>
+</div>
+</section>
+
+<footer class="py-10 md:py-12 px-5 md:px-6 text-center section-glass" style="border-top: 1px solid var(--border);">
+<div class="flex items-center justify-center gap-2.5 mb-3 md:mb-4">
+<div class="w-7 h-7 rounded-lg accent-gradient-bg flex items-center justify-center"><span class="font-black text-[10px]" style="color: #13100C;">VJ</span></div>
+<span class="font-black text-sm rainbow-glow" style="font-size: 13px;">VJ PARFUME</span>
+</div>
+<p class="text-xs md:text-sm mb-3 font-bold" style="color: var(--text-sec);">Wangi Berkualitas, Harga Bersahabat</p>
+<div class="flex items-center justify-center gap-4 mb-3 md:mb-4">
+<a href="https://wa.me/60173698359" target="_blank" class="inline-flex items-center gap-1.5 text-[11px] md:text-xs font-bold transition-colors" style="color: #25D366;" onmouseover="this.style.color='#4ADE80'" onmouseout="this.style.color='#25D366'">
+<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+Chat Admin via WhatsApp
+</a>
+</div>
+<p class="text-[10px] md:text-xs font-bold" style="color: var(--text-muted);">© 2025 VJ Parfume. All rights reserved.</p>
+</footer>
+
+<a href="https://wa.me/60173698359" target="_blank" class="tg-float" title="Chat Admin via WhatsApp">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<div id="orderModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 md:p-4 modal-backdrop">
+<div class="modal-box w-full max-w-md max-h-[92vh] overflow-y-auto anim-slide-up">
+<div class="flex items-center justify-between p-5 md:p-6 pb-3 md:pb-4">
+<div>
+<p class="text-[10px] font-extrabold tracking-[0.25em] uppercase accent-text mb-1">Pesan Sekarang</p>
+<h3 class="font-extrabold text-base md:text-lg" style="color: var(--text);" id="modalNama">Nama Parfum</h3>
+</div>
+<button onclick="closeModal()" class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center transition-colors" style="background: var(--bg-alt);"><i data-lucide="x" class="w-4 h-4" style="color: var(--text-sec);"></i></button>
+</div>
+<div class="gold-divider mx-5 md:mx-6"></div>
+<div class="p-5 md:p-6 pb-3 md:pb-4 flex items-center gap-3 md:gap-4">
+<img id="modalImg" src="" alt="" class="w-16 h-16 md:w-20 md:h-20 rounded-xl md:rounded-2xl object-contain" style="border: 1px solid var(--border); background: var(--bg-alt);">
+<div>
+<p class="font-extrabold text-xs md:text-sm" style="color: var(--text);" id="modalNama2"></p>
+<p class="font-extrabold text-xs mt-0.5" style="color: var(--accent);" id="modalUkuran"></p>
+<div class="mt-1 space-y-0.5">
+<p class="font-black text-base md:text-lg price-gold" id="modalHargaIDR"></p>
+<p class="font-bold text-xs" style="color: var(--text-sec);" id="modalHargaUsdKhr"></p>
+</div>
+</div>
+</div>
+<form id="orderForm" class="px-5 md:px-6 pb-5 md:pb-6 space-y-3.5 md:space-y-4" onsubmit="return submitOrder(event)">
+<div>
+<label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Nama Lengkap <span style="color: #EF4444;">*</span></label>
+<input type="text" id="inputNama" required placeholder="Tulis nama kamu di sini" class="input-field w-full h-11 md:h-12 px-3.5 md:px-4 rounded-xl text-xs md:text-sm font-bold">
+</div>
+<div>
+<label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Catatan (Opsional). Cth: Nama Alamat</label>
+<textarea id="inputCatatan" rows="2" placeholder="Tulis catatan tambahan..." class="input-field w-full px-3.5 md:px-4 py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-bold resize-none"></textarea>
+</div>
+
+<div>
+<label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Pilih Metode Pembayaran <span style="color: #EF4444;">*</span></label>
+<div class="grid grid-cols-3 gap-2" id="paymentOptions">
+<label class="pay-option selected" data-val="IDR" onclick="updatePaymentDetails('IDR')">
+<input type="radio" name="paymentMethod" value="IDR" checked>
+<span class="text-[10px] md:text-xs font-extrabold mt-1">Rupiah (Rp)</span>
+</label>
+<label class="pay-option" data-val="USD" onclick="updatePaymentDetails('USD')">
+<input type="radio" name="paymentMethod" value="USD">
+<span class="text-[10px] md:text-xs font-extrabold mt-1">Dollar ($)</span>
+</label>
+<label class="pay-option" data-val="KHR" onclick="updatePaymentDetails('KHR')">
+<input type="radio" name="paymentMethod" value="KHR">
+<span class="text-[10px] md:text-xs font-extrabold mt-1">Riel (៛)</span>
+</label>
+</div>
+</div>
+
+<div id="paymentDetails" class="hidden rounded-xl p-4 text-center" style="background: var(--accent-pale); border: 1px solid var(--border-accent);"></div>
+
+<div>
+<label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Jumlah Pesanan</label>
+<div class="flex items-center gap-3 md:gap-4">
+<button type="button" class="qty-btn" onclick="changeQty(-1)">−</button>
+<span id="qtyDisplay" class="text-xl md:text-2xl font-black w-8 md:w-10 text-center" style="color: var(--text);">1</span>
+<button type="button" class="qty-btn" onclick="changeQty(1)">+</button>
+<span id="stockInfo" class="text-[11px] md:text-xs font-bold ml-auto" style="color: var(--text-muted);"></span>
+</div>
+</div>
+
+<div class="rounded-xl md:rounded-2xl p-4 md:p-5 text-center" style="background: var(--accent-pale); border: 1px solid var(--border-accent); box-shadow: inset 0 0 20px rgba(212,165,116,0.05);">
+<p class="text-[10px] md:text-xs font-extrabold mb-1.5 md:mb-2 tracking-wide" style="color: var(--text-sec);">TOTAL HARGA</p>
+<div id="totalHarga" class="font-black price-gold text-2xl md:text-3xl">Rp 0</div>
+<div id="totalHargaAlt" class="font-bold text-sm mt-1" style="color: var(--text-sec);"></div>
+<p id="discountInfo" class="text-[10px] mt-1 font-bold hidden" style="color: #22C55E;">🎉 Diskon Min. 4 Botol Diterapkan!</p>
+</div>
+
+<button type="submit" id="submitBtn" class="w-full btn-primary rounded-xl md:rounded-2xl font-extrabold text-xs md:text-sm flex items-center justify-center gap-2.5 tracking-wide py-3.5 md:py-4">
+<i data-lucide="shopping-bag" class="w-4 h-4"></i> Konfirmasi Pesanan
+</button>
+
+<a href="https://wa.me/60173698359" target="_blank" class="w-full rounded-xl md:rounded-2xl font-extrabold text-xs md:text-sm flex items-center justify-center gap-2.5 tracking-wide py-3 md:py-3.5 transition-all" style="background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.2); color: #25D366;" onmouseover="this.style.background='#25D366';this.style.color='#fff';this.style.borderColor='#25D366'" onmouseout="this.style.background='rgba(34,197,94,0.08)';this.style.color='#25D366';this.style.borderColor='rgba(34,197,94,0.2)'">
+<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+Chat Admin via WhatsApp
+</a>
+<p class="text-center text-[10px] md:text-[11px] mt-1 font-bold" style="color: var(--text-muted);">Pesanan akan diproses oleh Admin</p>
+</form>
+</div>
+</div>
+
+<div id="adminModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 md:p-4 modal-backdrop">
+<div class="modal-box w-full max-w-2xl max-h-[92vh] overflow-hidden flex flex-col anim-slide-up">
+<div id="adminLogin" class="p-6 md:p-8 text-center">
+<div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl mx-auto mb-4 md:mb-5 flex items-center justify-center" style="background: var(--accent-pale);"><i data-lucide="lock" class="w-6 h-6 md:w-7 md:h-7 accent-text"></i></div>
+<h3 class="font-extrabold text-lg md:text-xl mb-2" style="color: var(--text);">Admin Panel</h3>
+<p class="text-xs md:text-sm mb-5 md:mb-6 font-bold" style="color: var(--text-muted);">Masukkan password untuk mengelola parfum</p>
+<input type="password" id="adminPassInput" placeholder="Password..." class="input-field w-full h-11 md:h-12 px-4 rounded-xl text-xs md:text-sm font-bold mb-3 md:mb-4 text-center" onkeydown="if(event.key==='Enter')attemptAdminLogin()">
+<button onclick="attemptAdminLogin()" class="w-full btn-primary rounded-xl font-extrabold text-xs md:text-sm py-3 md:py-3.5">Masuk</button>
+<button onclick="closeAdminModal()" class="w-full mt-2.5 md:mt-3 py-2.5 md:py-3 text-xs md:text-sm font-bold rounded-xl transition-colors" style="color: var(--text-muted);" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-muted)'">Batal</button>
+<p id="adminError" class="text-[11px] md:text-xs mt-2.5 md:mt-3 font-extrabold hidden" style="color: #EF4444;">Password salah! Coba lagi.</p>
+</div>
+<div id="adminPanel" class="hidden flex flex-col" style="max-height: 92vh;">
+<div class="flex items-center justify-between p-4 md:p-5 pb-3 md:pb-4 flex-shrink-0">
+<div>
+<p class="text-[10px] font-extrabold tracking-[0.25em] uppercase accent-text mb-0.5">Admin Mode</p>
+<h3 class="font-extrabold text-base md:text-lg" style="color: var(--text);">Kelola Parfum</h3>
+</div>
+<button onclick="closeAdminModal()" class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center transition-colors" style="background: var(--bg-alt);"><i data-lucide="x" class="w-4 h-4" style="color: var(--text-sec);"></i></button>
+</div>
+<div class="gold-divider mx-4 md:mx-5"></div>
+
+<div class="px-4 md:px-5 py-3 flex-shrink-0 rounded-xl mx-3 mt-2 pulse-green-border" style="background: rgba(34,197,94,0.08); border: 2px solid rgba(34,197,94,0.3);">
+<p class="text-[12px] md:text-sm leading-relaxed font-extrabold" style="color: #22C55E;">📌 INFO STOK:</p>
+<p class="text-[11px] md:text-xs leading-relaxed font-bold mt-1.5" style="color: var(--text-sec);">Atur jumlah stok parfum di bawah ini. Jika ada yang beli, stok akan <strong>berkurang otomatis</strong>. Jika stok 0, akan langsung tulisan <strong>SOLD OUT</strong> di semua browser.</p>
+</div>
+
+<div id="adminContent" class="flex-1 overflow-y-auto px-4 md:px-5 pb-3 md:pb-4 space-y-2.5 md:space-y-3"></div>
+</div>
+</div>
+</div>
+
+<div id="successToast" class="hidden fixed top-16 md:top-20 right-3 md:right-6 left-3 md:left-auto z-[60] toast-box p-4 md:p-5 anim-slide-up">
+<div class="flex items-start gap-3 md:gap-4">
+<div class="w-10 h-10 md:w-11 md:h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(34,197,94,0.08);"><i data-lucide="check-circle" class="w-5 h-5" style="color: #22C55E;"></i></div>
+<div>
+<p class="font-extrabold text-xs md:text-sm" style="color: #22C55E;" id="toastTitle">Pesanan Sedang Disiapkan! 🎉</p>
+<p class="text-[10px] md:text-xs mt-0.5 md:mt-1 font-bold" style="color: var(--text-muted);" id="toastDesc">Pesanan Anda sedang disiapkan oleh Admin</p>
+</div>
+</div>
+</div>
+
+<script>
+document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+document.addEventListener('keydown', function(e) {
+if (e.key === 'F12' ||
+(e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) ||
+(e.ctrlKey && (e.key === 'u' || e.key === 'U')) ||
+(e.ctrlKey && (e.key === 's' || e.key === 'S')) ||
+(e.metaKey && (e.key === 'u' || e.key === 'U')) ||
+(e.metaKey && (e.key === 's' || e.key === 'S'))) {
+e.preventDefault();
+return false;
+}
+});
+
+const BARCODE_URL = "https://i.postimg.cc/ZRx57tnm/Screenshot-1.png";
+
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzHEE1eFBGKxtwGSzclyT4Tmzj2GO4DTAHAARJ8WJpaHHTXBRB3JRaQXFd_kNXgEeE4og/exec";
+const ADMIN_PASSWORD = "vjadmin2025";
+
+const KURS_USD_TO_IDR = 17777.7778;
+const KURS_USD_TO_KHR = 4000;
+
+function toUSD(idr) { return idr / KURS_USD_TO_IDR; }
+function toKHR(idr) { return idr / KURS_USD_TO_IDR * KURS_USD_TO_KHR; }
+function fmtUSD(usd) { return '$' + usd.toFixed(2); }
+function fmtKHR(khr) { return Math.round(khr).toLocaleString() + ' Riel'; }
+function fmtIDR(idr) { return 'Rp ' + idr.toLocaleString('id-ID'); }
+
+function placeholderImg(text) {
+return "data:image/svg+xml," + encodeURIComponent(
+'<svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500">' +
+'<rect width="400" height="500" fill="#1C1814"/>' +
+'<rect x="20" y="20" width="360" height="460" rx="8" fill="none" stroke="#4A3D32" stroke-width="1.5" stroke-dasharray="6,4"/>' +
+'<text x="200" y="220" text-anchor="middle" fill="#D4A574" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="bold">' + text + '</text>' +
+'<text x="200" y="250" text-anchor="middle" fill="#8A7B6B" font-family="Arial,Helvetica,sans-serif" font-size="11">Belum ada gambar</text>' +
+'<text x="200" y="280" text-anchor="middle" fill="#4A3D32" font-family="Arial,Helvetica,sans-serif" font-size="10">Admin: Paste URL Gambar</text>' +
+'</svg>'
+);
+}
+
+function handleImgError(imgEl, nama) {
+imgEl.onerror = null;
+imgEl.src = placeholderImg(nama);
+}
+
+const defaultParfumData = [
+{ id: 1, nama: "SCANDALOUS", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/f_auto,q_auto/scandal_g2pi1v", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 2, nama: "BLACK OPIUM", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/f_auto,q_auto/black_hvuzkm", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 3, nama: "AVRIL LAVIGNE", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429588/avril_yo9eko.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 4, nama: "SOFT", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429686/3b98691c-2334-4421-b295-f6f3fa999cd3_vcodzm.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 5, nama: "PINK CHIFFON", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429761/pink_grm8q5.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 6, nama: "ROMANTIC WISH", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429790/romantic_vap75o.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 7, nama: "OLLA RAMLAN", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429826/aeaffa6d-5fb0-4a83-a08e-998e0b2c98b8_mkxhl8.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 8, nama: "DIOR SAUVAGE", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429866/63d67ae6-b3a8-4147-9634-26f5c583d2d1_gsmspt.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 9, nama: "DUNHILL BLUE", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429895/ee2272d7-46cc-4380-acb2-2d28371036fd_grqraz.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 10, nama: "BVLGARI AQUA", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429924/75abc422-0f69-4d82-9656-bab60d3d7917_rscsb7.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 11, nama: "GREY JAY ROSE", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429951/b6eac3d7-c3a1-42f4-8711-0c1298c7675f_plgmsl.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 12, nama: "SOTB", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429987/0f0279bb-0d1d-4421-9688-f3f66920f0d8_ksjji0.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 13, nama: "SELENA GOMES", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784430022/selena_j4ylkr.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 14, nama: "LOVELY", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784430047/92ec90ee-88a9-4f9a-b696-83074c243553_rbkxiq.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 15, nama: "MONT BLANC LEGEND", gambarUrl: "https://i.postimg.cc/CLptZHwp/fc820462-cf97-4602-9028-00eb58ad326a.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 16, nama: "YSL LIBRE", gambarUrl: "https://i.postimg.cc/K8TkmYZK/590dc64e-a532-4e03-915f-2773fa5454eb.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 17, nama: "PINK FANTASY", gambarUrl: "https://i.postimg.cc/25cVwLTS/454dc429-8b34-42b0-998f-b9c712af8691.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 18, nama: "BLUE EMOTION", gambarUrl: "https://i.postimg.cc/fLSTf2J8/39081197-8eed-4587-9451-b9ecf5c6bd74.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 19, nama: "BACCARAT", gambarUrl: "https://i.postimg.cc/SxK4GTPc/31ec123f-b149-4235-9cd2-f4be00720458.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 20, nama: "DRAKAR", gambarUrl: "https://i.postimg.cc/GmfWxcYN/8cd03f13-b49c-42ec-ac9e-2575db75803a.png", harga: 200000, stok: 5, ukuran: "35ml" }
+];
+
+var parfumData = JSON.parse(JSON.stringify(defaultParfumData));
+
+/* ============================================================
+   ★★★ FIX: loadParfumData - TAMBAH SYNC DARI SERVER ★★★
+   Supaya stok 0 yang diset admin muncul SOLD OUT di SEMUA browser
+   ============================================================ */
+function loadParfumData() {
+var saved = localStorage.getItem('vj_parfum_data');
+if (saved) {
+try {
+var parsed = JSON.parse(saved);
+if (Array.isArray(parsed) && parsed.length === defaultParfumData.length) {
+parsed.forEach(function(p, i) {
+if (parfumData[i] && p.id === parfumData[i].id) {
+parfumData[i].stok = p.stok;
+}
+});
+}
+} catch(e) {}
+}
+// ★ LANGSUNG RENDER DARI LOCAL STORAGE DULU (CEPAT)
+renderProducts();
+// ★ LALU SYNC DARI SERVER (SUPAYA SAMA DI SEMUA BROWSER)
+syncFromServer();
+}
+
+/* ============================================================
+   ★★★ FIX: syncFromServer - FUNGSI BARU ★★★
+   Ambil data terbaru dari Google Script, kalau ada perubahan
+   stok → update tampilan langsung
+   ============================================================ */
+function syncFromServer() {
+fetch(GOOGLE_SCRIPT_URL + '?action=readProducts', { cache: 'no-store' })
+.then(function(res) { return res.text(); })
+.then(function(text) {
+var data = null;
+try { data = JSON.parse(text); } catch(e) {}
+if (data && Array.isArray(data) && data.length > 0) {
+var changed = false;
+data.forEach(function(p) {
+var match = parfumData.find(function(d) { return d.id === p.id; });
+if (match && match.stok !== p.stok) {
+match.stok = p.stok;
+changed = true;
+}
+});
+if (changed) {
+localStorage.setItem('vj_parfum_data', JSON.stringify(parfumData));
+renderProducts();
+}
+}
+})
+.catch(function() {});
+}
+
+/* ============================================================
+   ★★★ FIX: saveParfumToStorage - TAMBAH KIRIM KE SERVER ★★★
+   Supaya ketika admin set stok 0, semua browser lain juga
+   mendapat data stok 0 dan menampilkan SOLD OUT
+   ============================================================ */
+function saveParfumToStorage() {
+try { localStorage.setItem('vj_parfum_data', JSON.stringify(parfumData)); }
+catch(e) { alert('Penyimpanan penuh!'); }
+// ★ KIRIM DATA KE SERVER SUPAYA SEMUA BROWSER SAMA
+fetch(GOOGLE_SCRIPT_URL, {
+method: 'POST',
+mode: 'no-cors',
+headers: { 'Content-Type': 'text/plain' },
+body: JSON.stringify({ action: 'saveProducts', data: parfumData })
+}).catch(function() {});
+}
+
+loadParfumData();
+
+var currentSearch = "";
+var selectedParfum = null;
+var currentQty = 1;
+var selectedPayment = "IDR";
+var logoClickCount = 0;
+var logoClickTimer = null;
+
+function getImgSrc(p) {
+if (p.gambarUrl && p.gambarUrl.trim() !== "") return p.gambarUrl;
+return placeholderImg(p.nama);
+}
+
+function renderProducts() {
+var grid = document.getElementById("productGrid");
+var empty = document.getElementById("emptyState");
+
+var filtered = parfumData.filter(function(p) {
+return p.nama.toLowerCase().includes(currentSearch.toLowerCase());
+});
+
+if (filtered.length === 0) {
+grid.innerHTML = "";
+empty.classList.remove("hidden");
+lucide.createIcons();
+return;
+}
+empty.classList.add("hidden");
+
+grid.innerHTML = filtered.map(function(p, i) {
+var isSoldOut = p.stok <= 0;
+
+var stockHtml = "";
+if (isSoldOut) {
+stockHtml = '<span class="text-[10px] md:text-[11px] font-extrabold tracking-wide" style="color: #EF4444;">SOLD OUT</span>';
+} else {
+stockHtml = '<span class="stock-dot stock-yes"></span><span class="text-[10px] md:text-[11px] font-extrabold" style="color: #22C55E;">Tersedia</span>';
+}
+
+var usd = toUSD(p.harga);
+var khr = toKHR(p.harga);
+var uk = p.ukuran || "35ml";
+var imgSrc = getImgSrc(p);
+
+return '<div class="perfume-card" style="animation: fadeUp 0.6s ease-out ' + (i * 0.05) + 's forwards; opacity: 0;">' +
+(isSoldOut ? '<div class="sold-out-overlay"><div class="sold-out-badge">SOLD OUT</div></div>' : '') +
+'<div class="card-img-bg p-3 md:p-4 flex items-center justify-center" style="height:180px;">' +
+'<img src="' + imgSrc + '" alt="' + p.nama + '" class="card-img h-full object-contain" onerror="handleImgError(this,\'' + p.nama.replace(/'/g, "\\'") + '\')">' +
+'</div>' +
+'<div class="p-3 md:p-4 flex flex-col flex-1">' +
+'<h3 class="variant-name text-sm md:text-base mb-1">' + p.nama + '</h3>' +
+'<p class="text-[10px] md:text-xs font-bold mb-2" style="color:var(--text-muted);">' + uk + '</p>' +
+'<div class="mt-auto">' +
+(isSoldOut ? '' : '<p class="font-black text-base md:text-lg price-gold mb-0.5">' + fmtIDR(p.harga) + '</p><p class="font-bold text-[10px] md:text-xs mb-2" style="color:var(--text-sec);">' + fmtUSD(usd) + ' · ' + fmtKHR(khr) + '</p>') +
+'<div class="flex items-center gap-1.5 mb-2.5">' + stockHtml + '</div>' +
+(isSoldOut ?
+'<button disabled class="w-full py-2.5 rounded-xl text-[10px] md:text-xs font-extrabold cursor-not-allowed opacity-50" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);color:#EF4444;">Stok Habis</button>' :
+'<button onclick="openOrderModal(' + p.id + ')" class="w-full btn-order py-2.5 rounded-xl text-[10px] md:text-xs font-extrabold flex items-center justify-center gap-1.5">Pesan Sekarang</button>'
+) +
+'</div>' +
+'</div>' +
+'</div>';
+}).join("");
+
+lucide.createIcons();
+}
+
+document.getElementById("searchInput").addEventListener("input", function(e) {
+currentSearch = e.target.value;
+renderProducts();
+});
+
+function openOrderModal(id) {
+var p = parfumData.find(function(item) { return item.id === id; });
+if (!p) return;
+if (p.stok <= 0) { showToast('Stok Habis!', 'Parfum ' + p.nama + ' sedang tidak tersedia.', true); return; }
+
+selectedParfum = p;
+currentQty = 1;
+selectedPayment = "IDR";
+
+document.getElementById("modalNama").textContent = p.nama;
+document.getElementById("modalNama2").textContent = p.nama;
+document.getElementById("modalUkuran").textContent = p.ukuran || "35ml";
+document.getElementById("modalImg").src = getImgSrc(p);
+document.getElementById("modalImg").onerror = function() { handleImgError(this, p.nama); };
+document.getElementById("modalHargaIDR").textContent = fmtIDR(p.harga);
+document.getElementById("modalHargaUsdKhr").textContent = fmtUSD(toUSD(p.harga)) + ' · ' + fmtKHR(toKHR(p.harga));
+document.getElementById("qtyDisplay").textContent = "1";
+document.getElementById("stockInfo").textContent = "Stok: " + p.stok;
+document.getElementById("inputNama").value = "";
+document.getElementById("inputCatatan").value = "";
+
+document.querySelectorAll(".pay-option").forEach(function(el) {
+el.classList.remove("selected");
+if (el.dataset.val === "IDR") el.classList.add("selected");
+});
+document.querySelector('input[name="paymentMethod"][value="IDR"]').checked = true;
+document.getElementById("paymentDetails").classList.add("hidden");
+
+updateTotal();
+document.getElementById("orderModal").classList.remove("hidden");
+document.body.style.overflow = "hidden";
+}
+
+function closeModal() {
+document.getElementById("orderModal").classList.add("hidden");
+document.body.style.overflow = "";
+selectedParfum = null;
+}
+
+function changeQty(delta) {
+if (!selectedParfum) return;
+currentQty += delta;
+if (currentQty < 1) currentQty = 1;
+if (currentQty > selectedParfum.stok) currentQty = selectedParfum.stok;
+document.getElementById("qtyDisplay").textContent = currentQty;
+document.getElementById("stockInfo").textContent = "Stok: " + selectedParfum.stok;
+updateTotal();
+}
+
+function updateTotal() {
+if (!selectedParfum) return;
+var harga = selectedParfum.harga;
+var total = harga * currentQty;
+var hasDiscount = currentQty >= 4;
+if (hasDiscount) total = total * 0.95;
+
+document.getElementById("totalHarga").textContent = fmtIDR(Math.round(total));
+document.getElementById("totalHargaAlt").textContent = fmtUSD(toUSD(total)) + ' · ' + fmtKHR(toKHR(total));
+
+var discountEl = document.getElementById("discountInfo");
+if (hasDiscount) discountEl.classList.remove("hidden");
+else discountEl.classList.add("hidden");
+
+if (selectedPayment !== "IDR") updatePaymentDetails(selectedPayment);
+}
+
+function updatePaymentDetails(method) {
+selectedPayment = method;
+document.querySelectorAll(".pay-option").forEach(function(el) {
+el.classList.remove("selected");
+if (el.dataset.val === method) el.classList.add("selected");
+el.querySelector("input").checked = (el.dataset.val === method);
+});
+
+var detailsEl = document.getElementById("paymentDetails");
+if (method === "IDR") { detailsEl.classList.add("hidden"); return; }
+if (!selectedParfum) return;
+
+var total = selectedParfum.harga * currentQty;
+if (currentQty >= 4) total = total * 0.95;
+
+detailsEl.classList.remove("hidden");
+if (method === "USD") {
+detailsEl.innerHTML = '<p class="text-xs font-bold" style="color:var(--text-sec);">Pembayaran dalam Dollar (USD)</p><p class="font-black text-lg mt-1 price-gold">' + fmtUSD(toUSD(total)) + '</p><p class="text-[10px] font-bold mt-1" style="color:var(--text-muted);">Kurs: 1 USD = ' + KURS_USD_TO_IDR.toLocaleString() + ' IDR</p>';
+} else if (method === "KHR") {
+detailsEl.innerHTML = '<p class="text-xs font-bold" style="color:var(--text-sec);">Pembayaran dalam Riel (KHR)</p><p class="font-black text-lg mt-1 price-gold">' + fmtKHR(toKHR(total)) + '</p><p class="text-[10px] font-bold mt-1" style="color:var(--text-muted);">Kurs: 1 USD = ' + KURS_USD_TO_KHR.toLocaleString() + ' Riel</p>';
+}
+}
+
+function submitOrder(e) {
+e.preventDefault();
+if (!selectedParfum) return false;
+
+var p = parfumData.find(function(item) { return item.id === selectedParfum.id; });
+if (!p || p.stok <= 0) {
+showToast('Stok Habis!', 'Maaf, parfum ini sudah habis.', true);
+closeModal();
+renderProducts();
+return false;
+}
+if (currentQty > p.stok) {
+currentQty = p.stok;
+showToast('Stok Terbatas', 'Jumlah pesanan disesuaikan dengan stok.', true);
+changeQty(0);
+return false;
+}
+
+var nama = document.getElementById("inputNama").value.trim();
+var catatan = document.getElementById("inputCatatan").value.trim();
+if (!nama) { alert('Nama lengkap wajib diisi!'); return false; }
+
+p.stok -= currentQty;
+
+var harga = p.harga * currentQty;
+var hasDiscount = currentQty >= 4;
+if (hasDiscount) harga = Math.round(harga * 0.95);
+var paymentLabel = selectedPayment === "IDR" ? fmtIDR(harga) : (selectedPayment === "USD" ? fmtUSD(toUSD(harga)) : fmtKHR(toKHR(harga)));
+
+fetch(GOOGLE_SCRIPT_URL, {
+method: 'POST', mode: 'no-cors',
+headers: { 'Content-Type': 'text/plain' },
+body: JSON.stringify({ action: 'newOrder', nama: nama, parfum: p.nama, ukuran: p.ukuran || '35ml', qty: currentQty, total: harga, payment: selectedPayment, catatan: catatan, timestamp: new Date().toISOString() })
+}).catch(function() {});
+
+saveParfumToStorage();
+closeModal();
+renderProducts();
+showToast('Pesanan Sedang Disiapkan! 🎉', nama + ' memesan ' + currentQty + 'x ' + p.nama + ' (' + paymentLabel + ')', false);
+return false;
+}
+
+function showToast(title, desc, isError) {
+var toast = document.getElementById("successToast");
+var tTitle = document.getElementById("toastTitle");
+var tDesc = document.getElementById("toastDesc");
+tTitle.textContent = title;
+tTitle.style.color = isError ? '#EF4444' : '#22C55E';
+tDesc.textContent = desc;
+toast.classList.remove("hidden");
+toast.style.borderColor = isError ? 'rgba(239,68,68,0.2)' : 'rgba(34,197,94,0.2)';
+setTimeout(function() { toast.classList.add("hidden"); }, 4000);
+}
+
+function openAdminModal() {
+document.getElementById("adminModal").classList.remove("hidden");
+document.body.style.overflow = "hidden";
+if (isAdminLoggedIn) {
+document.getElementById("adminLogin").classList.add("hidden");
+document.getElementById("adminPanel").classList.remove("hidden");
+renderAdmin();
+} else {
+document.getElementById("adminLogin").classList.remove("hidden");
+document.getElementById("adminPanel").classList.add("hidden");
+document.getElementById("adminPassInput").value = "";
+document.getElementById("adminError").classList.add("hidden");
+}
+lucide.createIcons();
+}
+
+function closeAdminModal() {
+document.getElementById("adminModal").classList.add("hidden");
+document.body.style.overflow = "";
+}
+
+var isAdminLoggedIn = false;
+
+function attemptAdminLogin() {
+var pass = document.getElementById("adminPassInput").value;
+if (pass === ADMIN_PASSWORD) {
+isAdminLoggedIn = true;
+document.getElementById("adminLogin").classList.add("hidden");
+document.getElementById("adminPanel").classList.remove("hidden");
+renderAdmin();
+} else {
+document.getElementById("adminError").classList.remove("hidden");
+}
+}
+
+function renderAdmin() {
+var container = document.getElementById("adminContent");
+container.innerHTML = parfumData.map(function(p, idx) {
+var isSoldOut = p.stok <= 0;
+var stockBorderColor = isSoldOut ? 'rgba(239,68,68,0.3)' : (p.stok <= 3 ? 'rgba(245,158,11,0.3)' : 'rgba(34,197,94,0.3)');
+var stockBgColor = isSoldOut ? 'rgba(239,68,68,0.06)' : (p.stok <= 3 ? 'rgba(245,158,11,0.06)' : 'rgba(34,197,94,0.06)');
+var stockTextColor = isSoldOut ? '#EF4444' : (p.stok <= 3 ? '#F59E0B' : '#22C55E');
+var stockLabel = isSoldOut ? 'SOLD OUT' : 'Tersedia (' + p.stok + ')';
+
+return '<div class="rounded-xl p-3 md:p-4" style="background:' + stockBgColor + ';border:1px solid ' + stockBorderColor + ';">' +
+'<div class="flex items-center gap-3 mb-3">' +
+'<img src="' + getImgSrc(p) + '" alt="' + p.nama + '" class="w-10 h-10 rounded-lg object-contain" style="background:var(--bg-alt);border:1px solid var(--border);" onerror="handleImgError(this,\'' + p.nama.replace(/'/g, "\\'") + '\')">' +
+'<div class="flex-1 min-w-0">' +
+'<p class="font-extrabold text-xs md:text-sm truncate" style="color:var(--text);">' + p.nama + '</p>' +
+'<p class="text-[10px] font-bold" style="color:' + stockTextColor + ';">' + stockLabel + '</p>' +
+'</div>' +
+'</div>' +
+'<div class="grid grid-cols-3 gap-2">' +
+'<div><label class="block text-[10px] font-bold mb-1" style="color:var(--text-muted);">Stok</label><input type="number" min="0" value="' + p.stok + '" onchange="updateProduct(' + idx + ',\'stok\',this.value)" class="admin-input text-center"></div>' +
+'<div><label class="block text-[10px] font-bold mb-1" style="color:var(--text-muted);">Harga (Rp)</label><input type="number" min="0" value="' + p.harga + '" onchange="updateProduct(' + idx + ',\'harga\',this.value)" class="admin-input text-center"></div>' +
+'<div><label class="block text-[10px] font-bold mb-1" style="color:var(--text-muted);">Ukuran</label><input type="text" value="' + (p.ukuran || '35ml') + '" onchange="updateProduct(' + idx + ',\'ukuran\',this.value)" class="admin-input text-center"></div>' +
+'</div>' +
+'<div class="mt-2"><label class="block text-[10px] font-bold mb-1" style="color:var(--text-muted);">URL Gambar</label><input type="text" value="' + (p.gambarUrl || '') + '" onchange="updateProduct(' + idx + ',\'gambarUrl\',this.value)" class="admin-input" placeholder="Paste URL gambar..."></div>' +
+'</div>';
+}).join("");
+}
+
+function updateProduct(idx, field, value) {
+if (idx < 0 || idx >= parfumData.length) return;
+if (field === 'stok' || field === 'harga') {
+parfumData[idx][field] = parseInt(value) || 0;
+} else {
+parfumData[idx][field] = value;
+}
+saveParfumToStorage();
+renderProducts();
+renderAdmin();
+}
+
+function submitRequest(e) {
+e.preventDefault();
+var nama = document.getElementById("reqNama").value.trim();
+var varian = document.getElementById("reqVarian").value.trim();
+var catatan = document.getElementById("reqCatatan").value.trim();
+if (!nama || !varian) { alert('Nama dan nama parfum wajib diisi!'); return false; }
+
+fetch(GOOGLE_SCRIPT_URL, {
+method: 'POST', mode: 'no-cors',
+headers: { 'Content-Type': 'text/plain' },
+body: JSON.stringify({ action: 'newRequest', nama: nama, varian: varian, catatan: catatan, timestamp: new Date().toISOString() })
+}).catch(function() {});
+
+showToast('Request Terkirim! ✨', 'Kami akan mencarikan ' + varian + ' untukmu!', false);
+document.getElementById("requestForm").reset();
+return false;
+}
+
+function closePromo() {
+document.getElementById("promoPopup").classList.add("hidden");
+}
+
+document.getElementById("logoArea").addEventListener("click", function() {
+logoClickCount++;
+clearTimeout(logoClickTimer);
+logoClickTimer = setTimeout(function() { logoClickCount = 0; }, 2000);
+if (logoClickCount >= 7) {
+logoClickCount = 0;
+openAdminModal();
+}
+});
+
+lucide.createIcons();
+
+setTimeout(function() {
+var promoEl = document.getElementById("promoPopup");
+if (promoEl && !sessionStorage.getItem('vjPromoShown')) {
+promoEl.classList.remove("hidden");
+sessionStorage.setItem('vjPromoShown', '1');
+}
+}, 3000);
+</script>
+</body>
+</html>
