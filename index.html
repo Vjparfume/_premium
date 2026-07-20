@@ -243,18 +243,18 @@
     .pay-option:hover { border-color: var(--border-accent); }
     .pay-option.selected { border-color: var(--accent); background: rgba(212,165,116,0.1); color: var(--accent-dark); box-shadow: 0 0 12px rgba(212,165,116,0.2); }
     .pay-option input { display: none; }
-    
+
     /* CSS TAMBAHAN UNTUK SOLD OUT */
     .sold-out-overlay {
       position: absolute;
-      inset: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(19,16,12,0.75);
       backdrop-filter: blur(4px);
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 10;
-      border-radius: 12px;
+      border-radius: 16px;
     }
     .sold-out-badge {
       background: linear-gradient(135deg, #D4A574, #B8865A);
@@ -267,6 +267,12 @@
       transform: rotate(-8deg);
       box-shadow: 0 8px 30px rgba(212,165,116,0.2);
     }
+    @keyframes pulseGreen {
+      0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(34,197,94,0); }
+      100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+    }
+    .pulse-green-border { animation: pulseGreen 2s infinite; }
   </style>
 </head>
 <body>
@@ -316,7 +322,7 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
       </a>
       <a href="https://telegram.me/vjparfume_premium" target="_blank" class="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center transition-all hover:scale-110" style="background: linear-gradient(135deg, #2AABEE, #229ED9); box-shadow: 0 4px 15px rgba(42,171,238,0.3);" title="Telegram">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 1 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
       </a>
     </div>
 
@@ -333,7 +339,7 @@
     <div class="max-w-md mx-auto rounded-xl p-3 md:p-4 flex items-center justify-between" style="background: var(--card); border: 1px solid var(--border);">
       <div class="flex items-center gap-3">
         <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #2AABEE, #229ED9);">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 1 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
         </div>
         <div>
           <h3 class="font-bold text-xs md:text-sm" style="color: var(--text);">Gabung Channel Telegram</h3>
@@ -559,7 +565,7 @@
         </div>
         <div class="gold-divider mx-4 md:mx-5"></div>
         
-        <div class="px-4 md:px-5 py-3 flex-shrink-0 rounded-xl mx-3 mt-2" style="background: rgba(34,197,94,0.08); border: 2px solid rgba(34,197,94,0.3);">
+        <div class="px-4 md:px-5 py-3 flex-shrink-0 rounded-xl mx-3 mt-2 pulse-green-border" style="background: rgba(34,197,94,0.08); border: 2px solid rgba(34,197,94,0.3);">
           <p class="text-[12px] md:text-sm leading-relaxed font-extrabold" style="color: #22C55E;">📌 INFO STOK:</p>
           <p class="text-[11px] md:text-xs leading-relaxed font-bold mt-1.5" style="color: var(--text-sec);">Atur jumlah stok parfum di bawah ini. Jika ada yang beli, stok akan <strong>berkurang otomatis</strong>. Jika stok 0, akan langsung tulisan <strong>SOLD OUT</strong> di semua perangkat.</p>
         </div>
@@ -648,7 +654,6 @@
 
     var parfumData = JSON.parse(JSON.stringify(defaultParfumData));
 
-    /* FUNGSI LOAD DATA DARI LOCAL & SERVER */
     function loadParfumData() {
       var saved = localStorage.getItem('vj_parfum_data');
       if (saved) {
@@ -668,41 +673,40 @@
         } catch(e) {}
       }
       renderProducts();
-      syncFromServer(); // Langsung sinkronisasi ke server saat web dibuka
+      syncFromServer();
     }
 
-    /* FUNGSI SINKRONISASI DARI SERVER (AGAR TAMPILAN SAMA DI SEMUA HP) */
     function syncFromServer() {
       fetch(GOOGLE_SCRIPT_URL + '?action=readProducts', { cache: 'no-store' })
       .then(function(res) { return res.text(); })
       .then(function(text) {
-        var data = null;
-        try { data = JSON.parse(text); } catch(e) {}
-        if (data && Array.isArray(data) && data.length > 0) {
-          var changed = false;
-          data.forEach(function(p) {
-            var match = parfumData.find(function(d) { return d.id === p.id; });
-            if (match) {
-              if (p.stok !== undefined && match.stok !== p.stok) { match.stok = p.stok; changed = true; }
-              if (p.gambarUrl) { match.gambarUrl = p.gambarUrl; changed = true; }
-              if (p.nama) { match.nama = p.nama; changed = true; }
-              if (p.harga !== undefined) { match.harga = p.harga; changed = true; }
-              if (p.ukuran) { match.ukuran = p.ukuran; changed = true; }
-            }
-          });
-          if (changed) {
-            localStorage.setItem('vj_parfum_data', JSON.stringify(parfumData));
-            renderProducts();
-            if (!document.getElementById("adminPanel").classList.contains("hidden")) {
-              renderAdminContent();
+        try {
+          var data = JSON.parse(text);
+          if (data && Array.isArray(data) && data.length > 0) {
+            var changed = false;
+            data.forEach(function(p) {
+              var match = parfumData.find(function(d) { return d.id === p.id; });
+              if (match) {
+                if (p.stok !== undefined && match.stok !== p.stok) { match.stok = p.stok; changed = true; }
+                if (p.gambarUrl) { match.gambarUrl = p.gambarUrl; changed = true; }
+                if (p.nama) { match.nama = p.nama; changed = true; }
+                if (p.harga !== undefined) { match.harga = p.harga; changed = true; }
+                if (p.ukuran) { match.ukuran = p.ukuran; changed = true; }
+              }
+            });
+            if (changed) {
+              localStorage.setItem('vj_parfum_data', JSON.stringify(parfumData));
+              renderProducts();
+              if (!document.getElementById("adminPanel").classList.contains("hidden")) {
+                renderAdminContent();
+              }
             }
           }
-        }
+        } catch(e) {}
       })
       .catch(function() {});
     }
 
-    /* FUNGSI SIMPAN DATA KE LOCAL & SERVER */
     function saveParfumToStorage() {
       try { localStorage.setItem('vj_parfum_data', JSON.stringify(parfumData)); }
       catch(e) { alert('Penyimpanan penuh!'); }
@@ -713,9 +717,8 @@
       }).catch(function() {});
     }
 
-    // PANGGIL SAAT PERTAMA KALI LOAD
     loadParfumData();
-    // AUTO SYNC SETIAP 5 DETIK AGAR JIKA ADMIN UBAH STOK, SEMUA BROWSER LANGSUNG UPDATE
+    // AUTO SYNC SETIAP 5 DETIK AGAR SEMUA BROWSER/HP LANGSUNG UPDATE STOK
     setInterval(syncFromServer, 5000); 
 
     var currentSearch = "";
@@ -731,7 +734,6 @@
       return placeholderImg(p.nama);
     }
 
-    /* FUNGSI RENDER PRODUK (LOGIC SOLD OUT DI SINI) */
     function renderProducts() {
       var grid = document.getElementById("productGrid");
       var empty = document.getElementById("emptyState");
@@ -749,7 +751,7 @@
       empty.classList.add("hidden");
 
       grid.innerHTML = filtered.map(function(p, i) {
-        var isSoldOut = p.stok <= 0; // Jika stok 0 atau kurang, maka SOLD OUT
+        var isSoldOut = p.stok <= 0;
 
         var stockHtml = "";
         if (isSoldOut) {
@@ -761,14 +763,14 @@
         }
 
         var imgSrc = getImgSrc(p);
-        var safeNama = p.nama.replace(/'/g, "\\'");
+        var safeNama = p.nama.replace(/'/g, "");
 
         var cardHtml = '<div class="perfume-card anim-slide-up" style="animation-delay:' + (i * 0.05) + 's;">';
-        cardHtml += '<div class="relative card-img-bg p-3 md:p-4 flex items-center justify-center" style="min-height: 140px; md:min-height: 200px;">';
+        cardHtml += '<div class="relative card-img-bg p-3 md:p-4 flex items-center justify-center" style="min-height: 140px;">';
         if (isSoldOut) {
           cardHtml += '<div class="sold-out-overlay"><span class="sold-out-badge">SOLD OUT</span></div>';
         }
-        cardHtml += '<img src="' + imgSrc + '" alt="' + p.nama + '" class="card-img w-full h-32 md:h-44 object-contain" loading="lazy" onerror="handleImgError(this, \'' + safeNama + '\')">';
+        cardHtml += '<img src="' + imgSrc + '" alt="' + safeNama + '" class="card-img w-full h-32 md:h-44 object-contain" loading="lazy" onerror="handleImgError(this, \'' + safeNama + '\')">';
         cardHtml += '</div>';
         cardHtml += '<div class="p-3 md:p-4 flex-1 flex flex-col">';
         cardHtml += '<div class="flex items-center justify-between mb-1.5 md:mb-2">' + stockHtml + '</div>';
@@ -836,15 +838,15 @@
       }
     }
 
-    /* RENDER FORM ADMIN */
     function renderAdminContent() {
       var content = document.getElementById("adminContent");
       content.innerHTML = parfumData.map(function(p, i) {
         var stockColor = p.stok <= 0 ? "#EF4444" : (p.stok <= 3 ? "#F59E0B" : "#22C55E");
         var stockLabel = p.stok <= 0 ? "SOLD OUT" : (p.stok <= 3 ? "Stok Menipis" : "Tersedia");
+        var safeNama = p.nama.replace(/'/g, "");
         var html = '<div class="rounded-xl p-3 md:p-4" style="background: rgba(19,16,12,0.6); border: 1px solid var(--border);">';
         html += '<div class="flex items-start gap-3">';
-        html += '<img src="' + getImgSrc(p) + '" alt="' + p.nama + '" class="w-12 h-12 md:w-14 md:h-14 rounded-lg object-contain flex-shrink-0" style="background: var(--bg-alt); border: 1px solid var(--border);" onerror="handleImgError(this, \'' + p.nama.replace(/'/g, "\\'") + '\')">';
+        html += '<img src="' + getImgSrc(p) + '" alt="' + safeNama + '" class="w-12 h-12 md:w-14 md:h-14 rounded-lg object-contain flex-shrink-0" style="background: var(--bg-alt); border: 1px solid var(--border);" onerror="handleImgError(this, \'' + safeNama + '\')">';
         html += '<div class="flex-1 min-w-0">';
         html += '<div class="flex items-center justify-between mb-1">';
         html += '<p class="font-extrabold text-xs md:text-sm truncate" style="color: var(--text);">' + p.nama + '</p>';
@@ -882,14 +884,13 @@
       }).join('');
     }
 
-    /* FUNGSI UPDATE STOK DARI ADMIN */
     function updateParfumField(id, field, value) {
       var p = parfumData.find(function(d) { return d.id === id; });
       if (p) {
         p[field] = value;
-        saveParfumToStorage(); // Langsung simpan ke server & lokal
-        renderProducts(); // Update tampilan customer
-        renderAdminContent(); // Update tampilan admin
+        saveParfumToStorage();
+        renderProducts();
+        renderAdminContent();
       }
     }
 
@@ -1077,11 +1078,10 @@
       }
       waMessage += "\nMohon konfirmasi pesanan saya ya Admin 🙏";
 
-      // KURANGI STOK OTOMATIS
       selectedParfum.stok = selectedParfum.stok - qty;
       if (selectedParfum.stok < 0) selectedParfum.stok = 0;
-      saveParfumToStorage(); // Simpan ke server & lokal
-      renderProducts(); // Update UI
+      saveParfumToStorage();
+      renderProducts();
 
       var waUrl = "https://wa.me/60173698359?text=" + encodeURIComponent(waMessage);
       window.open(waUrl, "_blank");
