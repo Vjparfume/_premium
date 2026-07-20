@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
   <title>VJ PARFUME - Wangi Berkualitas, Harga Bersahabat</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -629,7 +626,7 @@
     var parfumData = JSON.parse(JSON.stringify(defaultParfumData));
 
     function loadParfumData() {
-      var parfumData = JSON.parse(localStorage.getItem('vj_parfum_data')) || [...defaultParfumData];
+      var saved = localStorage.getItem('vj_parfum_data');
       if (saved) {
         try {
           var parsed = JSON.parse(saved);
@@ -883,8 +880,8 @@
       else if (selectedPayment === "USD") { payString = "Dollar ($)"; totalString = fmtUSD(totalUSD); }
       else if (selectedPayment === "KHR") { payString = "Riel (៛)"; totalString = fmtKHR(totalKHR); }
 
-     if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== "MASUKAN_LINK_WEB_APP_KAMU_DISINI") {
-  fetch(GOOGLE_SCRIPT_URL + "?nocache=" + new Date().getTime(), {
+      if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== "MASUKAN_LINK_WEB_APP_KAMU_DISINI") {
+        fetch(GOOGLE_SCRIPT_URL, {
           method: 'POST',
           mode: 'no-cors',
           keepalive: true, 
