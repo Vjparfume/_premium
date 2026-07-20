@@ -66,7 +66,6 @@
       z-index: 1;
     }
 
-    /* OPTIMASI ANTI-LAG DI MOBILE */
     @media (max-width: 768px) {
       body::before, body::after {
         background-attachment: scroll !important;
@@ -132,7 +131,7 @@
       backdrop-filter: blur(16px);
       display: flex;
       flex-direction: column;
-      transform: translateZ(0); /* GPU Acceleration Anti-Lag */
+      transform: translateZ(0);
     }
     .perfume-card:hover {
       transform: translateY(-8px) translateZ(0);
@@ -244,7 +243,6 @@
     .pay-option.selected { border-color: var(--accent); background: rgba(212,165,116,0.1); color: var(--accent-dark); box-shadow: 0 0 12px rgba(212,165,116,0.2); }
     .pay-option input { display: none; }
 
-    /* CSS TAMBAHAN UNTUK SOLD OUT */
     .sold-out-overlay {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -280,7 +278,7 @@
   <div id="promoPopup" class="hidden fixed inset-0 z-[70] flex flex-col items-center justify-center p-4 pt-24 modal-backdrop" onclick="closePromo()">
     <div class="relative w-full max-w-xs sm:max-w-sm anim-slide-up" onclick="event.stopPropagation()">
       <a href="#koleksi" onclick="closePromo()" class="block w-full">
-        <img src="https://lh3.googleusercontent.com/d/1-qAqhhq78BJ3m6zVNTUUDjhPRZmxTRCp" alt="Promo VJ Parfume" class="w-full h-auto rounded-2xl shadow-2xl border-2 border-[var(--accent)] cursor-pointer object-contain">
+        <img src="https://lh3.googleusercontent.com/d/1-qAqhhq78BJ3m6zVNTUUDjhPRZmxTRCp" alt="Promo VJ Parfume" class="w-full h-auto rounded-2xl shadow-2xl border-2 border-[var(--accent)] cursor-pointer object-contain" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22500%22%3E%3Crect width=%22400%22 height=%22500%22 fill=%22%231C1814%22/%3E%3Ctext x=%22200%22 y=%22250%22 text-anchor=%22middle%22 fill=%22%23D4A574%22 font-size=%2220%22 font-weight=%22bold%22%3EVJ PARFUME%3C/text%3E%3C/svg%3E';">
       </a>
     </div>
   </div>
@@ -624,8 +622,10 @@
       );
     }
 
-    function handleImgError(imgEl, nama) {
+    function handleImgError(imgEl, id) {
       imgEl.onerror = null;
+      var p = parfumData.find(function(d) { return d.id === id; });
+      var nama = p ? p.nama : "Gambar";
       imgEl.src = placeholderImg(nama);
     }
 
@@ -718,7 +718,6 @@
     }
 
     loadParfumData();
-    // AUTO SYNC SETIAP 5 DETIK AGAR SEMUA BROWSER/HP LANGSUNG UPDATE STOK
     setInterval(syncFromServer, 5000); 
 
     var currentSearch = "";
@@ -763,14 +762,13 @@
         }
 
         var imgSrc = getImgSrc(p);
-        var safeNama = p.nama.replace(/'/g, "");
 
         var cardHtml = '<div class="perfume-card anim-slide-up" style="animation-delay:' + (i * 0.05) + 's;">';
         cardHtml += '<div class="relative card-img-bg p-3 md:p-4 flex items-center justify-center" style="min-height: 140px;">';
         if (isSoldOut) {
           cardHtml += '<div class="sold-out-overlay"><span class="sold-out-badge">SOLD OUT</span></div>';
         }
-        cardHtml += '<img src="' + imgSrc + '" alt="' + safeNama + '" class="card-img w-full h-32 md:h-44 object-contain" loading="lazy" onerror="handleImgError(this, \'' + safeNama + '\')">';
+        cardHtml += '<img src="' + imgSrc + '" alt="' + p.nama + '" class="card-img w-full h-32 md:h-44 object-contain" loading="lazy" onerror="handleImgError(this, ' + p.id + ')">';
         cardHtml += '</div>';
         cardHtml += '<div class="p-3 md:p-4 flex-1 flex flex-col">';
         cardHtml += '<div class="flex items-center justify-between mb-1.5 md:mb-2">' + stockHtml + '</div>';
@@ -843,10 +841,9 @@
       content.innerHTML = parfumData.map(function(p, i) {
         var stockColor = p.stok <= 0 ? "#EF4444" : (p.stok <= 3 ? "#F59E0B" : "#22C55E");
         var stockLabel = p.stok <= 0 ? "SOLD OUT" : (p.stok <= 3 ? "Stok Menipis" : "Tersedia");
-        var safeNama = p.nama.replace(/'/g, "");
         var html = '<div class="rounded-xl p-3 md:p-4" style="background: rgba(19,16,12,0.6); border: 1px solid var(--border);">';
         html += '<div class="flex items-start gap-3">';
-        html += '<img src="' + getImgSrc(p) + '" alt="' + safeNama + '" class="w-12 h-12 md:w-14 md:h-14 rounded-lg object-contain flex-shrink-0" style="background: var(--bg-alt); border: 1px solid var(--border);" onerror="handleImgError(this, \'' + safeNama + '\')">';
+        html += '<img src="' + getImgSrc(p) + '" alt="' + p.nama + '" class="w-12 h-12 md:w-14 md:h-14 rounded-lg object-contain flex-shrink-0" style="background: var(--bg-alt); border: 1px solid var(--border);" onerror="handleImgError(this, ' + p.id + ')">';
         html += '<div class="flex-1 min-w-0">';
         html += '<div class="flex items-center justify-between mb-1">';
         html += '<p class="font-extrabold text-xs md:text-sm truncate" style="color: var(--text);">' + p.nama + '</p>';
@@ -911,7 +908,7 @@
 
       var imgSrc = getImgSrc(p);
       document.getElementById("modalImg").src = imgSrc;
-      document.getElementById("modalImg").onerror = function() { handleImgError(this, p.nama); };
+      document.getElementById("modalImg").onerror = function() { handleImgError(this, p.id); };
       document.getElementById("modalNama").textContent = p.nama;
       document.getElementById("modalNama2").textContent = p.nama;
       document.getElementById("modalUkuran").textContent = p.ukuran;
@@ -1059,84 +1056,4 @@
         payAmount = fmtUSD(toUSD(finalIDR));
       } else if (selectedPayment === "KHR") {
         payText = "Riel (៛)";
-        payAmount = fmtKHR(toKHR(finalIDR));
-      }
-
-      var waMessage = "*PARFUM BARU DIPESAN! 🌸*\n\n";
-      waMessage += "👤 Nama: " + nama + "\n";
-      waMessage += "🌸 Parfum: " + selectedParfum.nama + "\n";
-      waMessage += "📏 Ukuran: " + selectedParfum.ukuran + "\n";
-      waMessage += "📦 Jumlah: " + qty + " botol\n";
-      waMessage += "💰 Harga/unit: " + fmtIDR(selectedParfum.harga) + "\n";
-      if (discount > 0) {
-        waMessage += "🎉 Diskon 10%: -" + fmtIDR(discount) + "\n";
-      }
-      waMessage += "💳 Bayar via: " + payText + "\n";
-      waMessage += "💵 Total: " + payAmount + "\n";
-      if (catatan) {
-        waMessage += "📝 Catatan: " + catatan + "\n";
-      }
-      waMessage += "\nMohon konfirmasi pesanan saya ya Admin 🙏";
-
-      selectedParfum.stok = selectedParfum.stok - qty;
-      if (selectedParfum.stok < 0) selectedParfum.stok = 0;
-      saveParfumToStorage();
-      renderProducts();
-
-      var waUrl = "https://wa.me/60173698359?text=" + encodeURIComponent(waMessage);
-      window.open(waUrl, "_blank");
-
-      closeModal();
-
-      document.getElementById("toastTitle").textContent = "Pesanan Sedang Disiapkan! 🎉";
-      document.getElementById("toastDesc").textContent = "Pesanan Anda sedang disiapkan oleh Admin";
-      document.getElementById("successToast").classList.remove("hidden");
-      setTimeout(function() {
-        document.getElementById("successToast").classList.add("hidden");
-      }, 5000);
-
-      return false;
-    }
-
-    function submitRequest(event) {
-      event.preventDefault();
-      var nama = document.getElementById("reqNama").value.trim();
-      var varian = document.getElementById("reqVarian").value.trim();
-      var catatan = document.getElementById("reqCatatan").value.trim();
-
-      if (!nama || !varian) {
-        alert("Silakan lengkapi data wajib!");
-        return false;
-      }
-
-      var waMessage = "*REQUEST VARIAN PARFUM BARU ✨*\n\n";
-      waMessage += "👤 Nama: " + nama + "\n";
-      waMessage += "🌸 Varian Dicari: " + varian + "\n";
-      if (catatan) {
-        waMessage += "📝 Catatan: " + catatan + "\n";
-      }
-      waMessage += "\nMohon bantu carikan varian parfum ini ya Admin 🙏";
-
-      var waUrl = "https://wa.me/60173698359?text=" + encodeURIComponent(waMessage);
-      window.open(waUrl, "_blank");
-
-      document.getElementById("requestForm").reset();
-
-      document.getElementById("toastTitle").textContent = "Request Terkirim! ✨";
-      document.getElementById("toastDesc").textContent = "Admin akan mencarikan varian parfum untukmu";
-      document.getElementById("successToast").classList.remove("hidden");
-      setTimeout(function() {
-        document.getElementById("successToast").classList.add("hidden");
-      }, 5000);
-
-      return false;
-    }
-
-    setTimeout(function() {
-      document.getElementById("promoPopup").classList.remove("hidden");
-    }, 1500);
-
-    lucide.createIcons();
-  </script>
-</body>
-</html>
+        payAmount = fmtKHR(toKHR(finalIDR
