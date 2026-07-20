@@ -132,7 +132,7 @@
       backdrop-filter: blur(16px);
       display: flex;
       flex-direction: column;
-      transform: translateZ(0); /* GPU Acceleration Anti-Lag */
+      transform: translateZ(0);
     }
     .perfume-card:hover {
       transform: translateY(-8px) translateZ(0);
@@ -245,51 +245,30 @@
     .pay-option.selected { border-color: var(--accent); background: rgba(212,165,116,0.1); color: var(--accent-dark); box-shadow: 0 0 12px rgba(212,165,116,0.2); }
     .pay-option input { display: none; }
 
-    /* === FIX SOLD OUT BADGE & MOBILE ISSUES === */
+    /* === FIX SOLD OUT BADGE (TANPA GRAYSCALE) === */
     .sold-out-badge {
       position: absolute;
-      top: 10px;
-      left: 10px;
-      z-index: 30;
+      top: 8px;
+      left: 8px;
+      z-index: 20;
       background: linear-gradient(135deg, #EF4444, #B91C1C);
       color: #fff;
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 900;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.05em;
       padding: 4px 10px;
       border-radius: 8px;
       text-transform: uppercase;
-      box-shadow: 0 4px 12px rgba(239,68,68,0.5), 0 0 0 1px rgba(255,255,255,0.1) inset;
+      box-shadow: 0 4px 12px rgba(239,68,68,0.6);
       pointer-events: none;
       -webkit-text-fill-color: #fff !important;
-      animation: pulseSold 1.6s ease-in-out infinite;
-      white-space: nowrap;
     }
-    @keyframes pulseSold {
-      0%,100% { transform: scale(1); opacity: 1; }
-      50%     { transform: scale(1.06); opacity: 0.92; }
-    }
-
-    .perfume-card.is-soldout {
-      opacity: 0.78;
-      filter: grayscale(0.35);
-    }
-    .perfume-card.is-soldout .card-img {
-      filter: grayscale(0.6) brightness(0.7);
-    }
+    
     .perfume-card.is-soldout .btn-order {
       background: rgba(239,68,68,0.12) !important;
       border-color: rgba(239,68,68,0.4) !important;
       color: #FCA5A5 !important;
       pointer-events: none;
-    }
-
-    @media (max-width: 768px) {
-      .perfume-card { overflow: visible !important; }
-      .perfume-card .card-img-wrap { overflow: hidden; border-radius: 16px 16px 0 0; }
-      .sold-out-badge { top: 8px; left: 8px; font-size: 9px; padding: 3px 8px; }
-      .modal-backdrop { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
-      .modal-box { transform: translateZ(0); }
     }
 
     .pulse-green-border {
@@ -656,9 +635,10 @@
       imgEl.src = placeholderImg(nama);
     }
 
+    // Data Parfum. BLACK OPIUM (id: 2) saya set stok: 0 agar langsung terlihat SOLD OUT nya di semua browser.
     const defaultParfumData = [
       { id: 1, nama: "SCANDALOUS", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/f_auto,q_auto/scandal_g2pi1v", harga: 200000, stok: 5, ukuran: "35ml" },
-      { id: 2, nama: "BLACK OPIUM", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/f_auto,q_auto/black_hvuzkm", harga: 200000, stok: 5, ukuran: "35ml" },
+      { id: 2, nama: "BLACK OPIUM", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/f_auto,q_auto/black_hvuzkm", harga: 200000, stok: 0, ukuran: "35ml" },
       { id: 3, nama: "AVRIL LAVIGNE", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429588/avril_yo9eko.png", harga: 200000, stok: 5, ukuran: "35ml" },
       { id: 4, nama: "SOFT", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429686/3b98691c-2334-4421-b295-f6f3fa999cd3_vcodzm.png", harga: 200000, stok: 5, ukuran: "35ml" },
       { id: 5, nama: "PINK CHIFFON", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429761/pink_grm8q5.png", harga: 200000, stok: 5, ukuran: "35ml" },
@@ -704,8 +684,8 @@
 
         return `
           <div class="perfume-card ${soldOut ? 'is-soldout' : ''}" data-id="${p.id}">
-            ${soldOut ? '<div class="sold-out-badge">SOLD OUT</div>' : ''}
             <div class="card-img-wrap relative" style="aspect-ratio: 4/5; background: var(--bg-alt); overflow:hidden;">
+              ${soldOut ? '<div class="sold-out-badge">SOLD OUT</div>' : ''}
               <img src="${p.gambarUrl || placeholderImg(p.nama)}" alt="${p.nama}"
                    class="card-img w-full h-full object-contain p-3"
                    onerror="handleImgError(this,'${p.nama.replace(/'/g,'')}')"
@@ -795,7 +775,7 @@
       document.querySelectorAll('#paymentOptions .pay-option').forEach(opt => {
         opt.classList.toggle('selected', opt.getAttribute('data-val') === method);
       });
-      document.querySelector(`#paymentOptions input[value="${method}"]`).checked = true;
+      document.querySelector('#paymentOptions input[value="' + method + '"]').checked = true;
       
       const p = parfumData.find(x => x.id === currentProductId);
       if (!p) return;
@@ -803,11 +783,11 @@
       const detailBox = document.getElementById('paymentDetails');
       let html = '';
       if (method === 'IDR') {
-        html = `<p class="text-xs font-bold" style="color: var(--text-sec);">Bayar dengan Rupiah (Cash/Transfer)</p>`;
+        html = '<p class="text-xs font-bold" style="color: var(--text-sec);">Bayar dengan Rupiah (Cash/Transfer)</p>';
       } else if (method === 'USD') {
-        html = `<p class="text-xs font-bold" style="color: var(--text-sec);">Bayar dengan Dollar (${fmtUSD(toUSD(p.harga))} / pcs)</p>`;
+        html = '<p class="text-xs font-bold" style="color: var(--text-sec);">Bayar dengan Dollar (' + fmtUSD(toUSD(p.harga)) + ' / pcs)</p>';
       } else if (method === 'KHR') {
-        html = `<p class="text-xs font-bold" style="color: var(--text-sec);">Bayar dengan Riel (${fmtKHR(toKHR(p.harga))} / pcs)</p>`;
+        html = '<p class="text-xs font-bold" style="color: var(--text-sec);">Bayar dengan Riel (' + fmtKHR(toKHR(p.harga)) + ' / pcs)</p>';
       }
       detailBox.innerHTML = html;
       detailBox.classList.remove('hidden');
@@ -967,9 +947,8 @@
         renderProducts(filtered);
       });
       
-      setTimeout(() => {
-        document.getElementById('promoPopup').classList.remove('hidden');
-      }, 3000);
+      // Popup langsung muncul tanpa delay
+      document.getElementById('promoPopup').classList.remove('hidden');
       
       let clickCount = 0;
       document.getElementById('logoArea').addEventListener('click', () => {
