@@ -866,7 +866,7 @@
       document.getElementById('totalHarga').textContent = mainTotalText;
     }
 
-    function submitOrder(e) {
+       function submitOrder(e) {
       e.preventDefault();
       const p = parfumData.find(x => x.id === currentProductId);
       if (!p) return;
@@ -881,15 +881,14 @@
       else if (currentPaymentMethod === 'USD') totalPaid = fmtUSD(toUSD(totalIDR));
       else if (currentPaymentMethod === 'KHR') totalPaid = fmtKHR(toKHR(totalIDR));
       
-      // DIPERBAIKI: Mengirim data tipe: 'ORDER' (sesuai script Google Anda yang asli)
+      // Data dikirim dengan nama variabel yang PERSIS sama dengan di Google Sheet
       const orderData = {
         tipe: 'ORDER',
         nama: nama,
-        parfum: p.nama,
-        ukuran: p.ukuran || '35ml',
+        parfum: p.nama + ' (' + (p.ukuran || '35ml') + ')',
         qty: currentQty,
-        totalIDR: totalIDR,
         paymentMethod: currentPaymentMethod,
+        totalHarga: totalPaid,
         catatan: catatan
       };
       
