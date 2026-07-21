@@ -731,7 +731,7 @@
       if (!p) return;
       const mainEl = document.getElementById('modalHargaIDR');
       const altEl = document.getElementById('modalHargaUsdKhr');
-      altEl.classList.add('hidden'); // Sembunyikan mata uang lainnya agar rapi
+      altEl.classList.add('hidden'); 
       
       if (method === 'IDR') {
         mainEl.textContent = fmtIDR(p.harga);
@@ -806,7 +806,6 @@
       const p = parfumData.find(x => x.id === currentProductId);
       if (!p) return;
       
-      // Update harga di modal sesuai pilihan
       updateModalPrice(method);
 
       const detailBox = document.getElementById('paymentDetails');
@@ -871,7 +870,7 @@
       
       let mainTotalText = '';
       const altTotalEl = document.getElementById('totalHargaAlt');
-      altTotalEl.classList.add('hidden'); // Sembunyikan total mata uang lainnya
+      altTotalEl.classList.add('hidden'); 
       
       if (currentPaymentMethod === 'IDR') {
         mainTotalText = fmtIDR(totalIDR);
@@ -899,16 +898,15 @@
       else if (currentPaymentMethod === 'USD') totalPaid = fmtUSD(toUSD(totalIDR));
       else if (currentPaymentMethod === 'KHR') totalPaid = fmtKHR(toKHR(totalIDR));
       
-      // PERBAIKAN: Menggunakan URLSearchParams agar data PASTI masuk semua ke Google Sheet
+      // PERBAIKAN: Sesuai susunan kolom di Sheet Anda
       const params = new URLSearchParams();
-      params.append('tipe', 'ORDER');
-      params.append('nama', nama);
-      params.append('parfum', p.nama);
-      params.append('ukuran', p.ukuran || '35ml');
-      params.append('qty', currentQty);
-      params.append('harga', totalPaid);
-      params.append('pembayaran', currentPaymentMethod);
-      params.append('catatan', catatan);
+      params.append('Waktu', new Date().toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' }));
+      params.append('Nama', nama);
+      params.append('Varian', p.nama + ' (' + (p.ukuran || '35ml') + ')');
+      params.append('Jumlah', currentQty);
+      params.append('Bayar', currentPaymentMethod);
+      params.append('Total', totalPaid);
+      params.append('Catatan', catatan);
       
       fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
@@ -934,12 +932,14 @@
       const varian = document.getElementById('reqVarian').value;
       const catatan = document.getElementById('reqCatatan').value;
       
-      // PERBAIKAN: Menggunakan URLSearchParams agar data PASTI masuk semua ke Google Sheet
       const params = new URLSearchParams();
-      params.append('tipe', 'REQUEST');
-      params.append('nama', nama);
-      params.append('varian', varian);
-      params.append('catatan', catatan);
+      params.append('Waktu', new Date().toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' }));
+      params.append('Nama', nama);
+      params.append('Varian', varian);
+      params.append('Jumlah', '-');
+      params.append('Bayar', '-');
+      params.append('Total', '-');
+      params.append('Catatan', catatan);
       
       fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
