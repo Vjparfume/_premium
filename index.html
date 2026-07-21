@@ -120,35 +120,36 @@
     .d4 { animation-delay: 0.4s; }
     .d5 { animation-delay: 0.5s; }
 
+    /* KARTU PRODUK CANTIK, PREMIUM, ANTI-LAG */
     .perfume-card {
-      background: linear-gradient(160deg, rgba(45, 38, 28, 0.92) 0%, rgba(18, 14, 10, 0.98) 100%);
+      background: linear-gradient(160deg, rgba(45, 38, 28, 0.95) 0%, rgba(18, 14, 10, 0.98) 100%);
       border: 1px solid rgba(212, 165, 116, 0.3);
       border-radius: 16px;
       overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
       position: relative;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 15px rgba(212,165,116,0.05), inset 0 1px 0 rgba(255,255,255,0.08);
-      backdrop-filter: blur(16px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08);
       display: flex;
       flex-direction: column;
-      transform: translateZ(0);
+      transform: translateZ(0); /* GPU Acceleration Anti-Lag */
     }
     .perfume-card:hover {
-      transform: translateY(-8px) translateZ(0);
+      transform: translateY(-5px) translateZ(0);
       border-color: rgba(212, 165, 116, 0.7);
-      box-shadow: 0 20px 50px rgba(212,165,116,0.15), 0 0 25px rgba(212,165,116,0.1);
+      box-shadow: 0 15px 40px rgba(212,165,116,0.15);
     }
     .perfume-card:hover .card-img { transform: scale(1.05); }
     
+    /* GAMBAR PARFUM JADI TAMPIL CANTIK & MENONJOL */
+    .card-img-bg {
+      background: radial-gradient(circle at 50% 40%, rgba(212,165,116,0.15) 0%, rgba(28,24,20,0) 80%);
+    }
     .card-img {
-      transition: transform 0.7s cubic-bezier(0.16,1,0.3,1), filter 0.7s ease;
+      transition: transform 0.4s ease;
       filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
     }
     .perfume-card:hover .card-img {
-      filter: drop-shadow(0 0 20px rgba(212, 165, 116, 0.5)) drop-shadow(0 10px 20px rgba(0,0,0,0.4));
-    }
-    .card-img-bg {
-      background: radial-gradient(circle at 50% 40%, rgba(212,165,116,0.1) 0%, rgba(28,24,20,0.8) 80%);
+      filter: drop-shadow(0 0 20px rgba(212, 165, 116, 0.5));
     }
 
     .variant-name {
@@ -175,19 +176,18 @@
       background: rgba(212,165,116,0.08);
       border: 1px solid rgba(212,165,116,0.2);
       color: var(--accent-dark);
-      transition: all 0.3s ease;
+      transition: background 0.2s ease;
     }
     .btn-order:hover {
       background: linear-gradient(135deg, #D4A574, #B8865A);
       color: #13100C;
       border-color: #D4A574;
-      box-shadow: 0 6px 24px rgba(212,165,116,0.2);
     }
 
     .btn-primary {
       background: linear-gradient(135deg, #D4A574, #B8865A);
       color: #13100C;
-      transition: all 0.3s ease;
+      transition: background 0.2s ease, box-shadow 0.2s ease;
       position: relative;
       overflow: hidden;
       box-shadow: 0 4px 15px rgba(212,165,116,0.3);
@@ -195,33 +195,17 @@
     .btn-primary:hover {
       background: linear-gradient(135deg, #E8C9A8, #D4A574);
       box-shadow: 0 10px 35px rgba(212,165,116,0.5);
-      transform: translateY(-2px);
-    }
-    .btn-primary::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.4), transparent);
-      transform: translateX(-100%) rotate(45deg);
-      animation: shine 3s infinite;
-    }
-    @keyframes shine {
-      0% { transform: translateX(-100%) rotate(45deg); }
-      100% { transform: translateX(100%) rotate(45deg); }
     }
 
-    .input-field { background: rgba(26,22,18,0.9); border: 1px solid var(--border); color: var(--text); transition: all 0.25s ease; backdrop-filter: blur(8px); }
+    .input-field { background: rgba(26,22,18,0.9); border: 1px solid var(--border); color: var(--text); transition: border-color 0.2s ease; }
     .input-field::placeholder { color: var(--text-muted); }
     .input-field:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(212,165,116,0.1); background: rgba(26,22,18,0.95); outline: none; }
 
-    .modal-backdrop { backdrop-filter: blur(16px); background: rgba(13,10,8,0.6); }
-    .modal-box { background: rgba(28,24,20,0.97); border: 1px solid var(--border-accent); border-radius: 24px; box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 40px rgba(212,165,116,0.1); backdrop-filter: blur(20px); }
+    .modal-backdrop { background: rgba(13,10,8,0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+    .modal-box { background: rgba(28,24,20,0.98); border: 1px solid var(--border-accent); border-radius: 24px; box-shadow: 0 32px 80px rgba(0,0,0,0.5); }
 
-    .qty-btn { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-accent); border-radius: 12px; background: rgba(212,165,116,0.06); color: var(--accent-dark); cursor: pointer; transition: all 0.2s; font-size: 20px; user-select: none; }
-    .qty-btn:hover { background: rgba(212,165,116,0.15); border-color: var(--accent); }
+    .qty-btn { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-accent); border-radius: 12px; background: rgba(212,165,116,0.06); color: var(--accent-dark); cursor: pointer; transition: background 0.2s; font-size: 20px; user-select: none; }
+    .qty-btn:hover { background: rgba(212,165,116,0.15); }
 
     .marquee-track { display: flex; animation: marquee 35s linear infinite; width: max-content; transform: translateZ(0); }
     .stock-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
@@ -229,19 +213,19 @@
     .stock-low { background: #F59E0B; box-shadow: 0 0 6px rgba(245,158,11,0.4); }
     .stock-no { background: #EF4444; box-shadow: 0 0 6px rgba(239,68,68,0.4); }
 
-    .toast-box { background: rgba(28,24,20,0.97); border: 1px solid rgba(34,197,94,0.2); border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 20px rgba(34,197,94,0.06); backdrop-filter: blur(16px); }
+    .toast-box { background: rgba(28,24,20,0.98); border: 1px solid rgba(34,197,94,0.2); border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
     .gold-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border-accent), transparent); }
-    .tg-float { position: fixed; bottom: 20px; right: 20px; z-index: 45; width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, #25D366, #128C7E); display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 24px rgba(37,211,102,0.35); transition: all 0.3s ease; cursor: pointer; }
-    .tg-float:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,0.45); }
+    .tg-float { position: fixed; bottom: 20px; right: 20px; z-index: 45; width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, #25D366, #128C7E); display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 24px rgba(37,211,102,0.35); transition: transform 0.2s; cursor: pointer; }
+    .tg-float:hover { transform: scale(1.1); }
 
-    .admin-input { background: rgba(19,16,12,0.8); border: 1px solid var(--border); color: var(--text); border-radius: 10px; padding: 8px 12px; font-size: 13px; width: 100%; transition: all 0.2s; outline: none; font-family: 'Inter', sans-serif; }
-    .admin-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(212,165,116,0.1); }
+    .admin-input { background: rgba(19,16,12,0.8); border: 1px solid var(--border); color: var(--text); border-radius: 10px; padding: 8px 12px; font-size: 13px; width: 100%; outline: none; font-family: 'Inter', sans-serif; }
+    .admin-input:focus { border-color: var(--accent); }
     .hero-pattern { background-image: radial-gradient(rgba(212,165,116,0.03) 1px, transparent 1px); background-size: 24px 24px; }
-    .section-glass { background: rgba(19,16,12,0.6); backdrop-filter: blur(16px); }
+    .section-glass { background: rgba(19,16,12,0.85); }
     .pay-chip { display: inline-flex; align-items: center; gap: 4px; padding: 6px 14px; border-radius: 10px; font-weight: 800; font-size: 13px; white-space: nowrap; }
-    .pay-option { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px; border: 2px solid var(--border); border-radius: 12px; cursor: pointer; transition: all 0.2s; background: rgba(19,16,12,0.6); color: var(--text-sec); }
+    .pay-option { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px; border: 2px solid var(--border); border-radius: 12px; cursor: pointer; transition: border-color 0.2s; background: rgba(19,16,12,0.8); color: var(--text-sec); }
     .pay-option:hover { border-color: var(--border-accent); }
-    .pay-option.selected { border-color: var(--accent); background: rgba(212,165,116,0.1); color: var(--accent-dark); box-shadow: 0 0 12px rgba(212,165,116,0.2); }
+    .pay-option.selected { border-color: var(--accent); background: rgba(212,165,116,0.1); color: var(--accent-dark); }
     .pay-option input { display: none; }
 
     .sold-out-badge {
@@ -289,9 +273,9 @@
   </div>
 
   <nav class="fixed top-0 left-0 right-0 z-40 h-14 md:h-16 flex items-center justify-between px-4 md:px-8"
-       style="background: rgba(19,16,12,0.88); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border);">
+       style="background: rgba(19,16,12,0.95); border-bottom: 1px solid var(--border);">
     <div id="logoArea" class="flex items-center gap-2.5 cursor-pointer select-none">
-      <div class="w-8 h-8 md:w-9 md:h-9 rounded-xl accent-gradient-bg flex items-center justify-center shadow-lg" style="box-shadow: 0 4px 15px rgba(212,165,116,0.2);">
+      <div class="w-8 h-8 md:w-9 md:h-9 rounded-xl accent-gradient-bg flex items-center justify-center shadow-lg">
         <span class="font-black text-[10px] md:text-xs" style="color: #13100C;">VJ</span>
       </div>
       <span class="font-black text-sm md:text-base tracking-tight rainbow-glow">VJ PARFUME</span>
@@ -304,7 +288,7 @@
 
   <section class="min-h-screen flex flex-col items-center justify-center text-center px-5 md:px-6 relative overflow-hidden hero-pattern">
     <div class="anim-fade-up mb-6 md:mb-8">
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full" style="border: 1px solid var(--border-accent); background: rgba(212,165,116,0.04); backdrop-filter: blur(10px);">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full" style="border: 1px solid var(--border-accent); background: rgba(212,165,116,0.04);">
         <span class="text-[10px] md:text-[11px] font-extrabold accent-text tracking-widest uppercase">✦ Premium Fragrance ✦</span>
       </div>
     </div>
@@ -356,10 +340,9 @@
   </section>
 
   <section id="request" class="max-w-3xl mx-auto px-3 md:px-8 py-10 md:py-16">
-    <div class="rounded-2xl md:rounded-3xl p-6 md:p-10 text-center relative overflow-hidden" style="background: linear-gradient(160deg, rgba(45, 38, 28, 0.95) 0%, rgba(18, 14, 10, 0.98) 100%); border: 1px solid var(--accent); box-shadow: 0 0 30px rgba(212,165,116,0.15), inset 0 0 20px rgba(212,165,116,0.05);">
-      <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 50% 0%, var(--accent) 0%, transparent 60%);"></div>
+    <div class="rounded-2xl md:rounded-3xl p-6 md:p-10 text-center relative overflow-hidden" style="background: linear-gradient(160deg, rgba(45, 38, 28, 0.98) 0%, rgba(18, 14, 10, 1) 100%); border: 1px solid var(--accent); box-shadow: 0 0 30px rgba(212,165,116,0.15);">
       <div class="relative z-10">
-        <div class="w-16 h-16 rounded-full mx-auto mb-5 flex items-center justify-center" style="background: var(--accent-pale); border: 1px solid var(--border-accent); box-shadow: 0 0 20px rgba(212,165,116,0.2);">
+        <div class="w-16 h-16 rounded-full mx-auto mb-5 flex items-center justify-center" style="background: var(--accent-pale); border: 1px solid var(--border-accent);">
           <i data-lucide="sparkles" class="w-8 h-8 accent-text"></i>
         </div>
         <h2 class="text-2xl md:text-4xl font-serif font-extrabold mb-3 accent-gradient-text">Req Varian Yang Anda Inginkan</h2>
@@ -527,7 +510,7 @@
           </div>
         </div>
         
-        <div class="rounded-xl md:rounded-2xl p-4 md:p-5 text-center" style="background: var(--accent-pale); border: 1px solid var(--border-accent); box-shadow: inset 0 0 20px rgba(212,165,116,0.05);">
+        <div class="rounded-xl md:rounded-2xl p-4 md:p-5 text-center" style="background: var(--accent-pale); border: 1px solid var(--border-accent);">
           <p class="text-[10px] md:text-xs font-extrabold mb-1.5 md:mb-2 tracking-wide" style="color: var(--text-sec);">TOTAL HARGA</p>
           <div id="totalHarga" class="font-black price-gold text-2xl md:text-3xl">Rp 0</div>
           <div id="totalHargaAlt" class="font-bold text-sm mt-1 hidden" style="color: var(--text-sec);"></div>
@@ -695,7 +678,7 @@
 
         return `
           <div class="perfume-card ${soldOut ? 'is-soldout' : ''}" data-id="${p.id}">
-            <div class="card-img-wrap relative" style="aspect-ratio: 4/5; background: var(--bg-alt); overflow:hidden;">
+            <div class="card-img-wrap relative card-img-bg" style="aspect-ratio: 4/5; background-color: var(--bg-alt); overflow:hidden;">
               ${soldOut ? '<div class="sold-out-badge">SOLD OUT</div>' : ''}
               <img src="${p.gambarUrl || placeholderImg(p.nama)}" alt="${p.nama}"
                    class="card-img w-full h-full object-contain p-3"
@@ -898,21 +881,23 @@
       else if (currentPaymentMethod === 'USD') totalPaid = fmtUSD(toUSD(totalIDR));
       else if (currentPaymentMethod === 'KHR') totalPaid = fmtKHR(toKHR(totalIDR));
       
-      // PERBAIKAN: Sesuai susunan kolom di Sheet Anda
-      const params = new URLSearchParams();
-      params.append('Waktu', new Date().toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' }));
-      params.append('Nama', nama);
-      params.append('Varian', p.nama + ' (' + (p.ukuran || '35ml') + ')');
-      params.append('Jumlah', currentQty);
-      params.append('Bayar', currentPaymentMethod);
-      params.append('Total', totalPaid);
-      params.append('Catatan', catatan);
+      // DIPERBAIKI: Mengirim data tipe: 'ORDER' (sesuai script Google Anda yang asli)
+      const orderData = {
+        tipe: 'ORDER',
+        nama: nama,
+        parfum: p.nama,
+        ukuran: p.ukuran || '35ml',
+        qty: currentQty,
+        totalIDR: totalIDR,
+        paymentMethod: currentPaymentMethod,
+        catatan: catatan
+      };
       
       fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: params
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(orderData)
       }).catch(err => console.error('Error:', err));
       
       p.stok -= currentQty;
@@ -932,20 +917,19 @@
       const varian = document.getElementById('reqVarian').value;
       const catatan = document.getElementById('reqCatatan').value;
       
-      const params = new URLSearchParams();
-      params.append('Waktu', new Date().toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' }));
-      params.append('Nama', nama);
-      params.append('Varian', varian);
-      params.append('Jumlah', '-');
-      params.append('Bayar', '-');
-      params.append('Total', '-');
-      params.append('Catatan', catatan);
+      // DIPERBAIKI: Mengirim data tipe: 'REQUEST' (sesuai script Google Anda yang asli)
+      const reqData = {
+        tipe: 'REQUEST',
+        nama: nama,
+        varian: varian,
+        catatan: catatan
+      };
       
       fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: params
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(reqData)
       }).catch(err => console.error('Error:', err));
       
       showToast('Request Terkirim! 🌟', 'Admin akan mencarikan varian tersebut untukmu.');
