@@ -66,7 +66,6 @@
       z-index: 1;
     }
 
-    /* OPTIMASI ANTI-LAG DI MOBILE */
     @media (max-width: 768px) {
       body::before, body::after {
         background-attachment: scroll !important;
@@ -245,7 +244,6 @@
     .pay-option.selected { border-color: var(--accent); background: rgba(212,165,116,0.1); color: var(--accent-dark); box-shadow: 0 0 12px rgba(212,165,116,0.2); }
     .pay-option input { display: none; }
 
-    /* === FIX SOLD OUT BADGE (TANPA GRAYSCALE) === */
     .sold-out-badge {
       position: absolute;
       top: 8px;
@@ -605,7 +603,6 @@
     });
 
     const BARCODE_URL = "https://i.postimg.cc/ZRx57tnm/Screenshot-1.png"; 
-    
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzHEE1eFBGKxtwGSzclyT4Tmzj2GO4DTAHAARJ8WJpaHHTXBRB3JRaQXFd_kNXgEeE4og/exec"; 
     const ADMIN_PASSWORD = "vjadmin2025";
 
@@ -635,7 +632,6 @@
       imgEl.src = placeholderImg(nama);
     }
 
-    // Data Parfum. BLACK OPIUM (id: 2) saya set stok: 0 agar langsung terlihat SOLD OUT nya di semua browser.
     const defaultParfumData = [
       { id: 1, nama: "SCANDALOUS", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/f_auto,q_auto/scandal_g2pi1v", harga: 200000, stok: 5, ukuran: "35ml" },
       { id: 2, nama: "BLACK OPIUM", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/f_auto,q_auto/black_hvuzkm", harga: 200000, stok: 0, ukuran: "35ml" },
@@ -653,13 +649,25 @@
       { id: 14, nama: "LOVELY", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784430047/92ec90ee-88a9-4f9a-b696-83074c243553_rbkxiq.png", harga: 200000, stok: 5, ukuran: "35ml" },
       { id: 15, nama: "MONT BLANC LEGEND", gambarUrl: "https://i.postimg.cc/CLptZHwp/fc820462-cf97-4602-9028-00eb58ad326a.png", harga: 200000, stok: 5, ukuran: "35ml" },
       { id: 16, nama: "YSL LIBRE", gambarUrl: "https://i.postimg.cc/K8TkmYZK/590dc64e-a532-4e03-915f-2773fa5454eb.png", harga: 200000, stok: 5, ukuran: "35ml" },
-       { id: 17, nama: "PINK FANTASY", gambarUrl: "https://i.postimg.cc/25cVwLTS/454dc429-8b34-42b0-998f-b9c712af8691.png", harga: 200000, stok: 5, ukuran: "35ml" },
-       { id: 18, nama: "BLUE EMOTION", gambarUrl: "https://i.postimg.cc/fLSTf2J8/39081197-8eed-4587-9451-b9ecf5c6bd74.png", harga: 200000, stok: 5, ukuran: "35ml" },
-       { id: 19, nama: "BACCARAT", gambarUrl: "https://i.postimg.cc/SxK4GTPc/31ec123f-b149-4235-9cd2-f4be00720458.png", harga: 200000, stok: 5, ukuran: "35ml" },
-      { id: 20, nama: "DRAKAR", gambarUrl: "https://i.postimg.cc/GmfWxcYN/8cd03f13-b49c-42ec-ac9e-2575db75803a.png", harga: 200000, stok: 5, ukuran: "35ml" }
+      { id: 17, nama: "PINK FANTASY", gambarUrl: "https://i.postimg.cc/25cVwLTS/454dc429-8b34-42b0-998f-b9c712af8691.png", harga: 200000, stok: 5, ukuran: "35ml" },
+      { id: 18, nama: "BLUE EMOTION", gambarUrl: "https://i.postimg.cc/fLSTf2J8/39081197-8eed-4587-9451-b9ecf5c6bd74.png", harga: 200000, stok: 5, ukuran: "35ml" },
+      { id: 16, nama: "BACCARAT", gambarUrl: "https://i.postimg.cc/SxK4GTPc/31ec123f-b149-4235-9cd2-f4be00720458.png", harga: 200000, stok: 5, ukuran: "35ml" },
+      { id: 16, nama: "DRAKAR", gambarUrl: "https://i.postimg.cc/GmfWxcYN/8cd03f13-b49c-42ec-ac9e-2575db75803a.png", harga: 200000, stok: 5, ukuran: "35ml" },
     ];
 
-    let parfumData = JSON.parse(localStorage.getItem('vjParfumeData')) || defaultParfumData;
+    let parfumData = JSON.parse(localStorage.getItem('vjParfumeData')) || [];
+    if (parfumData.length !== defaultParfumData.length) {
+      const stokMap = {};
+      parfumData.forEach(p => { stokMap[p.id] = p.stok; });
+      parfumData = defaultParfumData.map(p => {
+        if (stokMap[p.id] !== undefined) {
+          return { ...p, stok: stokMap[p.id] };
+        }
+        return p;
+      });
+      localStorage.setItem('vjParfumeData', JSON.stringify(parfumData));
+    }
+
     let currentProductId = null;
     let currentQty = 1;
     let currentPaymentMethod = 'IDR';
@@ -785,13 +793,26 @@
       
       const detailBox = document.getElementById('paymentDetails');
       let html = '';
+      
       if (method === 'IDR') {
-        html = '<p class="text-xs font-bold" style="color: var(--text-sec);">Bayar dengan Rupiah (Cash/Transfer)</p>';
-      } else if (method === 'USD') {
-        html = '<p class="text-xs font-bold" style="color: var(--text-sec);">Bayar dengan Dollar (' + fmtUSD(toUSD(p.harga)) + ' / pcs)</p>';
-      } else if (method === 'KHR') {
-        html = '<p class="text-xs font-bold" style="color: var(--text-sec);">Bayar dengan Riel (' + fmtKHR(toKHR(p.harga)) + ' / pcs)</p>';
+        html = `
+          <div class="text-center">
+            <p class="text-xs font-bold mb-2" style="color: var(--text-sec);">Silakan transfer ke:</p>
+            <p class="font-extrabold text-sm mb-1" style="color: var(--accent-dark);">BCA / MANDIRI / BRI</p>
+            <p class="font-black text-base" style="color: var(--text);">1234567890</p>
+            <p class="text-[10px] mt-1" style="color: var(--text-muted);">a.n. VJ Parfume</p>
+          </div>
+        `;
+      } else if (method === 'USD' || method === 'KHR') {
+        html = `
+          <div class="text-center">
+            <p class="text-xs font-bold mb-2" style="color: var(--text-sec);">Scan Barcode ABA di bawah ini:</p>
+            <img src="${BARCODE_URL}" alt="Barcode ABA" class="mx-auto w-32 h-32 object-contain rounded-lg" style="background: #fff; padding: 4px;">
+            <p class="text-[10px] mt-2 font-bold" style="color: var(--accent);">(${method === 'USD' ? fmtUSD(toUSD(p.harga)) + ' / pcs' : fmtKHR(toKHR(p.harga)) + ' / pcs'})</p>
+          </div>
+        `;
       }
+      
       detailBox.innerHTML = html;
       detailBox.classList.remove('hidden');
       updateTotalPrice();
@@ -829,22 +850,25 @@
       
       const nama = document.getElementById('inputNama').value;
       const catatan = document.getElementById('inputCatatan').value;
+      let totalIDR = p.harga * currentQty;
+      if (currentQty >= 4) totalIDR = totalIDR * 0.9;
       
       const orderData = {
         tipe: 'ORDER',
+        nama: nama,
         parfum: p.nama,
         ukuran: p.ukuran || '35ml',
         qty: currentQty,
-        totalIDR: p.harga * currentQty * (currentQty >= 4 ? 0.9 : 1),
-        paymentMethod: currentPaymentMethod,
-        nama: nama,
+        harga: fmtIDR(totalIDR),
+        pembayaran: currentPaymentMethod,
         catatan: catatan
       };
       
+      // Menggunakan text/plain agar Google Script bisa baca di mode no-cors tanpa error CORS
       fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(orderData)
       }).catch(err => console.error('Error:', err));
       
@@ -875,7 +899,7 @@
       fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(reqData)
       }).catch(err => console.error('Error:', err));
       
@@ -950,7 +974,6 @@
         renderProducts(filtered);
       });
       
-      // Popup langsung muncul tanpa delay
       document.getElementById('promoPopup').classList.remove('hidden');
       
       let clickCount = 0;
