@@ -139,12 +139,28 @@ border-color: rgba(212, 165, 116, 0.7);
 box-shadow: 0 15px 40px rgba(212,165,116,0.15);
 }
 .perfume-card:hover .card-img { transform: scale(1.06); }
+.perfume-card:hover .card-img-wrap::before { opacity: 1; }
 
-.card-img-bg {
-background: radial-gradient(circle at 50% 35%, rgba(232, 201, 168, 0.15) 0%, rgba(74, 61, 50, 0.1) 50%, rgba(18, 14, 10, 0) 90%);
+.card-img-wrap {
+background: radial-gradient(circle at 50% 40%, #312820 0%, #1C1814 80%) !important;
 position: relative;
 }
-.card-img-bg::after {
+.card-img-wrap::before {
+content: "";
+position: absolute;
+top: 15%;
+left: 50%;
+transform: translateX(-50%);
+width: 75%;
+height: 70%;
+background: radial-gradient(ellipse, rgba(212, 165, 116, 0.4) 0%, rgba(212, 165, 116, 0.1) 40%, transparent 70%);
+filter: blur(20px);
+z-index: 0;
+opacity: 0.8;
+transition: opacity 0.4s ease;
+pointer-events: none;
+}
+.card-img-wrap::after {
 content: "";
 position: absolute;
 bottom: 5%;
@@ -159,7 +175,7 @@ z-index: 0;
 
 .card-img {
 transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), filter 0.3s ease;
-filter: drop-shadow(0 8px 20px rgba(0,0,0,0.6)) drop-shadow(0 0 12px rgba(212, 165, 116, 0.3));
+filter: drop-shadow(0 8px 20px rgba(0,0,0,0.6)) drop-shadow(0 0 15px rgba(212, 165, 116, 0.5));
 position: relative;
 z-index: 1;
 }
@@ -667,7 +683,7 @@ const stokTxt = soldOut ? 'SOLD OUT' : 'Tersedia';
 
 return `
 <div class="perfume-card ${soldOut ? 'is-soldout' : ''}" data-id="${p.id}">
-<div class="card-img-wrap relative card-img-bg" style="aspect-ratio: 4/5; background-color: transparent; overflow:hidden;">
+<div class="card-img-wrap relative" style="aspect-ratio: 4/5; overflow:hidden;">
  ${soldOut ? '<div class="sold-out-badge">SOLD OUT</div>' : ''}
 <img src="${p.gambarUrl || placeholderImg(p.nama)}" alt="${p.nama}" class="card-img w-full h-full object-contain p-3" onerror="handleImgError(this,'${p.nama.replace(/'/g,'')}')" loading="eager" decoding="async">
 </div>
