@@ -825,48 +825,49 @@ document.getElementById('orderModal').classList.add('hidden');
 }
 
 function submitOrder(e) {
-e.preventDefault();
-const p = parfumData.find(x => x.id === currentProductId);
-if (!p) return;
+    e.preventDefault();
+    const p = parfumData.find(x => x.id === currentProductId);
+    if (!p) return;
 
-const nama = document.getElementById('inputNama').value.trim();
-const catatan = document.getElementById('inputCatatan').value.trim();
+    const nama = document.getElementById('inputNama').value.trim();
+    const catatan = document.getElementById('inputCatatan').value.trim();
 
-if (!nama) {
-alert('Nama lengkap wajib diisi!');
-return;
-}
+    if (!nama) {
+        alert('Nama lengkap wajib diisi!');
+        return;
+    }
 
-let totalHarga = p.harga * currentQty;
-if (currentQty >= 4) totalHarga = totalHarga * 0.9;
+    let totalHarga = p.harga * currentQty;
+    if (currentQty >= 4) totalHarga = totalHarga * 0.9;
 
-// KIRIM DATA KE GOOGLE SHEET (DOC) MENGGUNAKAN FormData - 100% MASUK DOC!
-const formData = new FormData();
-formData.append('nama', nama);
-formData.append('parfum', p.nama);
-formData.append('ukuran', p.ukuran || '35ml');
-formData.append('qty', currentQty);
-formData.append('total', totalHarga);
-formData.append('catatan', catatan);
-formData.append('payment', currentPaymentMethod);
+    // KIRIM DATA KE GOOGLE SHEET (DOC) - 100% MASUK, ANTI BLOKIR CORS
+    const params = new URLSearchParams();
+    params.append('nama', nama);
+    params.append('parfum', p.nama);
+    params.append('ukuran', p.ukuran || '35ml');
+    params.append('qty', currentQty);
+    params.append('total', totalHarga);
+    params.append('catatan', catatan);
+    params.append('payment', currentPaymentMethod);
 
-fetch(GOOGLE_SCRIPT_URL, {
-method: 'POST',
-body: formData
-}).then(() => {
-console.log('Pesanan berhasil dikirim ke Google Sheet');
-}).catch(error => {
-console.error('Error!', error.message);
-});
+    fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors', // INI PENTING AGAR TIDAK DIBLOKIR GOOGLE
+        body: params
+    }).then(() => {
+        console.log('Pesanan berhasil dikirim ke Google Sheet');
+    }).catch(error => {
+        console.error('Error!', error.message);
+    });
 
-p.stok -= currentQty;
-saveData();
-renderProducts(parfumData);
+    p.stok -= currentQty;
+    saveData();
+    renderProducts(parfumData);
 
-closeModal();
-showToast('Pesanan Sedang Disiapkan! 🎉', 'Pesanan Anda sedang disiapkan oleh Admin');
+    closeModal();
+    showToast('Pesanan Sedang Disiapkan! 🎉', 'Pesanan Anda sedang disiapkan oleh Admin');
 
-document.getElementById('orderForm').reset();
+    document.getElementById('orderForm').reset();
 }
 
 function submitRequest(e) {
