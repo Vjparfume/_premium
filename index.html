@@ -825,51 +825,48 @@ document.getElementById('orderModal').classList.add('hidden');
 }
 
 function submitOrder(e) {
-    e.preventDefault();
-    const p = parfumData.find(x => x.id === currentProductId);
-    if (!p) return;
-
-    const nama = document.getElementById('inputNama').value.trim();
-    const catatan = document.getElementById('inputCatatan').value.trim();
-
-    if (!nama) {
-        alert('Nama lengkap wajib diisi!');
-        return;
-    }
-
-    let totalHarga = p.harga * currentQty;
-    if (currentQty >= 4) totalHarga = totalHarga * 0.9;
-
-    // KIRIM DATA KE GOOGLE SHEET (DOC) - 100% MASUK, ANTI BLOKIR CORS
-    const params = new URLSearchParams();
-    params.append('nama', nama);
-    params.append('parfum', p.nama);
-    params.append('ukuran', p.ukuran || '35ml');
-    params.append('qty', currentQty);
-    params.append('total', totalHarga);
-    params.append('catatan', catatan);
-    params.append('payment', currentPaymentMethod);
-
-    fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors', // INI PENTING AGAR TIDAK DIBLOKIR GOOGLE
-        body: params
-    }).then(() => {
-        console.log('Pesanan berhasil dikirim ke Google Sheet');
-    }).catch(error => {
-        console.error('Error!', error.message);
-    });
-
-    p.stok -= currentQty;
-    saveData();
-    renderProducts(parfumData);
-
-    closeModal();
-    showToast('Pesanan Sedang Disiapkan! 🎉', 'Pesanan Anda sedang disiapkan oleh Admin');
-
-    document.getElementById('orderForm').reset();
+if (e) e.preventDefault();
+const p = parfumData.find(x => x.id === currentProductId);
+if (!p) return;
+const nama = document.getElementById('inputNama').value;
+const catatan = document.getElementById('inputCatatan').value;
+let totalIDR = p.harga * currentQty;
+if (currentQty >= 4) totalIDR = totalIDR * 0.9;
+let totalPaid = '';
+let bayarText = '';
+if (currentPaymentMethod === 'IDR') {
+totalPaid = fmtIDR(totalIDR);
+bayarText = 'Rupiah (Rp)';
+} else if (currentPaymentMethod === 'USD') {
+totalPaid = fmtUSD(toUSD(totalIDR));
+bayarText = 'Dollar ($)';
+} else if (currentPaymentMethod === 'KHR') {
+totalPaid = fmtKHR(toKHR(totalIDR));
+bayarText = 'Riel (៛)';
 }
-
+const params = new URLSearchParams();
+params.append('Waktu', new Date().toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' }));
+params.append('Nama', nama);
+params.append('Varian', p.nama + ' (' + (p.ukuran || '35ml') + ')');
+params.append('Jumlah', currentQty);
+params.append('Bayar', bayarText);
+params.append('Total', totalPaid);
+params.append('Catatan', catatan);
+fetch(GOOGLE_SCRIPT_URL, {
+method: 'POST',
+mode: 'no-cors',
+headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+body: params
+}).catch(err => console.error('Error:', err));
+p.stok -= currentQty;
+saveData();
+renderProducts(parfumData);
+showToast('Pesanan Diterima! 🎉', 'Pesanan Anda sedang disiapkan oleh Admin.');
+document.getElementById('orderForm').reset();
+closeModal();
+window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+ 
 function submitRequest(e) {
 e.preventDefault();
 const nama = document.getElementById('reqNama').value.trim();
