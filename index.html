@@ -131,20 +131,37 @@ box-shadow: 0 8px 32px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08);
 display: flex;
 flex-direction: column;
 transform: translateZ(0);
+will-change: transform;
 }
 .perfume-card:hover {
 transform: translateY(-5px) translateZ(0);
 border-color: rgba(212, 165, 116, 0.7);
 box-shadow: 0 15px 40px rgba(212,165,116,0.15);
 }
-.perfume-card:hover .card-img { transform: scale(1.05); }
+.perfume-card:hover .card-img { transform: scale(1.06); }
 
 .card-img-bg {
-background: radial-gradient(circle at 50% 40%, rgba(212,165,116,0.15) 0%, rgba(28,24,20,0) 80%);
+background: radial-gradient(circle at 50% 35%, rgba(232, 201, 168, 0.15) 0%, rgba(74, 61, 50, 0.1) 50%, rgba(18, 14, 10, 0) 90%);
+position: relative;
 }
+.card-img-bg::after {
+content: "";
+position: absolute;
+bottom: 5%;
+left: 50%;
+width: 60%;
+height: 12px;
+transform: translateX(-50%);
+background: radial-gradient(ellipse, rgba(0,0,0,0.6) 0%, transparent 70%);
+filter: blur(8px);
+z-index: 0;
+}
+
 .card-img {
-transition: transform 0.4s ease;
-filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), filter 0.3s ease;
+filter: drop-shadow(0 8px 20px rgba(0,0,0,0.6)) drop-shadow(0 0 12px rgba(212, 165, 116, 0.3));
+position: relative;
+z-index: 1;
 }
 
 .variant-name {
@@ -270,7 +287,7 @@ animation: pulseGreen 2s ease-in-out infinite;
 style="background: rgba(19,16,12,0.95); border-bottom: 1px solid var(--border);">
 <div id="logoArea" class="flex items-center gap-2.5 cursor-pointer select-none">
 <!-- GANTI LINK LOGO DISINI (KIRI ATAS) -->
-<img src="https://z-cdn-media.chatglm.cn/files/0c7656af-3bab-4e2f-a679-0300374603c6.png" alt="VJ Parfume Logo" class="h-8 md:h-10 w-auto object-contain drop-shadow-lg">
+<img src="https://lh3.googleusercontent.com/d/1IytfC8kty5Z4PnNhHPsY7zfMAi5CCyw4" alt="VJ Parfume Logo" class="h-8 md:h-10 w-auto object-contain drop-shadow-lg">
 </div>
 <a href="#koleksi" class="text-xs md:text-sm flex items-center gap-1.5 transition-colors font-extrabold" style="color: var(--accent-dark);" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--accent-dark)'">
 Lihat Koleksi
@@ -425,7 +442,7 @@ Join
 <footer class="py-10 md:py-12 px-5 md:px-6 text-center section-glass" style="border-top: 1px solid var(--border);">
 <div class="flex items-center justify-center gap-2.5 mb-3 md:mb-4">
 <!-- GANTI LINK LOGO DISINI (FOOTER) -->
-<img src="https://z-cdn-media.chatglm.cn/files/0c7656af-3bab-4e2f-a679-0300374603c6.png" alt="VJ Parfume Logo" class="h-8 md:h-10 w-auto object-contain">
+<img src="https://lh3.googleusercontent.com/d/1IytfC8kty5Z4PnNhHPsY7zfMAi5CCyw4" alt="VJ Parfume Logo" class="h-8 md:h-10 w-auto object-contain">
 </div>
 <p class="text-xs md:text-sm mb-3 font-bold" style="color: var(--text-sec);">Wangi Berkualitas, Harga Bersahabat</p>
 <div class="flex items-center justify-center gap-4 mb-3 md:mb-4">
@@ -595,64 +612,25 @@ imgEl.src = placeholderImg(nama);
 
 const defaultParfumData = [
 { id: 1, nama: "SCANDALOUS", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 5, ukuran: "35ml" },
-{ id: 2, nama: "BLACK OPIUM", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
-{ id: 3, nama: "AVRIL LAVIGNE", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 5, ukuran: "35ml" },
-{ id: 4, nama: "SOFT", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 5, ukuran: "35ml" },
-{ id: 5, nama: "PINK CHIFFON", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 5, ukuran: "35ml" },
-{ id: 6, nama: "ROMANTIC WISH", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 5, ukuran: "35ml" },
-{ id: 7, nama: "OLLA RAMLAN", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 5, ukuran: "35ml" },
-{ id: 8, nama: "DIOR SAUVAGE", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 5, ukuran: "35ml" },
-{ id: 9, nama: "DUNHILL BLUE", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
-{ id: 10, nama: "BVLGARI AQUA", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 5, ukuran: "35ml" },
-{ id: 11, nama: "GREY JAY ROSE", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 5, ukuran: "35ml" },
-{ id: 12, nama: "SOTB", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 5, ukuran: "35ml" },
-{ id: 13, nama: "SELENA GOMES", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 5, ukuran: "35ml" },
-{ id: 14, nama: "LOVELY", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 5, ukuran: "35ml" },
-{ id: 15, nama: "MONT BLANC LEGEND", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 5, ukuran: "35ml" },
-{ id: 16, nama: "YSL LIBRE", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 5, ukuran: "35ml" },
-{ id: 17, nama: "PINK FANTASY", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 5, ukuran: "35ml" },
-{ id: 18, nama: "BLUE EMOTION", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 5, ukuran: "35ml" },
-{ id: 19, nama: "BACCARAT", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 20, nama: "GUCCI FLORA", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 21, nama: "GUCCI BAMBOO", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 22, nama: "GUCCI BLOOM", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
-  { id: 23, nama: "HERMES TWILLY", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 24, nama: "MISS DIOR", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 25, nama: "AQUA KISS", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 26, nama: "JO MALONE", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 27, nama: "BVLGARI OMNIA", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 28, nama: "BVLGARI POUR HOME", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 29, nama: "WHITE MUSK", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 30, nama: "ESCADA SEXY", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 31, nama: "VICTORIA SECRET", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 32, nama: "VICTORIA SECRET VANILLA LACE", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 33, nama: "BATH & BODY WORKS PINK CHIFFON", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 34, nama: "HUGO BOSS ENERGIZE", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 35, nama: "SAKURA", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 36, nama: "MYKONOS", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 37, nama: "GREEN TEA", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 38, nama: "VANILLA ICE", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 39, nama: "ENGLISH PEAR", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 40, nama: "AIGNER BLACK", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 40, nama: "BUBBLE GUM", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 41, nama: "GUESS PINK", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 42, nama: "ZARA RED VANILLA", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 43, nama: "ZARA AMBER", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 44, nama: "ZARA WONDER ROSE", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 45, nama: "FERRARI BLACK", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 46, nama: "LEMON", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 47, nama: "CHANEL BLUE", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 48, nama: "POLO SPORT", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 49, nama: "PRAMUGARI", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 50, nama: "GIORGIO ARMANI", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 51, nama: "RAFFI AHMAD", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 52, nama: "VANILLA MANGO", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 53, nama: "NINA RICCI", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 54, nama: "CHOCO CHANEL", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 55, nama: "JAGUAR VISION", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 56, nama: "LACOSTE COOL PLAY EDITION", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
- { id: 57, nama: "HMNS", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 0, ukuran: "35ml" },
-{  id: 58, nama: "DRAKAR", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785466786/DSFGHLNDFSUIOGBSDKJIUFBSDAJIOFBNHDSF_qirvmi.png", harga: 200000, stok: 5, ukuran: "35ml" }
+{ id: 2, nama: "BLACK OPIUM", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/f_auto,q_auto/black_hvuzkm", harga: 200000, stok: 0, ukuran: "35ml" },
+{ id: 3, nama: "AVRIL LAVIGNE", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429588/avril_yo9eko.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 4, nama: "SOFT", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429686/3b98691c-2334-4421-b295-f6f3fa999cd3_vcodzm.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 5, nama: "PINK CHIFFON", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429761/pink_grm8q5.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 6, nama: "ROMANTIC WISH", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429790/romantic_vap75o.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 7, nama: "OLLA RAMLAN", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429826/aeaffa6d-5fb0-4a83-a08e-998e0b2c98b8_mkxhl8.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 8, nama: "DIOR SAUVAGE", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429866/63d67ae6-b3a8-4147-9634-26f5c583d2d1_gsmspt.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 9, nama: "DUNHILL BLUE", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429895/ee2272d7-46cc-4380-acb2-2d28371036fd_grqraz.png", harga: 200000, stok: 0, ukuran: "35ml" },
+{ id: 10, nama: "BVLGARI AQUA", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429924/75abc422-0f69-4d82-9656-bab60d3d7917_rscsb7.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 11, nama: "GREY JAY ROSE", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429951/b6eac3d7-c3a1-42f4-8711-0c1298c7675f_plgmsl.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 12, nama: "SOTB", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784429987/0f0279bb-0d1d-4421-9688-f3f66920f0d8_ksjji0.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 13, nama: "SELENA GOMES", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784430022/selena_j4ylkr.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 14, nama: "LOVELY", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1784430047/92ec90ee-88a9-4f9a-b696-83074c243553_rbkxiq.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 15, nama: "MONT BLANC LEGEND", gambarUrl: "https://i.postimg.cc/CLptZHwp/fc820462-cf97-4602-9028-00eb58ad326a.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 16, nama: "YSL LIBRE", gambarUrl: "https://i.postimg.cc/K8TkmYZK/590dc64e-a532-4e03-915f-2773fa5454eb.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 17, nama: "PINK FANTASY", gambarUrl: "https://i.postimg.cc/25cVwLTS/454dc429-8b34-42b0-998f-b9c712af8691.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 18, nama: "BLUE EMOTION", gambarUrl: "https://i.postimg.cc/fLSTf2J8/39081197-8eed-4587-9451-b9ecf5c6bd74.png", harga: 200000, stok: 5, ukuran: "35ml" },
+{ id: 19, nama: "BACCARAT", gambarUrl: "https://i.postimg.cc/SxK4GTPc/31ec123f-b149-4235-9cd2-f4be00720458.png", harga: 200000, stok: 0, ukuran: "35ml" },
+{ id: 20, nama: "DRAKAR", gambarUrl: "https://i.postimg.cc/GmfWxcYN/8cd03f13-b49c-42ec-ac9e-2575db75803a.png", harga: 200000, stok: 5, ukuran: "35ml" }
 ];
 
 // FIX CACHE: Paksa sinkronisasi data terbaru dari script HTML
@@ -689,9 +667,9 @@ const stokTxt = soldOut ? 'SOLD OUT' : 'Tersedia';
 
 return `
 <div class="perfume-card ${soldOut ? 'is-soldout' : ''}" data-id="${p.id}">
-<div class="card-img-wrap relative card-img-bg" style="aspect-ratio: 4/5; background-color: var(--bg-alt); overflow:hidden;">
+<div class="card-img-wrap relative card-img-bg" style="aspect-ratio: 4/5; background-color: transparent; overflow:hidden;">
  ${soldOut ? '<div class="sold-out-badge">SOLD OUT</div>' : ''}
-<img src="${p.gambarUrl || placeholderImg(p.nama)}" alt="${p.nama}" class="card-img w-full h-full object-contain p-3" onerror="handleImgError(this,'${p.nama.replace(/'/g,'')}')" loading="lazy">
+<img src="${p.gambarUrl || placeholderImg(p.nama)}" alt="${p.nama}" class="card-img w-full h-full object-contain p-3" onerror="handleImgError(this,'${p.nama.replace(/'/g,'')}')" loading="eager" decoding="async">
 </div>
 <div class="p-3 md:p-4 flex flex-col flex-1">
 <h3 class="variant-name text-[11px] md:text-sm leading-tight mb-1">${p.nama}</h3>
