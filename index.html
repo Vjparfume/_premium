@@ -766,7 +766,8 @@ mainEl.textContent = fmtKHR(toKHR(p.harga));
 }
 }
 
- function updatePaymentDetails(method) {
+// KODE REKENING MILIKMU YANG SUDAH DIRAPIKAN & DISESUAIKAN
+function updatePaymentDetails(method) {
 currentPaymentMethod = method;
 document.querySelectorAll('#paymentOptions .pay-option').forEach(opt => opt.classList.toggle('selected', opt.getAttribute('data-val') === method));
 document.querySelector('#paymentOptions input[value="' + method + '"]').checked = true;
@@ -803,7 +804,7 @@ html = `
 detailBox.innerHTML = html;
 detailBox.classList.remove('hidden');
 if (window.lucide) lucide.createIcons();
-updateTotalPrice();
+updateTotalPrice(); // SUDAH DISESUAIKAN JADI updateTotalPrice()
 }
 
 function copyRekening(number) {
@@ -841,6 +842,7 @@ else if (currentPaymentMethod === 'USD') mainTotalText = fmtUSD(toUSD(totalIDR))
 else if (currentPaymentMethod === 'KHR') mainTotalText = fmtKHR(toKHR(totalIDR));
 document.getElementById('totalHarga').textContent = mainTotalText;
 }
+ 
 function submitOrder(e) {
 if (e) e.preventDefault();
 const p = parfumData.find(x => x.id === currentProductId);
