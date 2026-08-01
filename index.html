@@ -1019,6 +1019,26 @@ showToast('Stok Diperbarui!', 'Stok telah disinkronisasi ke semua device.');
 }
 }
 
+// === TAMBAHAN FUNGSI BARU UNTUK SINKRONISASI STOK ===
+function loadStokFromServer() {
+let script = document.createElement('script');
+script.src = GOOGLE_SCRIPT_URL + "?action=getStok&callback=handleStok";
+document.body.appendChild(script);
+document.body.removeChild(script);
+}
+
+function handleStok(data) {
+if (data && data.length > 0) {
+data.forEach(item => {
+let p = parfumData.find(x => x.id == item.id);
+if (p) p.stok = parseInt(item.stok);
+});
+saveData();
+renderProducts(parfumData);
+}
+}
+// ====================================================
+
 function closePromo() {
 document.getElementById('promoPopup').classList.add('hidden');
 }
@@ -1034,6 +1054,8 @@ renderProducts(parfumData);
 if (window.lucide) lucide.createIcons();
 
 document.getElementById('promoPopup').classList.remove('hidden');
+
+loadStokFromServer(); // <--- TAMBAHAN BARU: Baca stok dari server saat web pertama kali dibuka
 
 let logoClicks = 0;
 document.getElementById('logoArea').addEventListener('click', () => {
