@@ -349,7 +349,7 @@ nav, section, div, footer, a, img, form, button, input, textarea, i {
   <div class="max-w-md mx-auto rounded-xl p-3 md:p-4 flex items-center justify-between" style="background: var(--card); border: 1px solid var(--border);">
     <div class="flex items-center gap-3">
       <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #2AABEE, #229ED9);">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 1 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913).49-1.302).48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 1 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
       </div>
       <div>
         <h3 class="font-bold text-xs md:text-sm" style="color: var(--text);">Gabung Channel Telegram</h3>
@@ -488,7 +488,7 @@ nav, section, div, footer, a, img, form, button, input, textarea, i {
         <p class="font-extrabold text-xs mt-0.5" style="color: var(--accent);" id="modalUkuran"></p>
         <div class="mt-1 space-y-0.5">
           <p class="font-black text-base md:text-lg price-gold" id="modalHargaIDR"></p>
-          <p class="font-bold text-xs" style="color: var(--text-sec);" id="modalHargaUsdKhr"></p>
+          <p class="font-extrabold text-sm mt-1" id="modalHargaUsdKhr"></p>
         </div>
       </div>
     </div>
@@ -535,7 +535,6 @@ nav, section, div, footer, a, img, form, button, input, textarea, i {
       <div class="rounded-xl md:rounded-2xl p-4 md:p-5 text-center" style="background: var(--accent-pale); border: 1px solid var(--border-accent);">
         <p class="text-[10px] md:text-xs font-extrabold mb-1.5 md:mb-2 tracking-wide" style="color: var(--text-sec);">TOTAL HARGA</p>
         <div id="totalHarga" class="font-black price-gold text-2xl md:text-3xl">Rp 0</div>
-        <div id="totalHargaAlt" class="font-bold text-sm mt-1 hidden" style="color: var(--text-sec);"></div>
         <p id="discountInfo" class="text-[10px] mt-1 font-bold hidden" style="color: #22C55E;">🎉 Diskon Min. 4 Botol Diterapkan!</p>
       </div>
 
@@ -753,8 +752,11 @@ function renderProducts() {
           <h3 class="variant-name text-sm md:text-base mb-1 line-clamp-2">${p.nama}</h3>
           <p class="text-[10px] md:text-xs font-bold mb-2" style="color: var(--text-muted);">${p.ukuran}</p>
           <div class="mt-auto">
-            <p class="price-gold text-base md:text-lg mb-0.5">${fmtIDR(p.harga)}</p>
-            <p class="text-[10px] font-bold mb-2" style="color: var(--text-muted);">${fmtUSD(toUSD(p.harga))} · ${fmtKHR(toKHR(p.harga))}</p>
+            <p class="price-gold text-base md:text-lg mb-1">${fmtIDR(p.harga)}</p>
+            <div class="flex flex-col mb-2">
+              <span class="text-[11px] md:text-xs font-extrabold accent-text">${fmtUSD(toUSD(p.harga))}</span>
+              <span class="text-[11px] md:text-xs font-extrabold" style="color: #C4B5FD;">${fmtKHR(toKHR(p.harga))}</span>
+            </div>
             <button onclick="openModal(${p.id})" class="btn-order w-full py-2 rounded-lg text-[11px] md:text-xs font-extrabold flex items-center justify-center gap-1.5">
               <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
               ${isSoldOut ? 'Stok Habis' : 'Pesan Sekarang'}
@@ -778,7 +780,7 @@ function openModal(id) {
   document.getElementById('modalUkuran').textContent = currentProduct.ukuran;
   document.getElementById('modalImg').src = currentProduct.gambarUrl;
   document.getElementById('modalHargaIDR').textContent = fmtIDR(currentProduct.harga);
-  document.getElementById('modalHargaUsdKhr').textContent = fmtUSD(toUSD(currentProduct.harga)) + ' · ' + fmtKHR(toKHR(currentProduct.harga));
+  document.getElementById('modalHargaUsdKhr').innerHTML = `<span class="accent-text">${fmtUSD(toUSD(currentProduct.harga))}</span> <span style="color: #C4B5FD;">· ${fmtKHR(toKHR(currentProduct.harga))}</span>`;
   
   document.getElementById('stockInfo').textContent = `Stok: ${currentProduct.stok}`;
   document.getElementById('qtyDisplay').textContent = currentQty;
@@ -822,10 +824,8 @@ function updatePaymentDetails(method) {
   discountInfo.classList.toggle('hidden', discount === 0);
   
   const totalHargaEl = document.getElementById('totalHarga');
-  const totalHargaAltEl = document.getElementById('totalHargaAlt');
   const paymentDetailsEl = document.getElementById('paymentDetails');
   
-  totalHargaAltEl.classList.add('hidden');
   paymentDetailsEl.classList.add('hidden');
   
   if (method === 'IDR') {
@@ -835,22 +835,18 @@ function updatePaymentDetails(method) {
   } else if (method === 'USD') {
     let finalTotalUSD = toUSD(finalTotalIDR);
     totalHargaEl.textContent = fmtUSD(finalTotalUSD);
-    totalHargaAltEl.textContent = fmtIDR(finalTotalIDR);
-    totalHargaAltEl.classList.remove('hidden');
     paymentDetailsEl.innerHTML = `
-      <p class="text-xs font-bold mb-2" style="color: var(--text-sec);">Scan Barcode ABA di bawah ini:</p>
-      <img src="${BARCODE_URL}" alt="ABA Barcode" class="w-32 h-32 mx-auto rounded-lg bg-white p-1 object-contain">
-      <p class="text-sm font-extrabold mt-2 accent-text">${fmtUSD(finalTotalUSD)}</p>
+      <p class="text-xs font-bold mb-3" style="color: var(--text-sec);">Scan Barcode ABA di bawah ini:</p>
+      <img src="${BARCODE_URL}" alt="ABA Barcode" class="w-48 h-48 md:w-56 md:h-56 mx-auto rounded-xl object-contain">
+      <p class="text-lg font-extrabold mt-3 price-gold">${fmtUSD(finalTotalUSD)}</p>
     `;
     paymentDetailsEl.classList.remove('hidden');
   } else if (method === 'KHR') {
     let finalTotalKHR = toKHR(finalTotalIDR);
     totalHargaEl.textContent = fmtKHR(finalTotalKHR);
-    totalHargaAltEl.textContent = fmtIDR(finalTotalIDR);
-    totalHargaAltEl.classList.remove('hidden');
     paymentDetailsEl.innerHTML = `
       <p class="text-xs font-bold mb-2" style="color: var(--text-sec);">Bayar via Wings:</p>
-      <p class="text-sm font-extrabold mt-2 accent-text">${fmtKHR(finalTotalKHR)}</p>
+      <p class="text-lg font-extrabold mt-2 price-gold">${fmtKHR(finalTotalKHR)}</p>
     `;
     paymentDetailsEl.classList.remove('hidden');
   }
