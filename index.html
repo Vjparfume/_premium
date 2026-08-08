@@ -292,10 +292,10 @@ nav, section, div, footer, a, img, form, button, input, textarea, i {
   <div id="logoArea" class="flex items-center gap-2.5 cursor-pointer select-none">
     <img src="https://lh3.googleusercontent.com/d/1IytfC8kty5Z4PnNhHPsY7zfMAi5CCyw4" alt="VJ Parfume Logo" class="h-8 md:h-10 w-auto object-contain drop-shadow-lg">
   </div>
-  <a href="#koleksi" class="text-xs md:text-sm flex items-center gap-1.5 transition-colors font-extrabold" style="color: var(--accent-dark);" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--accent-dark)'">
-    Lihat Koleksi
-    <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
-  </a>
+  <button onclick="openReqModal()" class="text-xs md:text-sm flex items-center gap-1.5 transition-colors font-extrabold btn-order px-3 py-1.5 rounded-lg" style="color: var(--accent-dark);">
+    Request Varian
+    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+  </button>
 </nav>
 
 <section class="min-h-screen flex flex-col items-center justify-center text-center px-5 md:px-6 relative overflow-hidden hero-pattern">
@@ -316,7 +316,7 @@ nav, section, div, footer, a, img, form, button, input, textarea, i {
   <p class="text-xs md:text-base max-w-md leading-relaxed mb-6 md:mb-8 anim-fade-up d4 font-bold px-4" style="color: var(--text-sec);">Temukan varian parfum premium pilihanmu di bawah ini. Kualitas sekelas branded, namun ramah di kantong. Pesan sekarang, gampang banget!</p>
 
   <a href="#koleksi" class="btn-primary px-8 md:px-10 py-3.5 md:py-4 rounded-2xl font-extrabold text-xs md:text-sm anim-fade-up d5 inline-flex items-center gap-2.5 tracking-wide">
-    Lihat Koleksi Parfum
+    Katalog Parfum
     <i data-lucide="arrow-down" class="w-4 h-4"></i>
   </a>
   <div class="absolute bottom-8 md:bottom-10 anim-float">
@@ -324,11 +324,33 @@ nav, section, div, footer, a, img, form, button, input, textarea, i {
   </div>
 </section>
 
-<section class="py-4 md:py-5 px-4 md:px-8 section-glass" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+<!-- HUBUNGI KAMI & SOSMED (DIPINDAH KE ATAS) -->
+<section class="py-10 md:py-12 px-4 md:px-8 section-glass" style="border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="max-w-xl mx-auto text-center">
+    <h2 class="text-xl md:text-3xl font-serif font-extrabold mb-4 md:mb-6 accent-gradient-text">Hubungi Kami</h2>
+    <p class="text-xs md:text-sm mb-6 md:mb-8 font-bold" style="color: var(--text-sec);">Punya pertanyaan atau ingin pesan langsung? Chat admin kami sekarang!</p>
+    <div class="flex items-center justify-center gap-3 md:gap-4 mb-6">
+      <a href="https://wa.me/60173698359" target="_blank" class="social-link" style="background: linear-gradient(135deg, #25D366, #128C7E);" title="WhatsApp">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/vj_parfume?igsh=MW1ra2s5Z2NhaHg1NA==" target="_blank" class="social-link" style="background: linear-gradient(135deg, #833AB4, #FD1D1D, #FCB045);" title="Instagram">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a href="https://telegram.me/vjparfume_premium" target="_blank" class="social-link" style="background: linear-gradient(135deg, #2AABEE, #229ED9);" title="Telegram">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      </a>
+    </div>
+    <a href="https://wa.me/60173698359" target="_blank" class="inline-flex items-center gap-1.5 text-[11px] md:text-xs font-bold transition-colors" style="color: #25D366;" onmouseover="this.style.color='#4ADE80'" onmouseout="this.style.color='#25D366'">
+      Chat Admin via WhatsApp
+    </a>
+  </div>
+</section>
+
+<section class="py-4 md:py-5 px-4 md:px-8 section-glass" style="border-bottom:1px solid var(--border);">
   <div class="max-w-md mx-auto rounded-xl p-3 md:p-4 flex items-center justify-between" style="background: var(--card); border: 1px solid var(--border);">
     <div class="flex items-center gap-3">
       <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #2AABEE, #229ED9);">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 1 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
       </div>
       <div>
         <h3 class="font-bold text-xs md:text-sm" style="color: var(--text);">Gabung Channel Telegram</h3>
@@ -338,52 +360,6 @@ nav, section, div, footer, a, img, form, button, input, textarea, i {
     <a href="https://telegram.me/vjparfume_premium" target="_blank" class="px-3 py-1.5 rounded-lg text-[10px] md:text-xs font-extrabold text-white transition-all hover:opacity-90" style="background: #2AABEE;">
       Join
     </a>
-  </div>
-</section>
-
-<!-- RAPIKAN MENU REQ JADI TERPISAH & ELEGAN -->
-<section id="request" class="max-w-5xl mx-auto px-3 md:px-8 py-12 md:py-20">
-  <div class="text-center mb-8 md:mb-12">
-    <p class="text-[10px] md:text-[11px] font-extrabold tracking-[0.35em] uppercase accent-text mb-3">— Custom Request —</p>
-    <h2 class="text-2xl md:text-4xl font-serif font-extrabold accent-gradient-text mb-3">Req Varian Impianmu</h2>
-    <p class="text-xs md:text-base max-w-md mx-auto font-bold" style="color: var(--text-sec);">Tidak menemukan parfum favoritmu? Kirimkan request varian impianmu, admin kami akan mencarikannya untukmu!</p>
-  </div>
-  
-  <div class="rounded-3xl p-6 md:p-10 relative overflow-hidden" style="background: linear-gradient(160deg, rgba(35, 28, 21, 0.98) 0%, rgba(15, 12, 9, 1) 100%); border: 1px solid var(--border-accent); box-shadow: 0 0 40px rgba(212,165,116,0.08);">
-    <form id="requestForm" class="grid md:grid-cols-2 gap-4">
-      <div class="md:col-span-2">
-        <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Nama Lengkap <span style="color: #EF4444;">*</span></label>
-        <input type="text" id="reqNama" required placeholder="Tulis namamu di sini" class="input-field w-full h-12 px-4 rounded-xl text-sm font-bold">
-      </div>
-      <div class="md:col-span-2">
-        <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Nama Parfum / Varian yang Dicari <span style="color: #EF4444;">*</span></label>
-        <input type="text" id="reqVarian" required placeholder="Cth: Bleu de Chanel, Sauvage, dll" class="input-field w-full h-12 px-4 rounded-xl text-sm font-bold">
-      </div>
-      <div class="md:col-span-2">
-        <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Catatan Tambahan</label>
-        <textarea id="reqCatatan" rows="3" placeholder="Misal: Minta yang tahan lama, ukuran 50ml, dll" class="input-field w-full px-4 py-3 rounded-xl text-sm font-bold resize-none"></textarea>
-      </div>
-      <div class="md:col-span-2">
-        <button type="button" onclick="submitRequest(event)" class="w-full btn-primary rounded-xl font-extrabold text-sm flex items-center justify-center gap-2.5 tracking-wide py-4 mt-2">
-          <i data-lucide="send" class="w-4 h-4"></i> Kirim Request Varian
-        </button>
-      </div>
-    </form>
-  </div>
-</section>
-
-<section class="py-6 md:py-8 px-4 md:px-8 section-glass" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
-  <div class="max-w-xl mx-auto text-center px-2">
-    <p class="text-sm md:text-lg font-extrabold mb-1.5" style="color: #FFD7A8;">🌸 Ingin tampil wangi, elegan, dan tahan lama tanpa harus mahal?</p>
-    <p class="text-sm md:text-lg font-extrabold mb-5 md:mb-6" style="color: #FFB6D9;">Silakan order di <span class="rainbow-glow" style="font-size:1.05em;">VJ PARFUME</span>! 💖</p>
-    <div class="flex flex-col items-center gap-2">
-      <span class="font-extrabold text-xs md:text-sm" style="color: var(--text-sec);">💳 Menerima Pembayaran:</span>
-      <div class="flex flex-wrap items-center justify-center gap-2">
-        <span class="pay-chip" style="background: rgba(212,165,116,0.1); color: var(--accent-dark);">💵 Cash</span>
-        <span class="pay-chip" style="background: rgba(125,211,252,0.08); color: #7DD3FC;">📱 ABA</span>
-        <span class="pay-chip" style="background: rgba(196,181,253,0.08); color: #C4B5FD;">🪽 Wings</span>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -413,10 +389,26 @@ nav, section, div, footer, a, img, form, button, input, textarea, i {
   </div>
 </div>
 
+<section class="py-6 md:py-8 px-4 md:px-8 section-glass" style="border-bottom:1px solid var(--border);">
+  <div class="max-w-xl mx-auto text-center px-2">
+    <p class="text-sm md:text-lg font-extrabold mb-1.5" style="color: #FFD7A8;">🌸 Ingin tampil wangi, elegan, dan tahan lama tanpa harus mahal?</p>
+    <p class="text-sm md:text-lg font-extrabold mb-5 md:mb-6" style="color: #FFB6D9;">Silakan order di <span class="rainbow-glow" style="font-size:1.05em;">VJ PARFUME</span>! 💖</p>
+    <div class="flex flex-col items-center gap-2">
+      <span class="font-extrabold text-xs md:text-sm" style="color: var(--text-sec);">💳 Menerima Pembayaran:</span>
+      <div class="flex flex-wrap items-center justify-center gap-2">
+        <span class="pay-chip" style="background: rgba(212,165,116,0.1); color: var(--accent-dark);">💵 Cash</span>
+        <span class="pay-chip" style="background: rgba(212,165,116,0.1); color: var(--accent-dark);">💵 Rupiah</span>
+        <span class="pay-chip" style="background: rgba(125,211,252,0.08); color: #7DD3FC;">📱 ABA</span>
+        <span class="pay-chip" style="background: rgba(196,181,253,0.08); color: #C4B5FD;">🪽 Wings</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="koleksi" class="max-w-7xl mx-auto px-3 md:px-8 pt-16 md:pt-24 pb-24 md:pb-32">
   <div class="text-center mb-10 md:mb-14">
     <p class="text-[10px] md:text-[11px] font-extrabold tracking-[0.35em] uppercase accent-text mb-3 md:mb-4">— Our Collection —</p>
-    <h2 class="text-2xl md:text-5xl font-serif font-extrabold tracking-tight mb-3 md:mb-4" style="color: var(--text);">Koleksi <span class="accent-gradient-text">Parfum</span> Kami</h2>
+    <h2 class="text-2xl md:text-5xl font-serif font-extrabold tracking-tight mb-3 md:mb-4" style="color: var(--text);">Katalog <span class="accent-gradient-text">Parfum</span> Kami</h2>
     <p class="text-xs md:text-base max-w-md mx-auto font-bold" style="color: var(--text-sec);">Pilih yang kamu suka, langsung pesan tanpa ribet</p>
     <div class="gold-divider max-w-[100px] md:max-w-[120px] mx-auto mt-4 md:mt-6"></div>
   </div>
@@ -434,28 +426,6 @@ nav, section, div, footer, a, img, form, button, input, textarea, i {
   </div>
 </section>
 
-<!-- HUBUNGI KAMI & SOSMED (DIBUAT TERPISAH) -->
-<section class="py-10 md:py-12 px-4 md:px-8 section-glass" style="border-top: 1px solid var(--border);">
-  <div class="max-w-xl mx-auto text-center">
-    <h2 class="text-xl md:text-3xl font-serif font-extrabold mb-4 md:mb-6 accent-gradient-text">Hubungi Kami</h2>
-    <p class="text-xs md:text-sm mb-6 md:mb-8 font-bold" style="color: var(--text-sec);">Punya pertanyaan atau ingin pesan langsung? Chat admin kami sekarang!</p>
-    <div class="flex items-center justify-center gap-3 md:gap-4 mb-6">
-      <a href="https://wa.me/60173698359" target="_blank" class="social-link" style="background: linear-gradient(135deg, #25D366, #128C7E);" title="WhatsApp">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-      </a>
-      <a href="https://www.instagram.com/vj_parfume?igsh=MW1ra2s5Z2NhaHg1NA==" target="_blank" class="social-link" style="background: linear-gradient(135deg, #833AB4, #FD1D1D, #FCB045);" title="Instagram">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-      </a>
-      <a href="https://telegram.me/vjparfume_premium" target="_blank" class="social-link" style="background: linear-gradient(135deg, #2AABEE, #229ED9);" title="Telegram">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 1 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913).49-1.302).48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-      </a>
-    </div>
-    <a href="https://wa.me/60173698359" target="_blank" class="inline-flex items-center gap-1.5 text-[11px] md:text-xs font-bold transition-colors" style="color: #25D366;" onmouseover="this.style.color='#4ADE80'" onmouseout="this.style.color='#25D366'">
-      Chat Admin via WhatsApp
-    </a>
-  </div>
-</section>
-
 <footer class="py-8 md:py-10 px-5 md:px-6 text-center section-glass" style="border-top: 1px solid var(--border);">
   <div class="flex items-center justify-center gap-2.5 mb-3 md:mb-4">
     <img src="https://lh3.googleusercontent.com/d/1IytfC8kty5Z4PnNhHPsY7zfMAi5CCyw4" alt="VJ Parfume Logo" class="h-8 md:h-10 w-auto object-contain">
@@ -468,6 +438,37 @@ nav, section, div, footer, a, img, form, button, input, textarea, i {
 <a href="https://wa.me/60173698359" target="_blank" class="tg-float" title="Chat Admin via WhatsApp">
   <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
 </a>
+
+<!-- MODAL REQ VARIAN (DIBUAT TERPISAH / POPUP) -->
+<div id="reqModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 md:p-4 modal-backdrop">
+  <div class="modal-box w-full max-w-md max-h-[92vh] overflow-y-auto anim-slide-up">
+    <div class="flex items-center justify-between p-5 md:p-6 pb-3 md:pb-4">
+      <div>
+        <p class="text-[10px] font-extrabold tracking-[0.25em] uppercase accent-text mb-1">Custom Request</p>
+        <h3 class="font-extrabold text-base md:text-lg accent-gradient-text">Req Varian Impianmu</h3>
+      </div>
+      <button onclick="closeReqModal()" class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center transition-colors" style="background: var(--bg-alt);"><i data-lucide="x" class="w-4 h-4" style="color: var(--text-sec);"></i></button>
+    </div>
+    <div class="gold-divider mx-5 md:mx-6"></div>
+    <form id="requestForm" class="p-5 md:p-6 space-y-4">
+      <div>
+        <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Nama Lengkap <span style="color: #EF4444;">*</span></label>
+        <input type="text" id="reqNama" required placeholder="Tulis namamu di sini" class="input-field w-full h-11 md:h-12 px-3.5 md:px-4 rounded-xl text-xs md:text-sm font-bold">
+      </div>
+      <div>
+        <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Nama Parfum / Varian yang Dicari <span style="color: #EF4444;">*</span></label>
+        <input type="text" id="reqVarian" required placeholder="Contoh: Bleu de Chanel, Sauvage, dll" class="input-field w-full h-11 md:h-12 px-3.5 md:px-4 rounded-xl text-xs md:text-sm font-bold">
+      </div>
+      <div>
+        <label class="block text-[11px] md:text-xs font-extrabold mb-1.5 md:mb-2" style="color: var(--text-sec);">Catatan Tambahan</label>
+        <textarea id="reqCatatan" rows="2" placeholder="Misal: Minta yang tahan lama, ukuran 50ml, dll" class="input-field w-full px-3.5 md:px-4 py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-bold resize-none"></textarea>
+      </div>
+      <button type="button" onclick="submitRequest(event)" class="w-full btn-primary rounded-xl md:rounded-2xl font-extrabold text-xs md:text-sm flex items-center justify-center gap-2.5 tracking-wide py-3.5 md:py-4 mt-2">
+        <i data-lucide="send" class="w-4 h-4"></i> Kirim Request Varian
+      </button>
+    </form>
+  </div>
+</div>
 
 <div id="orderModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 md:p-4 modal-backdrop">
   <div class="modal-box w-full max-w-md max-h-[92vh] overflow-y-auto anim-slide-up">
@@ -541,7 +542,7 @@ nav, section, div, footer, a, img, form, button, input, textarea, i {
       </button>
 
       <a href="https://wa.me/60173698359" target="_blank" class="w-full rounded-xl md:rounded-2xl font-extrabold text-xs md:text-sm flex items-center justify-center gap-2.5 tracking-wide py-3 md:py-3.5 transition-all" style="background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.2); color: #25D366;" onmouseover="this.style.background='#25D366';this.style.color='#fff';this.style.borderColor='#25D366'" onmouseout="this.style.background='rgba(34,197,94,0.08)';this.style.color='#25D366';this.style.borderColor='rgba(34,197,94,0.2)'">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347).223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694).625.712.227 1.36).195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
         Chat Admin via WhatsApp
       </a>
       <p class="text-center text-[10px] md:text-[11px] mt-1 font-bold" style="color: var(--text-muted);">Pesanan akan diproses oleh Admin</p>
@@ -746,8 +747,8 @@ function renderProducts() {
           <img src="${p.gambarUrl}" alt="${p.nama}" class="card-img w-full h-full object-contain" onerror="handleImgError(this, '${p.nama}')">
         </div>
         <div class="p-3 md:p-4 flex flex-col flex-1">
-          <h3 class="variant-name text-sm md:text-base mb-1 line-clamp-2 text-center">${p.nama}</h3>
-          <p class="text-[10px] md:text-xs font-bold mb-2 text-center" style="color: var(--text-muted);">${p.ukuran}</p>
+          <h3 class="variant-name text-base md:text-lg mb-1 line-clamp-2 text-center" style="min-height: 2.5rem;">${p.nama}</h3>
+          <p class="text-sm md:text-base font-extrabold mb-3 text-center accent-text" style="text-shadow: 0 0 8px rgba(212, 165, 116, 0.4);">${p.ukuran}</p>
           
           <div class="price-tag">
             <p class="price-gold text-base md:text-lg mb-2">${fmtIDR(p.harga)}</p>
@@ -794,6 +795,15 @@ function openModal(id) {
 
 function closeModal() {
   document.getElementById('orderModal').classList.add('hidden');
+}
+
+function openReqModal() {
+  document.getElementById('reqModal').classList.remove('hidden');
+  lucide.createIcons();
+}
+
+function closeReqModal() {
+  document.getElementById('reqModal').classList.add('hidden');
 }
 
 function changeQty(delta) {
@@ -945,6 +955,7 @@ function submitRequest(e) {
   }).then(() => {
     showToast('Request Terkirim! 🎉', 'Admin akan mencarikan varian tersebut untukmu', true);
     document.getElementById('requestForm').reset();
+    closeReqModal();
   }).catch(err => {
     console.error('Error:', err);
     showToast('Gagal Mengirim', 'Coba lagi nanti', false);
