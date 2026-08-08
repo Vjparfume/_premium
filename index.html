@@ -120,23 +120,24 @@ nav, section, div, footer, a, img, form, button, input, textarea, i {
 .d4 { animation-delay: 0.4s; }
 .d5 { animation-delay: 0.5s; }
 
+/* CART PERFUME MEWAH */
 .perfume-card {
-  background: linear-gradient(160deg, rgba(45, 38, 28, 0.95) 0%, rgba(18, 14, 10, 0.98) 100%);
-  border: 1px solid rgba(212, 165, 116, 0.3);
-  border-radius: 16px;
+  background: linear-gradient(160deg, rgba(45, 38, 28, 0.98) 0%, rgba(18, 14, 10, 1) 100%);
+  border: 1px solid rgba(212, 165, 116, 0.4);
+  border-radius: 18px;
   overflow: hidden;
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), border-color 0.3s ease, box-shadow 0.3s ease;
   position: relative;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.1);
   display: flex;
   flex-direction: column;
   transform: translateZ(0);
   will-change: transform;
 }
 .perfume-card:hover {
-  transform: translateY(-5px) translateZ(0);
-  border-color: rgba(212, 165, 116, 0.7);
-  box-shadow: 0 15px 40px rgba(212,165,116,0.15);
+  transform: translateY(-8px) translateZ(0);
+  border-color: rgba(212, 165, 116, 0.9);
+  box-shadow: 0 20px 50px rgba(212,165,116,0.2);
 }
 .perfume-card:hover .card-img { transform: scale(1.06); }
 .perfume-card:hover .card-img-wrap::before { opacity: 1; }
@@ -200,6 +201,14 @@ nav, section, div, footer, a, img, form, button, input, textarea, i {
   filter: drop-shadow(0 2px 2px rgba(0,0,0,0.4));
 }
 
+.price-tag {
+  background: rgba(212, 165, 116, 0.05);
+  border: 1px solid rgba(212, 165, 116, 0.15);
+  border-radius: 12px;
+  padding: 10px;
+  margin-top: 8px;
+}
+
 .btn-order {
   background: rgba(212,165,116,0.08);
   border: 1px solid rgba(212,165,116,0.2);
@@ -242,8 +251,18 @@ nav, section, div, footer, a, img, form, button, input, textarea, i {
 
 .toast-box { background: rgba(28,24,20,0.98); border: 1px solid rgba(34,197,94,0.2); border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
 .gold-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border-accent), transparent); }
-.tg-float { position: fixed; bottom: 20px; right: 20px; z-index: 45; width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, #25D366, #128C7E); display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 24px rgba(37,211,102,0.35); transition: transform 0.2s; cursor: pointer; }
-.tg-float:hover { transform: scale(1.1); }
+
+.tg-float { 
+  position: fixed; bottom: 25px; right: 25px; z-index: 45; width: 56px; height: 56px; border-radius: 50%; 
+  background: linear-gradient(135deg, #25D366, #128C7E); display: flex; align-items: center; justify-content: center; 
+  box-shadow: 0 8px 28px rgba(37,211,102,0.4); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; 
+}
+.tg-float:hover { transform: scale(1.1) translateY(-2px); box-shadow: 0 12px 35px rgba(37,211,102,0.6); }
+
+.social-link {
+  width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+.social-link:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 8px 25px rgba(0,0,0,0.4); }
 
 .admin-input { background: rgba(19,16,12,0.8); border: 1px solid var(--border); color: var(--text); border-radius: 10px; padding: 8px 12px; font-size: 13px; width: 100%; outline: none; font-family: 'Inter', sans-serif; }
 .admin-input:focus { border-color: var(--accent); }
@@ -256,33 +275,17 @@ nav, section, div, footer, a, img, form, button, input, textarea, i {
 .pay-option input { display: none; }
 
 .sold-out-badge {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  z-index: 20;
-  background: linear-gradient(135deg, #EF4444, #B91C1C);
-  color: #fff;
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 0.05em;
-  padding: 4px 10px;
-  border-radius: 8px;
-  text-transform: uppercase;
-  box-shadow: 0 4px 12px rgba(239,68,68,0.6);
-  pointer-events: none;
+  position: absolute; top: 10px; left: 10px; z-index: 20;
+  background: linear-gradient(135deg, #EF4444, #B91C1C); color: #fff; font-size: 11px; font-weight: 900; letter-spacing: 0.05em;
+  padding: 5px 12px; border-radius: 8px; text-transform: uppercase; box-shadow: 0 4px 12px rgba(239,68,68,0.6); pointer-events: none;
   -webkit-text-fill-color: #fff !important;
 }
 
 .perfume-card.is-soldout .btn-order {
-  background: rgba(239,68,68,0.12) !important;
-  border-color: rgba(239,68,68,0.4) !important;
-  color: #FCA5A5 !important;
-  pointer-events: none;
+  background: rgba(239,68,68,0.12) !important; border-color: rgba(239,68,68,0.4) !important; color: #FCA5A5 !important; pointer-events: none;
 }
 
-.pulse-green-border {
-  animation: pulseGreen 2s ease-in-out infinite;
-}
+.pulse-green-border { animation: pulseGreen 2s ease-in-out infinite; }
 @keyframes pulseGreen {
   0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
   50%     { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
@@ -315,24 +318,26 @@ nav, section, div, footer, a, img, form, button, input, textarea, i {
       <span class="text-[10px] md:text-[11px] font-extrabold accent-text tracking-widest uppercase">✦ Premium Fragrance ✦</span>
     </div>
   </div>
-  <h1 class="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[0.95] mb-2 md:mb-3 anim-fade-up d1 px-2 accent-gradient-text">
+  
+  <h1 class="text-3xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight leading-[0.95] mb-2 md:mb-3 anim-fade-up d1 px-2 accent-gradient-text italic">
     Rasakan Kemewahan Sejati di
   </h1>
   <h1 class="text-4xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[0.85] mb-5 md:mb-7 anim-fade-up d2 px-2">
     <span class="rainbow-glow" style="display:inline-block;">VJ PARFUME</span>
   </h1>
+  
   <p class="text-base md:text-xl max-w-lg leading-relaxed mb-2 anim-fade-up d3 font-extrabold px-4" style="color: #E8C9A8;">Wangi Tahan Lama, Elegan, & Bikin Percaya Diri!</p>
   <p class="text-xs md:text-base max-w-md leading-relaxed mb-6 md:mb-8 anim-fade-up d4 font-bold px-4" style="color: var(--text-sec);">Temukan varian parfum premium pilihanmu di bawah ini. Kualitas sekelas branded, namun ramah di kantong. Pesan sekarang, gampang banget!</p>
 
   <div class="flex items-center justify-center gap-3 md:gap-4 mb-8 md:mb-12 anim-fade-up d5">
-    <a href="https://www.instagram.com/vj_parfume?igsh=MW1ra2s5Z2NhaHg1NA==" target="_blank" class="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center transition-all hover:scale-110" style="background: linear-gradient(135deg, #833AB4, #FD1D1D, #FCB045); box-shadow: 0 4px 15px rgba(252,176,69,0.3);" title="Instagram">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+    <a href="https://www.instagram.com/vj_parfume?igsh=MW1ra2s5Z2NhaHg1NA==" target="_blank" class="social-link" style="background: linear-gradient(135deg, #833AB4, #FD1D1D, #FCB045);" title="Instagram">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
     </a>
-    <a href="https://wa.me/60173698359" target="_blank" class="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center transition-all hover:scale-110" style="background: linear-gradient(135deg, #25D366, #128C7E); box-shadow: 0 4px 15px rgba(37,211,102,0.3);" title="WhatsApp">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    <a href="https://wa.me/60173698359" target="_blank" class="social-link" style="background: linear-gradient(135deg, #25D366, #128C7E);" title="WhatsApp">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
     </a>
-    <a href="https://telegram.me/vjparfume_premium" target="_blank" class="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center transition-all hover:scale-110" style="background: linear-gradient(135deg, #2AABEE, #229ED9); box-shadow: 0 4px 15px rgba(42,171,238,0.3);" title="Telegram">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 1 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913).49-1.302).48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+    <a href="https://telegram.me/vjparfume_premium" target="_blank" class="social-link" style="background: linear-gradient(135deg, #2AABEE, #229ED9);" title="Telegram">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 1 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913).49-1.302).48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
     </a>
   </div>
 
@@ -468,7 +473,7 @@ nav, section, div, footer, a, img, form, button, input, textarea, i {
 </footer>
 
 <a href="https://wa.me/60173698359" target="_blank" class="tg-float" title="Chat Admin via WhatsApp">
-  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694).625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347).223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694).625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
 </a>
 
 <div id="orderModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 md:p-4 modal-backdrop">
@@ -543,7 +548,7 @@ nav, section, div, footer, a, img, form, button, input, textarea, i {
       </button>
 
       <a href="https://wa.me/60173698359" target="_blank" class="w-full rounded-xl md:rounded-2xl font-extrabold text-xs md:text-sm flex items-center justify-center gap-2.5 tracking-wide py-3 md:py-3.5 transition-all" style="background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.2); color: #25D366;" onmouseover="this.style.background='#25D366';this.style.color='#fff';this.style.borderColor='#25D366'" onmouseout="this.style.background='rgba(34,197,94,0.08)';this.style.color='#25D366';this.style.borderColor='rgba(34,197,94,0.2)'">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347).223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173).199-.347).223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694).625.712.227 1.36).195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
         Chat Admin via WhatsApp
       </a>
       <p class="text-center text-[10px] md:text-[11px] mt-1 font-bold" style="color: var(--text-muted);">Pesanan akan diproses oleh Admin</p>
@@ -685,6 +690,7 @@ const defaultParfumData = [
  { id: 59, nama: "DRAKAR", gambarUrl: "https://res.cloudinary.com/jybaddju/image/upload/v1785474203/T_mjreus.png", harga: 200000, stok: 5, ukuran: "35ml" }
 ];
 
+
 let parfumData = JSON.parse(localStorage.getItem('parfumData')) || [...defaultParfumData];
 let currentProduct = null;
 let currentQty = 1;
@@ -751,17 +757,19 @@ function renderProducts() {
         <div class="p-3 md:p-4 flex flex-col flex-1">
           <h3 class="variant-name text-sm md:text-base mb-1 line-clamp-2">${p.nama}</h3>
           <p class="text-[10px] md:text-xs font-bold mb-2" style="color: var(--text-muted);">${p.ukuran}</p>
-          <div class="mt-auto">
-            <p class="price-gold text-base md:text-lg mb-1">${fmtIDR(p.harga)}</p>
-            <div class="flex flex-col mb-2">
+          
+          <div class="price-tag mt-auto mb-3">
+            <p class="price-gold text-base md:text-lg mb-1.5">${fmtIDR(p.harga)}</p>
+            <div class="flex justify-between items-center gap-2 pt-1.5 border-t" style="border-color: var(--border);">
               <span class="text-[11px] md:text-xs font-extrabold accent-text">${fmtUSD(toUSD(p.harga))}</span>
               <span class="text-[11px] md:text-xs font-extrabold" style="color: #C4B5FD;">${fmtKHR(toKHR(p.harga))}</span>
             </div>
-            <button onclick="openModal(${p.id})" class="btn-order w-full py-2 rounded-lg text-[11px] md:text-xs font-extrabold flex items-center justify-center gap-1.5">
-              <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
-              ${isSoldOut ? 'Stok Habis' : 'Pesan Sekarang'}
-            </button>
           </div>
+          
+          <button onclick="openModal(${p.id})" class="btn-order w-full py-2 rounded-lg text-[11px] md:text-xs font-extrabold flex items-center justify-center gap-1.5">
+            <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
+            ${isSoldOut ? 'Stok Habis' : 'Pesan Sekarang'}
+          </button>
         </div>
       </div>
     `;
@@ -853,7 +861,7 @@ function updatePaymentDetails(method) {
   }
 }
 
-// === PERBAIKAN 1 & 2: Kirim data Riel/total sesuai pilihan & Langsung instan sukses ===
+// === PERBAIKAN SHEET: Rupiah (Rp), Riel (៛), Dollar ($) & Instan Sukses ===
 function submitOrder(e) {
   e.preventDefault();
   const nama = document.getElementById('inputNama').value;
@@ -869,14 +877,14 @@ function submitOrder(e) {
   const discount = currentQty >= 4 ? 0.10 : 0;
   const finalTotalIDR = baseTotal - (baseTotal * discount);
   
-  let bayarText = "Rupiah";
+  let bayarText = "Rupiah (Rp)";
   let totalText = fmtIDR(finalTotalIDR);
   
   if (payment === 'USD') {
-    bayarText = "Dollar";
+    bayarText = "Dollar ($)";
     totalText = fmtUSD(toUSD(finalTotalIDR));
   } else if (payment === 'KHR') {
-    bayarText = "Riel";
+    bayarText = "Riel (៛)";
     totalText = fmtKHR(toKHR(finalTotalIDR));
   }
 
@@ -908,7 +916,7 @@ function submitOrder(e) {
     Nama: nama,
     Varian: currentProduct.nama,
     Jumlah: currentQty,
-    Bayar: bayarText, // Tertulis "Riel", "Dollar", atau "Rupiah"
+    Bayar: bayarText, // Tertulis "Rupiah (Rp)", "Riel (៛)", atau "Dollar ($)"
     Total: totalText, // Total harga sesuai mata uang
     Catatan: catatan
   });
